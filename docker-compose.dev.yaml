@@ -14,31 +14,34 @@ services:
       - app-network
     tty: true
 
-  backend:
+  api:
     build:
-      context: ./backend
+      context: ./api
       dockerfile: .docker/Dockerfile.dev
     ports:
       - '3000:3000'
     volumes:
-      - ./backend:/app
+      - ./api:/app
     depends_on:
       - db
     networks:
       - app-network
 
   db:
-    image: mongo:latest
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: exampledb
+    container_name: db
+    image: postgres:12.2-alpine
+    restart: unless-stopped
+    env_file: "./backend/.env"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     ports:
-      - '27017:27017'
+      - '${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER} || exit 1"]
+      interval: 5s
+      timeout: 3s
     networks:
       - app-network
-    volumes:
-      - db:/data/db
 
 networks:
   app-network:

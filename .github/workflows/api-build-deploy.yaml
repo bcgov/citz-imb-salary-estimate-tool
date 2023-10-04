@@ -24,10 +24,6 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
           openshift_namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
 
-      - name: Copy .env.template
-        run: |
-          cp api/.env.template api/.env
-
       - name: Build API Image
         run: |
           docker-compose -f docker-compose.dev.yaml build api

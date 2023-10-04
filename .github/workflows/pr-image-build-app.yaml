@@ -21,4 +21,4 @@ jobs:
       # Build Frontend Image
       - name: Build Frontend Image
         run: |
-          docker-compose build frontend
+          docker-compose -f docker-compose.dev.yaml build frontend

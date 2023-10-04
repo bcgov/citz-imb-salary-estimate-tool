@@ -18,6 +18,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # Create api/.env file
+      - name: Create .env file
+        run: |
+          touch api/.env
+
       # Build Frontend Image
       - name: Build Frontend Image
         run: |

@@ -18,6 +18,7 @@ services:
     build:
       context: ./api
       dockerfile: .docker/Dockerfile.dev
+    env_file: "./api/.env"
     ports:
       - '3000:3000'
     volumes:

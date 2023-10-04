@@ -1,0 +1,20 @@
+# Config file for labeler
+
+# Changes to the following directories will trigger the labeler
+
+'GitHub Actions':
+  - .github/workflows/*
+  - .github/helpers/*
+
+'Docker':
+  - '**/Dockerfile*'
+  - docker-compose.*.yml
+
+'Frontend':
+  - frontend/**
+
+'Backend':
+  - api/**
+
+'Environment Variables':
+  - '**/.env*'

@@ -30,7 +30,7 @@ jobs:
 
       - name: Build API Image
         run: |
-          docker-compose build api
+          docker-compose -f docker-compose.dev.yaml build api
 
       - name: Tag API Image
         run: |

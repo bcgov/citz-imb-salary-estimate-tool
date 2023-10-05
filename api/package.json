@@ -21,6 +21,10 @@
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.18",
     "@types/node": "^20.8.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

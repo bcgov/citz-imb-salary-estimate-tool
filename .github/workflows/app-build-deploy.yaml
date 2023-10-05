@@ -1,10 +1,10 @@
-name: Build and Deploy API
+name: Build and Deploy Frontend
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'api/**'
+      - 'frontend/**'
   workflow_dispatch:
 
 jobs:
@@ -24,17 +24,17 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
           namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
 
-      - name: Build API Image
+      - name: Build Frontend Image
         run: |
-          docker-compose -f docker-compose.dev.yaml build api
+          docker-compose -f docker-compose.dev.yaml build frontend
 
-      - name: Tag API Image
+      - name: Tag Frontend Image
         run: |
-          docker tag citz-imb-salary-estimation-tool-api:latest ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-api:latest
+          docker tag citz-imb-salary-estimation-tool-app:latest ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-app:latest
 
-      - name: Push API Image
+      - name: Push Frontend Image
         run: |
-          docker push ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-api:latest
+          docker push ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-app:latest
 
   deploy:
     name: Deploy to OpenShift
@@ -55,8 +55,8 @@ jobs:
         env:
           OPENSHIFT_DEV_NAMESPACE: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
           OPENSHIFT_PROJECT: ${{ secrets.OPENSHIFT_PROJECT }}
-          APPLICATION_NAME: set-api
-          DEPLOYMENT_CONFIG: set-api-dc-template.yaml
+          APPLICATION_NAME: set-app
+          DEPLOYMENT_CONFIG: set-app-dc-template.yaml
           IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}
           OPENSHIFT_SERVER_URL: ${{ secrets.OPENSHIFT_SERVER_URL }}
         run: |
@@ -75,11 +75,11 @@ jobs:
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          openshift_namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
 
       - name: Check Deployment Status
         run: |
-          oc rollout status -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} dc/set-api --watch
+          oc rollout status -n ${{ secrets.OPENSHIFT_DEV_NAMESPACE }} dc/set-app --watch
 
   cleanup:
     name: Clean Up

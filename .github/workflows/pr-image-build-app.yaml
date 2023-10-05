@@ -18,7 +18,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Create api/.env file
+      # Create api/.env file.
+      # This is required to build the frontend image due to a known issue
+      # with docker-compose v2.21.0 regarding missing .env file, even though
+      # the frontend image does not require it.
+      # It looks like this issue is fixed in v2.22.0
+      # https://docs.docker.com/compose/release-notes/#2220
       - name: Create .env file
         run: |
           touch api/.env

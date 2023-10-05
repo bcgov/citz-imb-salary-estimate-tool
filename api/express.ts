@@ -2,7 +2,7 @@
  * @summary Middleware and configuration setup for SET Express API
  * @author  LocalNewsTV, Dallascrichmond
  */
-import './db';
+// import './db';
 import express, { Application } from 'express';
 import cors from 'cors';
 // import passport from 'passport';

@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "Start": "node index.ts",
+    "Start": "node server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec ts-node -r dotenv/config server.ts dotenv_config_path=../.env"
+    "dev": "nodemon server.ts"
   },
   "keywords": [],
   "author": "",

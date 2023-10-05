@@ -22,7 +22,7 @@ jobs:
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-          openshift_namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
+          namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
 
       - name: Build Frontend Image
         run: |
@@ -49,7 +49,7 @@ jobs:
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-          openshift_namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
 
       - name: Deploy from DeploymentConfig
         env:
@@ -94,7 +94,7 @@ jobs:
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-          openshift_namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
+          namespace: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
 
       - name: Remove previous objects
         run: |

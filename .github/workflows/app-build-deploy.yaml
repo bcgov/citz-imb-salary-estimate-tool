@@ -30,11 +30,11 @@ jobs:
 
       - name: Tag Frontend Image
         run: |
-          docker tag citz-imb-salary-estimation-tool-app:latest ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-app:latest
+          docker tag citz-imb-salary-estimate-tool_set-app ${{ secrets.IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
 
       - name: Push Frontend Image
         run: |
-          docker push ${{ secrets.OPENSHIFT_SERVER_URL }}/${{ secrets.IMAGE_REPOSITORY }}/set-app:latest
+          docker push ${{ secrets.IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
 
   deploy:
     name: Deploy to OpenShift

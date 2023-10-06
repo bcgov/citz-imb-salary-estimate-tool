@@ -4,7 +4,7 @@
     "es2021": true
   },
   "extends": ["airbnb"],
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "parser": "@typescript-eslint/parser",
   "overrides": [
     {

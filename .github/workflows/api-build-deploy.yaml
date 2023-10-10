@@ -27,7 +27,7 @@ jobs:
       # Login to BC Gov Docker Image Repository
       - name: Login to Openshift Docker
         run : |
-          docker login image-registry.apps.silver.devops.gov.bc.ca -u ${{ secrets.OPENSHIFT_SA_NAME }} -p ${{ secrets.OPENSHIFT_TOKEN }}
+          docker login ${{ secrets.IMAGE_REPOSITORY }} -u ${{ secrets.OPENSHIFT_SA_NAME }} -p ${{ secrets.OPENSHIFT_TOKEN }}
 
       # Setup Environment Variables
       - name: Setup Environment Variables
@@ -49,7 +49,7 @@ jobs:
 
       - name: Tag API Image
         run: |
-          docker tag citz-imb-salary-estimate-tool_api image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/set-api:latest
+          docker tag citz-imb-salary-estimate-tool_api ${{ secrets.IMAGE_REPOSITORY }}/ec1236-tools/set-api:latest
 
       - name: List Docker Images
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       - name: Push API Image
         run: |
-          docker push image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/set-api:latest
+          docker push ${{ secrets.IMAGE_REPOSITORY }}/ec1236-tools/set-api:latest
 
   deploy:
     name: Deploy to OpenShift

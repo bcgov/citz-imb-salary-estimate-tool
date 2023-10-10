@@ -48,7 +48,7 @@ jobs:
 
       - name: Push API Image
         run: |
-          docker push image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/set-api
+          docker push image-registry.apps.silver.devops.gov.bc.ca/ec1236-tools/set-api:latest
 
   deploy:
     name: Deploy to OpenShift

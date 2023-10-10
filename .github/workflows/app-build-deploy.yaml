@@ -27,7 +27,7 @@ jobs:
       # Make .env to prevent error in build
       - name: Make Environment File
         run: |
-          touch api/.env
+          touch .env
 
       - name: Build Frontend Image
         run: |
@@ -35,7 +35,7 @@ jobs:
 
       - name: List Docker Images
         run: |
-          docker ls
+          docker image ls
 
       - name: Tag Frontend Image
         run: |

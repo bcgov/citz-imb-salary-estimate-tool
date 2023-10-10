@@ -24,6 +24,11 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
           namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
 
+      # Login to BC Gov Docker Image Repository
+      - name: Login to Openshift Docker
+        run : |
+          docker login image-registry.apps.silver.devops.gov.bc.ca -u ${{ secrets.OPENSHIFT_SA_NAME }} -p ${{ secrets.OPENSHIFT_TOKEN }}
+
       # Setup Environment Variables
       - name: Setup Environment Variables
         run: |

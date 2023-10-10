@@ -33,6 +33,10 @@ jobs:
         run: |
           docker-compose -f docker-compose.dev.yaml build frontend
 
+      - name: List Docker Images
+        run: |
+          docker ls
+
       - name: Tag Frontend Image
         run: |
           docker tag citz-imb-salary-estimate-tool-frontend ${{ secrets.IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest

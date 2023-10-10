@@ -103,6 +103,7 @@ parameters:
   - description: OpenShift Namespace
     displayName: OpenShift Namespace
     name: OPENSHIFT_NAMESPACE
+    value: ec1236-dev
     required: true
   - description: Application Name
     displayName: Application Name

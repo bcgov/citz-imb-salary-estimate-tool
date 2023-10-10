@@ -76,12 +76,10 @@ jobs:
 
       - name: Deploy from DeploymentConfig
         env:
-          OPENSHIFT_DEV_NAMESPACE: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
-          OPENSHIFT_TOOLS_NAMESPACE: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
-          OPENSHIFT_PROJECT: ${{ secrets.OPENSHIFT_PROJECT }}
-          APPLICATION_NAME: set-api
-          DEPLOYMENT_CONFIG: set-api-dc-template.yaml
-          IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}
+          OPENSHIFT_NAMESPACE: "ec1236-dev"
+          APPLICATION_NAME: "set-api"
+          DEPLOYMENT_CONFIG: "set-api-dc-template.yaml"
+          IMAGE_REPOSITORY: "image-registry.apps.silver.devops.gov.bc.ca"
         run: |
           ./.github/helpers/deploy.sh
 

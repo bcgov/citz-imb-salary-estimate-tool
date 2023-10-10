@@ -3,7 +3,7 @@ function App() {
     <div>
       Salary Estimate Tool
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -24,9 +24,18 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
           namespace: ${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}
 
+      # Make .env to prevent error in build
+      - name: Make Environment File
+        run: |
+          touch api/.env
+
       - name: Build Frontend Image
         run: |
           docker-compose -f docker-compose.dev.yaml build frontend
+
+      - name: List Docker Images
+        run: |
+          docker ls
 
       - name: Tag Frontend Image
         run: |

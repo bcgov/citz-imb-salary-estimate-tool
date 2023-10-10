@@ -40,7 +40,7 @@ jobs:
 
       - name: Tag API Image
         run: |
-          docker tag citz-imb-salary-estimate-tool_set-api ${{ secrets.IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
+          docker tag citz-imb-salary-estimate-tool-api ${{ secrets.IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
 
       - name: Push API Image
         run: |

@@ -26,7 +26,7 @@ jobs:
       # https://docs.docker.com/compose/release-notes/#2220
       - name: Create .env file
         run: |
-          touch api/.env
+          touch .env
 
       # Build Frontend Image
       - name: Build Frontend Image

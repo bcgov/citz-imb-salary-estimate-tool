@@ -35,7 +35,7 @@ jobs:
 
       - name: List Docker Images
         run: |
-          docker ls
+          docker image ls
 
       - name: Tag Frontend Image
         run: |

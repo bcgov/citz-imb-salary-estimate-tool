@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: .docker/Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+    networks:
+      - app-network
+    tty: true
+
+  api:
+    build:
+      context: ./api
+      dockerfile: .docker/Dockerfile.prod
+    env_file: .env
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"

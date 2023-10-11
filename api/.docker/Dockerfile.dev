@@ -4,6 +4,10 @@ WORKDIR /app
 
 ENV NODE_ENV=development
 
+RUN groupadd -r user && useradd -r -g user user
+
+USER user
+
 COPY . .
 
 RUN npm install

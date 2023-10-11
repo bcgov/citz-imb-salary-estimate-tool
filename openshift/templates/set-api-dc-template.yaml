@@ -53,7 +53,7 @@ objects:
           containers:
             - name: ${APPLICATION_NAME}
               image: >-
-                ${IMAGE_REPOSITORY}/${OPENSHIFT_NAMESPACE}/${APPLICATION_NAME}:latest
+                image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api:latest
               ports:
                 - containerPort: 3004
                   protocol: TCP

@@ -15,5 +15,6 @@ app.listen(3000, (err?:Error) => {
   if(err){
     console.log("Error:", err);
   }
+  console.log("Testing in openshift");
   console.info(`[server]: Server started on port 3000`);
 });

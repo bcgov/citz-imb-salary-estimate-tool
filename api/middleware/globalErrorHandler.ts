@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 /**
  * PURPOSE: Global Error Handler is in place to give more meaningful communication with
- *          the user if something in the application goes wrong
+ *          the user if something in the application goes wrong TODO: REMOVE COMMENT
  */
 
 type Props = {

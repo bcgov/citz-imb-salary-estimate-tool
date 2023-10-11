@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * @summary Server listener for SETS Express API
  * @author LocalNewsTV, Dallascrichmond

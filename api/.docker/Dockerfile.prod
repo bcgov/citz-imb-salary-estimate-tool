@@ -35,8 +35,4 @@ RUN npm i
 # Copy compiled build from base
 COPY --from=base /app/dist .
 
-RUN useradd -ms /bin/bash user
-
-USER user
-
 CMD [ "node", "server.js" ]

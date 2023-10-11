@@ -55,7 +55,7 @@ objects:
               image: >-
                 image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api:latest
               ports:
-                - containerPort: 3004
+                - containerPort: 3000
                   protocol: TCP
               resources:
                 limits:

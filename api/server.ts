@@ -9,7 +9,10 @@ dotenv.config();
 
 const port = process.env.API_PORT || 3000;
 
-app.listen(port, () => {
+app.listen(port, (err?:Error) => {
   // eslint-disable-next-line no-console
+  if(err){
+    console.log("Error:", err);
+  }
   console.info(`[server]: Server started on port ${port}`);
 });

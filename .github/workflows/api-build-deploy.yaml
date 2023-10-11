@@ -41,7 +41,7 @@ jobs:
 
       - name: Build API Image
         run: |
-          docker-compose -f docker-compose.dev.yaml build api
+          docker-compose -f docker-compose.prod.yaml build api
 
       - name: List Docker Images
         run: |

@@ -1,0 +1,43 @@
+##################
+### BASE IMAGE ###
+##################
+FROM node:20-bullseye-slim as base
+
+# Directory used in container
+WORKDIR /app
+
+# Copy everything
+COPY . .
+
+# Install TypeScript. Needed for build process.
+RUN npm i -D typescript@5.0.4
+
+# Compile to JavaScript build
+RUN npm run build
+
+
+##################
+### PROD IMAGE ###
+##################
+FROM node:20-bullseye-slim as prod
+
+ENV NODE_ENV=production
+
+# Add curl for health check
+RUN apk --update --no-cache add curl
+
+# Directory used in container
+WORKDIR /app
+
+# Install packages. Needed even for compiled build.
+COPY package.json .
+
+RUN npm i
+
+# Copy compiled build from base
+COPY --from=base /app/dist .
+
+# Copy swagger over too
+COPY --from=base /app/docs ./docs
+
+CMD [ "node", "server.js" ]

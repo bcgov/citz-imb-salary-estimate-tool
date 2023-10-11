@@ -8,6 +8,12 @@ COPY . .
 
 RUN npm install
 
+# Change the npm cache directory to be inside the project directory to avoid permission issues
+RUN npm config set cache /app/.npm-cache --global
+
+# Verify cache
+RUN npm --global cache verify
+
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]

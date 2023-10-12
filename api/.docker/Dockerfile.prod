@@ -35,4 +35,4 @@ RUN npm i
 # Copy compiled build from base
 COPY --from=base /app/dist .
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "run", "start:prod" ]

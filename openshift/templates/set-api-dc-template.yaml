@@ -9,6 +9,9 @@ objects:
   kind: DeploymentConfig
   apiVersion: apps.openshift.io/v1
   metadata:
+    annotations:
+      app.openshift.io/route-disabled: 'false'
+      openshift.io/generated-by: OpenShiftWebConsole
     name: set-api
     namespace: ec1236-dev
     labels:
@@ -16,7 +19,7 @@ objects:
       app.kubernetes.io/component: set-api
       app.kubernetes.io/instance: set-api
       app.kubernetes.io/name: set-api
-      app.openshift.io/runtime: set-api
+      app.openshift.io/runtime: nodejs
       app.openshift.io/runtime-namespace: ec1236-tools
       app.openshift.io/runtime-version: latest
   spec:
@@ -74,18 +77,3 @@ objects:
         dnsPolicy: ClusterFirst
         securityContext: {}
         schedulerName: default-scheduler
-
-parameters:
-  - description: OpenShift Namespace
-    displayName: OpenShift Namespace
-    name: OPENSHIFT_NAMESPACE
-    value: ec1236-dev
-    required: true
-  - description: Application Name
-    displayName: Application Name
-    name: APPLICATION_NAME
-    required: true
-  - description: Image Repository
-    displayName: Image Repository
-    name: IMAGE_REPOSITORY
-    required: true

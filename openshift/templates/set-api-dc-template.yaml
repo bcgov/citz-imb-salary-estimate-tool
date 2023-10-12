@@ -2,11 +2,13 @@ kind: Template
 apiVersion: template.openshift.io/v1
 metadata:
   name: set-api-dc-template
-labels:
-  template: set-api-dc-template
+  annotations:
+    description: Template for deploying the set-api application
+    tags: set-api
+    openshift.io/display-name: set-api
 
 objects:
-  kind: DeploymentConfig
+- kind: DeploymentConfig
   apiVersion: apps.openshift.io/v1
   metadata:
     annotations:
@@ -42,9 +44,9 @@ objects:
           from:
             kind: ImageStreamTag
             namespace: ec1236-tools
-            name: "set-api:latest"
+            name: 'set-api:latest'
           lastTriggeredImage: >-
-            image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api@sha256:6b18ee928148d8858ca118fa477c5b0286ffc90f4faa9b36fa311cb7c0e4347e
+            image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api@sha256:eda29b7ee2dd659c8a473235baddcf9c4a8638620902103f3c8011f9c8977ad0
       - type: ConfigChange
     replicas: 1
     revisionHistoryLimit: 10
@@ -64,7 +66,7 @@ objects:
         containers:
           - name: set-api
             image: >-
-              image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api@sha256:6b18ee928148d8858ca118fa477c5b0286ffc90f4faa9b36fa311cb7c0e4347e
+              image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-api@sha256:eda29b7ee2dd659c8a473235baddcf9c4a8638620902103f3c8011f9c8977ad0
             ports:
               - containerPort: 3000
                 protocol: TCP

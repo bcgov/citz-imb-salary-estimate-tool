@@ -15,7 +15,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 # Install Project Specific Dependencies
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 
 # Copy entire code
 COPY . ./

@@ -1,0 +1,35 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: set-app-svc-template
+  annotations:
+    description: Template for the set-app service
+    tags: set-app
+    openshift.io/display-name: set-app
+
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: set-app
+    namespace: ec1236-dev
+  spec:
+    clusterIP: 10.98.110.46
+    ipFamilies:
+      - IPv4
+    ports:
+      - name: 8080-tcp
+        protocol: TCP
+        port: 8080
+        targetPort: 8080
+    internalTrafficPolicy: Cluster
+    clusterIPs:
+      - 10.98.110.46
+    type: ClusterIP
+    ipFamilyPolicy: SingleStack
+    sessionAffinity: None
+    selector:
+      app: set-app
+  status:
+    loadBalancer: {}
+

@@ -1,0 +1,25 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: set-app-rt-template
+  annotations:
+    description: Template for the set-app route
+    tags: set-app
+    openshift.io/display-name: set-app
+
+objects:
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: set-app-route
+    namespace: ec1236-dev
+  spec:
+    host: set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca
+    path: /
+    to:
+      kind: Service
+      name: set-app
+      weight: 100
+    port:
+      targetPort: 8080-tcp
+    wildcardPolicy: None

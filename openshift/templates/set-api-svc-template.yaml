@@ -1,0 +1,32 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: set-api-svc-template
+  annotations:
+    description: Template for the set-api service
+    tags: set-api
+    openshift.io/display-name: set-api
+
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: set-api
+    namespace: ec1236-dev
+  spec:
+    clusterIP: 10.98.25.208
+    ipFamilies:
+      - IPv4
+    ports:
+      - name: 3000-tcp
+        protocol: TCP
+        port: 3000
+        targetPort: 3000
+    internalTrafficPolicy: Cluster
+    clusterIPs:
+      - 10.98.25.208
+    type: ClusterIP
+    ipFamilyPolicy: SingleStack
+    sessionAffinity: None
+    selector:
+      app: set-api

@@ -1,0 +1,25 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: set-api-rt-template
+  annotations:
+    description: Template for the set-api route
+    tags: set-api
+    openshift.io/display-name: set-api
+
+objects:
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: set-api-route
+    namespace: ec1236-dev
+  spec:
+    host: set-api-route-ec1236-dev.apps.silver.devops.gov.bc.ca
+    path: /
+    to:
+      kind: Service
+      name: set-api
+      weight: 100
+    port:
+      targetPort: 3000-tcp
+    wildcardPolicy: None

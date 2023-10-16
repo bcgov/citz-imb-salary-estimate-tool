@@ -16,5 +16,4 @@ const swaggerConfig = {
     apis: ['./public/**/*.yaml'],
   };
   
-  export default swaggerConfig;
-  
+export default swaggerConfig;

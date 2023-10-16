@@ -12,5 +12,4 @@ const corsConfig = {
     optionsSuccessStatus: 204,
   };
   
-  export default corsConfig;
-  
+export default corsConfig;

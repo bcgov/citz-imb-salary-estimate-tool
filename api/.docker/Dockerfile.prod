@@ -1,38 +1,38 @@
-FROM node:20.5-bullseye-slim
+##################
+### BASE IMAGE ###
+##################
+FROM node:18.15.0-alpine AS base
 
-# Create an app directory
-WORKDIR //app
+# Directory used in container
+WORKDIR /app
 
-# Install curl and other dependencies, then clean up cache to minimize layer size.
-RUN apt-get update && \
-    apt-get install -y curl chromium freetype2-demos libharfbuzz0b ca-certificates fonts-freefont-ttf && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Copy everything
+COPY . .
 
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# Install TypeScript. Needed for build process.
+RUN npm i -D typescript@5.0.4
 
-# Install Project Specific Dependencies
-COPY package*.json ./
-RUN npm i
-
-# Copy entire code
-COPY . ./
-
-# Bundle project artifact
+# Compile to JavaScript build
 RUN npm run build
 
-# Add user permissions and directories
-RUN mkdir -p /home/1001/Downloads //app && \
-    chown -R 1001:0 /home/1001 //app && \
-    chmod -R ug+rwx //app && \
-    mkdir -p /.npm && \
-    chown -R 1001:0 /.npm && \
-    chmod -R ug+rwx /.npm
 
-USER 1001
+##################
+### PROD IMAGE ###
+##################
+FROM node:18.15.0-alpine as prod
+ENV NODE_ENV=production
 
-# Expose port and run app in prod (equivalent of "node dist/main.js")
-EXPOSE 3000
-CMD ["npm",  "run", "start:prod"]
+# Add curl for health check
+RUN apk --update --no-cache add curl
+
+# Directory used in container
+WORKDIR /app
+
+# Install packages. Needed even for compiled build.
+COPY package.json .
+RUN npm i
+
+# Copy compiled build from base
+COPY --from=base /app/dist .
+
+CMD [ "node", "server.js" ]

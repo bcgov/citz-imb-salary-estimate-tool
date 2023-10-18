@@ -23,6 +23,7 @@ services:
       - '3000:3000'
     volumes:
       - ./api:/app
+      - ./prisma:/usr/src/app/prisma
     depends_on:
       - db
     networks:

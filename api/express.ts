@@ -32,6 +32,7 @@ app.use(
 );
 app.use('/api', [
   routers.healthRouter,
+  routers.inquiryRouter,
 ]);
 
 // Integrate global error handler after routes to cover all ends.

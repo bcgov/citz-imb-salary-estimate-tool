@@ -39,6 +39,7 @@ jobs:
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
           echo "API_PORT=${{ secrets.API_PORT }}" >> .env
+          echo "DATABASE_URL=${{ secrets.POSTGRES_HOST }}://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@${{ secrets.POSTGRES_HOST }}:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}?schema=public" >> .env
 
       - name: Build API Image
         run: |

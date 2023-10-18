@@ -12,4 +12,3 @@ const httpResponses = {
   };
   
 export default httpResponses;
- 

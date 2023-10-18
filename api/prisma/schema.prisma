@@ -38,12 +38,12 @@ model Experience {
 }
 
 model Appointment {
-  id Int @id
+  id Int @id @default(autoincrement())
   inquiries Inquiry[]
 }
 
 model Process {
-  id Int @id
+  id Int @id @default(autoincrement())
   inquiries Inquiry[]
 }
 

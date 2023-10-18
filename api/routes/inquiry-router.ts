@@ -1,3 +1,8 @@
+/**
+ * @summary This is the Salary Inquiry Endpoint for SET, its purpose is to provide health
+ *          do CRUD operations on the Salary inquiries
+ * @author Dallascrichmond
+ */
 import express from 'express';
 import { getInquiry } from '../controllers/inquiry-controller';
 

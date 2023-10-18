@@ -27,7 +27,7 @@ jobs:
       # Login to BC Gov Docker Image Repository
       - name: Login to Openshift Docker
         run : |
-          docker login ${{ secrets.IMAGE_REPOSITORY }} -u ${{ secrets.OPENSHIFT_SA_NAME }} -p ${{ secrets.OPENSHIFT_SA_TOOLS_TOKEN }}
+          docker login ${{ secrets.PUBLIC_IMAGE_REPOSITORY }} -u ${{ secrets.OPENSHIFT_SA_NAME }} -p ${{ secrets.OPENSHIFT_SA_TOOLS_TOKEN }}
 
       # Make .env to prevent error in build
       - name: Make Environment File
@@ -44,7 +44,7 @@ jobs:
 
       - name: Tag Frontend Image
         run: |
-          docker tag citz-imb-salary-estimate-tool_frontend ${{ secrets.IMAGE_REPOSITORY }}/ec1236-tools/set-app:latest
+          docker tag citz-imb-salary-estimate-tool_frontend ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
 
       - name: List Docker Images
         run: |
@@ -52,7 +52,7 @@ jobs:
 
       - name: Push Frontend Image
         run: |
-          docker push ${{ secrets.IMAGE_REPOSITORY }}/ec1236-tools/set-app:latest
+          docker push ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
 
   deploy:
     name: Deploy to OpenShift
@@ -71,10 +71,10 @@ jobs:
 
       - name: Deploy from DeploymentConfig
         env:
-          OPENSHIFT_NAMESPACE: "ec1236-dev"
+          OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_DEV_NAMESPACE }}
           APPLICATION_NAME: "set-app"
           DEPLOYMENT_CONFIG: "set-app-dc-template.yaml"
-          IMAGE_REPOSITORY: "image-registry.apps.silver.devops.gov.bc.ca"
+          IMAGE_REPOSITORY: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}
         run: |
           ./.github/helpers/deploy.sh
 

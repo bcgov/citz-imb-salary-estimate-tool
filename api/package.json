@@ -11,7 +11,7 @@
     "prod": "node server.js"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "node prisma/seed.mjs"
   },
   "keywords": [],
   "author": "",

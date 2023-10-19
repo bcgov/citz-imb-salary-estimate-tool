@@ -35,16 +35,8 @@ RUN npm i
 # Copy compiled build from base
 COPY --from=base /app/dist .
 
+# Generate prisma client
 RUN npx prisma generate
-
-#For debugging: create and write the contents of start.sh in the container
-RUN rm startProd.sh
-RUN echo "#!/bin/bash" >> startProd.sh && \
-    echo "# push the schema to the database and sync the client" >> startProd.sh && \
-    echo "npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate " >> startProd.sh && \
-    echo "" >> startProd.sh && \
-    echo "# Start the application" >> startProd.sh && \
-    echo "npm run start:prod" >> startProd.sh
 
 # Set execute permissions for the start.sh script.
 RUN chmod +x ./startProd.sh

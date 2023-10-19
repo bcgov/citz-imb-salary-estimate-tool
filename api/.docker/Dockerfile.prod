@@ -1,50 +1,38 @@
-##################
-### BASE IMAGE ###
-##################
-FROM node:18.15.0-alpine AS base
+# Use a Node.js LTS version for production
+FROM node:18.15.0-alpine AS build
 
-# Directory used in container
 WORKDIR /app
 
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
+# Install production dependencies only
 RUN npm i
 
 # Install TypeScript. Needed for build process.
 RUN npm i -D typescript@5.0.4
 
-# Copy everything
 COPY . .
 
-# Generate prisma client
+# Copy the Prisma schema file
+COPY prisma/schema.prisma ./prisma/
+
+# Generate Prisma client during build
 RUN npx prisma generate
 
-# Compile to JavaScript build
+# Build your application (if necessary)
 RUN npm run build
 
-##################
-### PROD IMAGE ###
-##################
-FROM node:18.15.0-alpine as prod
-ENV NODE_ENV=production
+# Second stage, use a smaller image for production
+FROM node:18.15.0-alpine AS prod
 
-# Add curl for health check
-RUN apk --update --no-cache add curl
-
-# Directory used in container
 WORKDIR /app
 
-RUN ls -al
+# Copy only the necessary files from the previous stage
+COPY --from=build /app .
 
-COPY ./startProd.sh .
+# Expose your application port
+EXPOSE 3000
 
-RUN mkdir /.npm
-RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
-
-# Set execute permissions for the start.sh script.
-RUN chmod +x ./startProd.sh
-
-# Copy compiled build from base
-COPY --from=base /app/dist .
-
-CMD ["./startProd.sh"]
+# Start the application
+CMD ["startProd.sh"]

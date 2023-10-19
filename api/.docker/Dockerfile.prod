@@ -6,11 +6,18 @@ FROM node:18.15.0-alpine AS base
 # Directory used in container
 WORKDIR /app
 
-# Copy everything
-COPY . .
+COPY package*.json ./
+
+RUN npm i
 
 # Install TypeScript. Needed for build process.
 RUN npm i -D typescript@5.0.4
+
+# Generate prisma client
+RUN npx prisma generate
+
+# Copy everything
+COPY . .
 
 # Compile to JavaScript build
 RUN npm run build
@@ -26,16 +33,6 @@ RUN apk --update --no-cache add curl
 
 # Directory used in container
 WORKDIR /app
-
-# Install packages. Needed even for compiled build.
-COPY package.json .
-COPY ./prisma .
-RUN npm i
-
-# Generate prisma client
-RUN npx prisma generate
-
-COPY ./startProd.sh .
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm

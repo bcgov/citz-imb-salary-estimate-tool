@@ -12,6 +12,8 @@ RUN npm i
 # Install TypeScript. Needed for build process.
 RUN npm i -D typescript@5.0.4
 
+COPY . .
+
 # Copy the Prisma schema file
 COPY prisma/schema.prisma ./prisma/
 

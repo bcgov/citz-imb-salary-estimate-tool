@@ -16,17 +16,17 @@ RUN npm cache clean --force
 RUN npx prisma generate
 
 #For debugging: create and write the contents of start.sh in the container
-RUN rm start.sh
-RUN echo "#!/bin/bash" >> start.sh && \
-    echo "# push the schema to the database and sync the client" >> start.sh && \
-    echo "npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate " >> start.sh && \
-    echo "" >> start.sh && \
-    echo "# Start the application" >> start.sh && \
-    echo "npm run start:dev" >> start.sh
+RUN rm startDev.sh
+RUN echo "#!/bin/bash" >> startDev.sh && \
+    echo "# push the schema to the database and sync the client" >> startDev.sh && \
+    echo "npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate " >> startDev.sh && \
+    echo "" >> startDev.sh && \
+    echo "# Start the application" >> startDev.sh && \
+    echo "npm run start:dev" >> startDev.sh
 
 # Set execute permissions for the start.sh script.
-RUN chmod +x ./start.sh
+RUN chmod +x ./startDev.sh
 
 EXPOSE 3000
 
-CMD ["./start.sh"]
+CMD ["./startDev.sh"]

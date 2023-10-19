@@ -7,7 +7,8 @@
     "build": "tsc -p .",
     "start": "node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.ts"
+    "dev": "nodemon server.ts",
+    "prod": "node server.js"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

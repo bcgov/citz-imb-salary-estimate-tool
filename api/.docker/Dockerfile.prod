@@ -34,7 +34,8 @@ RUN apk --update --no-cache add curl
 # Directory used in container
 WORKDIR /app
 
-COPY ./prisma/* ./
+RUN ls -al
+RUN ls -al ./dist/prisma
 
 COPY ./startProd.sh .
 

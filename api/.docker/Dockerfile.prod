@@ -12,9 +12,6 @@ COPY . .
 # Install TypeScript. Needed for build process.
 RUN npm i -D typescript@5.0.4
 
-# Force clean cache to avoid issues with .npm permissions
-RUN npm cache clean --force
-
 # Compile to JavaScript build
 RUN npm run build
 
@@ -41,6 +38,9 @@ COPY --from=base /app/dist .
 RUN npx prisma generate
 
 COPY ./startProd.sh .
+
+RUN mkdir /.npm
+RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 
 # Set execute permissions for the start.sh script.
 RUN chmod +x ./startProd.sh

@@ -35,7 +35,6 @@ RUN apk --update --no-cache add curl
 WORKDIR /app
 
 RUN ls -al
-RUN ls -al ./dist/prisma
 
 COPY ./startProd.sh .
 

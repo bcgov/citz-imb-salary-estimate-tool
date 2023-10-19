@@ -12,9 +12,11 @@ COPY . .
 # Install TypeScript. Needed for build process.
 RUN npm i -D typescript@5.0.4
 
+# Force clean cache to avoid issues with .npm permissions
+RUN npm cache clean --force
+
 # Compile to JavaScript build
 RUN npm run build
-
 
 ##################
 ### PROD IMAGE ###
@@ -34,9 +36,6 @@ RUN npm i
 
 # Copy compiled build from base
 COPY --from=base /app/dist .
-
-# Force clean cache to avoid issues with .npm permissions
-RUN npm cache clean --force
 
 # Generate prisma client
 RUN npx prisma generate

@@ -35,4 +35,12 @@ RUN npm i
 # Copy compiled build from base
 COPY --from=base /app/dist .
 
-CMD [ "node", "server.js" ]
+# Generate prisma client
+RUN npx prisma generate
+
+COPY ./startProd.sh .
+
+# Set execute permissions for the start.sh script.
+RUN chmod +x ./startProd.sh
+
+CMD ["./startProd.sh"]

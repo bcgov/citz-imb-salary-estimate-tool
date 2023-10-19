@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+// TODO: CHECK if the seed data is already there (for prod)
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -44,19 +45,19 @@ const processes = [
     {}
 ];
 
-const inquiries = [
-    { 
-        status_id: 1, 
-        candidate_first_name: 'Dallas',
-        candidate_last_name: 'Richmond',
-        experience_level_id: 1,
-        new_position_number: 2938475,
-        new_position_title: 'Scrum Master',
-        new_mccf_classification_id: 3,
-        appointment_type_id: 1,
-        process_type_id: 1,
-    }
-];
+// const inquiries = [
+//     { 
+//         status_id: 1, 
+//         candidate_first_name: 'Dallas',
+//         candidate_last_name: 'Richmond',
+//         experience_level_id: 1,
+//         new_position_number: 2938475,
+//         new_position_title: 'Scrum Master',
+//         new_mccf_classification_id: 3,
+//         appointment_type_id: 1,
+//         process_type_id: 1,
+//     }
+// ];
 
 async function seed () {
     for (const data of statuses) {
@@ -89,11 +90,11 @@ async function seed () {
             data,
         });
     }
-    for (const data of inquiries) {
-        await prisma.inquiry.create({
-            data,
-        });
-    }
+    // for (const data of inquiries) {
+    //     await prisma.inquiry.create({
+    //         data,
+    //     });
+    // }
 }
 
 seed()

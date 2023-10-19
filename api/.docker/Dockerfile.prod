@@ -1,5 +1,5 @@
 # Use a Node.js LTS version for production
-FROM node:14-slim as build
+FROM node:18.15.0-alpine AS build
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm i
+RUN npm ci --only=production
 
 # Copy the Prisma schema file
 COPY prisma/schema.prisma ./prisma/
@@ -19,7 +19,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Second stage, use a smaller image for production
-FROM node:14-slim
+FROM node:18.15.0-alpine AS prod
 
 WORKDIR /app
 

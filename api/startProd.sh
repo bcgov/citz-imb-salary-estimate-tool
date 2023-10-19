@@ -5,4 +5,4 @@ npx prisma db push --schema='prisma/schema.prisma' --skip-generate \
 # Seed data
 npx prisma db seed \
 # Start the application in production mode
-npm prod
+npm run prod

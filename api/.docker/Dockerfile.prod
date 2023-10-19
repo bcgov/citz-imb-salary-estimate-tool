@@ -31,6 +31,9 @@ WORKDIR /app
 # Copy only the necessary files from the previous stage
 COPY --from=build /app .
 
+RUN mkdir /.npm
+RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
+
 RUN chmod +x ./startProd.sh
 
 # Expose your application port

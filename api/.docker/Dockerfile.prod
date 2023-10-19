@@ -29,6 +29,7 @@ WORKDIR /app
 
 # Install packages. Needed even for compiled build.
 COPY package.json .
+COPY ./prisma .
 RUN npm i
 
 # Generate prisma client

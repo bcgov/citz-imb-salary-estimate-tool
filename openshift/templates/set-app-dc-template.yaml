@@ -66,7 +66,7 @@ objects:
             image: >-
               image-registry.openshift-image-registry.svc:5000/ec1236-tools/set-app
             ports:
-              - containerPort: 3000
+              - containerPort: 8080
                 protocol: TCP
             resources: {}
             terminationMessagePath: /dev/termination-log

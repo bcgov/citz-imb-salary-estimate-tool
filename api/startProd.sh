@@ -1,8 +1,8 @@
 #!/bin/sh
-pwd
+pwd \
 # Run migrations
-npx prisma db push --schema='prisma/schema.prisma' --skip-generate
+npx prisma db push --schema='prisma/schema.prisma' --skip-generate \
 # Seed data
-npx prisma db seed
+npx prisma db seed \
 # Start the application in production mode
 npm prod

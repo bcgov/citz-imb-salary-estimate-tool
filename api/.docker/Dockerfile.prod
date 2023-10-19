@@ -9,6 +9,9 @@ COPY package*.json ./
 # Install production dependencies only
 RUN npm i
 
+# Install TypeScript. Needed for build process.
+RUN npm i -D typescript@5.0.4
+
 # Copy the Prisma schema file
 COPY prisma/schema.prisma ./prisma/
 

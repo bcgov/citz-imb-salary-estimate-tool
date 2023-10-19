@@ -35,4 +35,4 @@ COPY --from=build /app .
 EXPOSE 3000
 
 # Start the application
-CMD ["./startProd.sh"]
+CMD ["/bin/sh", "-c", "sleep 5 && ./startProd.sh"]

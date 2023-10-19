@@ -24,4 +24,6 @@ COPY --from=build /app/build .
 
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
 
+EXPOSE 8080
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

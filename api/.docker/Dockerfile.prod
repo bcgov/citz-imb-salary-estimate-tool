@@ -35,6 +35,9 @@ RUN npm i
 # Copy compiled build from base
 COPY --from=base /app/dist .
 
+# Force clean cache to avoid issues with .npm permissions
+RUN npm cache clean --force
+
 # Generate prisma client
 RUN npx prisma generate
 

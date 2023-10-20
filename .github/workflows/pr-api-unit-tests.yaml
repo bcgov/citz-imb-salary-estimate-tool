@@ -29,7 +29,7 @@ jobs:
       - name: Check for tests
         id: check-tests
         run: |
-          echo "::set-output name=has-tests::$(if find api/test -name '${{ steps.get-pattern.outputs.test-naming-convention }}'; then echo 'true'; else echo 'false'; fi)"
+          echo "::set-output name=has-tests::$(if find api/tests -name '${{ steps.get-pattern.outputs.test-naming-convention }}'; then echo 'true'; else echo 'false'; fi)"
   run-tests:
     needs: check-for-tests
     if: ${{ needs.check-for-tests.outputs.has-tests == 'true' }}

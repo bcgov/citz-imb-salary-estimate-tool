@@ -2,8 +2,13 @@
 /* eslint-disable no-restricted-syntax */
 // TODO: CHECK if the seed data is already there (for prod)
 import { PrismaClient } from "@prisma/client";
+import dotenv from 'dotenv';
 
 const prisma = new PrismaClient();
+
+dotenv.config();
+
+const environment = process.env.NODE_ENV || "production";
 
 const salaryRanges = [
     { minimum_salary: 63400, maximum_salary: 90399.95 },
@@ -60,40 +65,77 @@ const inquiries = [
 ];
 
 async function seed () {
-    for (const data of statuses) {
-        await prisma.status.create({
-            data,
-        });
+    const existingInquiries = await prisma.inquiry.findMany();
+    const existingSalaries = await prisma.salaryRange.findMany();
+    const existingStatuses = await prisma.status.findMany();
+    const existingMinistries = await prisma.ministry.findMany();
+    const existingExperienceLevels = await prisma.experience.findMany();
+    const existingAppointments = await prisma.appointment.findMany();
+    const existingProcesses = await prisma.process.findMany();
+
+    if (existingSalaries.length !== salaryRanges.length) {
+        await prisma.salaryRange.deleteMany();
     }
     for (const data of salaryRanges) {
         await prisma.salaryRange.create({
             data,
         });
     }
+    if (existingStatuses.length !== statuses.length) {
+        await prisma.status.deleteMany();
+    }
+    for (const data of statuses) {
+        await prisma.status.create({
+            data,
+        });
+    }
+    if (existingMinistries.length !== ministries.length) {
+        await prisma.ministry.deleteMany();
+    }
     for (const data of ministries) {
         await prisma.ministry.create({
             data,
         });
+    }
+    if (existingExperienceLevels.length !== experienceLevels.length) {
+        await prisma.experience.deleteMany();
     }
     for (const data of experienceLevels) {
         await prisma.experience.create({
             data,
         });
     }
+    if (existingAppointments.length !== appointments.length) {
+        await prisma.appointment.deleteMany();
+    }
     for (const data of appointments) {
         await prisma.appointment.create({
             data,
         });
+    }
+    if (existingProcesses.length !== processes.length) {
+        await prisma.process.deleteMany();
     }
     for (const data of processes) {
         await prisma.process.create({
             data,
         });
     }
-    for (const data of inquiries) {
+    await prisma.inquiry.deleteMany();
+    for (const data of existingInquiries) {
         await prisma.inquiry.create({
             data,
         });
+    }
+    if (environment === 'development') {
+        if (existingInquiries.length !== inquiries.length) {
+            await prisma.inquiry.deleteMany();
+        }
+        for (const data of inquiries) {
+            await prisma.inquiry.create({
+                data,
+            });
+        }
     }
 }
 

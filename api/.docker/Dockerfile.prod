@@ -3,6 +3,8 @@ FROM node:18.15.0-alpine AS build
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 RUN apk --update --no-cache add curl
 
 # Copy package.json and package-lock.json to the container

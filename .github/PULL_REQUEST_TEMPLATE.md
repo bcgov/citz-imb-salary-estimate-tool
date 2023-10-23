@@ -6,7 +6,7 @@ JIRA_BOARD_ABBREVIATION-JIRA_TASK_NUMBER: TITLE_OF_JIRA_TASK
 ## 🎯 Summary
 
 <!-- COMPLETE JIRA LINK BELOW -->
-[SET-](https://citz-imb.atlassian.net/jira/software/c/projects/DEVOP/boards/18)
+[SET-](https://citz-imb.atlassian.net/jira/software/c/projects/SET/boards/51?selectedIssue=SET-)
 
 <!-- PROVIDE BELOW an explanation of your changes and any images to support your explanation -->
 

@@ -55,11 +55,13 @@ jobs:
           docker push ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
 
       - name: Docker Scout
-        uses: docker/scout@v1
+        uses: docker/scout-action@v1
         with:
+          command: cves,recommendations
           image: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-app:latest
-          username: ${{ secrets.OPENSHIFT_SA_NAME }}
-          password: ${{ secrets.OPENSHIFT_SA_TOOLS_TOKEN }}
+          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
+          summary: true
 
   deploy:
     name: Deploy to OpenShift

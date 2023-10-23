@@ -67,7 +67,6 @@ jobs:
           command: cves,recommendations
           image: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
           summary: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy to OpenShift

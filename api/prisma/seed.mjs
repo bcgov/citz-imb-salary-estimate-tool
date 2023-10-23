@@ -65,78 +65,171 @@ const inquiries = [
 ];
 
 async function seed () {
-    const existingInquiries = await prisma.inquiry.findMany();
-    const existingSalaries = await prisma.salaryRange.findMany();
-    const existingStatuses = await prisma.status.findMany();
-    const existingMinistries = await prisma.ministry.findMany();
-    const existingExperienceLevels = await prisma.experience.findMany();
-    const existingAppointments = await prisma.appointment.findMany();
-    const existingProcesses = await prisma.process.findMany();
+    salaryRanges.forEach(async (range) => {
+        await prisma.salaryRange.upsert({
+            where: {
+                range,
+            },
+            create: {
+                range,
+            },
+            update: {
+                range,
+            }
+        });
+    });
 
-    if (existingSalaries.length !== salaryRanges.length) {
-        await prisma.salaryRange.deleteMany();
-    }
-    for (const data of salaryRanges) {
-        await prisma.salaryRange.create({
-            data,
+    statuses.forEach(async (status) => {
+        await prisma.status.upsert({
+            where: {
+                status,
+            },
+            create: {
+                status,
+            },
+            update: {
+                status,
+            }
         });
-    }
-    if (existingStatuses.length !== statuses.length) {
-        await prisma.status.deleteMany();
-    }
-    for (const data of statuses) {
-        await prisma.status.create({
-            data,
+    });
+
+    ministries.forEach(async (ministry) => {
+        await prisma.ministry.upsert({
+            where: {
+                ministry,
+            },
+            create: {
+                ministry,
+            },
+            update: {
+                ministry,
+            }
         });
-    }
-    if (existingMinistries.length !== ministries.length) {
-        await prisma.ministry.deleteMany();
-    }
-    for (const data of ministries) {
-        await prisma.ministry.create({
-            data,
+    });
+
+    experienceLevels.forEach(async (expereince) => {
+        await prisma.experience.upsert({
+            where: {
+                expereince,
+            },
+            create: {
+                expereince,
+            },
+            update: {
+                expereince,
+            }
         });
-    }
-    if (existingExperienceLevels.length !== experienceLevels.length) {
-        await prisma.experience.deleteMany();
-    }
-    for (const data of experienceLevels) {
-        await prisma.experience.create({
-            data,
+    });
+
+    appointments.forEach(async (appointment) => {
+        await prisma.appointment.upsert({
+            where: {
+                appointment,
+            },
+            create: {
+                appointment,
+            },
+            update: {
+                appointment,
+            }
         });
-    }
-    if (existingAppointments.length !== appointments.length) {
-        await prisma.appointment.deleteMany();
-    }
-    for (const data of appointments) {
-        await prisma.appointment.create({
-            data,
+    });
+
+    processes.forEach(async (process) => {
+        await prisma.process.upsert({
+            where: {
+                process,
+            },
+            create: {
+                process,
+            },
+            update: {
+                process,
+            }
         });
-    }
-    if (existingProcesses.length !== processes.length) {
-        await prisma.process.deleteMany();
-    }
-    for (const data of processes) {
-        await prisma.process.create({
-            data,
-        });
-    }
-    await prisma.inquiry.deleteMany();
-    for (const data of existingInquiries) {
-        await prisma.inquiry.create({
-            data,
-        });
-    }
-    if (environment === 'development') {
-        if (existingInquiries.length !== inquiries.length) {
-            await prisma.inquiry.deleteMany();
-        }
-        for (const data of inquiries) {
-            await prisma.inquiry.create({
-                data,
+    });
+
+    if (environment === "developer") {
+        inquiries.forEach(async (inquiry) => {
+            await prisma.inquiry.upsert({
+                where: {
+                    inquiry,
+                },
+                create: {
+                    inquiry,
+                },
+                update: {
+                    inquiry,
+                }
             });
-        }
+        });
     }
+    
+
+    // if (existingSalaries.length !== salaryRanges.length) {
+    //     await prisma.salaryRange.deleteMany();
+    // }
+    // for (const data of salaryRanges) {
+    //     await prisma.salaryRange.create({
+    //         data,
+    //     });
+    // }
+    // if (existingStatuses.length !== statuses.length) {
+    //     await prisma.status.deleteMany();
+    // }
+    // for (const data of statuses) {
+    //     await prisma.status.create({
+    //         data,
+    //     });
+    // }
+    // if (existingMinistries.length !== ministries.length) {
+    //     await prisma.ministry.deleteMany();
+    // }
+    // for (const data of ministries) {
+    //     await prisma.ministry.create({
+    //         data,
+    //     });
+    // }
+    // if (existingExperienceLevels.length !== experienceLevels.length) {
+    //     await prisma.experience.deleteMany();
+    // }
+    // for (const data of experienceLevels) {
+    //     await prisma.experience.create({
+    //         data,
+    //     });
+    // }
+    // if (existingAppointments.length !== appointments.length) {
+    //     await prisma.appointment.deleteMany();
+    // }
+    // for (const data of appointments) {
+    //     await prisma.appointment.create({
+    //         data,
+    //     });
+    // }
+    // if (existingProcesses.length !== processes.length) {
+    //     await prisma.process.deleteMany();
+    // }
+    // for (const data of processes) {
+    //     await prisma.process.create({
+    //         data,
+    //     });
+    // }
+    // await prisma.inquiry.deleteMany();
+    // for (const data of existingInquiries) {
+    //     await prisma.inquiry.create({
+    //         data,
+    //     });
+    // }
+    // if (environment === 'development') {
+    //     if (existingInquiries.length !== inquiries.length) {
+    //         await prisma.inquiry.deleteMany();
+    //     }
+    //     for (const data of inquiries) {
+    //         await prisma.inquiry.create({
+    //             data,
+    //         });
+    //     }
+    // }
 }
 
 seed()

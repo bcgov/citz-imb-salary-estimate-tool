@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-tag-push:
+  build-tag-push-scan:
     name: Build, Tag, and Push to OpenShift Image Registry
     runs-on: ubuntu-latest
     steps:
@@ -61,10 +61,17 @@ jobs:
         run: |
           docker push ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
 
+      - name: Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves,recommendations
+          image: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
+          summary: true
+
   deploy:
     name: Deploy to OpenShift
     runs-on: ubuntu-latest
-    needs: [ build-tag-push ]
+    needs: [ build-tag-push-scan ]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3

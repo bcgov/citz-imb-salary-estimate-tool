@@ -66,8 +66,8 @@ jobs:
         with:
           command: cves,recommendations
           image: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
-          dockerhub_user: ${{ secrets.DOCKER_USERNAME }}
-          dockerhub_password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
           summary: true
 
   deploy:

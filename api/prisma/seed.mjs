@@ -8,24 +8,24 @@ const prisma = new PrismaClient();
 
 dotenv.config();
 
-const environment = process.env.NODE_ENV || "production";
+// const environment = process.env.NODE_ENV || "production";
 
 const salaryRanges = [
-    { minimum_salary: 63400, maximum_salary: 90399.95 },
-    { minimum_salary: 74300, maximum_salary: 105000.04 },
-    { minimum_salary: 86200, maximum_salary: 122100.01 },
-    { minimum_salary: 102900, maximum_salary: 136700.11 },
-    { minimum_salary: 119600, maximum_salary: 152599.97 },
-    { minimum_salary: 137700, maximum_salary: 168500.09 },
+    { id: 1, minimum_salary: 63400, maximum_salary: 90399.95 },
+    { id: 2, minimum_salary: 74300, maximum_salary: 105000.04 },
+    { id: 3, minimum_salary: 86200, maximum_salary: 122100.01 },
+    { id: 4, minimum_salary: 102900, maximum_salary: 136700.11 },
+    { id: 5, minimum_salary: 119600, maximum_salary: 152599.97 },
+    { id: 6, minimum_salary: 137700, maximum_salary: 168500.09 },
 ];
 
 const statuses = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
 ];
 
 const ministries = [
@@ -34,33 +34,47 @@ const ministries = [
 ];
 
 const experienceLevels = [
-    { definition: 'No expereince' },
-    { definition: 'Little experience' },
-    { definition: 'Some experience' },
-    { definition: 'Lots of experience' },
+    { id: 1, definition: 'No expereince' },
+    { id: 2, definition: 'Little experience' },
+    { id: 3, definition: 'Some experience' },
+    { id: 4, definition: 'Lots of experience' },
 ];
 
 const appointments = [
-    {},
-    {},
+    { id: 1 },
+    { id: 2 },
 ];
 
 const processes = [
-    {},
-    {}
+    { id: 1 },
+    { id: 2 }
 ];
 
 const inquiries = [
     {
+        id: 123,
         status_id: 1,
+        inquiry_completion_date: null,
         candidate_first_name: 'Dallas',
         candidate_last_name: 'Richmond',
+        current_position_number: null,
+        current_position_title: null,
+        current_ministry_id: null,
+        current_annual_salary: null,
+        current_mccf_classification_id: null,
         experience_level_id: 1,
         new_position_number: 2938475,
         new_position_title: 'Scrum Master',
         new_mccf_classification_id: 3,
         appointment_type_id: 1,
         process_type_id: 1,
+        salary_estimate: null,
+        hm_comment: null,
+        shr_comment: null,
+        adm_comment: null,
+        hm_user_id: null,
+        shr_user_id: null,
+        adm_user_id: null,
     }
 ];
 
@@ -68,27 +82,31 @@ async function seed () {
     salaryRanges.forEach(async (range) => {
         await prisma.salaryRange.upsert({
             where: {
-                range,
+                id: range.id,
             },
-            create: {
-                range,
-            },
-            update: {
-                range,
-            }
+            create: ({
+                id: range.id,
+                minimum_salary: range.minimum_salary,
+                maximum_salary: range.maximum_salary,
+            }),
+            update: ({
+                id: range.id,
+                minimum_salary: range.minimum_salary,
+                maximum_salary: range.maximum_salary,
+            })
         });
     });
 
     statuses.forEach(async (status) => {
         await prisma.status.upsert({
             where: {
-                status,
+                id: status.id,
             },
             create: {
-                status,
+                id: status.id,
             },
             update: {
-                status,
+                id: status.id,
             }
         });
     });
@@ -96,13 +114,15 @@ async function seed () {
     ministries.forEach(async (ministry) => {
         await prisma.ministry.upsert({
             where: {
-                ministry,
+                id: ministry.id,
             },
             create: {
-                ministry,
+                id: ministry.id,
+                ministry_name: ministry.ministry_name,
             },
             update: {
-                ministry,
+                id: ministry.id,
+                ministry_name: ministry.ministry_name,
             }
         });
     });
@@ -110,13 +130,15 @@ async function seed () {
     experienceLevels.forEach(async (expereince) => {
         await prisma.experience.upsert({
             where: {
-                expereince,
+                id: expereince.id,
             },
             create: {
-                expereince,
+                id: expereince.id,
+                definition: expereince.definition,
             },
             update: {
-                expereince,
+                id: expereince.id,
+                definition: expereince.definition,
             }
         });
     });
@@ -124,13 +146,13 @@ async function seed () {
     appointments.forEach(async (appointment) => {
         await prisma.appointment.upsert({
             where: {
-                appointment,
+                id: appointment.id,
             },
             create: {
-                appointment,
+                id: appointment.id,
             },
             update: {
-                appointment,
+                id: appointment.id,
             }
         });
     });
@@ -138,32 +160,77 @@ async function seed () {
     processes.forEach(async (process) => {
         await prisma.process.upsert({
             where: {
-                process,
+                id: process.id,
             },
             create: {
-                process,
+                id: process.id,
             },
             update: {
-                process,
+                id: process.id,
             }
         });
     });
+    // TODO: Fix developer env and check out inquiry id and status id not allowed to be the same
 
-    if (environment === "developer") {
+    // if (environment === "developer") {
         inquiries.forEach(async (inquiry) => {
             await prisma.inquiry.upsert({
                 where: {
-                    inquiry,
+                    id: inquiry.id,
                 },
                 create: {
-                    inquiry,
+                    id: inquiry.id,
+                    status_id: inquiry.status_id,
+                    inquiry_completion_date: inquiry.inquiry_completion_date,
+                    candidate_first_name: inquiry.candidate_first_name,
+                    candidate_last_name: inquiry.candidate_last_name,
+                    current_position_number: inquiry.current_position_number,
+                    current_position_title: inquiry.current_position_title,
+                    current_ministry_id: inquiry.current_ministry_id,
+                    current_annual_salary: inquiry.current_annual_salary,
+                    current_mccf_classification_id: inquiry.current_mccf_classification_id,
+                    experience_level_id: inquiry.experience_level_id,
+                    new_position_number: inquiry.new_position_number,
+                    new_position_title: inquiry.new_position_title,
+                    new_mccf_classification_id: inquiry.new_mccf_classification_id,
+                    appointment_type_id: inquiry.appointment_type_id,
+                    process_type_id: inquiry.process_type_id,
+                    salary_estimate: inquiry. salary_estimate,
+                    hm_comment: inquiry.hm_comment,
+                    shr_comment: inquiry.shr_comment,
+                    adm_comment: inquiry.adm_comment,
+                    hm_user_id: inquiry.hm_user_id,
+                    shr_user_id: inquiry.shr_user_id,
+                    adm_user_id: inquiry.adm_user_id,
                 },
                 update: {
-                    inquiry,
+                    id: inquiry.id,
+                    status_id: inquiry.status_id,
+                    inquiry_completion_date: inquiry.inquiry_completion_date,
+                    candidate_first_name: inquiry.candidate_first_name,
+                    candidate_last_name: inquiry.candidate_last_name,
+                    current_position_number: inquiry.current_position_number,
+                    current_position_title: inquiry.current_position_title,
+                    current_ministry_id: inquiry.current_ministry_id,
+                    current_annual_salary: inquiry.current_annual_salary,
+                    current_mccf_classification_id: inquiry.current_mccf_classification_id,
+                    experience_level_id: inquiry.experience_level_id,
+                    new_position_number: inquiry.new_position_number,
+                    new_position_title: inquiry.new_position_title,
+                    new_mccf_classification_id: inquiry.new_mccf_classification_id,
+                    appointment_type_id: inquiry.appointment_type_id,
+                    process_type_id: inquiry.process_type_id,
+                    salary_estimate: inquiry. salary_estimate,
+                    hm_comment: inquiry.hm_comment,
+                    shr_comment: inquiry.shr_comment,
+                    adm_comment: inquiry.adm_comment,
+                    hm_user_id: inquiry.hm_user_id,
+                    shr_user_id: inquiry.shr_user_id,
+                    adm_user_id: inquiry.adm_user_id,
                 }
             });
         });
-    }
+    // }
     
 
     // if (existingSalaries.length !== salaryRanges.length) {

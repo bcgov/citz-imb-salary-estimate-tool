@@ -66,9 +66,8 @@ jobs:
         with:
           command: cves,recommendations
           image: ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
-          docker-username: ${{ secrets.DOCKER_USERNAME }}
-          docker-password: ${{ secrets.DOCKER_PASSWORD }}
           summary: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy to OpenShift

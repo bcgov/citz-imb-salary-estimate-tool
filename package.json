@@ -4,8 +4,11 @@
   "license": "Apache-2.0",
   "scripts": {
     "up:dev": "docker compose -f docker-compose.dev.yaml up -d",
-    "down": "docker compose -f docker-compose.dev.yaml down",
-    "prune": "docker compose -f docker-compose.dev.yaml down --rmi all --volumes",
+    "up:prod": "docker compose -f docker-compose.prod.yaml up -d",
+    "down:dev": "docker compose -f docker-compose.dev.yaml down",
+    "down:prod": "docker compose -f docker-compose.prod.yaml down",
+    "prune:dev": "docker compose -f docker-compose.dev.yaml down --rmi all --volumes",
+    "prune:prod": "docker compose -f docker-compose.prod.yaml down --rmi all --volumes",
     "if": "cd frontend && rm -rf node_modules && rm package-lock.json && npm i",
     "ib": "cd api && rm -rf node_modules && rm package-lock.json && npm i"
   }

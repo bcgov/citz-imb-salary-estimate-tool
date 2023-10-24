@@ -20,6 +20,7 @@ export const statuses = [
     { id: 6 },
 ];
 
+// TODO: Add all minitries
 export const ministries = [
     { id: 'CITZ', ministry_name: 'Citizen Services' },
     { id: 'PSA', ministry_name: 'Public Service Agency' },

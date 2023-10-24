@@ -1,106 +1,104 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-// TODO: CHECK if the seed data is already there (for prod)
 import { PrismaClient } from "@prisma/client";
+import dotenv from 'dotenv';
+import {
+    salaryRanges,
+    statuses,
+    ministries,
+    experienceLevels,
+    appointments,
+    processes,
+    inquiries,
+} from './data.mjs';
 
 const prisma = new PrismaClient();
 
-const salaryRanges = [
-    { minimum_salary: 63400, maximum_salary: 90399.95 },
-    { minimum_salary: 74300, maximum_salary: 105000.04 },
-    { minimum_salary: 86200, maximum_salary: 122100.01 },
-    { minimum_salary: 102900, maximum_salary: 136700.11 },
-    { minimum_salary: 119600, maximum_salary: 152599.97 },
-    { minimum_salary: 137700, maximum_salary: 168500.09 },
-];
+dotenv.config();
 
-const statuses = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-];
+const environment = process.env.NODE_ENV || "production";
 
-const ministries = [
-    { id: 'CITZ', ministry_name: 'Citizen Services' },
-    { id: 'PSA', ministry_name: 'Public Service Agency' },
-];
+/**
+ * @summary Seeds all the necessary base data in both dev and prod. 
+ * Checks for any changes to existing tables and updates accordingly
+ * @author Dallascrichmond
+ */
+async function seedBase() {
+    const seedingPromises = [];
 
-const experienceLevels = [
-    { definition: 'No expereince' },
-    { definition: 'Little experience' },
-    { definition: 'Some experience' },
-    { definition: 'Lots of experience' },
-];
+    seedingPromises.push(
+        ...salaryRanges.map(range => prisma.salaryRange.upsert({
+            where: { id: range.id },
+            create: range,
+            update: range,
+        }))
+    );
 
-const appointments = [
-    {},
-    {},
-];
+    seedingPromises.push(
+        ...statuses.map(status => prisma.status.upsert({
+            where: { id: status.id },
+            create: status,
+            update: status,
+        }))
+    );
 
-const processes = [
-    {},
-    {}
-];
+    seedingPromises.push(
+        ...ministries.map(ministry => prisma.ministry.upsert({
+            where: { id: ministry.id },
+            create: ministry,
+            update: ministry,
+        }))
+    );
 
-const inquiries = [
-    {
-        status_id: 1,
-        candidate_first_name: 'Dallas',
-        candidate_last_name: 'Richmond',
-        experience_level_id: 1,
-        new_position_number: 2938475,
-        new_position_title: 'Scrum Master',
-        new_mccf_classification_id: 3,
-        appointment_type_id: 1,
-        process_type_id: 1,
-    }
-];
+    seedingPromises.push(
+        ...experienceLevels.map(exp => prisma.experience.upsert({
+            where: { id: exp.id },
+            create: exp,
+            update: exp,
+        }))
+    );
 
-async function seed () {
-    for (const data of statuses) {
-        await prisma.status.create({
-            data,
-        });
-    }
-    for (const data of salaryRanges) {
-        await prisma.salaryRange.create({
-            data,
-        });
-    }
-    for (const data of ministries) {
-        await prisma.ministry.create({
-            data,
-        });
-    }
-    for (const data of experienceLevels) {
-        await prisma.experience.create({
-            data,
-        });
-    }
-    for (const data of appointments) {
-        await prisma.appointment.create({
-            data,
-        });
-    }
-    for (const data of processes) {
-        await prisma.process.create({
-            data,
-        });
-    }
-    for (const data of inquiries) {
-        await prisma.inquiry.create({
-            data,
-        });
-    }
+    seedingPromises.push(
+        ...appointments.map(appointment => prisma.appointment.upsert({
+            where: { id: appointment.id },
+            create: appointment,
+            update: appointment,
+        }))
+    );
+
+    seedingPromises.push(
+        ...processes.map(process => prisma.process.upsert({
+            where: { id: process.id },
+            create: process,
+            update: process,
+        }))
+    );
+
+    await Promise.all(seedingPromises);
 }
 
-seed()
-    .catch((error) => {
-        throw error;
-    })
-    .finally(async () => {
+/**
+ * @summary Seeds inquiries in dev
+ * @author Dallascrichmond
+ */
+async function seedInquiries() {
+    const seedingPromises = inquiries.map(inquiry => prisma.inquiry.upsert({
+        where: { id: inquiry.id },
+        create: inquiry,
+        update: inquiry,
+    }));
+
+    await Promise.all(seedingPromises);
+}
+
+(async () => {
+    try {
+        await seedBase();
+        if (environment === "development") {
+            await seedInquiries();
+        }
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("Error during seeding:", error);
+    } finally {
         await prisma.$disconnect();
-    });
+    }
+})();

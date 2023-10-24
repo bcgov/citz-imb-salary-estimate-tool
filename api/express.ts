@@ -2,6 +2,7 @@
  * @summary Middleware and configuration setup for SET Express API
  * @author  LocalNewsTV, Dallascrichmond
  */
+import { keycloak } from '@bcgov/kc-express';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -13,6 +14,8 @@ import * as routers from './routes';
 import * as middleware from './middleware';
 
 const app: Application = express();
+
+keycloak(app);
 
 // Express middleware
 app.use(morgan('dev'));

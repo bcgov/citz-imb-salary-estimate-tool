@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bcgov/kc-react": "file:./bcgov-kc-react-1.0.0.tgz",
+    "@bcgov/kc-react": "https://github.com/BradyMitch/kc-example/releases/download/1.0.0/bcgov-kc-react-1.0.0.tgz",
+    "ib": "^0.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar, Box, Toolbar, Palette } from '@mui/material';
 import Logo from '../assets/logo.png';
 
 type NavbarProps = {
@@ -8,7 +8,7 @@ type NavbarProps = {
 export const Navbar = (props: NavbarProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ 'background-color': '#003366' }}>
+      <AppBar position="static">
         <Toolbar>
           <Box
             component="img"
@@ -18,7 +18,7 @@ export const Navbar = (props: NavbarProps) => {
           />
           {props.children}
         </Toolbar>
-        <Box sx={{ height: 5, 'background-color': '#FCBA19' }} />
+        <Box sx={{ height: 5 }} bgcolor={'#FCBA19'} />
       </AppBar>
     </Box>
   );

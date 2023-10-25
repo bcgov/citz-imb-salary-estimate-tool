@@ -1,19 +1,37 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './routes/root';
-import ErrorPage from './error-page';
+import { Paper, Typography } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Footer, Navbar } from './components';
+import { BCTheme } from './styles';
+import { Home } from './routes';
 
-const queryClient = new QueryClient();
-const router = createBrowserRouter([
-  { path: '/', element: <Root />, errorElement: <ErrorPage /> }
-]);
+export const App = () => {
+  const queryClient = new QueryClient();
 
-function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ThemeProvider theme={BCTheme}>
+      <Router>
+        <QueryClientProvider client={queryClient}>
+          {/* // Todo: paper element needs the margins removed */}
+          <Paper
+            elevation={0}
+            sx={{
+              height: '100vh',
+              display: 'flex',
+              'flex-direction': 'column',
+            }}
+          >
+            <Navbar>
+              <Typography variant="h4">Salary Estimation Tool</Typography>
+            </Navbar>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+            <Footer />
+          </Paper>
+        </QueryClientProvider>
+      </Router>
+    </ThemeProvider>
   );
-}
-
-export default App;
+};

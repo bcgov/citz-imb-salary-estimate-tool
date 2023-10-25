@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar } from '@mui/material';
 import Logo from '../assets/logo.png';
 
 type NavbarProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Navbar = (props: NavbarProps) => {

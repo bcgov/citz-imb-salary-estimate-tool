@@ -3,8 +3,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
-import { BCTheme } from './styles';
 import { Home } from './routes';
+import { BCTheme } from './styles';
 
 export const App = () => {
   const queryClient = new QueryClient();

@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@bcgov/bc-sans": "2.1.0",
+    "@bcgov/kc-react": "https://github.com/BradyMitch/kc-example/releases/download/1.0.0/bcgov-kc-react-1.0.0.tgz",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@fontsource/roboto": "5.0.8",
     "@mui/icons-material": "5.14.15",
     "@mui/material": "5.14.15",
     "@tanstack/react-query": "5.0.5",
+    "ib": "0.2.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.17.0"

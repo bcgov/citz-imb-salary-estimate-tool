@@ -45,6 +45,7 @@ jobs:
           echo "SSO_CLIENT_SECRET=${{ secrets.SSO_CLIENT_SECRET }}" >> .env
           echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env
           echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .env
+          echo "PORT=${{ secrets.API_PORT }}" >> .env
 
       - name: Build API Image
         run: |

@@ -2,11 +2,12 @@ import { Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Footer, Navbar } from './components';
-import { Home } from './routes';
-import { BCTheme } from './styles';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import BCTheme from './styles';
 
-export const App = () => {
+const App = () => {
   const queryClient = new QueryClient();
 
   return (
@@ -35,3 +36,5 @@ export const App = () => {
     </ThemeProvider>
   );
 };
+
+export default App;

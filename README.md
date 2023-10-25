@@ -13,10 +13,10 @@ npm install
 To start the project in dev mode, run the following command in the root directory:
 
 ```
-docker-compose -f docker-compose.dev.yaml up --build -d
+npm run up:dev
 ```
 To stop the project in dev mode, run the following command in the root directory:
 
 ```
-docker-compose -f docker-compose.dev.yaml down
+npm run down:dev
 ```

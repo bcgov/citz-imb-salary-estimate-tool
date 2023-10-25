@@ -1,19 +1,17 @@
 import {
-  Button,
-  Dialog as DialogMui,
   DialogActions,
   DialogContent,
-  DialogTitle,
+  Dialog as DialogMui,
   DialogProps,
+  DialogTitle,
 } from '@mui/material';
-import { MouseEventHandler, ElementType } from 'react';
 
 interface CustomDialogProps extends DialogProps {
-  actions?: JSX.Element;
+  actions: JSX.Element;
 }
 
-export const Dialog = (props: CustomDialogProps) => {
-  const { actions, onClose, open, title, children } = props;
+const Dialog = (props: CustomDialogProps) => {
+  const { actions = null, onClose, open, title, children } = props;
 
   return (
     <DialogMui
@@ -24,9 +22,9 @@ export const Dialog = (props: CustomDialogProps) => {
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
-      <DialogActions>
-        {actions}
-      </DialogActions>
+      <DialogActions>{actions}</DialogActions>
     </DialogMui>
   );
 };
+
+export default Dialog;

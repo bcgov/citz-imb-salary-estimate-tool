@@ -1,11 +1,13 @@
-import { AppBar, Box, Toolbar, Palette } from '@mui/material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import Logo from '../assets/logo.png';
 
 type NavbarProps = {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
-export const Navbar = (props: NavbarProps) => {
+const Navbar = (props: NavbarProps) => {
+  const { children = null } = props;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -16,10 +18,12 @@ export const Navbar = (props: NavbarProps) => {
             alt="Government of B.C."
             src={Logo}
           />
-          {props.children}
+          {children}
         </Toolbar>
-        <Box sx={{ height: 5 }} bgcolor={'#FCBA19'} />
+        <Box sx={{ height: 5 }} bgcolor="#FCBA19" />
       </AppBar>
     </Box>
   );
 };
+
+export default Navbar;

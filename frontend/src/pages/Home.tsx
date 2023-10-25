@@ -1,8 +1,9 @@
-import { Button, Dialog } from '../components';
-import { Typography } from '@mui/material';
 import { useKeycloak } from '@bcgov/kc-react';
+import { Typography } from '@mui/material';
+import Dialog from '../components/Dialog';
+import Button from '../components/Button';
 
-export const Home = () => {
+const Home = () => {
   const { login, logout, state } = useKeycloak();
 
   const user = state?.userInfo;
@@ -14,7 +15,7 @@ export const Home = () => {
   );
 
   return (
-    <Dialog open={true} actions={actions}>
+    <Dialog open actions={actions}>
       <Typography align="center" variant="h3">
         Login Required
       </Typography>
@@ -24,3 +25,5 @@ export const Home = () => {
     </Dialog>
   );
 };
+
+export default Home;

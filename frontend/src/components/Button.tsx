@@ -1,7 +1,19 @@
 import { Button as ButtonMui, ButtonProps } from '@mui/material';
 
-export const Button = (props: ButtonProps) => {
-  const { children, onClick, variant, color, size, disabled, startIcon, endIcon, fullWidth, href, className } = props;
+const Button = (props: ButtonProps) => {
+  const {
+    children,
+    onClick,
+    variant,
+    color,
+    size,
+    disabled,
+    startIcon,
+    endIcon,
+    fullWidth,
+    href,
+    className,
+  } = props;
 
   const buttonProps: ButtonProps = {
     variant,
@@ -20,4 +32,6 @@ export const Button = (props: ButtonProps) => {
       {children}
     </ButtonMui>
   );
-}
+};
+
+export default Button;

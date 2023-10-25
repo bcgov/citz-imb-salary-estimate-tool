@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bcgov/keycloak-react": "file:./bcgov-keycloak-react.tgz",
     "@tanstack/react-query": "5.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",

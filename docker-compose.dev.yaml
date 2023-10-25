@@ -19,6 +19,8 @@ services:
       context: ./api
       dockerfile: .docker/Dockerfile.dev
     env_file: .env
+    environment:
+      - PORT=${API_PORT:-3000}
     ports:
       - '3000:3000'
     volumes:

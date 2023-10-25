@@ -11,11 +11,10 @@ objects:
 - kind: Route
   apiVersion: route.openshift.io/v1
   metadata:
-    name: set-app-route
+    name: set-app
     namespace: ec1236-dev
   spec:
-    host: set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca
-    path: /
+    host: set-app-ec1236-dev.apps.silver.devops.gov.bc.ca
     to:
       kind: Service
       name: set-app

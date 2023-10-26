@@ -110,6 +110,26 @@ objects:
                   secretKeyRef:
                     name: set-secrets
                     key: POSTGRES_PORT
+              - name: FRONTEND_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: set-secrets
+                    key: FRONTEND_URL
+              - name: SSO_AUTH_SERVER_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: set-secrets
+                    key: SSO_AUTH_SERVER_URL
+              - name: SSO_CLIENT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: set-secrets
+                    key: SSO_CLIENT_ID
+              - name: SSO_CLIENT_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: set-secrets
+                    key: SSO_CLIENT_SECRET
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         dnsPolicy: ClusterFirst

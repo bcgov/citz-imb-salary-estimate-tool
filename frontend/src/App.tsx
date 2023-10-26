@@ -14,7 +14,6 @@ const App = () => {
     <ThemeProvider theme={BCTheme}>
       <Router>
         <QueryClientProvider client={queryClient}>
-          {/* // Todo: paper element needs the margins removed */}
           <Paper
             elevation={0}
             sx={{

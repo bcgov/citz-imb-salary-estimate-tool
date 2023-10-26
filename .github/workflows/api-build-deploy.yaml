@@ -48,7 +48,7 @@ jobs:
 
       - name: Build API Image
         run: |
-          docker-compose -f docker-compose.prod.yaml build api
+          docker-compose -f docker-compose.prod.yaml build set-api
 
       - name: List Docker Images
         run: |
@@ -56,7 +56,7 @@ jobs:
 
       - name: Tag API Image
         run: |
-          docker tag citz-imb-salary-estimate-tool_api ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
+          docker tag citz-imb-salary-estimate-tool_set-api ${{ secrets.PUBLIC_IMAGE_REPOSITORY }}/${{ secrets.OPENSHIFT_TOOLS_NAMESPACE }}/set-api:latest
 
       - name: List Docker Images
         run: |

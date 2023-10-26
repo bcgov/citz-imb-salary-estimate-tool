@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bcgov/kc-express": "https://github.com/BradyMitch/kc-example/releases/download/1.0.0/bcgov-kc-express-1.0.0.tgz",
+    "@bcgov/kc-express": "https://github.com/BradyMitch/kc-example/releases/download/1.0.0-proxy/bcgov-kc-express-1.0.0-proxy.tgz",
     "@prisma/client": "^5.4.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

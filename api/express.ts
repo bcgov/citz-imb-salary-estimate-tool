@@ -5,7 +5,7 @@
 import { keycloak } from '@bcgov/kc-express';
 import express, { Application } from 'express';
 import morgan from 'morgan';
-// import cors from 'cors';
+import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import rateLimit from 'express-rate-limit';
@@ -15,25 +15,31 @@ import * as middleware from './middleware';
 
 const app: Application = express();
 
-keycloak(app);
+app.set("trust proxy", 1);
+try {
+  keycloak(app);
+} catch (error) {
+  // eslint-disable-next-line no-console
+  console.log("Error HERE: ", error);
+}
 
 // Express middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'));
-// app.use(cors(config.cors));
+app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
 
 app.disable('x-powered-by');
 // Routing information
 app.use(
-  '/api/api-docs',
+  '/docs',
   swaggerUi.serve,
   swaggerUi.setup(
     swaggerJSDoc(config.swaggerConfig),
   ),
 );
-app.use('/api', [
+app.use('/', [
   routers.healthRouter,
   routers.inquiryRouter,
 ]);

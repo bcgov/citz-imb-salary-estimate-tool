@@ -115,6 +115,11 @@ objects:
                   secretKeyRef:
                     name: set-secrets
                     key: FRONTEND_URL
+              - name: BACKEND_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: set-secrets
+                    key: BACKEND_URL
               - name: SSO_AUTH_SERVER_URL
                 valueFrom:
                   secretKeyRef:

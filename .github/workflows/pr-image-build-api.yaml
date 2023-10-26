@@ -31,4 +31,4 @@ jobs:
       # Build API Image
       - name: Build API Image
         run: |
-          docker-compose -f docker-compose.prod.yaml build api
+          docker-compose -f docker-compose.prod.yaml build set-api

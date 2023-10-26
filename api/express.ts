@@ -5,7 +5,7 @@
 import { keycloak } from '@bcgov/kc-express';
 import express, { Application } from 'express';
 import morgan from 'morgan';
-import cors from 'cors';
+// import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import rateLimit from 'express-rate-limit';
@@ -21,7 +21,7 @@ keycloak(app);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cors(config.cors));
+// app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
 
 app.disable('x-powered-by');

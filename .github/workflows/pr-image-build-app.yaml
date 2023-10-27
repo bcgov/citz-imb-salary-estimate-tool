@@ -32,3 +32,12 @@ jobs:
       - name: Build Frontend Image
         run: |
           docker-compose -f docker-compose.dev.yaml build frontend
+
+      - name: Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves,recommendations
+          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
+          summary: true
+

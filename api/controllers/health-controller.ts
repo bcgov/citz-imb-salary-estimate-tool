@@ -5,7 +5,7 @@
 import { Request, Response } from 'express';
 
 export const getHealth = async (req: Request, res: Response) => (
-  res.status(200).send('SET API is healthy and ready')
+  res.status(200).send('SET API is suuuper healthy and ready')
 );
 
 export default getHealth;

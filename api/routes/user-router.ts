@@ -3,11 +3,14 @@
  * @author Dallascrichmond
  */
 import express from 'express';
-import { getUserByGuid } from '../controllers/user-controller';
+import { getUserByGuid, getUsers } from '../controllers/user-controller';
 
 const router = express.Router();
 
-// Inquiries from single guid
+// User from single guid
 router.route('/user/guid').get(getUserByGuid);
+
+// Get all users
+router.route('/user').get(getUsers);
 
 export default router;

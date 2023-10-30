@@ -12,12 +12,13 @@ import rateLimit from 'express-rate-limit';
 import * as config from './config';
 import * as routers from './routes';
 import * as middleware from './middleware';
+import KEYCLOAK_OPTIONS from './config/keycloakConfig';
 
 const app: Application = express();
 
 app.set("trust proxy", 1);
 try {
-  keycloak(app);
+  keycloak(app, KEYCLOAK_OPTIONS);
 } catch (error) {
   // eslint-disable-next-line no-console
   console.log("Error HERE: ", error);

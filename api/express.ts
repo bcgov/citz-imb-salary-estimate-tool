@@ -39,10 +39,10 @@ app.use(
     swaggerJSDoc(config.swaggerConfig),
   ),
 );
-app.use('/', [
-  routers.healthRouter,
-  routers.inquiryRouter,
-]);
+
+// TODO: import and add protectedRoute to inquiry endpoint when roles are defined 
+app.use('/', routers.healthRouter);
+app.use('/', routers.inquiryRouter);
 
 // Integrate global error handler after routes to cover all ends.
 app.use(middleware.globalErrorHandler);

@@ -17,12 +17,9 @@ import KEYCLOAK_OPTIONS from './config/keycloakConfig';
 const app: Application = express();
 
 app.set("trust proxy", 1);
-try {
-  keycloak(app, KEYCLOAK_OPTIONS);
-} catch (error) {
-  // eslint-disable-next-line no-console
-  console.log("Error HERE: ", error);
-}
+
+// Initializes Keycloak in the backend
+keycloak(app, KEYCLOAK_OPTIONS);
 
 // Express middleware
 app.use(morgan('dev'));
@@ -32,6 +29,7 @@ app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
 
 app.disable('x-powered-by');
+
 // Routing information
 app.use(
   '/docs',

@@ -16,3 +16,30 @@ export const getInquiry = async (req: Request, res: Response) => {
         res.status(500).send(httpResponses[500]);
     }
 };
+
+export const getInquiryByGuid = async (req: Request, res: Response) => {
+    const { guid } = req.query;
+    try {
+        const inquiries = await prisma.inquiry.findMany({
+            where: {
+                OR: [
+                    {
+                        hm_user_id: guid as string
+                    },
+                    {
+                        shr_user_id: guid as string
+                    },
+                    {
+                        adm_user_id: guid as string
+                    },
+                ]
+            }
+        });
+        if (inquiries) {
+            return res.status(200).json(inquiries);
+        }
+        return res.status(404).send(httpResponses[404]);
+    } catch (error) {
+        return res.status(500).send(httpResponses[500]);
+    }
+};

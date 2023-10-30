@@ -1,14 +1,17 @@
 /**
  * @summary This is the Salary Inquiry Endpoint for SET, its purpose is to provide health
  *          do CRUD operations on the Salary inquiries
- * @author Dallascrichmond
+ * @author dallascrichmond
  */
 import express from 'express';
-import { getInquiry } from '../controllers/inquiry-controller';
+import { getInquiry, getInquiryByGuid } from '../controllers/inquiry-controller';
 
 const router = express.Router();
 
-router.route('/inquiry')
-    .get(getInquiry);
+// Get all inquiries
+router.route('/inquiry').get(getInquiry);
+
+// Get inquiries with guid
+router.route('/inquiry/guid').get(getInquiryByGuid);
 
 export default router;

@@ -48,8 +48,7 @@ model Process {
 }
 
 model User {
-  id String @id
-  guid String
+  guid String @id
   username String
   email String
   user_first_name String
@@ -92,9 +91,9 @@ model Inquiry {
   shr_comment String?
   adm_comment String?
   hm_user_id String?
-  hm_user User? @relation(fields: [hm_user_id], references: [id], name: "hm")
+  hm_user User? @relation(fields: [hm_user_id], references: [guid], name: "hm")
   shr_user_id String?
-  shr_user User? @relation(fields: [shr_user_id], references: [id], name: "shr")
+  shr_user User? @relation(fields: [shr_user_id], references: [guid], name: "shr")
   adm_user_id String?
-  adm_user User? @relation(fields: [adm_user_id], references: [id], name: "adm")
+  adm_user User? @relation(fields: [adm_user_id], references: [guid], name: "adm")
 }

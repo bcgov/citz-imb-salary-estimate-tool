@@ -8,6 +8,7 @@ const httpResponses = {
     204: 'Resource updated successfully',
     400: 'Bad Request',
     403: 'Forbidden: Permission Denied',
+    404: 'No records found',
     500: 'Server Error',
   };
   

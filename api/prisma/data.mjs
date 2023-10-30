@@ -43,6 +43,29 @@ export const processes = [
     { id: 2 }
 ];
 
+export const users = [
+    {
+        guid: 'wjqjijwiiqhdjqwhduhcbhfdhjb874382bhb',
+        username: 'DALRICH',
+        email: 'dallas.richmond@gov.bc.ca',
+        user_first_name: 'Dallas',
+        user_last_name: 'Richmond',
+        roles: [
+            'HM',
+        ],
+    },
+    {
+        guid: 'wjqjijwiiqhdjqwhijijicbhfdhjb874382bhb',
+        username: 'CARLTHOM',
+        email: 'carl.thomas@gov.bc.ca',
+        user_first_name: 'Carl',
+        user_last_name: 'Thomas',
+        roles: [
+            'SHR',
+        ],
+    },
+]
+
 export const inquiries = [
     {
         id: 1,

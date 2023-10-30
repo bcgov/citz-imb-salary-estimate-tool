@@ -7,6 +7,7 @@ import {
     experienceLevels,
     appointments,
     processes,
+    users,
     inquiries,
 } from './data.mjs';
 
@@ -75,6 +76,21 @@ async function seedBase() {
     await Promise.all(seedingPromises);
 }
 
+
+/**
+ * @summary Seeds users in dev
+ * @author Dallascrichmond
+ */
+async function seedUsers() {
+    const seedingPromises = users.map(user => prisma.user.upsert({
+        where: { guid: user.guid },
+        create: user,
+        update: user,
+    }));
+
+    await Promise.all(seedingPromises);
+}
+
 /**
  * @summary Seeds inquiries in dev
  * @author Dallascrichmond
@@ -93,6 +109,7 @@ async function seedInquiries() {
     try {
         await seedBase();
         if (environment === "development") {
+            await seedUsers();
             await seedInquiries();
         }
     } catch (error) {

@@ -18,9 +18,13 @@ export const getUserByGuid = async (req: Request, res: Response) => {
             }
         });
 
-        res.status(200).json(user);
+        if (user) {
+            return res.status(200).json(user); 
+        }
+
+        return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        res.status(500).send(httpResponses[500]);
+        return res.status(500).send(httpResponses[500]);
     }
 };
 

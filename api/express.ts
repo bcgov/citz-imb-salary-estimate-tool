@@ -12,16 +12,14 @@ import rateLimit from 'express-rate-limit';
 import * as config from './config';
 import * as routers from './routes';
 import * as middleware from './middleware';
+import KEYCLOAK_OPTIONS from './config/keycloakConfig';
 
 const app: Application = express();
 
 app.set("trust proxy", 1);
-try {
-  keycloak(app);
-} catch (error) {
-  // eslint-disable-next-line no-console
-  console.log("Error HERE: ", error);
-}
+
+// Initializes Keycloak in the backend
+keycloak(app, KEYCLOAK_OPTIONS);
 
 // Express middleware
 app.use(morgan('dev'));
@@ -31,6 +29,7 @@ app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
 
 app.disable('x-powered-by');
+
 // Routing information
 app.use(
   '/docs',
@@ -39,10 +38,11 @@ app.use(
     swaggerJSDoc(config.swaggerConfig),
   ),
 );
-app.use('/', [
-  routers.healthRouter,
-  routers.inquiryRouter,
-]);
+
+// TODO: import and add protectedRoute to inquiry endpoint when roles are defined 
+app.use('/', routers.healthRouter);
+app.use('/', routers.inquiryRouter);
+app.use('/', routers.userRouter);
 
 // Integrate global error handler after routes to cover all ends.
 app.use(middleware.globalErrorHandler);

@@ -49,8 +49,13 @@ model Process {
 
 model User {
   id String @id
+  guid String
+  username String
+  email String
   user_first_name String
   user_last_name String
+  roles String[]
+  created_at DateTime @default(now())
   hm_inquiries Inquiry[] @relation(name: "hm")
   shr_inquiries Inquiry[] @relation(name: "shr")
   adm_inquiries Inquiry[] @relation(name: "adm")

@@ -78,7 +78,6 @@ export const users = [
 
 export const inquiries = [
     {
-        id: 1,
         status_id: 1,
         inquiry_completion_date: null,
         candidate_first_name: 'Dallas',
@@ -103,7 +102,6 @@ export const inquiries = [
         adm_user_id: 'AJSIUC0002948433KDOJEWNDFHD',
     },
     {
-        id: 2,
         status_id: 6,
         inquiry_completion_date: null,
         candidate_first_name: 'Tyler',
@@ -128,7 +126,6 @@ export const inquiries = [
         adm_user_id: null,
     },
     {
-        id: 3,
         status_id: 2,
         inquiry_completion_date: null,
         candidate_first_name: 'Cindy',

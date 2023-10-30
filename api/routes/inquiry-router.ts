@@ -4,12 +4,16 @@
  * @author dallascrichmond
  */
 import express from 'express';
-import { getInquiry, getInquiryByGuid } from '../controllers/inquiry-controller';
+import { getInquiry, getInquiryByGuid, createInquiry, updateInquiry, deleteInquiry } from '../controllers/inquiry-controller';
 
 const router = express.Router();
 
-// Get all inquiries
-router.route('/inquiry').get(getInquiry);
+// Get all inquiries and creates/updates inquiries
+router.route('/inquiry')
+    .get(getInquiry)
+    .post(createInquiry)
+    .patch(updateInquiry)
+    .delete(deleteInquiry);
 
 // Get inquiries with guid
 router.route('/inquiry/guid').get(getInquiryByGuid);

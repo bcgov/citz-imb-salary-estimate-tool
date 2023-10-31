@@ -1,6 +1,6 @@
 /**
  * @summary Middleware and configuration setup for SET Express API
- * @author  LocalNewsTV, Dallascrichmond
+ * @author  dallascrichmond
  */
 import { keycloak } from '@bcgov/kc-express';
 import express, { Application } from 'express';

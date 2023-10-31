@@ -11,7 +11,7 @@ const prisma = new PrismaClient;
 
 /**
  * @summary Gets a user by their guid
- * @author dallascrichmond 
+ * @author dallascrichmond
  */
 export const getUserByGuid = async (req: Request, res: Response) => {
     const { guid } = req.query;
@@ -22,7 +22,7 @@ export const getUserByGuid = async (req: Request, res: Response) => {
             }
         });
         if (user) {
-            return res.status(200).json(user); 
+            return res.status(200).json(user);
         }
         return res.status(404).send(httpResponses[404]);
 
@@ -33,7 +33,7 @@ export const getUserByGuid = async (req: Request, res: Response) => {
 
 /**
  * @summary Get all users
- * @author dallascrichmond 
+ * @author dallascrichmond
  */
 export const getUsers = async (req: Request, res: Response) => {
     try {

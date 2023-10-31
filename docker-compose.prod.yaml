@@ -14,7 +14,7 @@ services:
       - app-network
     tty: true
 
-  api:
+  set-api:
     build:
       context: ./api
       dockerfile: .docker/Dockerfile.prod

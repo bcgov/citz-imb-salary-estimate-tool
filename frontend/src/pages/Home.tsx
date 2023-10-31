@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import Dialog from '../components/Dialog';
 import Button from '../components/Button';
 
-const Home = () => {
+export const Home = () => {
   const { login, logout, state } = useKeycloak();
 
   const user = state?.userInfo;

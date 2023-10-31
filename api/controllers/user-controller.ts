@@ -1,6 +1,6 @@
 /**
  * @summary User Endpoint Controller for SET
- * @author  Dallascrichmond
+ * @author  dallascrichmond
  */
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client'
@@ -11,7 +11,7 @@ const prisma = new PrismaClient;
 
 /**
  * @summary Gets a user by their guid
- * @author Dallascrichmond 
+ * @author dallascrichmond 
  */
 export const getUserByGuid = async (req: Request, res: Response) => {
     const { guid } = req.query;
@@ -33,7 +33,7 @@ export const getUserByGuid = async (req: Request, res: Response) => {
 
 /**
  * @summary Get all users
- * @author Dallascrichmond 
+ * @author dallascrichmond 
  */
 export const getUsers = async (req: Request, res: Response) => {
     try {
@@ -46,7 +46,7 @@ export const getUsers = async (req: Request, res: Response) => {
 
 /**
  * @summary Creates or updates user data
- * @author Dallascrichmond
+ * @author dallascrichmond
  */
 export const upsertUser = async (userData: KeycloakUser & KeycloakIdirUser) => {
     const newUser = {
@@ -56,8 +56,6 @@ export const upsertUser = async (userData: KeycloakUser & KeycloakIdirUser) => {
         user_first_name: userData.given_name,
         user_last_name: userData.family_name,
         roles: userData.client_roles ?? [],
-        // lastUpdated: new Date(),
-        // lastLogin: new Date(),
     };
     try {
         await prisma.user.upsert({

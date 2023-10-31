@@ -96,10 +96,8 @@ async function seedUsers() {
  * @author Dallascrichmond
  */
 async function seedInquiries() {
-    const seedingPromises = inquiries.map(inquiry => prisma.inquiry.upsert({
-        where: { id: inquiry.id },
-        create: inquiry,
-        update: inquiry,
+    const seedingPromises = inquiries.map(inquiry => prisma.inquiry.create({
+        data: inquiry,
     }));
 
     await Promise.all(seedingPromises);

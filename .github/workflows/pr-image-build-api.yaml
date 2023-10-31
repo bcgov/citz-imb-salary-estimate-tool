@@ -2,10 +2,7 @@ name: Pull Request — API Image Build
 
 on:
   pull_request:
-    branches: [ main ]
-    paths:
-      - 'api/**'
-  push:
+    types: [ opened, synchronize, reopened, ready_for_review ]
     branches: [ main ]
     paths:
       - 'api/**'
@@ -22,13 +19,29 @@ jobs:
       - name: Setup Environment Variables
         run: |
           touch .env
+          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
           echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
           echo "API_PORT=${{ secrets.API_PORT }}" >> .env
+          echo "DATABASE_URL=${{ secrets.POSTGRES_HOST }}://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@${{ secrets.POSTGRES_HOST }}:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}?schema=public" >> .env
+          echo "SSO_AUTH_SERVER=${{ secrets.SSO_AUTH_SERVER }}" >> .env
+          echo "SSO_CLIENT_ID=${{ secrets.SSO_CLIENT_ID }}" >> .env
+          echo "SSO_CLIENT_SECRET=${{ secrets.SSO_CLIENT_SECRET }}" >> .env
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env
+          echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .env
 
       # Build API Image
       - name: Build API Image
         run: |
-          docker-compose -f docker-compose.prod.yaml build api
+          docker-compose -f docker-compose.prod.yaml build set-api
+
+      - name: Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          command: cves,recommendations
+          dockerhub-user: ${{ secrets.DOCKER_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
+          summary: true
+

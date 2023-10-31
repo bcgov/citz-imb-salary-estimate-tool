@@ -45,7 +45,7 @@ export const processes = [
 
 export const users = [
     {
-        guid: 'wjqjijwiiqhdjqwhduhcbhfdhjb874382bhb',
+        guid: 'SQJHDNJASBC12388271267GS718G',
         username: 'DALRICH',
         email: 'dallas.richmond@gov.bc.ca',
         user_first_name: 'Dallas',
@@ -55,7 +55,7 @@ export const users = [
         ],
     },
     {
-        guid: 'wjqjijwiiqhdjqwhijijicbhfdhjb874382bhb',
+        guid: 'KJBCKJBDFWE928371761JBJH71',
         username: 'CARLTHOM',
         email: 'carl.thomas@gov.bc.ca',
         user_first_name: 'Carl',
@@ -64,11 +64,20 @@ export const users = [
             'SHR',
         ],
     },
+    {
+        guid: 'AJSIUC0002948433KDOJEWNDFHD',
+        username: 'CARLTHOM',
+        email: 'carl.thomas@gov.bc.ca',
+        user_first_name: 'Carl',
+        user_last_name: 'Thomas',
+        roles: [
+            'adm',
+        ],
+    },
 ]
 
 export const inquiries = [
     {
-        id: 1,
         status_id: 1,
         inquiry_completion_date: null,
         candidate_first_name: 'Dallas',
@@ -88,12 +97,11 @@ export const inquiries = [
         hm_comment: null,
         shr_comment: null,
         adm_comment: null,
-        hm_user_id: null,
-        shr_user_id: null,
-        adm_user_id: null,
+        hm_user_id: 'SQJHDNJASBC12388271267GS718G',
+        shr_user_id: 'KJBCKJBDFWE928371761JBJH71',
+        adm_user_id: 'AJSIUC0002948433KDOJEWNDFHD',
     },
     {
-        id: 2,
         status_id: 6,
         inquiry_completion_date: null,
         candidate_first_name: 'Tyler',
@@ -113,12 +121,11 @@ export const inquiries = [
         hm_comment: 'Here is the successful candidate',
         shr_comment: 'Here is the salary estimate. Reach out if you have any questions',
         adm_comment: null,
-        hm_user_id: null,
+        hm_user_id: 'SQJHDNJASBC12388271267GS718G',
         shr_user_id: null,
         adm_user_id: null,
     },
     {
-        id: 3,
         status_id: 2,
         inquiry_completion_date: null,
         candidate_first_name: 'Cindy',
@@ -138,8 +145,8 @@ export const inquiries = [
         hm_comment: 'Here is the successful candidate',
         shr_comment: 'Here is the salary estimate. Reach out if you have any questions',
         adm_comment: null,
-        hm_user_id: null,
-        shr_user_id: null,
+        hm_user_id: 'SQJHDNJASBC12388271267GS718G',
+        shr_user_id: 'KJBCKJBDFWE928371761JBJH71',
         adm_user_id: null,
     },
 ];

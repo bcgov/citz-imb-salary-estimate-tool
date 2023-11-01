@@ -7,6 +7,8 @@ services:
       dockerfile: .docker/Dockerfile.prod
     ports:
       - "8080:8080"
+    depends_on:
+      - set-api
     volumes:
       - ./frontend/src:/app/src
       - /app/node_modules

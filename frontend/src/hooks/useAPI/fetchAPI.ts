@@ -1,14 +1,12 @@
 const fetchAPI = async (endPoint: string, options: RequestInit) => {
-  const API_PORT = process.env.NEXT_PUBLIC_API_PORT || '';
-  const API_PATH = process.env.NEXT_PUBLIC_API_PATH || 'api/v1';
-
-  const url = `${window.location.protocol}//${window.location.hostname}:${API_PORT}/${API_PATH}/${endPoint}`;
+  const url = `/api/${endPoint}`;
   const response = await fetch(url, options);
 
   if (response.ok) {
     if (options?.method?.toLowerCase() === 'delete') return null;
 
     const payload = await response.json();
+    console.log('fetchAPI payload', payload);
     return payload;
   }
 

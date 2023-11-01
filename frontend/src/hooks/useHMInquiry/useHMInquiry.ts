@@ -14,12 +14,7 @@ export const useHMInquiry = (id: string = '') => {
     )
       return [];
 
-    return inquiryData.data.map((inquiry) => {
-      return {
-        ...inquiry,
-        candidate_name: `${inquiry.candidate_first_name} ${inquiry.candidate_last_name}`,
-      };
-    });
+    return inquiryData.data;
   }, [inquiryData.data, inquiryData.isError, inquiryData.isLoading]);
 
   return {

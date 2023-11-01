@@ -1,19 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { Error, Loading, TableContainer } from '../components';
 import { useHMInquiry } from '../hooks';
-import { TableContainer } from '../components';
 
 export const HMInquiry = () => {
-  const { data, columns, isLoading, isError } = useHMInquiry();
+  const { data, columns, isLoading, isError, error } = useHMInquiry();
 
-  if (isLoading) {
-    return <Typography variant="h4">Loading...</Typography>;
-  }
+  if (isLoading) return <Loading />;
 
-  if (isError) {
-    return <Typography variant="h4">Error...</Typography>;
-  }
-
-  console.log({ data });
+  if (isError) return <Error error={error as Error} />;
 
   return (
     <Box p={2}>

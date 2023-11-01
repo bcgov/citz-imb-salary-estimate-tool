@@ -1,6 +1,6 @@
 import { useKeycloak } from '@bcgov/kc-react';
 import { Typography } from '@mui/material';
-import Dialog from '../components/Dialog';
+import { Dialog } from '../components';
 import Button from '../components/Button';
 
 export const Home = () => {

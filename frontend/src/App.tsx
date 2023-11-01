@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import { Home, HMInquiry } from './pages';
 import BCTheme from './styles';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => {
             </Box>
             <Footer />
           </Paper>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Router>
     </ThemeProvider>

@@ -6,7 +6,7 @@ const fetchAPI = async (endPoint: string, options: RequestInit) => {
     if (options?.method?.toLowerCase() === 'delete') return null;
 
     const payload = await response.json();
-    console.log('fetchAPI payload', payload);
+
     return payload;
   }
 

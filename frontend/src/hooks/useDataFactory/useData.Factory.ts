@@ -2,7 +2,7 @@ import { QueryKey, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
-export const useDataFactory = (endPoint: string, dataId: string) => {
+export const useDataFactory = <T>(endPoint: string, dataId: string) => {
   const queryKey: QueryKey = useMemo(
     () => [endPoint, dataId],
     [dataId, endPoint]
@@ -19,7 +19,7 @@ export const useDataFactory = (endPoint: string, dataId: string) => {
       } else {
         response = await fetchData(endPoint);
       }
-      return response;
+      return response as T[];
     },
   });
 

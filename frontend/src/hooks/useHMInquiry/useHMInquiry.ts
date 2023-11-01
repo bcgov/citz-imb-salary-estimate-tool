@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 import useDBDataFactory from '../useDataFactory/useData.Factory';
+import { columnsHMInquiry } from './columns';
+import { HMInquiryData } from '../../types';
 
 export const useHMInquiry = (id: string = '') => {
-  const inquiryData = useDBDataFactory('inquiry', id);
+  const inquiryData = useDBDataFactory<HMInquiryData>('inquiry', id);
 
   const data = useMemo(() => {
     if (
@@ -12,12 +14,18 @@ export const useHMInquiry = (id: string = '') => {
     )
       return [];
 
-    return inquiryData.data;
+    return inquiryData.data.map((inquiry) => {
+      return {
+        ...inquiry,
+        candidate_name: `${inquiry.candidate_first_name} ${inquiry.candidate_last_name}`,
+      };
+    });
   }, [inquiryData.data, inquiryData.isError, inquiryData.isLoading]);
 
   return {
     ...inquiryData,
     data,
+    columns: columnsHMInquiry,
   };
 };
 

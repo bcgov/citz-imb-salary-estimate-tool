@@ -1,5 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { DateCell } from '../../components/tablecells/DateCell';
+import { DateCell, StatusCell } from '../../components';
 
 export const columnsHMInquiry: GridColDef[] = [
   { field: 'new_position_number', headerName: 'Position Number', width: 130 },
@@ -26,7 +26,8 @@ export const columnsHMInquiry: GridColDef[] = [
   {
     field: 'status_id',
     headerName: 'Status',
-    width: 130,
+    width: 150,
+    renderCell: (params) => <StatusCell value={params.value} />,
   },
 ];
 

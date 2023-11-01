@@ -1,5 +1,5 @@
 # Use a Node.js LTS version for production
-FROM node:18.15.0-alpine AS build
+FROM node:21-bullseye-slim AS build
 
 WORKDIR /app
 
@@ -28,7 +28,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Second stage, use a smaller image for production
-FROM node:18.15.0-alpine AS prod
+FROM node:21-bullseye-slim AS prod
 
 WORKDIR /app
 

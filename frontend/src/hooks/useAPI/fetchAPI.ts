@@ -10,8 +10,6 @@ const fetchAPI = async (endPoint: string, options: RequestInit) => {
     return payload;
   }
 
-  console.error(`${response.status} ${response.statusText} for ${url}`);
-  console.warn('fetchAPI error response', response);
   throw new Error(response.statusText);
 };
 

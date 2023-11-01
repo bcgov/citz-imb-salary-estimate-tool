@@ -1,12 +1,12 @@
 import { Box, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import { Home, HMInquiry } from './pages';
+import { HMInquiry, Home } from './pages';
 import BCTheme from './styles';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const App = () => {
   const queryClient = new QueryClient();

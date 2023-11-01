@@ -11,7 +11,11 @@ export const HMInquiry = () => {
 
   return (
     <Box p={2}>
-      <TableContainer rows={data} columns={columns} />
+      <TableContainer
+        rows={data}
+        columns={columns}
+        tableName="Hiring Manager Salary Inquiries"
+      />
     </Box>
   );
 };

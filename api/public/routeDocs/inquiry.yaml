@@ -1,0 +1,69 @@
+paths:
+  /api/inquiry:
+    get:
+      tags:
+        - Inquiry
+      summary: Get all inquiries in database
+      description: Returns information for every inquiry in the Salary Estimate Tool
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serviceBCLocations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SingleLocation'
+                  serviceBCServices:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]
+                  healthBCLocations:
+                    type: array
+                    items:
+                      $ref: '#/#/components/schemas/SingleLocation'
+                  healthBCServices:
+                    type: array
+                    items:
+                      type: string
+                    example: []
+                  ICBCLocations:
+                    type: array
+                    items:
+                      $ref: '#/#/components/schemas/SingleLocation'
+                  ICBCServices:
+                    type: array
+                    items:
+                      type: string
+                    example: []
+                  allServices:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]
+    post:
+      tags:
+        - Locations
+      summary: Iterates 'updateArr' to send back an updated list of SingleLocations
+      description: Update route for the Wayfinder application to return data only when there has been a change in the dataset. Reduces data consumption in the application.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locationData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SingleLocation'
+                  serviceData:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]

@@ -1,0 +1,82 @@
+components:
+  schemas:
+    Inquiry:
+      type: object
+      required:
+        - status_id
+        - candidate_first_name
+        - candidate_last_name
+        - experience_level_id
+        - new_position_number
+        - new_position_title
+        - new_mccf_classification_id
+        - appointment_type_id
+        - process_type_id
+      description: A salary estimate inquiry for a successful candidate
+      properties:
+        status_id:
+          type: number
+          example: 1
+        inquiry_completion_date:
+          type: string
+          example: '2023-11-01T20:02:34.516Z'
+        candidate_first_name:
+          type: string
+          example: Mick
+        candidate_last_name:
+          type: string
+          example: Swagger
+        current_position_number:
+          type: number
+          example: 293847
+        current_position_title:
+          type: string
+          example: Full Stack Developer
+        current_ministry_id:
+          type: string
+          example: CITZ
+        current_annual_salary:
+          type: number
+          example: 80000
+        current_mccf_classification_id:
+          type: number
+          example: 3
+        experience_level_id:
+          type: number
+          example: 2
+        new_position_number:
+          type: number
+          example: 473829
+        new_position_title:
+          type: string
+          example: Scrum Master
+        new_mccf_classification_id:
+          type: number
+          example: 4
+        appointment_type_id:
+          type: number
+          example: 1
+        process_type_id:
+          type: number
+          example: 2
+        salary_estimate:
+          type: number
+          example: 100000
+        hm_comment:
+          type: string
+          example: 'Here is the info for the successful candidate'
+        shr_comment:
+          type: string
+          example: 'Here is the salary esttimate'
+        adm_comment:
+          type: string
+          example: 'Everything has been approved'
+        hm_user_id:
+          type: string
+          example: AKSJIUEYUY0928HUH8891J
+        shr_user_id:
+          type: string
+          example: AKSJIUEYUY0928HUH8891J
+        adm_user_id:
+          type: string
+          example: AKSJIUEYUY0928HUH8891J

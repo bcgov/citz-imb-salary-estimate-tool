@@ -1,3 +1,12 @@
+/**
+ * this component is used to display a date in a table cell
+ * it uses the Typography component from @mui/material
+ * see https://mui.com/components/typography/ for more information
+ *
+ * @param {DateCellProps} props
+ * @returns {JSX.Element}
+ *
+ */
 import { Typography } from '@mui/material';
 import { DateTime } from 'luxon';
 

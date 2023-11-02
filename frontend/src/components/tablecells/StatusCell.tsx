@@ -1,3 +1,14 @@
+/**
+ * this component is used to display the status of a request
+ * it uses the Alert component from @mui/material
+ * see https://mui.com/components/alert/ for more information
+ *
+ * any changes to the states should be done in the State enum and this component
+ *
+ * @param {StatusCellProps} props
+ * @returns {JSX.Element}
+ *
+ */
 import { Alert } from '@mui/material';
 import { State } from '../../types';
 

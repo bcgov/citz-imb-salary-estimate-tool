@@ -1,3 +1,8 @@
+/**
+ * The purpose of this file is to fetch data from the API.  It is used in the useApi hook.
+ * It takes care of the headers and the body of the request.
+ *
+ */
 import { useCallback } from 'react';
 import fetchAPI from './fetchAPI';
 

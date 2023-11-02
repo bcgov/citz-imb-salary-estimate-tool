@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import { HMInquiry, Home } from './pages';
+import { Inquiry, Home } from './pages';
 import BCTheme from './styles';
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
               </Navbar>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/HMInquiry" element={<HMInquiry />} />
+                <Route path="/Inquiry" element={<Inquiry />} />
               </Routes>
             </Box>
             <Footer />

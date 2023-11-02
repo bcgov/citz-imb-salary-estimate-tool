@@ -26,7 +26,7 @@ export const Home = () => {
       </Dialog>
     );
 
-  return <Navigate replace to="/HMInquiry" />;
+  return <Navigate replace to="/Inquiry" />;
 };
 
 export default Home;

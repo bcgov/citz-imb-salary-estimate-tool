@@ -1,4 +1,4 @@
-export type HMInquiryData = {
+export type InquiryData = {
   id: number;
   status_id: number;
   // status Status @relation(fields: [status_id], references: [id])

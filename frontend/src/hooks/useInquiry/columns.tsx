@@ -1,7 +1,7 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { DateCell, StatusCell } from '../../components';
 
-export const columnsHMInquiry: GridColDef[] = [
+export const columnsInquiry: GridColDef[] = [
   { field: 'new_position_number', headerName: 'Position Number', width: 130 },
   {
     field: 'new_position_title',
@@ -31,4 +31,4 @@ export const columnsHMInquiry: GridColDef[] = [
   },
 ];
 
-export default columnsHMInquiry;
+export default columnsInquiry;

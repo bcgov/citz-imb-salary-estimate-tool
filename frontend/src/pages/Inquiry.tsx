@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import { Error, Loading, TableContainer } from '../components';
-import { useHMInquiry } from '../hooks';
+import { useInquiry } from '../hooks';
 
-export const HMInquiry = () => {
-  const { data, columns, isLoading, isError, error } = useHMInquiry();
+export const Inquiry = () => {
+  const { data, columns, isLoading, isError, error } = useInquiry();
 
   if (isLoading) return <Loading />;
 
@@ -20,4 +20,4 @@ export const HMInquiry = () => {
   );
 };
 
-export default HMInquiry;
+export default Inquiry;

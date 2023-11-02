@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import useDBDataFactory from '../useDataFactory/useData.Factory';
-import { columnsHMInquiry } from './columns';
-import { HMInquiryData } from '../../types';
+import { columnsInquiry } from './columns';
+import { InquiryData } from '../../types';
 
-export const useHMInquiry = (id: string = '') => {
-  const inquiryData = useDBDataFactory<HMInquiryData>('inquiry', id);
+export const useInquiry = (id: string = '') => {
+  const inquiryData = useDBDataFactory<InquiryData>('inquiry', id);
 
   const data = useMemo(() => {
     if (
@@ -20,8 +20,8 @@ export const useHMInquiry = (id: string = '') => {
   return {
     ...inquiryData,
     data,
-    columns: columnsHMInquiry,
+    columns: columnsInquiry,
   };
 };
 
-export default useHMInquiry;
+export default useInquiry;

@@ -1,1 +1,1 @@
-export * from './useHMInquiry/useHMInquiry';
+export * from './useInquiry/useInquiry';

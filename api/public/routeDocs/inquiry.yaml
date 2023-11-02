@@ -13,38 +13,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  serviceBCLocations:
+                  inquiry:
                     type: array
                     items:
-                      $ref: '#/components/schemas/SingleLocation'
-                  serviceBCServices:
-                    type: array
-                    items:
-                      type: string
-                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]
-                  healthBCLocations:
-                    type: array
-                    items:
-                      $ref: '#/#/components/schemas/SingleLocation'
-                  healthBCServices:
-                    type: array
-                    items:
-                      type: string
-                    example: []
-                  ICBCLocations:
-                    type: array
-                    items:
-                      $ref: '#/#/components/schemas/SingleLocation'
-                  ICBCServices:
-                    type: array
-                    items:
-                      type: string
-                    example: []
-                  allServices:
-                    type: array
-                    items:
-                      type: string
-                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]
+                      $ref: '#/components/schemas/Inquiry'
     post:
       tags:
         - Locations

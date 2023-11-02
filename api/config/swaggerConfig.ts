@@ -1,7 +1,7 @@
 /**
  * @summary -Swagger configuration for Express API
  *          -Gathers all *.yaml files in public folder
- * @author  LocalNewsTV, Dallascrichmond
+ * @author  dallascrichmond
  */
 const swaggerConfig = {
     definition: {

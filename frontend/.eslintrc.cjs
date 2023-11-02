@@ -10,6 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
@@ -18,10 +19,12 @@ module.exports = {
     sourceType: 'module',
     project: './frontend/tsconfig.json',
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'prettier', '@tanstack/query'],
   rules: {
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
     'react/jsx-props-no-spreading': 0,
+    'import/prefer-default-export': 'warn',
+    '@tanstack/query/exhaustive-deps': 0,
   },
 };

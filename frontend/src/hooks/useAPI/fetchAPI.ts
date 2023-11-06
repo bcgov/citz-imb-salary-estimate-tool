@@ -7,7 +7,7 @@
  * @param options
  * @returns
  */
-const fetchAPI = async (endPoint: string, options: RequestInit) => {
+export const fetchAPI = async (endPoint: string, options: RequestInit) => {
   const url = `/api/${endPoint}`;
   const response = await fetch(url, options);
 

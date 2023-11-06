@@ -16,12 +16,13 @@ describe('useAPI', () => {
     (fetchAPI as jest.Mock).mockClear();
   });
 
-  it('returns a function', () => {
+  it('returns an object containing a fetchData method', () => {
     const { result } = renderHook(() => useAPI());
     expect(typeof result.current).toBe('object');
+    expect(result.current).toHaveProperty('fetchData', expect.any(Function));
   });
 
-  it('sets up fetch options correctly', async () => {
+  it('fetchData returns an ok property and a json method', async () => {
     const { result } = renderHook(() => useAPI());
     const fetchOptions = await result.current.fetchData('test');
 

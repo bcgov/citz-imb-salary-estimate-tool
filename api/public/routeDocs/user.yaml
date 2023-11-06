@@ -1,0 +1,39 @@
+paths:
+  /user:
+    get:
+      tags:
+        - User
+      summary: Get all users in database
+      description: Returns information for every user in the Salary Estimate database
+      responses:
+        '200':
+          description: OK
+          constent:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /user/guid:
+    get:
+      tags:
+        - User
+      summary: Get a user
+      description: Get one user based on their guid
+      parameters:
+        - in: query
+          name: guid
+          schema:
+            type: string
+            example: 'SQJHDNJASBC12388271267GS718G'
+          required: true
+          description: User Guid
+      responses:
+        '200':
+          description: OK
+          constent:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+

@@ -67,7 +67,7 @@ components:
           example: 'Here is the info for the successful candidate'
         shr_comment:
           type: string
-          example: 'Here is the salary esttimate'
+          example: 'Here is the salary estimate'
         adm_comment:
           type: string
           example: 'Everything has been approved'

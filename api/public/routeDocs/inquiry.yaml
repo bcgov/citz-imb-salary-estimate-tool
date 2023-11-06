@@ -1,5 +1,5 @@
 paths:
-  /api/inquiry:
+  /inquiry:
     get:
       tags:
         - Inquiry
@@ -11,31 +11,27 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  inquiry:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Inquiry'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inquiry'
     post:
       tags:
-        - Locations
-      summary: Iterates 'updateArr' to send back an updated list of SingleLocations
-      description: Update route for the Wayfinder application to return data only when there has been a change in the dataset. Reduces data consumption in the application.
+        - Inquiry
+      summary: Posts a new inquiry to the database
+      description: Posts a new inquiry to the database
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            name: Inquiry
+            description: Salary Inquiry data
+            schema:
+              $ref: '#/components/schemas/Inquiry'
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  locationData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/SingleLocation'
-                  serviceData:
-                    type: array
-                    items:
-                      type: string
-                    example: ["Address Change BC", "Affordable Child Care Benefit", "Water Rental Payments"]
+        '201':
+          $ref: '#/components/responses/201Created'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '400':
+          $ref: '#/components/responses/400BadRequest'

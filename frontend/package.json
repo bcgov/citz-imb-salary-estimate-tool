@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --verbose=true",
     "test:coverage": "jest --coverage",
     "dev": "vite",
     "build": "tsc && vite build",

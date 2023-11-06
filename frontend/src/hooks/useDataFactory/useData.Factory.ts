@@ -22,13 +22,21 @@ import { QueryKey, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
-export const useDataFactory = <T>(endPoint: string, dataId: string) => {
+export const useDataFactory = <T>({
+  endPoint,
+  dataId = '',
+  apiHook = useAPI,
+}: {
+  endPoint: string;
+  dataId?: string;
+  apiHook?: () => ReturnType<typeof useAPI>;
+}) => {
   const queryKey: QueryKey = useMemo(
     () => [endPoint, dataId],
     [dataId, endPoint]
   );
 
-  const { fetchData } = useAPI();
+  const { fetchData } = apiHook();
 
   const query = useQuery({
     queryKey,

@@ -25,7 +25,7 @@ paths:
         content:
           application/json:
             name: Inquiry
-            description: Salary Inquiry data
+            description: Salary Inquiry Data
             schema:
               $ref: '#/components/schemas/Inquiry'
       responses:
@@ -57,3 +57,31 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Inquiry'
+  /inquiry/{id}:
+    patch:
+      tags:
+        - Inquiry
+      summary: Update an inquiry
+      description: Updates an inquiry when passed it's ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+          description: The Inquiry ID
+      requestBody:
+        content:
+          application/json:
+            name: Inquiry
+            description: Salary Inquiry Data
+            schema:
+              $ref: '#/components/schemas/Inquiry'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Record state updated to DENIED.'

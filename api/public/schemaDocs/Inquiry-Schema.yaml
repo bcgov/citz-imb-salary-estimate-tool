@@ -73,7 +73,7 @@ components:
           example: 'Everything has been approved'
         hm_user_id:
           type: string
-          example: null
+          example: '9768354EB15B4184B01387580785DE0F'
         shr_user_id:
           type: string
           example: null

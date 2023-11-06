@@ -35,3 +35,25 @@ paths:
           $ref: '#/components/responses/429TooManyRequests'
         '400':
           $ref: '#/components/responses/400BadRequest'
+  /inquiry/guid:
+    get:
+      tags: 
+        - Inquiry
+      summary: Get an inquiry by user guid
+      parameters:
+        - in: query
+          name: guid
+          schema:
+            type: string
+            example: 'SQJHDNJASBC12388271267GS718G'
+          required: true
+          description: The User's Guid to get inquiries related to them
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inquiry'

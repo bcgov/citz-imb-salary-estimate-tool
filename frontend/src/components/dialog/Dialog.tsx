@@ -7,11 +7,11 @@ import {
 } from '@mui/material';
 
 interface CustomDialogProps extends DialogProps {
-  actions: JSX.Element;
+  actions?: JSX.Element | null;
 }
 
-const Dialog = (props: CustomDialogProps) => {
-  const { actions = null, onClose, open, title, children } = props;
+export const Dialog = (props: CustomDialogProps) => {
+  const { actions, onClose, open, title, children } = props;
 
   return (
     <DialogMui
@@ -25,6 +25,10 @@ const Dialog = (props: CustomDialogProps) => {
       <DialogActions>{actions}</DialogActions>
     </DialogMui>
   );
+};
+
+Dialog.defaultProps = {
+  actions: null,
 };
 
 export default Dialog;

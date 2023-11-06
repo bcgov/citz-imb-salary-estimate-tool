@@ -17,6 +17,8 @@ router.route('/inquiry')
 // Get inquiries with guid
 router.route('/inquiry/guid').get(getInquiryByGuid);
 
+// Get inquiry by id and update by id
+// TODO: Create getInquiryById function in inquiry-controller
 router.route('/inquiry/:id')
     // .get(getInquiryById)
     .patch(updateInquiry);

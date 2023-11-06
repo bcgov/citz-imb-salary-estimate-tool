@@ -1,0 +1,10 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": [],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  }
+}

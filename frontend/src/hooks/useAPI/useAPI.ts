@@ -4,7 +4,7 @@
  *
  */
 import { useCallback } from 'react';
-import fetchAPI from './fetchAPI';
+import { fetchAPI } from './fetchAPI';
 
 export const useAPI = () => {
   const fetchOptions = useCallback((options: RequestInit = {}) => {

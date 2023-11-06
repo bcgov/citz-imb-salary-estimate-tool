@@ -13,7 +13,7 @@ const swaggerConfig = {
       },
       servers: [{ url: '/api' }],
     },
-    apis: ['./public/**/*.yaml'],
+    apis: ['./docs/**/*.yaml'],
   };
   
 export default swaggerConfig;

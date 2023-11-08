@@ -74,6 +74,25 @@ export const getInquiry = async (req: Request, res: Response) => {
 };
 
 /**
+ * @summary Return query by ID
+ * @author dallascrichmond
+ */
+export const getInquiryById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const inquiryID: number = +id;
+    try {
+        const inquiry = await prisma.inquiry.findFirst({
+            where: {
+                id: inquiryID,
+            }
+        });
+        res.status(200).json(inquiry);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+/**
  * @summary Returns all inquiries associated with the passed in guid
  * @author dallascrichmond
  */

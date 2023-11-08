@@ -39,7 +39,7 @@ paths:
     get:
       tags: 
         - Inquiry
-      summary: Get an inquiry by user guid
+      summary: Get all inquiries associated with a user guid
       parameters:
         - in: query
           name: guid
@@ -47,7 +47,7 @@ paths:
             type: string
             example: 'SQJHDNJASBC12388271267GS718G'
           required: true
-          description: The User's Guid to get inquiries related to them
+          description: The user's guid
       responses:
         '200':
           description: OK
@@ -62,7 +62,7 @@ paths:
       tags:
         - Inquiry
       summary: Update an inquiry
-      description: Updates an inquiry when passed it's ID
+      description: Updates an inquiry when passed its ID
       parameters:
         - in: path
           name: id

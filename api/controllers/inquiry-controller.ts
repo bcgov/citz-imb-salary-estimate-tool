@@ -28,10 +28,12 @@ export const createInquiry = async (req: Request, res: Response) => {
  * @author dallascrichmond
  */
 export const updateInquiry = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const inquiryID: number = +id;
     try {
         const response = await prisma.inquiry.update({
             where: {
-                id: req.body.id,
+                id: inquiryID
             },
             data: req.body,
         });

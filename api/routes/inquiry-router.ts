@@ -4,7 +4,14 @@
  * @author dallascrichmond
  */
 import express from 'express';
-import { getInquiry, getInquiryByGuid, createInquiry, updateInquiry, deleteInquiry } from '../controllers/inquiry-controller';
+import { 
+    getInquiry,
+    getInquiryById,
+    getInquiryByGuid,
+    createInquiry,
+    updateInquiry,
+    deleteInquiry 
+} from '../controllers/inquiry-controller';
 
 const router = express.Router();
 
@@ -18,9 +25,8 @@ router.route('/inquiry')
 router.route('/inquiry/guid').get(getInquiryByGuid);
 
 // Get inquiry by id and update by id
-// TODO: Create getInquiryById function in inquiry-controller
 router.route('/inquiry/:id')
-    // .get(getInquiryById)
+    .get(getInquiryById)
     .patch(updateInquiry);
 
 export default router;

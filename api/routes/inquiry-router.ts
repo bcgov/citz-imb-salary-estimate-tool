@@ -12,10 +12,15 @@ const router = express.Router();
 router.route('/inquiry')
     .get(getInquiry)
     .post(createInquiry)
-    .patch(updateInquiry)
     .delete(deleteInquiry);
 
 // Get inquiries with guid
 router.route('/inquiry/guid').get(getInquiryByGuid);
+
+// Get inquiry by id and update by id
+// TODO: Create getInquiryById function in inquiry-controller
+router.route('/inquiry/:id')
+    // .get(getInquiryById)
+    .patch(updateInquiry);
 
 export default router;

@@ -58,6 +58,27 @@ paths:
                 items:
                   $ref: '#/components/schemas/Inquiry'
   /inquiry/{id}:
+    get:
+      tags:
+        - Inquiry
+      summary: Gets an Inquiry
+      description: Get an inquiry by its id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+            description: The Inquiry ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inquiry'
     patch:
       tags:
         - Inquiry

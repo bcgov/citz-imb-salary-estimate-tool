@@ -74,7 +74,7 @@ export const getInquiry = async (req: Request, res: Response) => {
 };
 
 /**
- * @summary Return query by ID
+ * @summary Return inquiry by ID
  * @author dallascrichmond
  */
 export const getInquiryById = async (req: Request, res: Response) => {

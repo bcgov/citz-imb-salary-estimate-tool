@@ -6,5 +6,6 @@
   "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
-  }
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!@bcgov/kc-react)"]
 }

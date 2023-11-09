@@ -1,3 +1,4 @@
+import { useKeycloak } from '@bcgov/kc-react';
 import { Box, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -10,6 +11,9 @@ import BCTheme from './styles';
 
 const App = () => {
   const queryClient = new QueryClient();
+  const { state } = useKeycloak();
+
+  const isAuthenticated = state?.userInfo !== undefined;
 
   return (
     <ThemeProvider theme={BCTheme}>
@@ -28,8 +32,14 @@ const App = () => {
                 <Typography variant="h4">Salary Estimation Tool</Typography>
               </Navbar>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/Inquiry" element={<Inquiry />} />
+                <Route
+                  path="/"
+                  element={<Home isAuthenticated={isAuthenticated} />}
+                />
+                <Route
+                  path="/Inquiry"
+                  element={<Inquiry isAuthenticated={isAuthenticated} />}
+                />
               </Routes>
             </Box>
             <Footer />

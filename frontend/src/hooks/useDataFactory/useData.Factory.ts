@@ -25,18 +25,16 @@ import { useAPI } from '../useAPI/useAPI';
 export const useDataFactory = <T>({
   endPoint,
   dataId = '',
-  apiHook = useAPI,
 }: {
   endPoint: string;
   dataId?: string;
-  apiHook?: () => ReturnType<typeof useAPI>;
 }) => {
   const queryKey: QueryKey = useMemo(
     () => [endPoint, dataId],
     [dataId, endPoint]
   );
 
-  const { fetchData } = apiHook();
+  const { fetchData } = useAPI();
 
   const query = useQuery({
     queryKey,

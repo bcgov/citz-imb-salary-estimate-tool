@@ -30,5 +30,4 @@ export const Dialog = (props: CustomDialogProps) => {
 Dialog.defaultProps = {
   actions: null,
 };
-
 export default Dialog;

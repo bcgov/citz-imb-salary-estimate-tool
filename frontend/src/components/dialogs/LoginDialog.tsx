@@ -14,7 +14,7 @@ export const LoginDialog = () => {
       }
     >
       <Typography align="center" variant="h3">
-        Login
+        Authentication Required
       </Typography>
       <Typography align="center" variant="subtitle1">
         To access this application, log in with your IDIR

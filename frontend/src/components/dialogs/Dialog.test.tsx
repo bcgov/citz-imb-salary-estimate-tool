@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Dialog } from './Dialog';
 
 describe('Dialog', () => {
@@ -19,5 +20,16 @@ describe('Dialog', () => {
     );
     expect(screen.getByText(content)).toBeInTheDocument();
     expect(screen.getByText('Test Action')).toBeInTheDocument();
+  });
+  it('calls action clickhandler when action clicked', async () => {
+    render(
+      <Dialog open title={title} actions={actions} onClose={onClose}>
+        {content}
+      </Dialog>
+    );
+    await act(() =>
+      userEvent.click(screen.getByRole('button', { name: 'Test Action' }))
+    );
+    expect(actions[0].onClick).toHaveBeenCalledTimes(1);
   });
 });

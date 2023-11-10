@@ -1,18 +1,19 @@
 import { useKeycloak } from '@bcgov/kc-react';
 import { Typography } from '@mui/material';
-import { Button } from '../buttons/Button';
 import { Dialog } from './Dialog';
 
 export const LoginDialog = () => {
   const { login } = useKeycloak();
 
+  const actions = [
+    {
+      onClick: () => login({ idpHint: 'idir' }),
+      label: 'Login',
+    },
+  ];
+
   return (
-    <Dialog
-      open
-      actions={
-        <Button onClick={() => login({ idpHint: 'idir' })}>Login</Button>
-      }
-    >
+    <Dialog open actions={actions}>
       <Typography align="center" variant="h3">
         Authentication Required
       </Typography>

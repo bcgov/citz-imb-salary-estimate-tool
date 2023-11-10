@@ -24,10 +24,10 @@ import { useAPI } from '../useAPI/useAPI';
 
 export const useDataFactory = <T>({
   endPoint,
-  dataId = '',
+  dataId,
 }: {
   endPoint: string;
-  dataId?: string;
+  dataId: string;
 }) => {
   const queryKey: QueryKey = useMemo(
     () => [endPoint, dataId],

@@ -17,8 +17,9 @@ import useDBDataFactory from '../useDataFactory/useData.Factory';
 import { columnsInquiry } from './columns';
 import { InquiryData } from '../../types';
 
-export const useInquiry = (id: string = '') => {
-  const inquiryData = useDBDataFactory<InquiryData>('inquiry', id);
+export const useInquiry = (dataId: string = '') => {
+  const endPoint = 'inquiry';
+  const inquiryData = useDBDataFactory<InquiryData>({ endPoint, dataId });
 
   const data = useMemo(() => {
     if (

@@ -30,7 +30,7 @@ describe("Testing GET routes for /inquiry endpoint", () => {
             hm_comment: null,
             shr_comment: null,
             adm_comment: null,
-            hm_user_id: null,
+            hm_user_id: 'SQJHDNJASBC12388271267GS718G',
             shr_user_id: null,
             adm_user_id: null,
         });
@@ -39,6 +39,14 @@ describe("Testing GET routes for /inquiry endpoint", () => {
 
     test("Inquiry is retrieved from base route", async () => {
         const response = await request.get("/inquiry");
+        expect(response.ok).toBe(true);
+        expect(response.status).toBe(200);
+        // At least a single value should be returned.
+        expect(response.body.length).toBeGreaterThan(0);
+    });
+
+    test("Inquiry is retrieved from guid query", async () => {
+        const response = await request.get("/inquiry/guid").query({ guid: "SQJHDNJASBC12388271267GS718G" });
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // At least a single value should be returned.

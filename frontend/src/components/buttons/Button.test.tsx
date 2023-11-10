@@ -14,6 +14,6 @@ describe('Button', () => {
     await act(() =>
       userEvent.click(screen.getByRole('button', { name: 'Test' }))
     );
-    expect(clickHandler).toHaveBeenCalled();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 });

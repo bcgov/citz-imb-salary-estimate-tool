@@ -6,3 +6,4 @@ export * from './table/TableContainer';
 export * from './tablecells/DateCell';
 export * from './tablecells/StatusCell';
 export * from './buttons/Button';
+export * from './Footer/Footer';

@@ -1,11 +1,28 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.ts"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/"
+  ],
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  "transformIgnorePatterns": ["/node_modules/(?!@bcgov/kc-react)"]
+  "transformIgnorePatterns": [
+    "/node_modules/(?!@bcgov/kc-react)"
+  ],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.ts"
+  }
 }

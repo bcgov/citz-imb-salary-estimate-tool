@@ -28,6 +28,6 @@
   "include": [
     ".eslintrc.cjs",
     "src"
-  ],
+, "__mocks__"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -45,11 +45,18 @@ describe("Testing GET routes for /inquiry endpoint", () => {
         expect(response.body.length).toBeGreaterThan(0);
     });
 
-    test("Inquiry is retrieved from guid query", async () => {
+    test("Inquiries are retrieved by user guid", async () => {
         const response = await request.get("/inquiry/guid").query({ guid: "SQJHDNJASBC12388271267GS718G" });
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // At least a single value should be returned.
         expect(response.body.length).toBeGreaterThan(0);
+    });
+
+    test("Inquiry is retrieved by its id", async () => {
+        const response = await request.get(`/inquiry/${1}`);
+        expect(response.ok).toBe(true);
+        expect(response.status).toBe(200);
+        expect(response.body.id).toBe(1);
     });
 });

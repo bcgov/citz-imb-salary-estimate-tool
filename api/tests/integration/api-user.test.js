@@ -6,7 +6,7 @@ const supertest = require('supertest')
 const request = supertest(endpoint);
 
 describe('Testing routes for /user/** endpoints', () => {
-    // If test fails, login to set with your IDIR
+    // If test fails, login to the app with your IDIR
     test('Get all users', async () => {
         const response = await request.get('/user');
         expect(response.ok).toBe(true);

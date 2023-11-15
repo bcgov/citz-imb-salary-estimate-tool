@@ -10,6 +10,10 @@ describe('Navbar', () => {
     const testAlt = 'Government of B.C.';
     render(<Navbar />);
     expect(screen.getByAltText(testAlt)).toBeInTheDocument();
+    expect(screen.getByAltText(testAlt)).toHaveAttribute(
+      'src',
+      'test-file-stub'
+    );
   });
   it('renders children', () => {
     const testChild = 'Test Child';

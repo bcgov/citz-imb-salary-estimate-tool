@@ -6,7 +6,7 @@ type NavbarProps = {
 };
 
 export const Navbar = (props: NavbarProps) => {
-  const { children = null } = props;
+  const { children } = props;
 
   return (
     <AppBar position="static">

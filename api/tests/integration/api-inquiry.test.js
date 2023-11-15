@@ -33,6 +33,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
             shr_user_id: null,
             adm_user_id: null,
         });
+        // Set as the 'test' inquiry for the rest of the suite
         inquiryID = response.body.id;
         expect(response.ok).toBe(true);
         expect(response.status).toBe(201);
@@ -42,6 +43,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         const response = await request.get('/inquiry');
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
+        // Ensures at least one inquiry is returned
         expect(response.body.length).toBeGreaterThan(0);
     });
 
@@ -49,6 +51,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         const response = await request.get('/inquiry/guid').query({ guid: 'SQJHDNJASBC12388271267GS718G' });
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
+        // Ensures at least one inquiry is returned
         expect(response.body.length).toBeGreaterThan(0);
     });
 
@@ -62,6 +65,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         const response = await request.get(`/inquiry/${inquiryID}`);
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
+        // Same ID that was psoted earlier in the test suite
         expect(response.body.id).toBe(inquiryID);
     });
 
@@ -108,6 +112,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
 
+        // Checks to make sure the inquiry has been deleted
         response = await request.get(`/inquiry/${inquiryID}`);
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);

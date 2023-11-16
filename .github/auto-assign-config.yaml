@@ -3,3 +3,11 @@ addReviewers: true
 
 # Assign PR author
 addAssignees: author
+
+reviewers:
+  - NoorChasib
+  - BradyMitch
+  - milosdes
+  - taylorfries
+  - Aman-Hundal
+  - dbarkowsky

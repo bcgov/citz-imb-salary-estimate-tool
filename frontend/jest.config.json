@@ -4,7 +4,8 @@
     "!src/**/*.d.ts",
     "!src/**/index.ts",
     "!src/**/styles.ts",
-    "!src/**/*.columns.tsx"
+    "!src/**/*.columns.tsx",
+    "!src/main.tsx"
   ],
   "coverageThreshold": {
     "global": {

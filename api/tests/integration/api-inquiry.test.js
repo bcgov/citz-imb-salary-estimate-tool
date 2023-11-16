@@ -65,7 +65,7 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         const response = await request.get(`/inquiry/${inquiryID}`);
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
-        // Same ID that was psoted earlier in the test suite
+        // Same ID that was POSTed earlier in the test suite
         expect(response.body.id).toBe(inquiryID);
     });
 
@@ -107,6 +107,12 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         expect(response.request._data.adm_comment).toBe('Test');
     });
 
+    test('Attempts to update an inquiry with invalid ID', async () => {
+        const response = await request.patch('/inquiry/99999');
+        expect(response.ok).toBe(false);
+        expect(response.status).toBe(400);
+    });
+
     test('Delete an inquiry by id', async () => {
         let response = await request.delete(`/inquiry/${inquiryID}`);
         expect(response.ok).toBe(true);
@@ -116,5 +122,11 @@ describe('Testing routes for /inquiry/** endpoints', () => {
         response = await request.get(`/inquiry/${inquiryID}`);
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);
+    });
+
+    test('Attempts to delete inquiry with invalid ID', async () => {
+        let response = await request.delete('/inquiry/99999');
+        expect(response.ok).toBe(false);
+        expect(response.status).toBe(400);
     });
 });

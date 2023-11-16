@@ -1,5 +1,3 @@
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { Typography } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 import { AuthenticationDialog } from '../components';
 

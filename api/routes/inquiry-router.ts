@@ -15,18 +15,18 @@ import {
 
 const router = express.Router();
 
-// Get all inquiries and creates/updates inquiries
+// GET and CREATE inquiries
 router.route('/inquiry')
     .get(getInquiry)
-    .post(createInquiry)
-    .delete(deleteInquiry);
+    .post(createInquiry);
 
-// Get inquiries with guid
+// GET inquiries by user guid
 router.route('/inquiry/guid').get(getInquiryByGuid);
 
-// Get inquiry by id and update by id
+// GET, UPDATE and DELETE inquiry by id
 router.route('/inquiry/:id')
     .get(getInquiryById)
-    .patch(updateInquiry);
+    .patch(updateInquiry)
+    .delete(deleteInquiry);
 
 export default router;

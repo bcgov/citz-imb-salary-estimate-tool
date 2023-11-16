@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { LoginDialog } from '../components';
+import { AuthenticationDialog } from '../components';
 
 interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {
   isAuthenticated?: boolean;
@@ -10,7 +10,7 @@ export const Home = (props: HomeProps) => {
 
   if (isAuthenticated) return <Navigate replace to="/Inquiry" />;
 
-  return <LoginDialog />;
+  return <AuthenticationDialog open title="Authentication Required" />;
 };
 
 Home.defaultProps = {

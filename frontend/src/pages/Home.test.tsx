@@ -5,7 +5,7 @@ jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate</div>,
 }));
 jest.mock('../components', () => ({
-  LoginDialog: () => <div>Login Dialog</div>,
+  AuthenticationDialog: () => <div>Login Dialog</div>,
 }));
 
 describe('Home ', () => {

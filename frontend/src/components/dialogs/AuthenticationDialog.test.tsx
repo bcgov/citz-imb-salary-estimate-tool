@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { AuthenticationDialog } from './AuthenticationDialog';
 
-jest.mock('@bcgov/kc-react', () => ({
+jest.mock('@bcgov/citz-imb-kc-react', () => ({
   useKeycloak: () => ({
     login: jest.fn(),
   }),

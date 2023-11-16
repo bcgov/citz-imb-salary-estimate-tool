@@ -1,4 +1,4 @@
-import { useKeycloak } from '@bcgov/kc-react';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { Button } from './Button';
 
 export const AuthenticationButton = () => {

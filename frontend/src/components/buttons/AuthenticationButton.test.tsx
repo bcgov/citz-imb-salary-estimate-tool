@@ -1,8 +1,8 @@
-import { useKeycloak } from '@bcgov/kc-react';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { render, screen } from '@testing-library/react';
 import { AuthenticationButton } from './AuthenticationButton';
 
-jest.mock('@bcgov/kc-react', () => ({
+jest.mock('@bcgov/citz-imb-kc-react', () => ({
   useKeycloak: jest.fn(),
 }));
 

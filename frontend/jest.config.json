@@ -35,7 +35,7 @@
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
   "transformIgnorePatterns": [
-    "/node_modules/(?!@bcgov/kc-react)"
+    "/node_modules/(?!@bcgov/citz-imb-kc-react)"
   ],
   "moduleNameMapper": {
     "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.ts"

@@ -1,4 +1,4 @@
-import { useKeycloak } from '@bcgov/kc-react';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { Box, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

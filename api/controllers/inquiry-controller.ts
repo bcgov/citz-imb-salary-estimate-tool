@@ -17,9 +17,9 @@ export const createInquiry = async (req: Request, res: Response) => {
         const response = await prisma.inquiry.create({
             data: req.body
         });
-        return res.status(200).json(response);
+        return res.status(201).json(response);
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };
 
@@ -37,9 +37,9 @@ export const updateInquiry = async (req: Request, res: Response) => {
             },
             data: req.body,
         });
-        return res.status(200).json(response);
+        return res.status(204).json(response);
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };
 
@@ -48,15 +48,17 @@ export const updateInquiry = async (req: Request, res: Response) => {
  * @author dallascrichmond
  */
 export const deleteInquiry = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const inquiryID: number = +id;
     try {
         const response = await prisma.inquiry.delete({
             where: {
-                id: req.body.id,
+                id: inquiryID,
             }
         });
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };
 
@@ -67,9 +69,12 @@ export const deleteInquiry = async (req: Request, res: Response) => {
 export const getInquiry = async (req: Request, res: Response) => {
     try {
         const inquiries = await prisma.inquiry.findMany();
-        res.status(200).json(inquiries);
+        if(inquiries.length !== 0){
+            return res.status(200).json(inquiries);
+        }
+        return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };
 
@@ -86,9 +91,12 @@ export const getInquiryById = async (req: Request, res: Response) => {
                 id: inquiryID,
             }
         });
-        res.status(200).json(inquiry);
+        if(inquiry) {
+            return res.status(200).json(inquiry);
+        }
+        return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };
 
@@ -114,11 +122,11 @@ export const getInquiryByGuid = async (req: Request, res: Response) => {
                 ]
             }
         });
-        if (inquiries) {
+        if (inquiries.length !== 0) {
             return res.status(200).json(inquiries);
         }
         return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        return res.status(500).json(error);
+        return res.status(400).json(error);
     }
 };

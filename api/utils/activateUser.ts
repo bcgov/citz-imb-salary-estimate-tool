@@ -1,4 +1,4 @@
-import { KeycloakUser } from "@bcgov/kc-express";
+import { KeycloakUser } from "@bcgov/citz-imb-kc-express";
 import { upsertUser } from "../controllers/user-controller";
 
 // Called after login to create or update a user.

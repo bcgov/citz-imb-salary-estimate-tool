@@ -2,7 +2,7 @@
  * @summary Middleware and configuration setup for SET Express API
  * @author  dallascrichmond
  */
-import { keycloak } from '@bcgov/kc-express';
+import { keycloak } from '@bcgov/citz-imb-kc-express';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';

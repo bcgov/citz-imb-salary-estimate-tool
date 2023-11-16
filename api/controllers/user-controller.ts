@@ -4,7 +4,7 @@
  */
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client'
-import { KeycloakUser, KeycloakIdirUser } from "@bcgov/kc-express";
+import { KeycloakUser, KeycloakIdirUser } from "@bcgov/citz-imb-kc-express";
 import httpResponses from '../utils/httpResponse';
 
 const prisma = new PrismaClient;

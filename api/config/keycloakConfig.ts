@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { KCOptions, KeycloakUser } from "@bcgov/kc-express";
+import { KCOptions, KeycloakUser } from "@bcgov/citz-imb-kc-express";
 import { activateUser } from "../utils/activateUser";
 
 const {

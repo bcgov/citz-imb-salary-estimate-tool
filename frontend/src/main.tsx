@@ -1,4 +1,4 @@
-import { KeycloakProvider } from '@bcgov/kc-react';
+import { KeycloakProvider } from '@bcgov/citz-imb-kc-react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

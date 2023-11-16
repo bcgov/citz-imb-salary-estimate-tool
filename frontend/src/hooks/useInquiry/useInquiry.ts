@@ -14,7 +14,7 @@
  */
 import { useMemo } from 'react';
 import useDBDataFactory from '../useDataFactory/useData.Factory';
-import { columnsInquiry } from './columns';
+import { columnsInquiry } from './inquiry.columns';
 import { InquiryData } from '../../types';
 
 export const useInquiry = (dataId: string = '') => {

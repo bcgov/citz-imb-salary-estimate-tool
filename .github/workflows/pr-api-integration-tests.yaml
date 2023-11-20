@@ -36,6 +36,11 @@ jobs:
         run: |
           docker-compose -f docker-compose.dev.yaml build db api frontend
           docker-compose -f docker-compose.dev.yaml up -d db api frontend
+
+      - name: Install Dev Dependencies
+        working-directory: ./api
+        run: |
+          npm i nodemon
       
       - name: Wait for POSTGRES Healthcheck
         uses: stringbean/docker-healthcheck-action@v1

@@ -60,14 +60,14 @@ jobs:
       #     require-status: running
       #     require-healthy: true
       
-      - name: Print Docker API Logs
-        run: |
-          docker logs api
+      # - name: Print Docker API Logs
+      #   run: |
+      #     docker logs api
 
-      - name: Stop if API Failed
-        if: steps.api-healthcheck.outcome == 'failure'
-        run: |
-          exit 1
+      # - name: Stop if API Failed
+      #   if: steps.api-healthcheck.outcome == 'failure'
+      #   run: |
+      #     exit 1
         
       - name: Install Integration Testing Dependencies
         working-directory: ./api

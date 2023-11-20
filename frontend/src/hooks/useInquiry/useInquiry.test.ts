@@ -10,9 +10,18 @@ jest.mock('../useDataFactory/useData.Factory', () => ({
   }),
 }));
 
+jest.mock('./inquiry.columns', () => ({
+  columnsInquiry: jest.fn().mockReturnValue([
+    {
+      Header: 'Name',
+      accessor: 'name',
+    },
+  ]),
+}));
+
 jest.mock('../../hooks', () => ({
   useAPI: jest.fn().mockReturnValue({
-    fetchData: jest.fn(),
+    fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
   }),
 }));
 
@@ -30,12 +39,11 @@ describe('useInquiry', () => {
 
     jest.mock('../../hooks', () => ({
       useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn(),
+        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
       }),
     }));
 
     const { result } = renderHook(() => useInquiry());
-
     expect(useDataFactory).toHaveBeenCalledWith(
       expect.objectContaining({
         endPoint: 'inquiry',
@@ -55,7 +63,7 @@ describe('useInquiry', () => {
 
     jest.mock('../../hooks', () => ({
       useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn(),
+        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
       }),
     }));
 
@@ -80,7 +88,7 @@ describe('useInquiry', () => {
 
     jest.mock('../../hooks', () => ({
       useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn(),
+        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
       }),
     }));
 
@@ -98,7 +106,7 @@ describe('useInquiry', () => {
 
     jest.mock('../../hooks', () => ({
       useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn(),
+        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
       }),
     }));
 

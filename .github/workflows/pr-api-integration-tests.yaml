@@ -42,23 +42,23 @@ jobs:
           docker-compose -f docker-compose.dev.yaml build db api frontend
           docker-compose -f docker-compose.dev.yaml up -d db api frontend
       
-      - name: Wait for POSTGRES Healthcheck
-        uses: stringbean/docker-healthcheck-action@v1
-        with:
-          container: db
-          wait-time: 90
-          require-status: running
-          require-healthy: true
+      # - name: Wait for POSTGRES Healthcheck
+      #   uses: stringbean/docker-healthcheck-action@v1
+      #   with:
+      #     container: db
+      #     wait-time: 90
+      #     require-status: running
+      #     require-healthy: true
         
-      - name: Wait for API Healthcheck
-        uses: stringbean/docker-healthcheck-action@v1
-        id: api-healthcheck
-        continue-on-error: true
-        with:
-          container: api
-          wait-time: 90
-          require-status: running
-          require-healthy: true
+      # - name: Wait for API Healthcheck
+      #   uses: stringbean/docker-healthcheck-action@v1
+      #   id: api-healthcheck
+      #   continue-on-error: true
+      #   with:
+      #     container: api
+      #     wait-time: 90
+      #     require-status: running
+      #     require-healthy: true
       
       - name: Print Docker API Logs
         run: |

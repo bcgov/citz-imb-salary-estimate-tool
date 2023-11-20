@@ -32,7 +32,7 @@ jobs:
           echo "VITE_TARGET=dev" >> .env
           echo "ENVIRONMENT=local" >> .env
           echo "FRONTEND_PORT=8080" >> .env
-          echo "FRONTEND_URL="http://localhost:8080" >> .env
+          echo "FRONTEND_URL=http://localhost:8080" >> .env
           echo "POSTGRES_PORT=5432" >> .env
           echo "POSTGRES_DB=salary-app-db" >> .env
           echo "POSTGRES_USER=db-admin" >> .env

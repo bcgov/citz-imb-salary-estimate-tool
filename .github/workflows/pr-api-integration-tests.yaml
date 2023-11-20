@@ -29,13 +29,21 @@ jobs:
       - name: Setup Environment Variables
         run: |
           touch .env
+          echo "VITE_TARGET=dev" >> .env
+          echo "ENVIRONMENT=local" >> .env
+          echo "FRONTEND_PORT=8080" >> .env
+          echo "FRONTEND_URL="http://localhost:8080" >> .env
+          echo "POSTGRES_PORT=5432" >> .env
+          echo "POSTGRES_DB=salary-app-db" >> .env
+          echo "POSTGRES_USER=db-admin" >> .env
+          echo "API_PORT=3000" >> .env
 
       # Vite does not see this if just specified in the ENV for the workflow
-      - name: Specify VITE_TARGET
-        working-directory: ./frontend
-        run: |
-          touch .env
-          echo "VITE_TARGET=dev" >> .env
+      # - name: Specify VITE_TARGET
+      #   working-directory: ./frontend
+      #   run: |
+      #     touch .env
+      #     echo "VITE_TARGET=dev" >> .env
 
       - name: Spin Up API and POSTGRES Images
         run: |

@@ -1,4 +1,4 @@
-import { useAuthentication } from '../../hooks';
+import { useAuthentication } from '../../hooks/useAuthentication/useAuthentication';
 import { Button } from './Button';
 
 export const AuthenticationButton = () => {

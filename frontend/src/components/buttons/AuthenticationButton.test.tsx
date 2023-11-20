@@ -1,8 +1,8 @@
 import { act, render, screen } from '@testing-library/react';
-import { useAuthentication } from '../../hooks';
+import { useAuthentication } from '../../hooks/useAuthentication/useAuthentication';
 import { AuthenticationButton } from './AuthenticationButton';
 
-jest.mock('../../hooks', () => ({
+jest.mock('../../hooks/useAuthentication/useAuthentication', () => ({
   useAuthentication: jest.fn(),
 }));
 

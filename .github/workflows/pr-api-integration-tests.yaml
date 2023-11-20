@@ -26,7 +26,9 @@ jobs:
           echo "FRONTEND_URL=http://localhost:8080" >> .env
           echo "POSTGRES_PORT=5432" >> .env
           echo "POSTGRES_DB=salary-app-db" >> .env
+          echo "POSTGRES_HOST=db" >> .env
           echo "POSTGRES_USER=db-admin" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "API_PORT=3000" >> .env
 
       - name: Spin Up API and POSTGRES Images

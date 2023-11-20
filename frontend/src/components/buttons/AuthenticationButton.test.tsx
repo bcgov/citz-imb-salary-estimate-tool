@@ -1,9 +1,9 @@
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { act, render, screen } from '@testing-library/react';
+import { useAuthentication } from '../../hooks';
 import { AuthenticationButton } from './AuthenticationButton';
 
-jest.mock('@bcgov/citz-imb-kc-react', () => ({
-  useKeycloak: jest.fn(),
+jest.mock('../../hooks', () => ({
+  useAuthentication: jest.fn(),
 }));
 
 describe('AuthenticationButton', () => {
@@ -13,8 +13,8 @@ describe('AuthenticationButton', () => {
 
   describe('when the user is not authenticated', () => {
     it('renders the login button', () => {
-      (useKeycloak as jest.Mock).mockReturnValue({
-        state: undefined,
+      (useAuthentication as jest.Mock).mockReturnValue({
+        isAuthenticated: false,
         login: jest.fn(),
       });
 
@@ -22,8 +22,8 @@ describe('AuthenticationButton', () => {
       expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
     });
     it('calls login function when clicked', () => {
-      (useKeycloak as jest.Mock).mockReturnValue({
-        state: undefined,
+      (useAuthentication as jest.Mock).mockReturnValue({
+        isAuthenticated: false,
         login: jest.fn(),
       });
 
@@ -31,18 +31,14 @@ describe('AuthenticationButton', () => {
       act(() => {
         screen.getByRole('button', { name: 'Login' }).click();
       });
-      expect(useKeycloak().login).toHaveBeenCalledTimes(1);
+      expect(useAuthentication().login).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('when the user is authenticated', () => {
     it('renders the logout button', () => {
-      (useKeycloak as jest.Mock).mockReturnValue({
-        state: {
-          userInfo: {
-            display_name: 'Test User',
-          },
-        },
+      (useAuthentication as jest.Mock).mockReturnValue({
+        isAuthenticated: true,
         logout: jest.fn(),
       });
 
@@ -52,12 +48,8 @@ describe('AuthenticationButton', () => {
       ).toBeInTheDocument();
     });
     it('calls logout function when clicked', () => {
-      (useKeycloak as jest.Mock).mockReturnValue({
-        state: {
-          userInfo: {
-            display_name: 'Test User',
-          },
-        },
+      (useAuthentication as jest.Mock).mockReturnValue({
+        isAuthenticated: true,
         logout: jest.fn(),
       });
 
@@ -65,7 +57,7 @@ describe('AuthenticationButton', () => {
       act(() => {
         screen.getByRole('button', { name: 'Logout' }).click();
       });
-      expect(useKeycloak().logout).toHaveBeenCalledTimes(1);
+      expect(useAuthentication().logout).toHaveBeenCalledTimes(1);
     });
   });
 });

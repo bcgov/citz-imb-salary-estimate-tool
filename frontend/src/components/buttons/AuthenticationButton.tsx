@@ -1,9 +1,8 @@
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
+import { useAuthentication } from '../../hooks';
 import { Button } from './Button';
 
 export const AuthenticationButton = () => {
-  const { state, login, logout } = useKeycloak();
-  const isAuthenticated: boolean = !!state?.userInfo;
+  const { isAuthenticated, login, logout } = useAuthentication();
 
   if (isAuthenticated) return <Button onClick={() => logout()}>Logout</Button>;
 

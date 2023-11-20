@@ -11,10 +11,10 @@ env:
   ENVIRONMENT: local
   FRONTEND_PORT: 8080
   FRONTEND_URL: http://localhost:8080
-#   POSTGRES_PORT: 5432
-#   POSTGRES_DB: salary-app-db
-#   POSTGRES_USER: db-admin
-#   API_PORT: 3000
+  POSTGRES_PORT: 5432
+  POSTGRES_DB: salary-app-db
+  POSTGRES_USER: db-admin
+  API_PORT: 3000
 
 jobs:
   containerized-tests:
@@ -29,9 +29,16 @@ jobs:
         run: |
           touch .env
 
+      # Vite does not see this if just specified in the ENV for the workflow
+      - name: Specify VITE_TARGET
+        working-directory: ./frontend
+        run: |
+          touch .env
+          echo "VITE_TARGET=dev" >> .env
+
       - name: Spin Up API and POSTGRES Images
         run: |
-          docker-compose -f docker-compose.dev.yaml build db api
+          docker-compose -f docker-compose.dev.yaml build db api frontend
       
       # - name: Wait for POSTGRES Healthcheck
       #   uses: stringbean/docker-healthcheck-action@v1

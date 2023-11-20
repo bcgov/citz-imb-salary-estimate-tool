@@ -20,6 +20,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      # Setup Environment Variables
+      - name: Setup Environment Variables
+        run: |
+          touch .env
+
       - name: Spin Up API and POSTGRES Images
         run: |
           docker-compose -f docker-compose.dev.yaml build db api

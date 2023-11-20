@@ -29,7 +29,7 @@ jobs:
         run: |
           docker-compose -f docker-compose.dev.yaml build db api
       
-      - name: Wait for POSTGRES Healthcheck 
+      - name: Wait for POSTGRES Healthcheck
         uses: stringbean/docker-healthcheck-action@v1
         with:
           container: db

@@ -8,15 +8,6 @@ on:
       - "api/**"
       - ".github/workflows/pr-api-integration-tests.yaml"
 
-env:
-  ENVIRONMENT: local
-  FRONTEND_PORT: 8080
-  FRONTEND_URL: http://localhost:8080
-  POSTGRES_PORT: 5432
-  POSTGRES_DB: salary-app-db
-  POSTGRES_USER: db-admin
-  API_PORT: 3000
-
 jobs:
   containerized-tests:
     name: Containerized Tests
@@ -38,25 +29,18 @@ jobs:
           echo "POSTGRES_USER=db-admin" >> .env
           echo "API_PORT=3000" >> .env
 
-      # Vite does not see this if just specified in the ENV for the workflow
-      # - name: Specify VITE_TARGET
-      #   working-directory: ./frontend
-      #   run: |
-      #     touch .env
-      #     echo "VITE_TARGET=dev" >> .env
-
       - name: Spin Up API and POSTGRES Images
         run: |
           docker-compose -f docker-compose.dev.yaml build db api frontend
           docker-compose -f docker-compose.dev.yaml up -d db api frontend
       
-      # - name: Wait for POSTGRES Healthcheck
-      #   uses: stringbean/docker-healthcheck-action@v1
-      #   with:
-      #     container: db
-      #     wait-time: 90
-      #     require-status: running
-      #     require-healthy: true
+      - name: Wait for POSTGRES Healthcheck
+        uses: stringbean/docker-healthcheck-action@v1
+        with:
+          container: db
+          wait-time: 60
+          require-status: running
+          require-healthy: true
         
       # - name: Wait for API Healthcheck
       #   uses: stringbean/docker-healthcheck-action@v1

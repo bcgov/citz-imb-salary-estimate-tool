@@ -40,6 +40,7 @@ jobs:
       - name: Spin Up API and POSTGRES Images
         run: |
           docker-compose -f docker-compose.dev.yaml build db api frontend
+          docker-compose -f docker-compose.dev.yaml up -d db api frontend
       
       - name: Wait for POSTGRES Healthcheck
         uses: stringbean/docker-healthcheck-action@v1

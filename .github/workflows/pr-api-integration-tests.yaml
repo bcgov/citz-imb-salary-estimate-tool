@@ -1,0 +1,62 @@
+name: Pull Request — API Integration Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "api/**"
+      - ".github/workflows/pr-api-integration-tests.yaml"
+
+env:
+  ENVIRONMENT: local
+  FRONTEND_PORT: 8080
+  FRONTEND_URL: http://localhost:8080
+
+jobs:
+  containerized-tests:
+    name: Containerized Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Spin Up API and POSTGRES Images
+        run: |
+          docker-compose -f docker-compose.dev.yaml --build -d db api
+      
+      - name: Wait for POSTGRES Healthcheck 
+        uses: stringbean/docker-healthcheck-action@v1
+        with:
+          container: db
+          wait-time: 60
+          require-status: running
+          require-healthy: true
+        
+      - name: Wait for API Healthcheck
+        uses: stringbean/docker-healthcheck-action@v1
+        id: api-healthcheck
+        continue-on-error: true
+        with:
+          container: api
+          wait-time: 60
+          require-status: running
+          require-healthy: true
+      
+      - name: Print Docker API Logs
+        run: |
+          docker logs api
+
+      - name: Stop if API Failed
+        if: steps.api-healthcheck.outcome == 'failure'
+        run: |
+          exit 1
+        
+      - name: Install Integration Testing Dependencies
+        working-directory: ./api
+        run: |
+          npm i jest supertest ts-jest dotenv @types/jest
+      
+      - name: Run API Integration Tests
+        working-directory: ./api
+        run: |
+          npm run test

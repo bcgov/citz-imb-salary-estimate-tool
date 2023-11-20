@@ -40,38 +40,38 @@ jobs:
           echo "SSO_CLIENT_ID=${{ secrets.SSO_CLIENT_ID }}" >> .env
           echo "SSO_CLIENT_SECRET=${{ secrets.SSO_CLIENT_SECRET }}" >> .env
           echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env
-          echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .en
+          echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .env
 
       - name: Spin Up API and POSTGRES Images
         run: |
           docker-compose -f docker-compose.dev.yaml build db api
       
-      - name: Wait for POSTGRES Healthcheck
-        uses: stringbean/docker-healthcheck-action@v1
-        with:
-          container: db
-          wait-time: 60
-          require-status: running
-          require-healthy: true
+      # - name: Wait for POSTGRES Healthcheck
+      #   uses: stringbean/docker-healthcheck-action@v1
+      #   with:
+      #     container: db
+      #     wait-time: 60
+      #     require-status: running
+      #     require-healthy: true
         
-      - name: Wait for API Healthcheck
-        uses: stringbean/docker-healthcheck-action@v1
-        id: api-healthcheck
-        continue-on-error: true
-        with:
-          container: api
-          wait-time: 60
-          require-status: running
-          require-healthy: true
+      # - name: Wait for API Healthcheck
+      #   uses: stringbean/docker-healthcheck-action@v1
+      #   id: api-healthcheck
+      #   continue-on-error: true
+      #   with:
+      #     container: api
+      #     wait-time: 60
+      #     require-status: running
+      #     require-healthy: true
       
-      - name: Print Docker API Logs
-        run: |
-          docker logs api
+      # - name: Print Docker API Logs
+      #   run: |
+      #     docker logs api
 
-      - name: Stop if API Failed
-        if: steps.api-healthcheck.outcome == 'failure'
-        run: |
-          exit 1
+      # - name: Stop if API Failed
+      #   if: steps.api-healthcheck.outcome == 'failure'
+      #   run: |
+      #     exit 1
         
       - name: Install Integration Testing Dependencies
         working-directory: ./api

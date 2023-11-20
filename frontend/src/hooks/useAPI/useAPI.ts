@@ -29,7 +29,7 @@ export const useAPI = () => {
     return {
       method,
       headers,
-      body: typeof body !== 'string' ? JSON.stringify(body) : body,
+      body: JSON.stringify(body),
       ...remainingOptions,
     };
   }, []);

@@ -40,7 +40,7 @@ jobs:
       - name: Install Dev Dependencies
         working-directory: ./api
         run: |
-          npm i nodemon
+          npm i nodemon prisma @prisma/client
       
       - name: Wait for POSTGRES Healthcheck
         uses: stringbean/docker-healthcheck-action@v1

@@ -6,7 +6,7 @@ import { Home, Inquiry } from './pages';
 import { useAuthentication } from './hooks';
 
 const App = () => {
-  const { isAuthenticated, KeycloakProvider } = useAuthentication();
+  const { KeycloakProvider } = useAuthentication();
 
   return (
     <KeycloakProvider>
@@ -21,14 +21,8 @@ const App = () => {
         <Box sx={{ flexGrow: 1 }}>
           <Navbar title="Salary Estimation Tool" />
           <Routes>
-            <Route
-              path="/"
-              element={<Home isAuthenticated={isAuthenticated} />}
-            />
-            <Route
-              path="/Inquiry"
-              element={<Inquiry isAuthenticated={isAuthenticated} />}
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/Inquiry" element={<Inquiry />} />
           </Routes>
         </Box>
         <Footer />

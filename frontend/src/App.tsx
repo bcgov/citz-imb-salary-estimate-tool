@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
@@ -19,9 +19,7 @@ const App = () => {
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
-          <Navbar>
-            <Typography variant="h4">Salary Estimation Tool</Typography>
-          </Navbar>
+          <Navbar title="Salary Estimation Tool" />
           <Routes>
             <Route
               path="/"

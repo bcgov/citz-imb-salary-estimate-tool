@@ -15,7 +15,7 @@ const App = () => {
         sx={{
           height: '100vh',
           display: 'flex',
-          flexdirection: 'column',
+          flexDirection: 'column',
         }}
       >
         <Box sx={{ flexGrow: 1 }}>

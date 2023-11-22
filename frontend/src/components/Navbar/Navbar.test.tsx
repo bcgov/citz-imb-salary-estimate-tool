@@ -1,6 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { Navbar } from './Navbar';
 
+jest.mock('../../assets/logo.png', () => 'test-file-stub');
+jest.mock('../buttons/AuthenticationButton', () => ({
+  AuthenticationButton: () => <div>AuthenticationButton Test</div>,
+}));
+
 describe('Navbar', () => {
   it('renders correctly', () => {
     render(<Navbar />);
@@ -23,5 +28,12 @@ describe('Navbar', () => {
   it('renders a color bar', () => {
     render(<Navbar />);
     expect(screen.getByRole('presentation')).toBeInTheDocument();
+  });
+  it('renders an authentication button', () => {
+    jest.mock('../buttons/AuthenticationButton', () => ({
+      AuthenticationButton: () => <div>AuthenticationButton Test</div>,
+    }));
+    render(<Navbar />);
+    expect(screen.getByText('AuthenticationButton Test')).toBeInTheDocument();
   });
 });

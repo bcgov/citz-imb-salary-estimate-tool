@@ -5,7 +5,7 @@ import { useAuthentication, useInquiry } from '../hooks';
 
 export const Inquiry = () => {
   const { isAuthenticated } = useAuthentication();
-  const { data, columns, isLoading, isError, error } = useInquiry();
+  const { data, columns, isLoading, isError, error, append } = useInquiry();
 
   if (!isAuthenticated) return <Navigate replace to="/" />;
 
@@ -19,6 +19,7 @@ export const Inquiry = () => {
         rows={data}
         columns={columns}
         tableName="Hiring Manager Salary Inquiries"
+        addAction={append}
       />
     </Box>
   );

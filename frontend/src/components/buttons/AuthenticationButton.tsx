@@ -4,9 +4,17 @@ import { Button } from './Button';
 export const AuthenticationButton = () => {
   const { isAuthenticated, login, logout } = useAuthentication();
 
-  if (isAuthenticated) return <Button onClick={() => logout()}>Logout</Button>;
+  const buttonProps = {
+    children: 'Login',
+    onClick: () => login({ idpHint: 'idir' }),
+  };
 
-  return <Button onClick={() => login({ idpHint: 'idir' })}>Login</Button>;
+  if (isAuthenticated) {
+    buttonProps.children = 'Logout';
+    buttonProps.onClick = () => logout();
+  }
+
+  return <Button variant="contained" color="info" {...buttonProps} />;
 };
 
 export default AuthenticationButton;

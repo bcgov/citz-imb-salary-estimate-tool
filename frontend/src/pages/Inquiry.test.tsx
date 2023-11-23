@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { Inquiry } from './Inquiry';
-import { useInquiry } from '../hooks';
+import { useInquiry, useAuthentication } from '../hooks';
 
 jest.mock('../hooks', () => ({
   useInquiry: jest.fn(),
+  useAuthentication: jest.fn().mockReturnValue({ isAuthenticated: false }),
 }));
 jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate</div>,
@@ -15,6 +16,10 @@ jest.mock('../components', () => ({
 }));
 
 describe('Inquiry', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('redirects if not authenticated', () => {
     (useInquiry as jest.Mock).mockReturnValueOnce({
       data: [],
@@ -23,9 +28,14 @@ describe('Inquiry', () => {
       isError: false,
       error: '',
     });
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: false,
+    });
+
     render(<Inquiry />);
     expect(screen.getByText('Navigate')).toBeInTheDocument();
   });
+
   it('renders correctly if authenticated', () => {
     (useInquiry as jest.Mock).mockReturnValueOnce({
       data: [],
@@ -34,7 +44,11 @@ describe('Inquiry', () => {
       isError: false,
       error: '',
     });
-    render(<Inquiry isAuthenticated />);
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+    });
+
+    render(<Inquiry />);
     expect(screen.getByText('TableContainer')).toBeInTheDocument();
   });
   it('renders a loading screen if loading', () => {
@@ -45,7 +59,11 @@ describe('Inquiry', () => {
       isError: false,
       error: '',
     });
-    render(<Inquiry isAuthenticated />);
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+    });
+
+    render(<Inquiry />);
     expect(screen.getByText('Loading')).toBeInTheDocument();
   });
   it('renders an Error Dialog if an error', () => {
@@ -56,7 +74,11 @@ describe('Inquiry', () => {
       isError: true,
       error: 'ErrorDialog',
     });
-    render(<Inquiry isAuthenticated />);
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+    });
+
+    render(<Inquiry />);
     expect(screen.getByText('ErrorDialog')).toBeInTheDocument();
   });
 });

@@ -19,7 +19,7 @@ export const DateCell = (props: DateCellProps) => {
 
   const date = DateTime.fromISO(value);
 
-  return <Typography>{date.setLocale('en-ca').toLocaleString()}</Typography>;
+  return <Typography>{date.setLocale('en-ca').toISODate()}</Typography>;
 };
 
 export default DateCell;

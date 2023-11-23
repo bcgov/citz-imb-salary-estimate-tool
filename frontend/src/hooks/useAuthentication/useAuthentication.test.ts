@@ -1,4 +1,4 @@
-// import { useKeycloak } from '@bcgov/citz-imb-kc-react';
+import { renderHook } from '@testing-library/react';
 import { useAuthentication } from './useAuthentication';
 
 jest.mock('@bcgov/citz-imb-kc-react', () => ({
@@ -16,8 +16,7 @@ jest.mock('@bcgov/citz-imb-kc-react', () => ({
 
 describe('useAuthentication', () => {
   it('should return isAuthenticated property', () => {
-    const actual = useAuthentication();
-
-    expect(actual).toHaveProperty('isAuthenticated');
+    const { result } = renderHook(() => useAuthentication());
+    expect(result.current).toHaveProperty('isAuthenticated');
   });
 });

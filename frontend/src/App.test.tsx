@@ -18,7 +18,7 @@ jest.mock('./components', () => ({
 }));
 
 describe('App', () => {
-  it('renders correctly with Navbar', () => {
+  const renderApp = (): JSX.Element => {
     const queryClient = new QueryClient();
 
     (useAuthentication as jest.Mock).mockReturnValue({
@@ -28,56 +28,27 @@ describe('App', () => {
       ),
     });
 
-    render(
+    return (
       <QueryClientProvider client={queryClient}>
         <Router>
           <App />
         </Router>
       </QueryClientProvider>
     );
+  };
 
+  it('renders correctly with Navbar', () => {
+    render(renderApp());
     expect(screen.getByText('Navbar Test')).toBeInTheDocument();
   });
 
   it('renders the Footer', () => {
-    const queryClient = new QueryClient();
-
-    (useAuthentication as jest.Mock).mockReturnValue({
-      isAuthenticated: true,
-      KeycloakProvider: ({ children }: { children: ReactNode }) => (
-        <div>{children}</div>
-      ),
-    });
-
-    render(
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <App />
-        </Router>
-      </QueryClientProvider>
-    );
-
+    render(renderApp());
     expect(screen.getByText('Footer Test')).toBeInTheDocument();
   });
 
   it('renders the Home page', () => {
-    const queryClient = new QueryClient();
-
-    (useAuthentication as jest.Mock).mockReturnValue({
-      isAuthenticated: true,
-      KeycloakProvider: ({ children }: { children: ReactNode }) => (
-        <div>{children}</div>
-      ),
-    });
-
-    render(
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <App />
-        </Router>
-      </QueryClientProvider>
-    );
-
+    render(renderApp());
     expect(screen.getByText('Home Test')).toBeInTheDocument();
   });
 });

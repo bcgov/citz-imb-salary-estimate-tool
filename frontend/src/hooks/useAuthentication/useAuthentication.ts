@@ -3,6 +3,7 @@ import {
   useKeycloak,
   decodeJWT,
 } from '@bcgov/citz-imb-kc-react';
+import { useMemo } from 'react';
 
 export const useAuthentication = () => {
   const {
@@ -14,7 +15,9 @@ export const useAuthentication = () => {
     state,
   } = useKeycloak();
 
-  const isAuthenticated = state?.userInfo !== undefined;
+  const isAuthenticated = useMemo(() => {
+    return state?.userInfo !== undefined;
+  }, [state]);
 
   return {
     decodeJWT,

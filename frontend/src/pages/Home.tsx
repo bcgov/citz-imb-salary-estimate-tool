@@ -1,32 +1,20 @@
-import { useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { Typography } from '@mui/material';
 import { Navigate } from 'react-router-dom';
-import { Dialog } from '../components';
-import Button from '../components/Button';
+import { AuthenticationDialog } from '../components';
 
-export const Home = () => {
-  const { login, state } = useKeycloak();
+interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {
+  isAuthenticated?: boolean;
+}
 
-  const user = state?.userInfo;
+export const Home = (props: HomeProps) => {
+  const { isAuthenticated } = props;
 
-  if (!user)
-    return (
-      <Dialog
-        open
-        actions={
-          <Button onClick={() => login({ idpHint: 'idir' })}>Login</Button>
-        }
-      >
-        <Typography align="center" variant="h3">
-          Login Required
-        </Typography>
-        <Typography align="center" variant="subtitle1">
-          To access this application, log in with your IDIR
-        </Typography>
-      </Dialog>
-    );
+  if (isAuthenticated) return <Navigate replace to="/Inquiry" />;
 
-  return <Navigate replace to="/Inquiry" />;
+  return <AuthenticationDialog open title="Authentication Required" />;
+};
+
+Home.defaultProps = {
+  isAuthenticated: false,
 };
 
 export default Home;

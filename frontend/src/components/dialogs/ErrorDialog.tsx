@@ -1,11 +1,11 @@
 import { Alert } from '@mui/material';
-import { Dialog } from '../dialog/Dialog';
+import { Dialog } from './Dialog';
 
-interface ErrorProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ErrorDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   error: Error;
 }
 
-export const Error = (props: ErrorProps) => {
+export const ErrorDialog = (props: ErrorDialogProps) => {
   const { error } = props;
 
   return (
@@ -15,4 +15,4 @@ export const Error = (props: ErrorProps) => {
   );
 };
 
-export default Error;
+export default ErrorDialog;

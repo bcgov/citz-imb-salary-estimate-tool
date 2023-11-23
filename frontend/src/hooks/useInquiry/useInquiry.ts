@@ -13,12 +13,13 @@
  * see the useDataFactory hook for more information
  */
 import { useMemo } from 'react';
-import useDBDataFactory from '../useDataFactory/useData.Factory';
-import { columnsInquiry } from './columns';
+import { useDataFactory } from '../useDataFactory/useData.Factory';
+import { columnsInquiry } from './inquiry.columns';
 import { InquiryData } from '../../types';
 
-export const useInquiry = (id: string = '') => {
-  const inquiryData = useDBDataFactory<InquiryData>('inquiry', id);
+export const useInquiry = (dataId: string = '') => {
+  const endPoint = 'inquiry';
+  const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
 
   const data = useMemo(() => {
     if (

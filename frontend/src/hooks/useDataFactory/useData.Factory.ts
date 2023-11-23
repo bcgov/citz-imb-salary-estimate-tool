@@ -22,23 +22,31 @@ import { QueryKey, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
-export const useDataFactory = <T>(endPoint: string, dataId: string) => {
+export const useDataFactory = <T>({
+  endPoint: tableName,
+  dataId,
+}: {
+  endPoint: string;
+  dataId?: string;
+}) => {
   const queryKey: QueryKey = useMemo(
-    () => [endPoint, dataId],
-    [dataId, endPoint]
+    () => [tableName, dataId],
+    [dataId, tableName]
   );
+
+  const endPoint: string = useMemo(() => {
+    if (dataId) return `${tableName}/${dataId}`;
+
+    return tableName;
+  }, [dataId, tableName]);
 
   const { fetchData } = useAPI();
 
   const query = useQuery({
     queryKey,
     queryFn: async () => {
-      let response;
-      if (dataId) {
-        response = await fetchData(`${endPoint}/${dataId}`);
-      } else {
-        response = await fetchData(endPoint);
-      }
+      const response = await fetchData(endPoint);
+
       return response as T[];
     },
   });

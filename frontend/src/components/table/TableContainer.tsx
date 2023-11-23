@@ -24,7 +24,7 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { rows = [], columns = [], tableName } = props;
+  const { rows, columns, tableName } = props;
   return (
     <Box padding={1}>
       <Typography variant="h3" padding={2}>

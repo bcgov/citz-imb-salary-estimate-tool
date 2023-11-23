@@ -5,9 +5,14 @@ import {
   DialogProps,
   DialogTitle,
 } from '@mui/material';
+import { Button } from '../buttons/Button';
 
+interface ActionConfigProps {
+  onClick: () => void;
+  label: string;
+}
 interface CustomDialogProps extends DialogProps {
-  actions?: JSX.Element | null;
+  actions?: ActionConfigProps[];
 }
 
 export const Dialog = (props: CustomDialogProps) => {
@@ -22,13 +27,18 @@ export const Dialog = (props: CustomDialogProps) => {
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
-      <DialogActions>{actions}</DialogActions>
+      <DialogActions>
+        {actions?.map((action) => (
+          <Button key={`action-${action.label}`} onClick={action.onClick}>
+            {action.label}
+          </Button>
+        ))}
+      </DialogActions>
     </DialogMui>
   );
 };
 
 Dialog.defaultProps = {
-  actions: null,
+  actions: [],
 };
-
 export default Dialog;

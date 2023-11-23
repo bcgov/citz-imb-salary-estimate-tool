@@ -7,10 +7,10 @@ import {
 } from '@mui/material';
 import { Button } from '../buttons/Button';
 
-type ActionConfigProps = {
+interface ActionConfigProps {
   onClick: () => void;
   label: string;
-};
+}
 interface CustomDialogProps extends DialogProps {
   actions?: ActionConfigProps[];
 }

@@ -21,6 +21,8 @@ export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
 
+  // this functionality is here instead of in the useDataFactory hook because
+  // it allows data transformation upon return from the backend
   const data = useMemo(() => {
     if (
       inquiryData.isLoading ||

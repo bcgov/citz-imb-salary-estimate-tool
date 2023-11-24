@@ -34,28 +34,36 @@ export const useDataFactory = <TDataType>({
     [dataId, tableName]
   );
 
-  const endPoint: string = useMemo(() => {
+  const endPoint = useMemo(() => {
     if (dataId) return `${tableName}/${dataId}`;
 
     return tableName;
   }, [dataId, tableName]);
 
-  const { fetchData } = useAPI();
+  const api = useAPI();
 
   const query = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await fetchData(endPoint);
+      const response = await api.fetchData<TDataType[]>(endPoint);
 
-      return response as TDataType[];
+      return response;
     },
   });
 
-  const append = (item: TDataType) => {
-    console.log('append', item);
+  const data = useMemo(() => {
+    if (query.isLoading || query.isError || !query.data) return [];
+
+    return query.data;
+  }, [query.data, query.isError, query.isLoading]);
+
+  const append = (item: TDataType): TDataType => {
+    const results = api.appendItem<TDataType>(endPoint, item as BodyInit);
+
+    return results;
   };
 
-  return { ...query, append };
+  return { ...query, data, append };
 };
 
 export default useDataFactory;

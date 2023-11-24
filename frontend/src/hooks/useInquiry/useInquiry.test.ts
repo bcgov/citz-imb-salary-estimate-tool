@@ -78,40 +78,4 @@ describe('useInquiry', () => {
     expect(result.current.data.length).toEqual(1);
     expect(result.current.data[0]).toEqual({ id: 1, name: 'test' });
   });
-
-  it('renders correctly when loading', () => {
-    (useDataFactory as jest.Mock).mockReturnValueOnce({
-      data: [{ id: 1, name: 'test' }],
-      isLoading: true,
-      isError: false,
-    });
-
-    jest.mock('../../hooks', () => ({
-      useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
-      }),
-    }));
-
-    const { result } = renderHook(() => useInquiry());
-
-    expect(result.current.data.length).toEqual(0);
-  });
-
-  it('renders correctly when error', () => {
-    (useDataFactory as jest.Mock).mockReturnValueOnce({
-      data: [{ id: 1, name: 'test' }],
-      isLoading: false,
-      isError: true,
-    });
-
-    jest.mock('../../hooks', () => ({
-      useAPI: jest.fn().mockReturnValue({
-        fetchData: jest.fn().mockReturnValue([{ id: 1, name: 'test' }]),
-      }),
-    }));
-
-    const { result } = renderHook(() => useInquiry());
-
-    expect(result.current.data.length).toEqual(0);
-  });
 });

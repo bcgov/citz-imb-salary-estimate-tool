@@ -5,6 +5,11 @@ jest.mock('../../assets/logo.png', () => 'test-file-stub');
 jest.mock('../buttons/AuthenticationButton', () => ({
   AuthenticationButton: () => <div>AuthenticationButton Test</div>,
 }));
+jest.mock('../../hooks/useAuthentication/useAuthentication', () => ({
+  useAuthentication: () => ({
+    isAuthenticated: true,
+  }),
+}));
 
 describe('Navbar', () => {
   it('renders correctly', () => {

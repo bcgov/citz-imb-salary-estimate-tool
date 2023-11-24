@@ -4,7 +4,7 @@
  *
  */
 import { useCallback } from 'react';
-import { fetchAPI } from './fetchAPI';
+import { callAPI } from './callAPI';
 
 export const useAPI = () => {
   const fetchOptions = useCallback((options: RequestInit = {}) => {
@@ -35,8 +35,8 @@ export const useAPI = () => {
   }, []);
 
   const fetchData = useCallback(
-    async (endPoint: string) => {
-      const response = await fetchAPI(endPoint, fetchOptions());
+    async <TDataType>(endPoint: string) => {
+      const response = await callAPI<TDataType>(endPoint, fetchOptions());
 
       return response;
     },

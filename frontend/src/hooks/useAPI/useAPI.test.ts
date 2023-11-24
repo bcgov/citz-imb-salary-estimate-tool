@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { useAPI } from './useAPI';
-import { fetchAPI } from './fetchAPI';
+import { callAPI } from './callAPI';
 
 // Mock the global fetch function
 const mockFetch = jest.fn(() =>
@@ -9,11 +9,11 @@ const mockFetch = jest.fn(() =>
     json: () => Promise.resolve('mock data'),
   })
 );
-(fetchAPI as jest.Mock) = mockFetch;
+(callAPI as jest.Mock) = mockFetch;
 
 describe('useAPI', () => {
   beforeEach(() => {
-    (fetchAPI as jest.Mock).mockClear();
+    (callAPI as jest.Mock).mockClear();
   });
 
   it('returns an object containing a fetchData method', () => {

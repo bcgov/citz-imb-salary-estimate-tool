@@ -22,7 +22,7 @@ import { QueryKey, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
-export const useDataFactory = <T>({
+export const useDataFactory = <TDataType>({
   endPoint: tableName,
   dataId,
 }: {
@@ -47,11 +47,15 @@ export const useDataFactory = <T>({
     queryFn: async () => {
       const response = await fetchData(endPoint);
 
-      return response as T[];
+      return response as TDataType[];
     },
   });
 
-  return { ...query };
+  const append = (item: TDataType) => {
+    console.log('append', item);
+  };
+
+  return { ...query, append };
 };
 
 export default useDataFactory;

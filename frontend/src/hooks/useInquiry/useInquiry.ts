@@ -36,6 +36,9 @@ export const useInquiry = (dataId: string = '') => {
     ...inquiryData,
     data,
     columns: columnsInquiry,
+    append: (item: InquiryData) => {
+      inquiryData.append(item);
+    },
   };
 };
 

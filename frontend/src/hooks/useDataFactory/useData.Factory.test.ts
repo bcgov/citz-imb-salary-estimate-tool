@@ -18,6 +18,7 @@ describe('useDataFactory', () => {
     });
     expect(result.current.data).toBe('test data');
   });
+
   it('renders correctly with dataId', () => {
     const { result } = renderHook(useDataFactory, {
       initialProps: { endPoint, dataId },

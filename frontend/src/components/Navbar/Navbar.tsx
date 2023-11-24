@@ -1,6 +1,7 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { AuthenticationButton } from '../buttons/AuthenticationButton';
 import Logo from '../../assets/logo.png';
+import { useAuthentication } from '../../hooks/useAuthentication/useAuthentication';
 
 type NavbarProps = {
   title?: string;
@@ -8,6 +9,7 @@ type NavbarProps = {
 
 export const Navbar = (props: NavbarProps) => {
   const { title } = props;
+  const { isAuthenticated } = useAuthentication();
 
   return (
     <AppBar position="static">
@@ -21,7 +23,7 @@ export const Navbar = (props: NavbarProps) => {
         <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
           {title}
         </Typography>
-        <AuthenticationButton />
+        {isAuthenticated ? <AuthenticationButton /> : null}
       </Toolbar>
       <Box role="presentation" sx={{ height: 5 }} bgcolor="#FCBA19" />
     </AppBar>

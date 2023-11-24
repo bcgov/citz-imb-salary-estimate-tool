@@ -1,14 +1,10 @@
 import { Box } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 import { ErrorDialog, Loading, TableContainer } from '../components';
-import { useInquiry } from '../hooks';
+import { useAuthentication, useInquiry } from '../hooks';
 
-interface InquiryProps {
-  isAuthenticated?: boolean;
-}
-
-export const Inquiry = (props: InquiryProps) => {
-  const { isAuthenticated } = props;
+export const Inquiry = () => {
+  const { isAuthenticated } = useAuthentication();
   const { data, columns, isLoading, isError, error } = useInquiry();
 
   if (!isAuthenticated) return <Navigate replace to="/" />;
@@ -26,10 +22,6 @@ export const Inquiry = (props: InquiryProps) => {
       />
     </Box>
   );
-};
-
-Inquiry.defaultProps = {
-  isAuthenticated: false,
 };
 
 export default Inquiry;

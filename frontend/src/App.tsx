@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
@@ -6,7 +6,7 @@ import { Home, Inquiry } from './pages';
 import { useAuthentication } from './hooks';
 
 const App = () => {
-  const { isAuthenticated, KeycloakProvider } = useAuthentication();
+  const { KeycloakProvider } = useAuthentication();
 
   return (
     <KeycloakProvider>
@@ -19,18 +19,10 @@ const App = () => {
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
-          <Navbar>
-            <Typography variant="h4">Salary Estimation Tool</Typography>
-          </Navbar>
+          <Navbar title="Salary Estimation Tool" />
           <Routes>
-            <Route
-              path="/"
-              element={<Home isAuthenticated={isAuthenticated} />}
-            />
-            <Route
-              path="/Inquiry"
-              element={<Inquiry isAuthenticated={isAuthenticated} />}
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/Inquiry" element={<Inquiry />} />
           </Routes>
         </Box>
         <Footer />

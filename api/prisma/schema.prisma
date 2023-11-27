@@ -61,7 +61,6 @@ model User {
 
 }
 
-// Add optional employeeID
 model Inquiry {
   id Int @id @default(autoincrement())
   employee_id Int?
@@ -100,13 +99,13 @@ model Inquiry {
   adm_user User? @relation(fields: [adm_user_id], references: [guid], name: "adm")
 }
 
-model PastSalaries {
+model salaryData {
   id Int @id @default(autoincrement())
   organization String?
   program String?
   program_division String?
   position_number Int?
-  Title String?
+  title String?
   job_code Int?
   classification String?
   appointment String?

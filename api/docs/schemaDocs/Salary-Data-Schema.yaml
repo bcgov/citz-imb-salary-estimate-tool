@@ -1,0 +1,60 @@
+components:
+  schemas:
+    SalaryData:
+      type: object
+      description: Past Salary data used to make new salary estimations
+      properties:
+        organization:
+          type: string
+          example: Citizen Services
+        program:
+          type: string
+          example: OCIO Enterprise Services
+        program_division:
+          type: string
+          example: Information Management Branch
+        position_number:
+          type: number
+          example: 124008
+        title:
+          type: string
+          example: Intermediate Developer, Java
+        job_code:
+          type: number
+          example: 508010
+        classification:
+          type: string
+          example: Band 3
+        appointment:
+          type: string
+          example: R
+        schedule:
+          type: string
+          example: P
+        supervisor_position_number:
+          type: number
+          example: 129079
+        employee_id:
+          type: number
+          example: 174833
+        employee_job_code:
+          type: number
+          example: 508011
+        employee_classification:
+          type: string
+          example: Band 3
+        step:
+          type: number
+          example: 2
+        position_job_code_max_annual_rate:
+          type: number
+          example: 136700.11
+        employee_job_code_max_annual_rate:
+          type: number
+          example: 136700.11
+        abbr:
+          type: number
+          example: 105000
+        ama:
+          type: number
+          example: 349.08

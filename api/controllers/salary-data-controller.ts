@@ -23,26 +23,6 @@ export const createSalaryData = async (req: Request, res: Response) => {
     }
 };
 
-// /**
-//  * @summary Updates Salary Data entry
-//  * @author dallascrichmond
-//  */
-// export const updateSalaryData = async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     const salaryDataId: number = +id;
-//     try {
-//         const response = await prisma.salaryData.update({
-//             where: {
-//                 id: salaryDataId
-//             },
-//             data: req.body,
-//         });
-//         return res.status(204).json(response);
-//     } catch (error) {
-//         return res.status(400).json(error);
-//     }
-// };
-
 /**
  * @summary Deletes salary data based on ID
  * @author dallascrichmond

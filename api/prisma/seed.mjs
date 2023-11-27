@@ -9,6 +9,7 @@ import {
     processes,
     users,
     inquiries,
+    salaryData,
 } from './data.mjs';
 
 const prisma = new PrismaClient();
@@ -20,7 +21,7 @@ const environment = process.env.NODE_ENV || "production";
 /**
  * @summary Seeds all the necessary base data in both dev and prod. 
  * Checks for any changes to existing tables and updates accordingly
- * @author Dallascrichmond
+ * @author dallascrichmond
  */
 async function seedBase() {
     const seedingPromises = [];
@@ -79,7 +80,7 @@ async function seedBase() {
 
 /**
  * @summary Seeds users in dev
- * @author Dallascrichmond
+ * @author dallascrichmond
  */
 async function seedUsers() {
     const seedingPromises = users.map(user => prisma.user.upsert({
@@ -93,11 +94,23 @@ async function seedUsers() {
 
 /**
  * @summary Seeds inquiries in dev
- * @author Dallascrichmond
+ * @author dallascrichmond
  */
 async function seedInquiries() {
     const seedingPromises = inquiries.map(inquiry => prisma.inquiry.create({
         data: inquiry,
+    }));
+
+    await Promise.all(seedingPromises);
+}
+
+/**
+ * @summary Seeds Salary Data in dev
+ * @author dallascrichmond
+ */
+async function seedSalaryData() {
+    const seedingPromises = salaryData.map(data => prisma.salaryData.create({
+        data
     }));
 
     await Promise.all(seedingPromises);
@@ -109,6 +122,7 @@ async function seedInquiries() {
         if (environment === "development") {
             await seedUsers();
             await seedInquiries();
+            await seedSalaryData();
         }
     } catch (error) {
         // eslint-disable-next-line no-console

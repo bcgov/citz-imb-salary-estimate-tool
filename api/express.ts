@@ -43,6 +43,7 @@ app.use(
 app.use('/', routers.healthRouter);
 app.use('/', routers.inquiryRouter);
 app.use('/', routers.userRouter);
+app.use('/', routers.salaryDataRouter);
 
 // Integrate global error handler after routes to cover all ends.
 app.use(middleware.globalErrorHandler);

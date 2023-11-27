@@ -17,13 +17,13 @@ const router = express.Router();
 router.route('/salary')
     .post(createSalaryData);
 
+// GET salary data by title, positionNumber, jobCode, or employeeId
+router.route('/salary/data')
+    .get(getSalaryDataByParams);
+
 // GET, UPDATE and DELETE salary data by id
 router.route('/salary/:id')
     .get(getSalaryDataById)
     .delete(deleteSalaryData);
-
-// GET salary data by title, positionNumber, jobCode, or employeeId
-router.route('/salary/data')
-    .get(getSalaryDataByParams);
 
 export default router;

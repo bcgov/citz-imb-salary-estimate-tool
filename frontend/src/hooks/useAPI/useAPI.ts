@@ -45,10 +45,9 @@ export const useAPI = () => {
 
   const appendItem = useCallback(
     async <TDataType>(endPoint: string, item: TDataType) => {
-      const body = JSON.stringify(item);
       const response = await callAPI<TDataType>(
         endPoint,
-        callAPIOptions({ method: 'POST', body })
+        callAPIOptions({ method: 'POST', body: item as BodyInit })
       );
 
       return response as TDataType;

@@ -1,32 +1,47 @@
 import { renderHook } from '@testing-library/react';
 import { useAPI } from './useAPI';
-import { callAPI } from './callAPI';
-
-// Mock the global fetch function
-const mockFetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve('mock data'),
-  })
-);
-(callAPI as jest.Mock) = mockFetch;
 
 describe('useAPI', () => {
-  beforeEach(() => {
-    (callAPI as jest.Mock).mockClear();
+  const testData = [{ data: 'test data' }];
+
+  beforeAll(() => {
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(testData),
+      })
+    );
   });
 
-  it('returns an object containing a fetchData method', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('returns an object containing fetchData and appendItem methods', () => {
     const { result } = renderHook(() => useAPI());
     expect(typeof result.current).toBe('object');
     expect(result.current).toHaveProperty('fetchData', expect.any(Function));
+    expect(result.current).toHaveProperty('appendItem', expect.any(Function));
   });
 
-  it('fetchData returns an ok property and a json method', async () => {
+  it('fetchData returns an array of items', async () => {
     const { result } = renderHook(() => useAPI());
-    const fetchOptions = await result.current.fetchData('test');
+    const response = await result.current.fetchData('test');
 
-    expect(fetchOptions).toHaveProperty('ok', true);
-    expect(fetchOptions).toHaveProperty('json', expect.any(Function));
+    expect(response).toEqual(testData);
+  });
+
+  it('appendItem returns an item', async () => {
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(testData[0]),
+      })
+    );
+
+    const { result } = renderHook(() => useAPI());
+    const response = await result.current.appendItem('test', testData[0]);
+
+    expect(response).toEqual(testData[0]);
   });
 });

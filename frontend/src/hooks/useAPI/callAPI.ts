@@ -18,7 +18,7 @@ export const callAPI = async <TDataType>(
     if (options?.method?.toLowerCase() === 'delete') return null as TDataType;
 
     const payload = await response.json();
-    console.log({ payload });
+
     return payload as TDataType;
   }
 

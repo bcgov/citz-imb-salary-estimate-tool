@@ -79,17 +79,34 @@ describe('Testing routes for /salary/** endpoints', () => {
 
     });
 
-    // test('Inquiry is retrieved by its id', async () => {
-    //     const response = await request.get(`/inquiry/${inquiryID}`);
-    //     expect(response.ok).toBe(true);
-    //     expect(response.status).toBe(200);
-    //     // Same ID that was POSTed earlier in the test suite
-    //     expect(response.body.id).toBe(inquiryID);
-    // });
+    test('Salary Data is retrieved by its id', async () => {
+        const response = await request.get(`/salary/${salaryDataID}`);
+        expect(response.ok).toBe(true);
+        expect(response.status).toBe(200);
+        // Same ID that was POSTed earlier in the test suite
+        expect(response.body.id).toBe(salaryDataID);
+    });
 
-    // test('Inquiry by id not found', async () => {
-    //     const response = await request.get('/inquiry/999999');
-    //     expect(response.ok).toBe(false);
-    //     expect(response.status).toBe(404);
-    // });
+    test('Salary Data by id not found', async () => {
+        const response = await request.get('/salary/999999');
+        expect(response.ok).toBe(false);
+        expect(response.status).toBe(404);
+    });
+
+    test('Delete an Salary Data entry by id', async () => {
+        let response = await request.delete(`/salary/${salaryDataID}`);
+        expect(response.ok).toBe(true);
+        expect(response.status).toBe(200);
+
+        // Checks to make sure the inquiry has been deleted
+        response = await request.get(`/salary/${salaryDataID}`);
+        expect(response.ok).toBe(false);
+        expect(response.status).toBe(404);
+    });
+
+    test('Attempts to delete a Salary Data entry with invalid ID', async () => {
+        let response = await request.delete('/salary/99999');
+        expect(response.ok).toBe(false);
+        expect(response.status).toBe(400);
+    });
 });

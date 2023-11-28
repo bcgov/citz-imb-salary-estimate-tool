@@ -18,7 +18,12 @@
  * - add a way to update a record
  * - add a way to delete a record
  */
-import { QueryKey, useQuery } from '@tanstack/react-query';
+import {
+  QueryKey,
+  useQuery,
+  useQueryClient,
+  useMutation,
+} from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
@@ -41,6 +46,7 @@ export const useDataFactory = <TDataType>({
   }, [dataId, tableName]);
 
   const api = useAPI();
+  const queryClient = useQueryClient();
 
   const query = useQuery({
     queryKey,
@@ -57,11 +63,37 @@ export const useDataFactory = <TDataType>({
     return query.data;
   }, [query.data, query.isError, query.isLoading]);
 
-  const append = async (item: TDataType): Promise<TDataType> => {
-    const results = await api.appendItem<TDataType>(endPoint, item);
+  const mutationFn = (item: TDataType) =>
+    api.appendItem<TDataType>(endPoint, item);
 
-    return results;
+  const onMutate = async (newItem: TDataType) => {
+    const previousValues = queryClient.getQueryData(queryKey);
+    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
+      ...oldValues,
+      newItem,
+    ]);
+    return previousValues;
   };
+
+  const onError = (error, newItem, context) =>
+    queryClient.setQueryData(queryKey, context);
+
+  const onSettled = async (data, error, newItem, context) => {
+    await queryClient.refetchQueries({ queryKey });
+  };
+
+  const { mutate: append } = useMutation({
+    mutationFn,
+    onMutate,
+    onError,
+    onSettled,
+  });
+
+  // const append = async (item: TDataType): Promise<TDataType> => {
+  //   const results = await api.appendItem<TDataType>(endPoint, item);
+
+  //   return results;
+  // };
 
   return { ...query, data, append };
 };

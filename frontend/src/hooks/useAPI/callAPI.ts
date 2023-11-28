@@ -7,6 +7,7 @@
  * @param options
  * @returns
  */
+
 export const callAPI = async <TDataType>(
   endPoint: string,
   options: RequestInit
@@ -21,6 +22,9 @@ export const callAPI = async <TDataType>(
 
     return payload as TDataType;
   }
+
+  const errorPayload = await response.json();
+  console.error('Server Error Message:', errorPayload);
 
   throw new Error(response.statusText);
 };

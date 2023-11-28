@@ -57,8 +57,8 @@ export const useDataFactory = <TDataType>({
     return query.data;
   }, [query.data, query.isError, query.isLoading]);
 
-  const append = (item: TDataType): TDataType => {
-    const results = api.appendItem<TDataType>(endPoint, item as BodyInit);
+  const append = async (item: TDataType): Promise<TDataType> => {
+    const results = await api.appendItem<TDataType>(endPoint, item);
 
     return results;
   };

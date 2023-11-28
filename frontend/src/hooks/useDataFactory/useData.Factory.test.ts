@@ -34,21 +34,24 @@ describe('useDataFactory', () => {
     expect(result.current.data[0]).toBe('test data');
   });
 
-  it('returns append correctly', () => {
+  it('returns append correctly', async () => {
+    const testData = { name: 'test-name' };
+
     (useAPI as jest.Mock).mockReturnValue({
-      appendItem: jest.fn().mockReturnValue({ data: 'test data' }),
+      appendItem: jest.fn().mockReturnValue(testData),
     });
 
-    const { result } = renderHook(useDataFactory, {
+    const { result } = await renderHook(useDataFactory, {
       initialProps: { endPoint },
     });
 
-    act(() => {
-      result.current.append('test data');
+    let response;
+    await act(async () => {
+      response = await result.current.append(testData);
     });
 
     expect(result.current.append).toBeDefined();
-    expect(useAPI().appendItem).toHaveBeenCalledWith(endPoint, 'test data');
-    expect(result.current.append('test data')).toEqual({ data: 'test data' });
+    expect(useAPI().appendItem).toHaveBeenCalledWith(endPoint, testData);
+    expect(response).toEqual(testData);
   });
 });

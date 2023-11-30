@@ -1,0 +1,102 @@
+paths:
+  /salary:
+    post:
+      tags:
+        - Salary Data
+      summary: Creates new Salary Data entry
+      consumes:
+        - application/json
+      requestBody:
+        content:
+          application/json:
+            name: Salary Data
+            description: Past Salary Data
+            schema:
+              $ref: '#/components/schemas/SalaryData'
+      responses:
+        '201':
+          $ref: '#/components/responses/201Created'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+  /salary/data:
+    get:
+      tags:
+        - Salary Data
+      summary: Gets all Salary Data associated with title, employeeId, jobCode, or positionNumber
+      parameters:
+        - in: query
+          name: title
+          schema:
+            type: string
+            example: 'Intermediate Developer, Java'
+          required: false
+          description: The title of the position
+        - in: query
+          name: positionNumber
+          schema:
+            type: number
+            example: 124008
+          required: false
+          description: The unique number associated with a position
+        - in: query
+          name: jobCode
+          schema:
+            type: number
+            example: 508010
+          required: false
+          description: The number associate with a type of job
+        - in: query
+          name: employeeId
+          schema:
+            type: number
+            example: 174833
+          required: false
+          description: The unique id associated with an employee
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalaryData'
+  /salary/{id}:
+    get:
+      tags:
+        - Salary Data
+      summary: Returns Salary Data 
+      description: Returns a Salary Data entry by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+            description: The Salary Data ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalaryData'
+    delete:
+      tags:
+        - Salary Data
+      summary: Deletes a Salary Data entry from the database
+      description: Deletes a Salary Data entry from the database using an id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+            description: The Salary Data ID
+      responses:
+        '200':
+          description: OK

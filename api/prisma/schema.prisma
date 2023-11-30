@@ -63,6 +63,7 @@ model User {
 
 model Inquiry {
   id Int @id @default(autoincrement())
+  employee_id Int?
   status_id Int
   status Status @relation(fields: [status_id], references: [id])
   inquiry_submission_date DateTime @default(now())
@@ -96,4 +97,27 @@ model Inquiry {
   shr_user User? @relation(fields: [shr_user_id], references: [guid], name: "shr")
   adm_user_id String?
   adm_user User? @relation(fields: [adm_user_id], references: [guid], name: "adm")
+}
+
+model salaryData {
+  id Int @id @default(autoincrement())
+  organization String?
+  program String?
+  program_division String?
+  position_number Int?
+  title String?
+  job_code Int?
+  classification String?
+  appointment String?
+  schedule String?
+  supervisor_position_number Int?
+  employee_id Int?
+  employee_job_code Int?
+  employee_classification String?
+  step Int?
+  position_job_code_max_annual_rate Int?
+  employee_job_code_max_annual_rate Int?
+  abbr Int?
+  ama Int?
+  created_at DateTime @default(now())
 }

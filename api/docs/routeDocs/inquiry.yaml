@@ -106,3 +106,18 @@ paths:
               schema:
                 type: string
                 example: 'Record state updated to DENIED.'
+    delete:
+      tags:
+        - Inquiry
+      summary: Deletes a Inquiry entry from the database
+      description: Deletes a Inqiury entry from the database using an id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+            description: The Inquiry ID
+      responses:
+        '200':
+          description: OK

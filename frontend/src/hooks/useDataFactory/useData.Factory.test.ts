@@ -1,6 +1,5 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { useDataFactory } from './useData.Factory';
-import { useAPI } from '../useAPI/useAPI';
 
 jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn().mockReturnValue({ data: ['test data'] }),

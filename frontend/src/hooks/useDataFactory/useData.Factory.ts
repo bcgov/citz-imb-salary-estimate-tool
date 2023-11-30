@@ -70,7 +70,10 @@ export const useDataFactory = <TDataType>({
     const previousValues = queryClient.getQueryData(queryKey);
     queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
       ...oldValues,
-      newItem,
+      {
+        id: 'new',
+        ...newItem,
+      },
     ]);
     return previousValues;
   };
@@ -78,7 +81,7 @@ export const useDataFactory = <TDataType>({
   const onError = (error, newItem, context) =>
     queryClient.setQueryData(queryKey, context);
 
-  const onSettled = async (data, error, newItem, context) => {
+  const onSettled = async () => {
     await queryClient.refetchQueries({ queryKey });
   };
 
@@ -88,12 +91,6 @@ export const useDataFactory = <TDataType>({
     onError,
     onSettled,
   });
-
-  // const append = async (item: TDataType): Promise<TDataType> => {
-  //   const results = await api.appendItem<TDataType>(endPoint, item);
-
-  //   return results;
-  // };
 
   return { ...query, data, append };
 };

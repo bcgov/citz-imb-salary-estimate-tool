@@ -8,18 +8,18 @@ import {
     getSalaryDataById,
     getSalaryDataByParams,
     createSalaryData,
-    deleteSalaryData
+    deleteSalaryData,
+    getSalaryData
 } from '../controllers/salary-data-controller';
 
 const router = express.Router();
 
-// CREATE salary data
+// CREATE salary data, GET salary data by title, positionNumber, jobCode, or employeeId
+// or get all salary data
 router.route('/salary')
-    .post(createSalaryData);
-
-// GET salary data by title, positionNumber, jobCode, or employeeId
-router.route('/salary/data')
-    .get(getSalaryDataByParams);
+    .post(createSalaryData)
+    .get(getSalaryDataByParams)
+    .get(getSalaryData);
 
 // GET, UPDATE and DELETE salary data by id
 router.route('/salary/:id')

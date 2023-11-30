@@ -24,6 +24,22 @@ export const createSalaryData = async (req: Request, res: Response) => {
 };
 
 /**
+ * @summary Returns all salary data
+ * @author dallascrichmond
+ */
+export const getSalaryData = async (req: Request, res: Response) => {
+    try {
+        const salaryData = await prisma.salaryData.findMany();
+        if(salaryData.length !== 0){
+            return res.status(200).json(salaryData);
+        }
+        return res.status(404).send(httpResponses[404]);
+    } catch (error) {
+        return res.status(400).json(httpResponses[400]);
+    }
+};
+
+/**
  * @summary Deletes salary data based on ID
  * @author dallascrichmond
  */

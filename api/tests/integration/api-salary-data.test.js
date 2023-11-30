@@ -35,25 +35,25 @@ describe('Testing routes for /salary/** endpoints', () => {
     });
 
     test('GET Salary Data by title, position number, jobe code or employee id', async () => {
-        let response = await request.get('/salary/data').query({ title: 'Intermediate Developer, Java'});
+        let response = await request.get('/salary').query({ title: 'Intermediate Developer, Java'});
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // Ensures at least one Salary Data entry is returned
         expect(response.body.length).toBeGreaterThan(0);
 
-        response = await request.get('/salary/data').query({ positionNumber: 124008});
+        response = await request.get('/salary').query({ positionNumber: 124008});
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // Ensures at least one Salary Data entry is returned
         expect(response.body.length).toBeGreaterThan(0);
         
-        response = await request.get('/salary/data').query({ jobCode: 508010});
+        response = await request.get('/salary').query({ jobCode: 508010});
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // Ensures at least one Salary Data entry is returned
         expect(response.body.length).toBeGreaterThan(0);
 
-        response = await request.get('/salary/data').query({ employeeId: 174833});
+        response = await request.get('/salary').query({ employeeId: 174833});
         expect(response.ok).toBe(true);
         expect(response.status).toBe(200);
         // Ensures at least one Salary Data entry is returned
@@ -61,19 +61,19 @@ describe('Testing routes for /salary/** endpoints', () => {
     });
 
     test('Salary Data does not exist for title, position number, jobe code or employee id', async () => {
-        let response = await request.get('/salary/data').query({ title: 'Manager'});
+        let response = await request.get('/salary').query({ title: 'Manager'});
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);
 
-        response = await request.get('/salary/data').query({ positionNumber: 259725});
+        response = await request.get('/salary').query({ positionNumber: 259725});
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);
         
-        response = await request.get('/salary/data').query({ jobCode: 259725});
+        response = await request.get('/salary').query({ jobCode: 259725});
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);
 
-        response = await request.get('/salary/data').query({ employeeId: 259725});
+        response = await request.get('/salary').query({ employeeId: 259725});
         expect(response.ok).toBe(false);
         expect(response.status).toBe(404);
 

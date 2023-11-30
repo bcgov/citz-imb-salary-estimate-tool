@@ -18,11 +18,16 @@
  * - add a way to update a record
  * - add a way to delete a record
  */
-import { QueryKey, useQuery } from '@tanstack/react-query';
+import {
+  QueryKey,
+  useQuery,
+  useQueryClient,
+  useMutation,
+} from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
 
-export const useDataFactory = <T>({
+export const useDataFactory = <TDataType>({
   endPoint: tableName,
   dataId,
 }: {
@@ -34,24 +39,60 @@ export const useDataFactory = <T>({
     [dataId, tableName]
   );
 
-  const endPoint: string = useMemo(() => {
+  const endPoint = useMemo(() => {
     if (dataId) return `${tableName}/${dataId}`;
 
     return tableName;
   }, [dataId, tableName]);
 
-  const { fetchData } = useAPI();
+  const api = useAPI();
+  const queryClient = useQueryClient();
 
   const query = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await fetchData(endPoint);
+      const response = await api.fetchData<TDataType[]>(endPoint);
 
-      return response as T[];
+      return response;
     },
   });
 
-  return { ...query };
+  const data = useMemo(() => {
+    if (query.isLoading || query.isError || !query.data) return [];
+
+    return query.data;
+  }, [query.data, query.isError, query.isLoading]);
+
+  const mutationFn = (item: TDataType) =>
+    api.appendItem<TDataType>(endPoint, item);
+
+  const onMutate = async (newItem: TDataType) => {
+    const previousValues = queryClient.getQueryData(queryKey);
+    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
+      ...oldValues,
+      {
+        id: 'new',
+        ...newItem,
+      },
+    ]);
+    return previousValues;
+  };
+
+  const onError = (error, newItem, context) =>
+    queryClient.setQueryData(queryKey, context);
+
+  const onSettled = async () => {
+    await queryClient.refetchQueries({ queryKey });
+  };
+
+  const { mutate: append } = useMutation({
+    mutationFn,
+    onMutate,
+    onError,
+    onSettled,
+  });
+
+  return { ...query, data, append };
 };
 
 export default useDataFactory;

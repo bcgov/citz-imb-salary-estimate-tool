@@ -4,10 +4,10 @@
  *
  */
 import { useCallback } from 'react';
-import { fetchAPI } from './fetchAPI';
+import { callAPI } from './callAPI';
 
 export const useAPI = () => {
-  const fetchOptions = useCallback((options: RequestInit = {}) => {
+  const callAPIOptions = useCallback((options: RequestInit = {}) => {
     const {
       method = 'GET',
       headers: optionHeaders,
@@ -35,15 +35,27 @@ export const useAPI = () => {
   }, []);
 
   const fetchData = useCallback(
-    async (endPoint: string) => {
-      const response = await fetchAPI(endPoint, fetchOptions());
+    async <TDataType>(endPoint: string) => {
+      const response = await callAPI<TDataType>(endPoint, callAPIOptions());
 
       return response;
     },
-    [fetchOptions]
+    [callAPIOptions]
   );
 
-  return { fetchData };
+  const appendItem = useCallback(
+    async <TDataType>(endPoint: string, item: TDataType) => {
+      const response = await callAPI<TDataType>(
+        endPoint,
+        callAPIOptions({ method: 'POST', body: item as BodyInit })
+      );
+
+      return response as TDataType;
+    },
+    [callAPIOptions]
+  );
+
+  return { appendItem, fetchData };
 };
 
 export default useAPI;

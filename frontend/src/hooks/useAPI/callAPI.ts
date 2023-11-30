@@ -7,19 +7,26 @@
  * @param options
  * @returns
  */
-export const fetchAPI = async (endPoint: string, options: RequestInit) => {
+
+export const callAPI = async <TDataType>(
+  endPoint: string,
+  options: RequestInit
+): Promise<TDataType | null> => {
   const url = `/api/${endPoint}`;
   const response = await fetch(url, options);
 
   if (response.ok) {
-    if (options?.method?.toLowerCase() === 'delete') return null;
+    if (options?.method?.toLowerCase() === 'delete') return null as TDataType;
 
     const payload = await response.json();
 
-    return payload;
+    return payload as TDataType;
   }
+
+  const errorPayload = await response.json();
+  console.error('Server Error Message:', errorPayload);
 
   throw new Error(response.statusText);
 };
 
-export default fetchAPI;
+export default callAPI;

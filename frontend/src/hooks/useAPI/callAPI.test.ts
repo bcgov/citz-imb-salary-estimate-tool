@@ -1,4 +1,4 @@
-import { fetchAPI } from './fetchAPI';
+import { callAPI } from './callAPI';
 
 // Mock the global fetch function
 const mockFetch = jest.fn(() =>
@@ -15,14 +15,14 @@ describe('fetchAPI', () => {
   });
 
   it('returns data from the API for GET request', async () => {
-    const data = await fetchAPI('test', { method: 'GET' });
+    const data = await callAPI('test', { method: 'GET' });
     expect(data).toBe('mock data');
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith('/api/test', { method: 'GET' });
   });
 
   it('returns null for POST request', async () => {
-    const data = await fetchAPI('test', { method: 'POST' });
+    const data = await callAPI('test', { method: 'POST' });
     expect(data).toBe('mock data');
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith('/api/test', {
@@ -31,7 +31,7 @@ describe('fetchAPI', () => {
   });
 
   it('returns null for PATCH request', async () => {
-    const data = await fetchAPI('test', { method: 'PATCH' });
+    const data = await callAPI('test', { method: 'PATCH' });
     expect(data).toBe('mock data');
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith('/api/test', {
@@ -40,7 +40,7 @@ describe('fetchAPI', () => {
   });
 
   it('returns null for DELETE request', async () => {
-    const data = await fetchAPI('test', { method: 'DELETE' });
+    const data = await callAPI('test', { method: 'DELETE' });
     expect(data).toBeNull();
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith('/api/test', {

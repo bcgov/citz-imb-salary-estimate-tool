@@ -1,5 +1,6 @@
 export * from './Footer/Footer';
 export * from './Navbar/Navbar';
+export * from './buttons/AddButton';
 export * from './buttons/AuthenticationButton';
 export * from './buttons/Button';
 export * from './dialogs/AuthenticationDialog';

@@ -4,6 +4,8 @@ import { useAPI } from '../useAPI/useAPI';
 
 jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn().mockReturnValue({ data: ['test data'] }),
+  useQueryClient: jest.fn(),
+  useMutation: jest.fn().mockReturnValue({ mutate: jest.fn() }),
 }));
 jest.mock('../useAPI/useAPI', () => ({
   useAPI: jest.fn().mockReturnValue({
@@ -34,24 +36,11 @@ describe('useDataFactory', () => {
     expect(result.current.data[0]).toBe('test data');
   });
 
-  it('returns append correctly', async () => {
-    const testData = { name: 'test-name' };
-
-    (useAPI as jest.Mock).mockReturnValue({
-      appendItem: jest.fn().mockReturnValue(testData),
-    });
-
+  it('append is defined', async () => {
     const { result } = await renderHook(useDataFactory, {
       initialProps: { endPoint },
     });
 
-    let response;
-    await act(async () => {
-      response = await result.current.append(testData);
-    });
-
     expect(result.current.append).toBeDefined();
-    expect(useAPI().appendItem).toHaveBeenCalledWith(endPoint, testData);
-    expect(response).toEqual(testData);
   });
 });

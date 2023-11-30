@@ -10,3 +10,4 @@ export * from './loading/Loading';
 export * from './table/TableContainer';
 export * from './tablecells/DateCell';
 export * from './tablecells/StatusCell';
+export * from './tablecells/RolesCell';

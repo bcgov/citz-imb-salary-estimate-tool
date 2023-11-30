@@ -21,10 +21,11 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   columns: GridColDef[];
   tableName: string;
   addAction?: () => void;
+  getRowId?: (row: T) => string;
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { rows, columns, tableName, addAction } = props;
+  const { rows, columns, tableName, addAction, getRowId } = props;
 
   return (
     <Box padding={1} sx={{ flexGrow: 1 }}>
@@ -43,6 +44,7 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
         initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
         pageSizeOptions={[10, 20, 50, 100]}
         disableRowSelectionOnClick
+        getRowId={getRowId}
       />
     </Box>
   );
@@ -50,6 +52,7 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
 
 TableContainer.defaultProps = {
   addAction: null,
+  getRowId: null,
 };
 
 export default TableContainer;

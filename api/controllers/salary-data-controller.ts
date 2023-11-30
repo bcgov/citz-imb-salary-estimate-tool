@@ -19,7 +19,7 @@ export const createSalaryData = async (req: Request, res: Response) => {
         });
         return res.status(201).json(response);
     } catch (error) {
-        return res.status(400).json(error);
+        return res.status(400).json(httpResponses[400]);
     }
 };
 
@@ -38,7 +38,7 @@ export const deleteSalaryData = async (req: Request, res: Response) => {
         });
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(400).json(error);
+        return res.status(400).json(httpResponses[400]);
     }
 };
 
@@ -60,7 +60,7 @@ export const getSalaryDataById = async (req: Request, res: Response) => {
         }
         return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        return res.status(400).json(error);
+        return res.status(400).json(httpResponses[400]);
     }
 };
 
@@ -99,6 +99,6 @@ export const getSalaryDataByParams = async (req: Request, res: Response) => {
         }
         return res.status(404).send(httpResponses[404]);
     } catch (error) {
-        return res.status(400).json(error);
+        return res.status(400).json(httpResponses[400]);
     }
 };

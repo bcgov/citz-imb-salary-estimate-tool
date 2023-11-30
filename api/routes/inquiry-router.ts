@@ -1,6 +1,6 @@
 /**
- * @summary This is the Salary Inquiry Endpoint for SET, its purpose is to provide health
- *          do CRUD operations on the Salary inquiries
+ * @summary This is the Salary Inquiry Endpoint for SET, its purpose is to provide
+ *          perform CRUD operations on the Salary inquiries
  * @author dallascrichmond
  */
 import express from 'express';

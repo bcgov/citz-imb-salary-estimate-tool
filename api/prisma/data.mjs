@@ -51,7 +51,7 @@ export const users = [
         user_first_name: 'Dallas',
         user_last_name: 'Richmond',
         roles: [
-            'HM',
+            'hm',
         ],
     },
     {
@@ -61,7 +61,7 @@ export const users = [
         user_first_name: 'Carl',
         user_last_name: 'Thomas',
         roles: [
-            'SHR',
+            'shr',
         ],
     },
     {

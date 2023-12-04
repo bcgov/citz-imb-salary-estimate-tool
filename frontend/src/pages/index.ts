@@ -1,3 +1,3 @@
 export * from './Home';
 export * from './Inquiry';
-export * from './Inquiry.Form';
+export * from './Inquiry.New';

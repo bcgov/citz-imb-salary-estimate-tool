@@ -58,7 +58,7 @@ export const fieldsInquiry = [
   {
     name: 'current_ministry_id',
     label: 'current_ministry_id',
-    type: 'dropdown',
+    type: 'select',
     // required: true,
     defaultValue: '',
   },
@@ -107,14 +107,14 @@ export const fieldsInquiry = [
   {
     name: 'appointment_type_id',
     label: 'appointment_type_id',
-    type: 'dropdown',
+    type: 'select',
     // required: true,
     defaultValue: '',
   },
   {
     name: 'process_type_id',
     label: 'process_type_id',
-    type: 'dropdown',
+    type: 'select',
     // required: true,
     defaultValue: '',
   },

@@ -24,6 +24,8 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
     'react/jsx-props-no-spreading': 0,
+    'react/no-children-prop': 0,
+    'no-case-declarations': 'warn',
     'import/prefer-default-export': 'warn',
     '@tanstack/query/exhaustive-deps': 0,
   },

@@ -26,11 +26,6 @@ export const StatusCell = (props: StatusCellProps) => {
   } = { severity: 'info', text: '', variant: 'outlined' };
 
   switch (value) {
-    case State.new:
-      actionProps.severity = 'info';
-      actionProps.variant = 'outlined';
-      actionProps.text = 'New';
-      break;
     case State.draft:
       actionProps.severity = 'info';
       actionProps.variant = 'outlined';
@@ -62,9 +57,9 @@ export const StatusCell = (props: StatusCellProps) => {
 
       break;
     default:
-      actionProps.severity = 'error';
-      actionProps.variant = 'filled';
-      actionProps.text = 'No State Defined';
+      actionProps.severity = 'info';
+      actionProps.variant = 'outlined';
+      actionProps.text = 'New';
   }
 
   return (

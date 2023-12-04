@@ -1,19 +1,14 @@
+import { FormControl } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
 import { FieldProps } from './FieldProps.d';
 
 export const DateField = (props: FieldProps) => {
   const { label, value } = props;
-  let date: string;
-
-  if (!value || value === '') {
-    date = new Date().toISOString();
-  } else {
-    date = value as string;
-  }
 
   return (
-    <div>
-      TODO: DateField {label as string} : {date}
-    </div>
+    <FormControl sx={{ m: 1 }}>
+      <DatePicker label={label} value={value} />
+    </FormControl>
   );
 };
 

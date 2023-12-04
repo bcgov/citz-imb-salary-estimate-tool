@@ -18,14 +18,14 @@ export const fieldsInquiry = [
     label: 'inquiry_submission_date',
     type: 'date',
     // required: true,
-    defaultValue: '',
+    defaultValue: null,
   },
   {
     name: 'inquiry_completion_date',
     label: 'inquiry_completion_date',
     type: 'date',
     // required: true,
-    defaultValue: '',
+    defaultValue: null,
   },
   {
     name: 'candidate_first_name',

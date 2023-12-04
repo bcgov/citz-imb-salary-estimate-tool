@@ -1,5 +1,7 @@
+import { InquiryForm } from '../components';
+
 export const InquiryNew = () => {
-  return <div>Hello There</div>;
+  return <InquiryForm />;
 };
 
 export default InquiryNew;

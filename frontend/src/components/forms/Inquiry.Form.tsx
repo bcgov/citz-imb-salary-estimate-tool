@@ -1,15 +1,19 @@
 import { useForm } from '@tanstack/react-form';
+import { useInquiry } from '../../hooks/useInquiry/useInquiry';
+import { Field } from './Field';
 
 export const InquiryForm = () => {
+  const { formOptions } = useInquiry();
+  console.log({ formOptions });
+
   const form = useForm({
-    defaultValues: {
-      fullName: '',
-    },
+    defaultValues: formOptions.defaultValues,
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     },
   });
+  console.log({ form });
 
   return (
     <form.Provider>
@@ -22,18 +26,18 @@ export const InquiryForm = () => {
         }}
       >
         <div>
-          <form.Field
-            name="fullName"
-            // eslint-disable-next-line react/no-children-prop
-            children={(field) => (
-              <input
+          {formOptions.fields.map((field) => {
+            return (
+              <form.Field
+                key={field.name}
                 name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(e.target.value)}
+                // eslint-disable-next-line react/no-children-prop
+                children={(formField) => (
+                  <Field value={formField.state.value} {...field} />
+                )}
               />
-            )}
-          />
+            );
+          })}
         </div>
       </form>
     </form.Provider>

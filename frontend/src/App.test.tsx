@@ -11,6 +11,7 @@ jest.mock('./hooks', () => ({
 jest.mock('./pages', () => ({
   Home: () => <div>Home Test</div>,
   Inquiry: () => <div>Inquiry Test</div>,
+  Admin: () => <div>Admin Test</div>,
 }));
 jest.mock('./components', () => ({
   Navbar: () => <div>Navbar Test</div>,

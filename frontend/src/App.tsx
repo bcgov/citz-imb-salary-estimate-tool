@@ -2,7 +2,7 @@ import { Box, Paper } from '@mui/material';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
-import { Home, Inquiry } from './pages';
+import { Home, Inquiry, Admin } from './pages';
 import { useAuthentication } from './hooks';
 
 const App = () => {
@@ -23,6 +23,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Inquiry" element={<Inquiry />} />
+            <Route path="/Admin" element={<Admin />} />
           </Routes>
         </Box>
         <Footer />

@@ -44,7 +44,7 @@ export const getExperiences = async (req: Request, res: Response) => {
     }
 };
 
-// Processes
+// Process
 
 /**
  * @summary Returns all processes (2)

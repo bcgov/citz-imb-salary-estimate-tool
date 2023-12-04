@@ -1,10 +1,14 @@
 import { useForm } from '@tanstack/react-form';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
-import { Field } from './Field';
+import { Field, FieldTypes } from '../fields';
 
-export const InquiryForm = () => {
+interface InquiryFormProps {
+  mode?: 'create' | 'update' | 'view';
+}
+
+export const InquiryForm = (props: InquiryFormProps) => {
+  const { mode } = props;
   const { formOptions } = useInquiry();
-  console.log({ formOptions });
 
   const form = useForm({
     defaultValues: formOptions.defaultValues,
@@ -13,7 +17,6 @@ export const InquiryForm = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  console.log({ form });
 
   return (
     <form.Provider>
@@ -31,10 +34,17 @@ export const InquiryForm = () => {
               <form.Field
                 key={field.name}
                 name={field.name}
-                // eslint-disable-next-line react/no-children-prop
-                children={(formField) => (
-                  <Field value={formField.state.value} {...field} />
-                )}
+                children={(formField) => {
+                  const { type, ...otherProperties } = field;
+                  if (mode === 'create') formField.setValue(field.defaultValue);
+                  return (
+                    <Field
+                      type={type as FieldTypes}
+                      value={formField.state.value}
+                      {...otherProperties}
+                    />
+                  );
+                }}
               />
             );
           })}
@@ -42,6 +52,10 @@ export const InquiryForm = () => {
       </form>
     </form.Provider>
   );
+};
+
+InquiryForm.defaultProps = {
+  mode: 'create',
 };
 
 export default InquiryForm;

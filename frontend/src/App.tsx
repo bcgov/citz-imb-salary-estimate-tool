@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
 import { useAuthentication } from './hooks';
-import { Home, Inquiry, InquiryNew } from './pages';
+import { Admin, Home, Inquiry, InquiryNew } from './pages';
 
 const App = () => {
   const { KeycloakProvider } = useAuthentication();
@@ -25,6 +25,7 @@ const App = () => {
             <Navbar title="Salary Estimation Tool" />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/Admin" element={<Admin />} />
               <Route path="/Inquiry" element={<Inquiry />} />
               <Route path="/Inquiry/New" element={<InquiryNew />} />
             </Routes>

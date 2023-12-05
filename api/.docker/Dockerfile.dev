@@ -13,6 +13,8 @@ COPY . .
 # Force clean cache to avoid issues with .npm permissions
 RUN npm cache clean --force
 
+COPY prisma/schema.prisma ./prisma/
+
 RUN npx prisma generate
 
 #For debugging: create and write the contents of start.sh in the container

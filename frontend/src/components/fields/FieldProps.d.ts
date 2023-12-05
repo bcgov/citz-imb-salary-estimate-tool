@@ -4,6 +4,7 @@ export enum FieldTypes {
   EMAIL = 'email',
   NUMBER = 'number',
   PASSWORD = 'password',
+  SELECT = 'select',
   STATUS = 'status',
   TEXT = 'text',
 }

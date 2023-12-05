@@ -2,6 +2,7 @@ import { CurrencyField } from './Currency.Field';
 import { DateField } from './Date.Field';
 import { FieldProps } from './FieldProps.d';
 import { NumberField } from './Number.Field';
+import { SelectField } from './Select.Field';
 import { StatusField } from './Status.Field';
 import { TextField } from './Text.Field';
 
@@ -15,6 +16,8 @@ export const Field = (props: FieldProps) => {
       return <DateField {...otherProps} />;
     case 'number':
       return <NumberField {...otherProps} />;
+    case 'select':
+      return <SelectField {...otherProps} />;
     case 'status':
       return <StatusField {...otherProps} />;
     case 'text':

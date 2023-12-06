@@ -1,13 +1,12 @@
-import { OutlinedInput, InputAdornment, InputLabel } from '@mui/material';
+import { OutlinedInput, InputLabel } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
-interface CurrencyFieldProps extends FieldProps {
-  value: number;
+interface MultilineFieldProps extends FieldProps {
+  value: string;
 }
 
-export const CurrencyField = (props: CurrencyFieldProps) => {
+export const MultilineField = (props: MultilineFieldProps) => {
   const { label, value, onChange } = props;
-  // TODO: fix css alignment
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(event.target.value));
@@ -19,12 +18,14 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
       <OutlinedInput
         id={label}
         value={value}
-        startAdornment={<InputAdornment position="start">$</InputAdornment>}
         label={label}
+        rows={5}
+        multiline
         onChange={handleChange}
+        sx={{ width: '500px' }}
       />
     </>
   );
 };
 
-export default CurrencyField;
+export default MultilineField;

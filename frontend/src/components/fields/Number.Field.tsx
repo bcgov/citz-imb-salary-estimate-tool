@@ -1,13 +1,27 @@
-import { OutlinedInput, InputLabel, FormControl } from '@mui/material';
+import { InputLabel, OutlinedInput } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
-export const NumberField = (props: FieldProps) => {
-  const { label, value } = props;
+interface NumberFieldProps extends FieldProps {
+  value: number;
+}
+
+export const NumberField = (props: NumberFieldProps) => {
+  const { label, value, onChange } = props;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(Number(event.target.value));
+  };
+
   return (
-    <FormControl sx={{ m: 1 }}>
+    <>
       <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput id={label} value={value} label={label} />
-    </FormControl>
+      <OutlinedInput
+        id={label}
+        value={value}
+        label={label}
+        onChange={handleChange}
+      />
+    </>
   );
 };
 

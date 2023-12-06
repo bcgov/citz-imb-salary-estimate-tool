@@ -2,6 +2,7 @@ export enum FieldTypes {
   CURRENCY = 'currency',
   DATE = 'date',
   EMAIL = 'email',
+  MULTILINE = 'multiline',
   NUMBER = 'number',
   PASSWORD = 'password',
   SELECT = 'select',
@@ -9,10 +10,18 @@ export enum FieldTypes {
   TEXT = 'text',
 }
 
+export type DataOptions = {
+  endPoint: string;
+  labelFieldName: string;
+  valueFieldName: string;
+};
+
 export interface FieldProps {
-  name: string;
+  name?: string;
   label: string;
   type?: FieldTypes;
   required?: boolean;
   value: unknown;
+  onChange: (value: unknown) => void;
+  dataOptions?: DataOptions;
 }

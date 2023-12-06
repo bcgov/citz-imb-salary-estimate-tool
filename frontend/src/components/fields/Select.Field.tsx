@@ -1,28 +1,38 @@
-import {
-  InputLabel,
-  FormControl,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
+import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { useMemo } from 'react';
+import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
 import { FieldProps } from './FieldProps.d';
 
-export const SelectField = (props: FieldProps) => {
-  console.log('SelectField', props);
-  const { label, value } = props;
+interface SelectFieldProps extends FieldProps {
+  dataOptions: {
+    endPoint: string;
+    labelFieldName: string;
+    valueFieldName: string;
+  };
+}
+
+export const SelectField = (props: SelectFieldProps) => {
+  const { label, value, dataOptions, onChange } = props;
 
   const handleChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value);
+    onChange(event.target.value);
   };
 
-  const choices = [
-    { label: 'TODO1', value: 'TODO1' },
-    { label: 'TODO2', value: 'TODO2' },
-    { label: 'TODO3', value: 'TODO3' },
-  ];
+  const selectData = useDataFactory<Record<string, string>>({
+    endPoint: dataOptions.endPoint,
+  });
+
+  const choices = useMemo(() => {
+    if (!selectData.data || selectData.isLoading || selectData.isError)
+      return [];
+    return selectData.data.map((item) => ({
+      label: item[dataOptions.labelFieldName],
+      value: item[dataOptions.valueFieldName],
+    }));
+  }, [dataOptions, selectData.data, selectData.isError, selectData.isLoading]);
 
   return (
-    <FormControl sx={{ m: 1, width: '200px' }}>
+    <>
       <InputLabel htmlFor={label}>{label}</InputLabel>
       <Select
         labelId={label}
@@ -37,7 +47,7 @@ export const SelectField = (props: FieldProps) => {
           </MenuItem>
         ))}
       </Select>
-    </FormControl>
+    </>
   );
 };
 

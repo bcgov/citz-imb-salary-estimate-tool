@@ -1,10 +1,12 @@
-import { Chip, FormControl, Typography } from '@mui/material';
+import { Chip, Typography } from '@mui/material';
 import { State } from '../../types';
 
 import { FieldProps } from './FieldProps.d';
 
 export const StatusField = (props: FieldProps) => {
   const { label, value } = props;
+
+  // TODO: fix css alignment & presentation
 
   const actionProps: {
     severity: 'info' | 'warning' | 'error' | 'success';
@@ -50,7 +52,7 @@ export const StatusField = (props: FieldProps) => {
   }
 
   return (
-    <FormControl sx={{ m: 1 }}>
+    <>
       <Typography variant="caption" component="div">
         {label}
       </Typography>
@@ -59,7 +61,7 @@ export const StatusField = (props: FieldProps) => {
         color={actionProps.severity}
         variant={actionProps.variant}
       />
-    </FormControl>
+    </>
   );
 };
 

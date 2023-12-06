@@ -1,10 +1,23 @@
-export const fieldsInquiry = [
+interface IField {
+  name: string;
+  label: string;
+  type: string;
+  required?: boolean;
+  defaultValue?: string | number | null;
+  dataOptions?: {
+    endPoint: string;
+    labelFieldName: string;
+    valueFieldName: string;
+  };
+}
+
+export const fieldsInquiry: IField[] = [
   {
     name: 'id',
     label: 'id',
     type: 'number',
-    // required: true,
-    defaultValue: 0,
+    required: false,
+    defaultValue: 1000,
   },
   {
     name: 'status_id',
@@ -59,6 +72,11 @@ export const fieldsInquiry = [
     name: 'current_ministry_id',
     label: 'Current Ministry',
     type: 'select',
+    dataOptions: {
+      endPoint: 'ministry',
+      labelFieldName: 'ministry_name',
+      valueFieldName: 'id',
+    },
     // required: true,
     defaultValue: '',
   },
@@ -79,9 +97,13 @@ export const fieldsInquiry = [
   {
     name: 'experience_level_id',
     label: 'Experience Level',
-    type: 'radio',
-    // required: true,
-    defaultValue: 0,
+    type: 'select',
+    dataOptions: {
+      endPoint: 'experience',
+      labelFieldName: 'definition',
+      valueFieldName: 'id',
+    },
+    defaultValue: '',
   },
   {
     name: 'new_position_number',
@@ -108,6 +130,11 @@ export const fieldsInquiry = [
     name: 'appointment_type_id',
     label: 'Appointment Type',
     type: 'select',
+    dataOptions: {
+      endPoint: 'appointment',
+      labelFieldName: 'id',
+      valueFieldName: 'id',
+    },
     // required: true,
     defaultValue: '',
   },
@@ -115,6 +142,11 @@ export const fieldsInquiry = [
     name: 'process_type_id',
     label: 'Process Type',
     type: 'select',
+    dataOptions: {
+      endPoint: 'process',
+      labelFieldName: 'id',
+      valueFieldName: 'id',
+    },
     // required: true,
     defaultValue: '',
   },
@@ -127,7 +159,7 @@ export const fieldsInquiry = [
   },
   {
     name: 'hm_comment',
-    label: 'Hiring Manger Comments',
+    label: 'Hiring Manager Comments',
     type: 'multiline',
     // required: true,
     defaultValue: '',

@@ -8,15 +8,21 @@ interface InquiryFormProps {
 
 export const InquiryForm = (props: InquiryFormProps) => {
   const { mode } = props;
-  const { formOptions } = useInquiry();
+  console.log('InquiryForm mode', mode);
+
+  const inquiryData = useInquiry();
 
   const form = useForm({
-    defaultValues: formOptions.defaultValues,
+    defaultValues: inquiryData.formOptions.defaultValues,
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  if (inquiryData.isError) return <div>Error</div>;
+
+  if (inquiryData.isLoading) return <div>Loading...</div>;
 
   return (
     <form.Provider>
@@ -29,20 +35,23 @@ export const InquiryForm = (props: InquiryFormProps) => {
         }}
       >
         <div>
-          {formOptions.fields.map((field) => {
+          {inquiryData.formOptions.fields.map((field) => {
             return (
               <form.Field
                 key={field.name}
                 name={field.name}
                 children={(formField) => {
-                  const { type, ...otherProperties } = field;
-                  if (mode === 'create') formField.setValue(field.defaultValue);
                   return (
-                    <Field
-                      type={type as FieldTypes}
-                      value={formField.state.value}
-                      {...otherProperties}
-                    />
+                    formField.state.value !== undefined && (
+                      <Field
+                        type={field.type as FieldTypes}
+                        value={formField.state.value}
+                        onChange={formField.handleChange}
+                        label={field.label}
+                        required={field.required || false}
+                        dataOptions={field.dataOptions}
+                      />
+                    )
                   );
                 }}
               />

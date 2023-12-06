@@ -1,15 +1,19 @@
-import { FormControl } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
+import { DateTime } from 'luxon';
 import { FieldProps } from './FieldProps.d';
 
-export const DateField = (props: FieldProps) => {
-  const { label, value } = props;
+interface DateFieldProps extends FieldProps {
+  value: DateTime | null;
+}
 
-  return (
-    <FormControl sx={{ m: 1 }}>
-      <DatePicker label={label} value={value} />
-    </FormControl>
-  );
+export const DateField = (props: DateFieldProps) => {
+  const { label, value, onChange } = props;
+
+  const handleChange = (event: DateTime | null) => {
+    onChange(event);
+  };
+
+  return <DatePicker label={label} value={value} onChange={handleChange} />;
 };
 
 export default DateField;

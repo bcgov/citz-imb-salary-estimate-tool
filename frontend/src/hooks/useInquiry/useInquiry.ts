@@ -11,7 +11,7 @@ export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
 
-  const defaultValues = {}
+  const defaultValues = {};
 
   fieldsInquiry.forEach((field) => {
     defaultValues[field.name] = field.defaultValue;

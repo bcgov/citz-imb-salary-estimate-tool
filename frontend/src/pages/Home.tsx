@@ -1,12 +1,27 @@
 import { Box } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 import { ErrorDialog, Loading, TableContainer } from '../components';
-import { useAuthentication, useInquiry } from '../hooks';
+import { useAuthentication, useInquiry, useUser } from '../hooks';
 import { InquiryData } from '../types';
 
 export const Inquiry = () => {
-  const { isAuthenticated } = useAuthentication();
-  const { data, columns, isLoading, isError, error, append } = useInquiry();
+  const { isAuthenticated, hasRole } = useAuthentication();
+  const {
+    data: inquiryData,
+    columns: inquiryColumns,
+    isLoading: inquiriesLoading,
+    isError: inquiriesError,
+    error: inquiryError,
+    append,
+  } = useInquiry();
+
+  const {
+    data: userData,
+    columns: userColumns,
+    isLoading: usersAreLoading,
+    isError: usersError,
+    error: userError,
+  } = useUser();
 
   const addItem = async () => {
     const newItem: InquiryData = {
@@ -34,20 +49,32 @@ export const Inquiry = () => {
     append(newItem);
   };
 
-  if (!isAuthenticated) return <Navigate replace to="/" />;
+  if (!isAuthenticated) return <Navigate replace to="/login" />;
 
-  if (isLoading) return <Loading />;
+  if (usersAreLoading || inquiriesLoading) return <Loading />;
 
-  if (isError) return <ErrorDialog error={error} />;
+  if (usersError) return <ErrorDialog error={userError} />;
+
+  if (inquiriesError) return <ErrorDialog error={inquiryError} />;
 
   return (
     <Box p={2}>
       <TableContainer
-        rows={data}
-        columns={columns}
-        tableName="Hiring Manager Salary Inquiries"
+        rows={inquiryData}
+        columns={inquiryColumns}
+        tableName="Inquiries"
         addAction={addItem}
       />
+      {hasRole('admin') ? (
+        <TableContainer
+          rows={userData}
+          columns={userColumns}
+          tableName="Users"
+          getRowId={(row) => row.guid}
+        />
+      ) : (
+        <div />
+      )}
     </Box>
   );
 };

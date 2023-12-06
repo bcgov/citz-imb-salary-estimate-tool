@@ -10,8 +10,8 @@ import Home from '../pages/Home';
 const PageRouter = () => {
   return (
     <Routes>
-      <Route path="/" Component={Login} />
-      <Route path="/Home" Component={Home} />
+      <Route path="/login" Component={Login} />
+      <Route path="/" Component={Home} />
     </Routes>
   );
 };

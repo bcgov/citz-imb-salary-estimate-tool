@@ -7,7 +7,7 @@ export const Home = () => {
 
   if (isAuthenticated) {
     if (hasRole('admin') || hasRole('hm') || hasRole('shr') || hasRole('adm'))
-      return <Navigate replace to="Home" />;
+      return <Navigate replace to="/" />;
     return (
       <Dialog
         title="You have not been assigned one on the necessary roles to access this application."

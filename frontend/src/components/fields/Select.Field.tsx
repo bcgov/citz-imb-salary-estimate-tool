@@ -1,4 +1,4 @@
-import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Box, MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useMemo } from 'react';
 import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
 import { FieldProps } from './FieldProps.d';
@@ -14,7 +14,7 @@ interface SelectFieldProps extends FieldProps {
 export const SelectField = (props: SelectFieldProps) => {
   const { label, value, dataOptions, onChange } = props;
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
@@ -32,13 +32,12 @@ export const SelectField = (props: SelectFieldProps) => {
   }, [dataOptions, selectData.data, selectData.isError, selectData.isLoading]);
 
   return (
-    <>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <Select
-        labelId={label}
-        id={label}
-        value={value as string}
+    <Box width="250px">
+      <TextFieldMUI
+        fullWidth
+        select
         label={label}
+        value={value}
         onChange={handleChange}
       >
         {choices.map((choice) => (
@@ -46,8 +45,8 @@ export const SelectField = (props: SelectFieldProps) => {
             {choice.label}
           </MenuItem>
         ))}
-      </Select>
-    </>
+      </TextFieldMUI>
+    </Box>
   );
 };
 

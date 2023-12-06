@@ -1,4 +1,4 @@
-import { OutlinedInput, InputLabel } from '@mui/material';
+import { TextField as TextFieldMUI } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
 interface MultilineFieldProps extends FieldProps {
@@ -13,18 +13,16 @@ export const MultilineField = (props: MultilineFieldProps) => {
   };
 
   return (
-    <>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput
-        id={label}
-        value={value}
-        label={label}
-        rows={5}
-        multiline
-        onChange={handleChange}
-        sx={{ width: '500px' }}
-      />
-    </>
+    <TextFieldMUI
+      type="text"
+      id={label}
+      value={value}
+      label={label}
+      rows={5}
+      multiline
+      onChange={handleChange}
+      sx={{ width: '500px' }}
+    />
   );
 };
 

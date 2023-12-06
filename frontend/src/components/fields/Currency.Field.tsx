@@ -1,4 +1,4 @@
-import { OutlinedInput, InputAdornment, InputLabel } from '@mui/material';
+import { InputAdornment, TextField as TextFieldMUI } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
 interface CurrencyFieldProps extends FieldProps {
@@ -14,16 +14,16 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
   };
 
   return (
-    <>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput
-        id={label}
-        value={value}
-        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-        label={label}
-        onChange={handleChange}
-      />
-    </>
+    <TextFieldMUI
+      type="number"
+      id={label}
+      value={value}
+      label={label}
+      InputProps={{
+        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+      }}
+      onChange={handleChange}
+    />
   );
 };
 

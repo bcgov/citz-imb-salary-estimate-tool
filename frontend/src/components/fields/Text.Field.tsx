@@ -1,4 +1,4 @@
-import { OutlinedInput, InputLabel } from '@mui/material';
+import { TextField as TextFieldMUI } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
 interface TextFieldProps extends FieldProps {
@@ -9,19 +9,17 @@ export const TextField = (props: TextFieldProps) => {
   const { label, value, onChange } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(event.target.value));
+    onChange(event.target.value);
   };
 
   return (
-    <>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput
-        id={label}
-        value={value}
-        label={label}
-        onChange={handleChange}
-      />
-    </>
+    <TextFieldMUI
+      type="text"
+      id={label}
+      value={value}
+      label={label}
+      onChange={handleChange}
+    />
   );
 };
 

@@ -1,4 +1,4 @@
-import { InputLabel, OutlinedInput } from '@mui/material';
+import { TextField as TextFieldMUI } from '@mui/material';
 import { FieldProps } from './FieldProps.d';
 
 interface NumberFieldProps extends FieldProps {
@@ -13,15 +13,13 @@ export const NumberField = (props: NumberFieldProps) => {
   };
 
   return (
-    <>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput
-        id={label}
-        value={value}
-        label={label}
-        onChange={handleChange}
-      />
-    </>
+    <TextFieldMUI
+      type="number"
+      id={label}
+      value={value}
+      label={label}
+      onChange={handleChange}
+    />
   );
 };
 

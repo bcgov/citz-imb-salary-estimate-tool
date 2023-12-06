@@ -14,7 +14,9 @@ export const AuthenticationButton = () => {
     buttonProps.onClick = () => logout();
   }
 
-  return <Button variant="contained" color="info" {...buttonProps} />;
+  return (
+    <Button variant="contained" color="info" disableRipple {...buttonProps} />
+  );
 };
 
 export default AuthenticationButton;

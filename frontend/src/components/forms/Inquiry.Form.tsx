@@ -1,6 +1,7 @@
 import { useForm } from '@tanstack/react-form';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
 import { Field, FieldTypes } from '../fields';
+import { SubmitButton } from '../buttons/SubmitButton';
 
 interface InquiryFormProps {
   mode?: 'create' | 'update' | 'view';
@@ -57,6 +58,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
               />
             );
           })}
+          <SubmitButton />
         </div>
       </form>
     </form.Provider>

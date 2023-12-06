@@ -1,9 +1,8 @@
 import { Box, Paper } from '@mui/material';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
-import { Home, Inquiry, Admin } from './pages';
 import { useAuthentication } from './hooks';
+import PageRouter from './routes/PageRouter';
 
 const App = () => {
   const { KeycloakProvider } = useAuthentication();
@@ -20,11 +19,7 @@ const App = () => {
       >
         <Box sx={{ flexGrow: 1 }}>
           <Navbar title="Salary Estimation Tool" />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Inquiry" element={<Inquiry />} />
-            <Route path="/Admin" element={<Admin />} />
-          </Routes>
+          <PageRouter />
         </Box>
         <Footer />
       </Paper>

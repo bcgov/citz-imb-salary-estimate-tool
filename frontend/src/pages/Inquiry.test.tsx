@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Inquiry } from './Inquiry';
+import { Inquiry } from './Home';
 import { useInquiry, useAuthentication } from '../hooks';
 
 jest.mock('../hooks', () => ({

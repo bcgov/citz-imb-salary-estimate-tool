@@ -1,4 +1,3 @@
-import { FormControl } from '@mui/material';
 import { DateTime } from 'luxon';
 import { CurrencyField } from './Currency.Field';
 import { DateField } from './Date.Field';
@@ -10,88 +9,67 @@ import { StatusField } from './Status.Field';
 import { TextField } from './Text.Field';
 
 export const Field = (props: FieldProps) => {
-  const { type, label, value, onChange, name, required, dataOptions } = props;
+  const { type, value, dataOptions, ...otherProps } = props;
 
-  let fieldComponent = (
-    <div>
-      TODO: {type} : {name}
-    </div>
-  );
+  const defaultProps = { sx: { width: '100%' } };
 
   switch (type) {
     case 'currency':
-      fieldComponent = (
+      return (
         <CurrencyField
-          label={label}
           value={value as number}
-          onChange={onChange}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'date':
-      fieldComponent = (
+      return (
         <DateField
-          label={label}
           value={value as DateTime | null}
-          onChange={onChange}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'multiline':
-      fieldComponent = (
+      return (
         <MultilineField
-          label={label}
           value={value as string}
-          onChange={onChange}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'number':
-      fieldComponent = (
+      return (
         <NumberField
-          label={label}
           value={value as number}
-          onChange={onChange}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'select':
-      fieldComponent = (
+      return (
         <SelectField
-          label={label}
           value={value as number}
-          onChange={onChange}
           dataOptions={dataOptions as DataOptions}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'status':
-      fieldComponent = (
+      return (
         <StatusField
-          label={label}
           value={value as number}
-          onChange={onChange}
+          {...defaultProps}
+          {...otherProps}
         />
       );
-      break;
     case 'text':
-      fieldComponent = (
-        <TextField label={label} value={value as string} onChange={onChange} />
+      return (
+        <TextField value={value as string} {...defaultProps} {...otherProps} />
       );
-      break;
     default:
-      break;
+      return <div>TODO: {type}</div>;
   }
-
-  return (
-    <FormControl
-      margin="normal"
-      required={required}
-      sx={{ m: 1, width: '100%' }}
-    >
-      {fieldComponent}
-    </FormControl>
-  );
 };
 
 Field.defaultProps = {

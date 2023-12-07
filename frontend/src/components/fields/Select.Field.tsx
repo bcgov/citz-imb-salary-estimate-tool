@@ -12,7 +12,7 @@ interface SelectFieldProps extends FieldProps {
 }
 
 export const SelectField = (props: SelectFieldProps) => {
-  const { label, value, dataOptions, onChange } = props;
+  const { label, value, dataOptions, onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -38,6 +38,7 @@ export const SelectField = (props: SelectFieldProps) => {
       label={label}
       value={value}
       onChange={handleChange}
+      {...otherProps}
     >
       {choices.map((choice) => (
         <MenuItem key={choice.value} value={choice.value}>

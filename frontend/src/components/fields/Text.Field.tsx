@@ -6,7 +6,7 @@ interface TextFieldProps extends FieldProps {
 }
 
 export const TextField = (props: TextFieldProps) => {
-  const { label, value, onChange } = props;
+  const { label, value, onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -19,6 +19,7 @@ export const TextField = (props: TextFieldProps) => {
       value={value}
       label={label}
       onChange={handleChange}
+      {...otherProps}
     />
   );
 };

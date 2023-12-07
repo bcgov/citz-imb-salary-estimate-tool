@@ -4,7 +4,7 @@ import { State } from '../../types';
 import { FieldProps } from './FieldProps.d';
 
 export const StatusField = (props: FieldProps) => {
-  const { label, value } = props;
+  const { label, value, ...otherProps } = props;
 
   // TODO: fix css alignment & presentation
 
@@ -60,6 +60,7 @@ export const StatusField = (props: FieldProps) => {
         label={actionProps.text}
         color={actionProps.severity}
         variant={actionProps.variant}
+        {...otherProps}
       />
     </>
   );

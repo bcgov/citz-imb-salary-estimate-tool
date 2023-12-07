@@ -6,7 +6,7 @@ interface NumberFieldProps extends FieldProps {
 }
 
 export const NumberField = (props: NumberFieldProps) => {
-  const { label, value, onChange } = props;
+  const { label, value, onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(event.target.value));
@@ -19,6 +19,7 @@ export const NumberField = (props: NumberFieldProps) => {
       value={value}
       label={label}
       onChange={handleChange}
+      {...otherProps}
     />
   );
 };

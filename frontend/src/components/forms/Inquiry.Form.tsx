@@ -1,15 +1,16 @@
+import { Paper } from '@mui/material';
 import { useForm } from '@tanstack/react-form';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
-import { Field, FieldTypes } from '../fields';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
-import { Paper } from '@mui/material';
+import { Field, FieldTypes } from '../fields';
 
 interface InquiryFormProps {
   mode?: 'create' | 'update' | 'view';
+  onClose?: () => void;
 }
 
 export const InquiryForm = (props: InquiryFormProps) => {
-  const { mode } = props;
+  const { mode, onClose } = props;
   console.log('InquiryForm mode', mode);
 
   const inquiryData = useInquiry();
@@ -19,6 +20,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
+      if (onClose) onClose();
     },
   });
 
@@ -70,6 +72,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
 
 InquiryForm.defaultProps = {
   mode: 'create',
+  onClose: () => {},
 };
 
 export default InquiryForm;

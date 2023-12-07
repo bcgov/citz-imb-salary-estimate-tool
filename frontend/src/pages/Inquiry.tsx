@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { ErrorDialog, Loading, TableContainer } from '../components';
 import { useAuthentication, useInquiry } from '../hooks';
 import { InquiryData } from '../types';
+import { NewInquiryDialog } from '../components';
 
 export const Inquiry = () => {
   const { isAuthenticated } = useAuthentication();
@@ -46,8 +47,9 @@ export const Inquiry = () => {
         rows={data}
         columns={columns}
         tableName="Hiring Manager Salary Inquiries"
-        addAction={addItem}
-      />
+      >
+        <NewInquiryDialog />
+      </TableContainer>
     </Box>
   );
 };

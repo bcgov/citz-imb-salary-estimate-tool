@@ -21,7 +21,6 @@ export const MultilineField = (props: MultilineFieldProps) => {
       rows={5}
       multiline
       onChange={handleChange}
-      sx={{ width: '500px' }}
     />
   );
 };

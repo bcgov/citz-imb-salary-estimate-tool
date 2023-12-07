@@ -9,6 +9,8 @@ interface IField {
     labelFieldName: string;
     valueFieldName: string;
   };
+  section: 'header' | 'main' | 'footer';
+  sortOrder: number;
 }
 
 export const fieldsInquiry: IField[] = [
@@ -18,13 +20,17 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     required: false,
     defaultValue: 1000,
+    section: 'header',
+    sortOrder: 1,
   },
   {
     name: 'status_id',
     label: 'Current State',
-    type: 'status',
+    type: 'text',
     // required: true,
     defaultValue: 1,
+    section: 'header',
+    sortOrder: 2,
   },
   {
     name: 'inquiry_submission_date',
@@ -32,6 +38,8 @@ export const fieldsInquiry: IField[] = [
     type: 'date',
     // required: true,
     defaultValue: null,
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'inquiry_completion_date',
@@ -39,6 +47,8 @@ export const fieldsInquiry: IField[] = [
     type: 'date',
     // required: true,
     defaultValue: null,
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'candidate_first_name',
@@ -46,6 +56,8 @@ export const fieldsInquiry: IField[] = [
     type: 'text',
     // required: true,
     defaultValue: '',
+    section: 'header',
+    sortOrder: 3,
   },
   {
     name: 'candidate_last_name',
@@ -53,6 +65,8 @@ export const fieldsInquiry: IField[] = [
     type: 'text',
     // required: true,
     defaultValue: '',
+    section: 'header',
+    sortOrder: 4,
   },
   {
     name: 'current_position_number',
@@ -60,6 +74,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     // required: true,
     defaultValue: 0,
+    section: 'header',
+    sortOrder: 5,
   },
   {
     name: 'current_position_title',
@@ -67,6 +83,8 @@ export const fieldsInquiry: IField[] = [
     type: 'text',
     // required: true,
     defaultValue: '',
+    section: 'header',
+    sortOrder: 6,
   },
   {
     name: 'current_ministry_id',
@@ -79,6 +97,8 @@ export const fieldsInquiry: IField[] = [
     },
     // required: true,
     defaultValue: '',
+    section: 'header',
+    sortOrder: 7,
   },
   {
     name: 'current_annual_salary',
@@ -86,6 +106,8 @@ export const fieldsInquiry: IField[] = [
     type: 'currency',
     // required: true,
     defaultValue: 0,
+    section: 'header',
+    sortOrder: 8,
   },
   {
     name: 'current_mccf_classification_id',
@@ -93,6 +115,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     // required: true,
     defaultValue: 0,
+    section: 'header',
+    sortOrder: 9,
   },
   {
     name: 'experience_level_id',
@@ -104,6 +128,8 @@ export const fieldsInquiry: IField[] = [
       valueFieldName: 'id',
     },
     defaultValue: '',
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'new_position_number',
@@ -111,6 +137,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     // required: true,
     defaultValue: 0,
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'new_position_title',
@@ -118,6 +146,8 @@ export const fieldsInquiry: IField[] = [
     type: 'text',
     // required: true,
     defaultValue: '',
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'new_mccf_classification_id',
@@ -125,6 +155,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     // required: true,
     defaultValue: 0,
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'appointment_type_id',
@@ -137,6 +169,8 @@ export const fieldsInquiry: IField[] = [
     },
     // required: true,
     defaultValue: '',
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'process_type_id',
@@ -149,6 +183,8 @@ export const fieldsInquiry: IField[] = [
     },
     // required: true,
     defaultValue: '',
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'salary_estimate',
@@ -156,6 +192,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     // required: true,
     defaultValue: 0,
+    section: 'main',
+    sortOrder: 1,
   },
   {
     name: 'hm_comment',
@@ -163,6 +201,8 @@ export const fieldsInquiry: IField[] = [
     type: 'multiline',
     // required: true,
     defaultValue: '',
+    section: 'footer',
+    sortOrder: 1,
   },
   {
     name: 'shr_comment',
@@ -170,6 +210,8 @@ export const fieldsInquiry: IField[] = [
     type: 'multiline',
     // required: true,
     defaultValue: '',
+    section: 'footer',
+    sortOrder: 2,
   },
   {
     name: 'adm_comment',
@@ -177,6 +219,8 @@ export const fieldsInquiry: IField[] = [
     type: 'multiline',
     // required: true,
     defaultValue: '',
+    section: 'footer',
+    sortOrder: 3,
   },
 ];
 

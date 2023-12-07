@@ -1,4 +1,4 @@
-import { Box, MenuItem, TextField as TextFieldMUI } from '@mui/material';
+import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useMemo } from 'react';
 import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
 import { FieldProps } from './FieldProps.d';
@@ -32,21 +32,19 @@ export const SelectField = (props: SelectFieldProps) => {
   }, [dataOptions, selectData.data, selectData.isError, selectData.isLoading]);
 
   return (
-    <Box width="250px">
-      <TextFieldMUI
-        fullWidth
-        select
-        label={label}
-        value={value}
-        onChange={handleChange}
-      >
-        {choices.map((choice) => (
-          <MenuItem key={choice.value} value={choice.value}>
-            {choice.label}
-          </MenuItem>
-        ))}
-      </TextFieldMUI>
-    </Box>
+    <TextFieldMUI
+      fullWidth
+      select
+      label={label}
+      value={value}
+      onChange={handleChange}
+    >
+      {choices.map((choice) => (
+        <MenuItem key={choice.value} value={choice.value}>
+          {choice.label}
+        </MenuItem>
+      ))}
+    </TextFieldMUI>
   );
 };
 

@@ -17,8 +17,18 @@ export const NewInquiryDialog = () => {
   return (
     <>
       <AddButton onClick={handleClick} />
-      <Dialog open={isOpen}>
-        <InquiryForm onClose={handleClose} />
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-description"
+        maxWidth="lg"
+      >
+        <InquiryForm
+          mode="create"
+          onClose={handleClose}
+          title="Create New Inquiry"
+        />
       </Dialog>
     </>
   );

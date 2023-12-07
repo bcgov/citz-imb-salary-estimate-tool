@@ -20,7 +20,7 @@ export const Field = (props: FieldProps) => {
 
   switch (type) {
     case 'currency':
-      return (
+      fieldComponent = (
         <CurrencyField
           label={label}
           value={value as number}
@@ -56,7 +56,7 @@ export const Field = (props: FieldProps) => {
       );
       break;
     case 'select':
-      return (
+      fieldComponent = (
         <SelectField
           label={label}
           value={value as number}
@@ -66,7 +66,7 @@ export const Field = (props: FieldProps) => {
       );
       break;
     case 'status':
-      return (
+      fieldComponent = (
         <StatusField
           label={label}
           value={value as number}
@@ -85,7 +85,11 @@ export const Field = (props: FieldProps) => {
   }
 
   return (
-    <FormControl margin="normal" required={required} sx={{ m: 1 }}>
+    <FormControl
+      margin="normal"
+      required={required}
+      sx={{ m: 1, width: '100%' }}
+    >
       {fieldComponent}
     </FormControl>
   );

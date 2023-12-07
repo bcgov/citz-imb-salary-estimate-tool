@@ -79,7 +79,6 @@ export const Field = (props: FieldProps) => {
         <TextField label={label} value={value as string} onChange={onChange} />
       );
       break;
-
     default:
       break;
   }

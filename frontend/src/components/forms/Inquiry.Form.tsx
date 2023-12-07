@@ -15,6 +15,7 @@ import { useMemo } from 'react';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
 import { Field, FieldTypes } from '../fields';
+import { StatusStepper } from '../stepper/StatusStepper';
 
 interface InquiryFormProps {
   mode?: 'create' | 'update' | 'view';
@@ -27,6 +28,14 @@ export const InquiryForm = (props: InquiryFormProps) => {
   console.log('InquiryForm mode', mode);
 
   const inquiryData = useInquiry();
+
+  const hiddenSectionFields = useMemo(
+    () =>
+      inquiryData.formOptions.fields.filter(
+        (field) => field.section === 'hidden'
+      ),
+    [inquiryData.formOptions.fields]
+  );
 
   const headerSectionFields = useMemo(
     () =>
@@ -80,14 +89,17 @@ export const InquiryForm = (props: InquiryFormProps) => {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              // eslint-disable-next-line no-void
-              void form.handleSubmit();
+              form.handleSubmit();
             }}
           >
-            <Stack>
-              <Box>Status Indicator</Box>
-              <Divider />
-              <Grid container spacing={2}>
+            <Stack divider={<Divider />}>
+              <Grid container spacing={2} marginY={2}>
+                <Grid item xs={12}>
+                  <StatusStepper status={1} />
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={2} marginY={2}>
                 {headerSectionFields
                   .sort((a, b) => a.sortOrder - b.sortOrder)
                   .map((field) => {
@@ -114,8 +126,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                     );
                   })}
               </Grid>
-              <Divider />
-              <Grid container spacing={2}>
+              <Grid container spacing={2} marginY={2}>
                 {mainSectionFields
                   .sort((a, b) => a.sortOrder - b.sortOrder)
                   .map((field) => {
@@ -142,8 +153,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                     );
                   })}
               </Grid>
-              <Divider />
-              <Grid container>
+              <Grid container marginY={2}>
                 {footerSectionFields
                   .sort((a, b) => a.sortOrder - b.sortOrder)
                   .map((field) => {
@@ -170,9 +180,34 @@ export const InquiryForm = (props: InquiryFormProps) => {
                     );
                   })}
               </Grid>
+              <Grid container marginY={2}>
+                <Box>Hidden Fields</Box>
+                {hiddenSectionFields.map((field) => {
+                  return (
+                    <Grid item key={field.name} xs={12}>
+                      <form.Field
+                        name={field.name}
+                        children={(formField) => {
+                          return (
+                            formField.state.value !== undefined && (
+                              <Field
+                                type={field.type as FieldTypes}
+                                value={formField.state.value}
+                                onChange={formField.handleChange}
+                                label={field.label}
+                                required={field.required || false}
+                                dataOptions={field.dataOptions}
+                              />
+                            )
+                          );
+                        }}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
             </Stack>
           </form>
-          <Divider />
         </DialogContent>
         <DialogActions>
           <SubmitCancelButton />

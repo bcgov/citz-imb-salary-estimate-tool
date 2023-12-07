@@ -9,7 +9,7 @@ interface IField {
     labelFieldName: string;
     valueFieldName: string;
   };
-  section: 'header' | 'main' | 'footer';
+  section: 'header' | 'main' | 'footer' | 'hidden';
   sortOrder: number;
 }
 
@@ -19,8 +19,8 @@ export const fieldsInquiry: IField[] = [
     label: 'id',
     type: 'number',
     required: false,
-    defaultValue: 1000,
-    section: 'header',
+    defaultValue: '',
+    section: 'hidden',
     sortOrder: 1,
   },
   {

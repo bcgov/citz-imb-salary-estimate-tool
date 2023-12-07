@@ -2,6 +2,7 @@ export enum FieldTypes {
   CURRENCY = 'currency',
   DATE = 'date',
   EMAIL = 'email',
+  HIDDEN = 'hidden',
   MULTILINE = 'multiline',
   NUMBER = 'number',
   PASSWORD = 'password',

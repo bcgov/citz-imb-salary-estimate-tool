@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { AuthenticationDialog, Dialog } from '../components';
 import { useAuthentication } from '../hooks';
 
-export const Home = () => {
+const Login = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
 
   if (isAuthenticated) {
@@ -19,4 +19,4 @@ export const Home = () => {
   return <AuthenticationDialog open title="Authentication Required" />;
 };
 
-export default Home;
+export default Login;

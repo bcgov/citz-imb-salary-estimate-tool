@@ -4,7 +4,7 @@ import { ErrorDialog, Loading, TableContainer } from '../components';
 import { useAuthentication, useInquiry, useUser } from '../hooks';
 import { InquiryData } from '../types';
 
-export const Inquiry = () => {
+const Home = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
   const {
     data: inquiryData,
@@ -79,4 +79,4 @@ export const Inquiry = () => {
   );
 };
 
-export default Inquiry;
+export default Home;

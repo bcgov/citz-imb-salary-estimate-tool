@@ -6,7 +6,8 @@ export const Home = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
 
   if (isAuthenticated) {
-    if (hasRole('admin')) return <Navigate replace to="/Admin" />;
+    // if (hasRole('admin')) return <Navigate replace to="/Admin" />;
+    if (hasRole('admin')) return <Navigate replace to="/Inquiry" />;
     if (hasRole('hm') || hasRole('shr') || hasRole('adm'))
       return <Navigate replace to="/Inquiry" />;
     return (

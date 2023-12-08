@@ -53,7 +53,7 @@ export const fieldsInquiry: IField[] = [
     required: true,
     defaultValue: '',
     section: 'header',
-    sortOrder: 3,
+    sortOrder: 1,
   },
   {
     name: 'candidate_last_name',
@@ -62,14 +62,14 @@ export const fieldsInquiry: IField[] = [
     required: true,
     defaultValue: '',
     section: 'header',
-    sortOrder: 4,
+    sortOrder: 2,
   },
   {
     name: 'current_position_number',
     label: 'Current Position Number',
     type: 'number',
     defaultValue: 0,
-    section: 'header',
+    section: 'main',
     sortOrder: 5,
   },
   {
@@ -77,7 +77,7 @@ export const fieldsInquiry: IField[] = [
     label: 'Current Position Title',
     type: 'text',
     defaultValue: '',
-    section: 'header',
+    section: 'main',
     sortOrder: 6,
   },
   {
@@ -90,7 +90,7 @@ export const fieldsInquiry: IField[] = [
       valueFieldName: 'id',
     },
     defaultValue: '',
-    section: 'header',
+    section: 'main',
     sortOrder: 7,
   },
   {
@@ -98,7 +98,7 @@ export const fieldsInquiry: IField[] = [
     label: 'Current Annual Salary',
     type: 'currency',
     defaultValue: 0,
-    section: 'header',
+    section: 'main',
     sortOrder: 8,
   },
   {
@@ -106,7 +106,7 @@ export const fieldsInquiry: IField[] = [
     label: 'Current Classification',
     type: 'number',
     defaultValue: 0,
-    section: 'header',
+    section: 'main',
     sortOrder: 9,
   },
   {
@@ -128,8 +128,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     required: true,
     defaultValue: 0,
-    section: 'main',
-    sortOrder: 1,
+    section: 'header',
+    sortOrder: 3,
   },
   {
     name: 'new_position_title',
@@ -137,8 +137,8 @@ export const fieldsInquiry: IField[] = [
     type: 'text',
     required: true,
     defaultValue: '',
-    section: 'main',
-    sortOrder: 1,
+    section: 'header',
+    sortOrder: 4,
   },
   {
     name: 'new_mccf_classification_id',
@@ -146,8 +146,8 @@ export const fieldsInquiry: IField[] = [
     type: 'number',
     required: true,
     defaultValue: 0,
-    section: 'main',
-    sortOrder: 1,
+    section: 'header',
+    sortOrder: 5,
   },
   {
     name: 'appointment_type_id',
@@ -159,8 +159,8 @@ export const fieldsInquiry: IField[] = [
       valueFieldName: 'id',
     },
     defaultValue: '',
-    section: 'main',
-    sortOrder: 1,
+    section: 'header',
+    sortOrder: 6,
   },
   {
     name: 'process_type_id',
@@ -172,8 +172,8 @@ export const fieldsInquiry: IField[] = [
       valueFieldName: 'id',
     },
     defaultValue: '',
-    section: 'main',
-    sortOrder: 1,
+    section: 'header',
+    sortOrder: 7,
   },
   {
     name: 'salary_estimate',

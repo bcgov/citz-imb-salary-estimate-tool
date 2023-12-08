@@ -6,22 +6,13 @@ interface TextFieldProps extends FieldProps {
 }
 
 export const TextField = (props: TextFieldProps) => {
-  const { label, value, onChange, ...otherProps } = props;
+  const { onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
-  return (
-    <TextFieldMUI
-      type="text"
-      id={label}
-      value={value}
-      label={label}
-      onChange={handleChange}
-      {...otherProps}
-    />
-  );
+  return <TextFieldMUI type="text" onChange={handleChange} {...otherProps} />;
 };
 
 export default TextField;

@@ -6,14 +6,6 @@ interface DateFieldProps extends FieldProps {
   value: DateTime | null;
 }
 
-export const DateField = (props: DateFieldProps) => {
-  const { label, value, onChange } = props;
-
-  const handleChange = (event: DateTime | null) => {
-    onChange(event);
-  };
-
-  return <DatePicker label={label} value={value} onChange={handleChange} />;
-};
+export const DateField = (props: DateFieldProps) => <DatePicker {...props} />;
 
 export default DateField;

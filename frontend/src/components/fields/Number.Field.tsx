@@ -6,22 +6,13 @@ interface NumberFieldProps extends FieldProps {
 }
 
 export const NumberField = (props: NumberFieldProps) => {
-  const { label, value, onChange, ...otherProps } = props;
+  const { onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(event.target.value));
   };
 
-  return (
-    <TextFieldMUI
-      type="number"
-      id={label}
-      value={value}
-      label={label}
-      onChange={handleChange}
-      {...otherProps}
-    />
-  );
+  return <TextFieldMUI type="number" onChange={handleChange} {...otherProps} />;
 };
 
 export default NumberField;

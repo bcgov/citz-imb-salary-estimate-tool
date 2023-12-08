@@ -13,13 +13,14 @@ import {
 import { useForm } from '@tanstack/react-form';
 import { useMemo } from 'react';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
+import { InquiryData } from '../../types';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
 import { Field, FieldTypes } from '../fields';
 import { StatusStepper } from '../stepper/StatusStepper';
 
 interface InquiryFormProps {
   mode?: 'create' | 'update' | 'view';
-  onClose?: () => void;
+  onClose: () => void;
   title: string;
 }
 
@@ -64,8 +65,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
   const form = useForm({
     defaultValues: inquiryData.formOptions.defaultValues,
     onSubmit: (values) => {
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
+      inquiryData.append(values as InquiryData);
       if (onClose) onClose();
     },
   });
@@ -84,14 +84,14 @@ export const InquiryForm = (props: InquiryFormProps) => {
         </AppBar>
       </DialogTitle>
       <form.Provider>
-        <DialogContent id="dialog-description">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              form.handleSubmit();
-            }}
-          >
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            form.handleSubmit();
+          }}
+        >
+          <DialogContent id="dialog-description">
             <Stack divider={<Divider />}>
               <Grid container spacing={2} marginY={2}>
                 <Grid item xs={12}>
@@ -111,6 +111,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                             return (
                               formField.state.value !== undefined && (
                                 <Field
+                                  id={field.name}
                                   type={field.type as FieldTypes}
                                   value={formField.state.value}
                                   onChange={formField.handleChange}
@@ -138,6 +139,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                             return (
                               formField.state.value !== undefined && (
                                 <Field
+                                  id={field.name}
                                   type={field.type as FieldTypes}
                                   value={formField.state.value}
                                   onChange={formField.handleChange}
@@ -165,6 +167,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                             return (
                               formField.state.value !== undefined && (
                                 <Field
+                                  id={field.name}
                                   type={field.type as FieldTypes}
                                   value={formField.state.value}
                                   onChange={formField.handleChange}
@@ -191,6 +194,7 @@ export const InquiryForm = (props: InquiryFormProps) => {
                           return (
                             formField.state.value !== undefined && (
                               <Field
+                                id={field.name}
                                 type={field.type as FieldTypes}
                                 value={formField.state.value}
                                 onChange={formField.handleChange}
@@ -207,11 +211,11 @@ export const InquiryForm = (props: InquiryFormProps) => {
                 })}
               </Grid>
             </Stack>
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <SubmitCancelButton />
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <SubmitCancelButton onClose={onClose} />
+          </DialogActions>
+        </form>
       </form.Provider>
     </>
   );
@@ -219,7 +223,6 @@ export const InquiryForm = (props: InquiryFormProps) => {
 
 InquiryForm.defaultProps = {
   mode: 'create',
-  onClose: () => {},
 };
 
 export default InquiryForm;

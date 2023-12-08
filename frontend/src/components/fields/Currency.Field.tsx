@@ -6,8 +6,7 @@ interface CurrencyFieldProps extends FieldProps {
 }
 
 export const CurrencyField = (props: CurrencyFieldProps) => {
-  const { label, value, onChange } = props;
-  // TODO: fix css alignment
+  const { onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(event.target.value));
@@ -16,13 +15,11 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
   return (
     <TextFieldMUI
       type="number"
-      id={label}
-      value={value}
-      label={label}
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
       }}
       onChange={handleChange}
+      {...otherProps}
     />
   );
 };

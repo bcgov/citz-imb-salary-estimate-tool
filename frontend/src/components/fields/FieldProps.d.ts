@@ -3,6 +3,7 @@ export enum FieldTypes {
   DATE = 'date',
   EMAIL = 'email',
   HIDDEN = 'hidden',
+  ID = 'id',
   MULTILINE = 'multiline',
   NUMBER = 'number',
   PASSWORD = 'password',
@@ -18,6 +19,7 @@ export type DataOptions = {
 };
 
 export interface FieldProps {
+  id: string;
   name?: string;
   label: string;
   type?: FieldTypes;

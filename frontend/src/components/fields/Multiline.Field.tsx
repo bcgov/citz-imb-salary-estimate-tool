@@ -6,19 +6,16 @@ interface MultilineFieldProps extends FieldProps {
 }
 
 export const MultilineField = (props: MultilineFieldProps) => {
-  const { label, value, onChange, ...otherProps } = props;
+  const { name, onChange, ...otherProps } = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(event.target.value));
+    onChange(event.target.value);
   };
 
   return (
     <TextFieldMUI
       type="text"
-      id={label}
-      value={value}
-      label={label}
-      rows={5}
+      rows={4}
       multiline
       onChange={handleChange}
       {...otherProps}

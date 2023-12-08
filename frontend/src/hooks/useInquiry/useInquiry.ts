@@ -10,7 +10,7 @@ import { InquiryData } from '../../types';
 export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
-
+  console.log('useInquiry', inquiryData);
   const defaultValues = {};
 
   fieldsInquiry.forEach((field) => {
@@ -18,7 +18,7 @@ export const useInquiry = (dataId: string = '') => {
   });
 
   const append = (data: InquiryData) => {
-    console.log('useInquiry', data);
+    console.log('useInquiry append', data);
 
     const newItem: InquiryData = {
       status_id: data.status_id,
@@ -28,22 +28,22 @@ export const useInquiry = (dataId: string = '') => {
       candidate_last_name: data.candidate_last_name,
       current_position_number: data.current_position_number,
       current_position_title: data.current_position_title,
-      current_ministry_id: null,
+      current_ministry_id: data.current_ministry_id,
       current_annual_salary: data.current_annual_salary,
-      current_mccf_classification_id: null,
-      experience_level_id: 2,
+      current_mccf_classification_id: data.current_mccf_classification_id,
+      experience_level_id: data.experience_level_id,
       new_position_number: data.new_position_number,
       new_position_title: data.new_position_title,
-      new_mccf_classification_id: 4,
-      appointment_type_id: 1,
-      process_type_id: 2,
+      new_mccf_classification_id: data.new_mccf_classification_id,
+      appointment_type_id: data.appointment_type_id,
+      process_type_id: data.process_type_id,
       salary_estimate: data.salary_estimate,
       hm_comment: data.hm_comment,
       shr_comment: data.shr_comment,
       adm_comment: data.adm_comment,
     };
 
-    inquiryData.append(newItem);
+    inquiryData.append(data);
   };
 
   return {

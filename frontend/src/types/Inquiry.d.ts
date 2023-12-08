@@ -2,7 +2,7 @@ export type InquiryData = {
   id?: number;
   status_id: number;
   // status Status @relation(fields: [status_id], references: [id])
-  inquiry_submission_date: Date;
+  inquiry_submission_date?: Date;
   inquiry_completion_date?: Date;
   candidate_first_name: string;
   candidate_last_name: string;

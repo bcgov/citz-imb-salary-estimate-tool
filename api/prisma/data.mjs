@@ -3,6 +3,7 @@
  * @author Dallascrichmond
  */
 export const salaryRanges = [
+    { id: 0, minimum_salary: 0, maximum_salary: 0 },
     { id: 1, minimum_salary: 63400, maximum_salary: 90399.95 },
     { id: 2, minimum_salary: 74300, maximum_salary: 105000.04 },
     { id: 3, minimum_salary: 86200, maximum_salary: 122100.01 },
@@ -22,25 +23,26 @@ export const statuses = [
 
 // TODO: Add all minitries
 export const ministries = [
+    { id: '', ministry_name: ''},
     { id: 'CITZ', ministry_name: 'Citizen Services' },
     { id: 'PSA', ministry_name: 'Public Service Agency' },
 ];
 
 export const experienceLevels = [
-    { id: 1, definition: 'No expereince' },
+    { id: 1, definition: 'No experience' },
     { id: 2, definition: 'Little experience' },
     { id: 3, definition: 'Some experience' },
     { id: 4, definition: 'Lots of experience' },
 ];
 
 export const appointments = [
-    { id: 1 },
-    { id: 2 },
+    { id: 1, definition: 'TA'},
+    { id: 2, definition: 'REG' },
 ];
 
 export const processes = [
-    { id: 1 },
-    { id: 2 }
+    { id: 1, definition: 'Competitive Process' },
+    { id: 2, definition: 'Internal Process' }
 ];
 
 export const users = [

@@ -31,6 +31,8 @@ export const SelectField = (props: SelectFieldProps) => {
     }));
   }, [dataOptions, selectData.data, selectData.isError, selectData.isLoading]);
 
+  if (selectData.isLoading || selectData.isError) return null;
+
   return (
     <TextFieldMUI fullWidth select onChange={handleChange} {...otherProps}>
       {choices.map((choice) => (

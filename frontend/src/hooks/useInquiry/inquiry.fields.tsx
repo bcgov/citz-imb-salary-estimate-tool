@@ -31,22 +31,6 @@ export const fieldsInquiry: IField[] = [
     sortOrder: 2,
   },
   {
-    name: 'inquiry_submission_date',
-    label: 'Submission Date',
-    type: 'date',
-    defaultValue: null,
-    section: 'hidden',
-    sortOrder: 1,
-  },
-  {
-    name: 'inquiry_completion_date',
-    label: 'Completion Date',
-    type: 'date',
-    defaultValue: null,
-    section: 'hidden',
-    sortOrder: 1,
-  },
-  {
     name: 'candidate_first_name',
     label: 'First Name',
     type: 'text',

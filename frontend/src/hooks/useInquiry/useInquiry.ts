@@ -10,7 +10,7 @@ import { InquiryData } from '../../types';
 export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
-  console.log('useInquiry', inquiryData);
+
   const defaultValues = {};
 
   fieldsInquiry.forEach((field) => {

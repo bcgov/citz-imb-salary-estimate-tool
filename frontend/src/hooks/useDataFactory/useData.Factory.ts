@@ -63,8 +63,12 @@ export const useDataFactory = <TDataType>({
     return query.data;
   }, [query.data, query.isError, query.isLoading]);
 
-  const mutationFn = (item: TDataType) =>
-    api.appendItem<TDataType>(endPoint, item);
+  const mutationFn = (item: TDataType) => {
+    const newItem = { ...(item as object) };
+    if ('id' in newItem) delete newItem.id;
+
+    return api.appendItem<TDataType>(endPoint, newItem as TDataType);
+  };
 
   const onMutate = async (newItem: TDataType) => {
     const previousValues = queryClient.getQueryData(queryKey);

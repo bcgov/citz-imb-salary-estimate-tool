@@ -27,4 +27,5 @@ export interface FieldProps {
   value: unknown;
   onChange: (value: unknown) => void;
   dataOptions?: DataOptions;
+  mode?: 'create' | 'edit' | 'view';
 }

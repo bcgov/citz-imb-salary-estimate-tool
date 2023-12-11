@@ -1,33 +1,30 @@
 import {
   AppBar,
-  Box,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
   Grid,
   Stack,
   Toolbar,
   Typography,
 } from '@mui/material';
-import { useForm, FormApi } from '@tanstack/react-form';
+import { FormApi, useForm } from '@tanstack/react-form';
 import { useMemo } from 'react';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
 import { InquiryData } from '../../types';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
-import { Field, FieldTypes, FieldProps } from '../fields';
+import { FieldProps } from '../fields';
 import { StatusStepper } from '../stepper/StatusStepper';
 import { FormSection } from './FormSection';
 
 interface InquiryFormProps {
-  mode?: 'create' | 'update' | 'view';
+  mode: 'create' | 'edit' | 'view';
   onClose: () => void;
   title: string;
 }
 
 export const InquiryForm = (props: InquiryFormProps) => {
   const { mode, onClose, title } = props;
-  console.log('InquiryForm mode', mode);
 
   const inquiryData = useInquiry();
 
@@ -47,26 +44,26 @@ export const InquiryForm = (props: InquiryFormProps) => {
     [inquiryData.formOptions.fields]
   );
 
-  const headerSectionFields = useMemo(
+  const employeeSectionFields = useMemo(
     () =>
       inquiryData.formOptions.fields.filter(
-        (field) => field.section === 'header'
+        (field) => field.section === 'employee'
       ),
     [inquiryData.formOptions.fields]
   );
 
-  const mainSectionFields = useMemo(
+  const positionSectionFields = useMemo(
     () =>
       inquiryData.formOptions.fields.filter(
-        (field) => field.section === 'main'
+        (field) => field.section === 'position'
       ),
     [inquiryData.formOptions.fields]
   );
 
-  const footerSectionFields = useMemo(
+  const commentSectionFields = useMemo(
     () =>
       inquiryData.formOptions.fields.filter(
-        (field) => field.section === 'footer'
+        (field) => field.section === 'comment'
       ),
     [inquiryData.formOptions.fields]
   );
@@ -93,59 +90,58 @@ export const InquiryForm = (props: InquiryFormProps) => {
           }}
         >
           <DialogContent id="dialog-description">
-            <Stack divider={<Divider />}>
+            <Stack>
               <Grid container spacing={2} marginY={2}>
                 <Grid item xs={12}>
                   <StatusStepper status={1} />
                 </Grid>
               </Grid>
 
-              <Grid container spacing={2} marginY={2}>
-                {
-                  // TODO: can we fix the typecasting here?
-                }
-                <FormSection
-                  form={form as unknown as FormApi<unknown, unknown>}
-                  fields={headerSectionFields as unknown as FieldProps[]}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                />
-              </Grid>
+              {
+                // TODO: can we fix the typecasting here?
+              }
+              <FormSection
+                title="Employee Information"
+                form={form as unknown as FormApi<unknown, unknown>}
+                fields={employeeSectionFields as unknown as FieldProps[]}
+                mode={mode}
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+              />
 
-              <Grid container spacing={2} marginY={2}>
-                {
-                  // TODO: can we fix the typecasting here?
-                }
-                <FormSection
-                  form={form as unknown as FormApi<unknown, unknown>}
-                  fields={mainSectionFields as unknown as FieldProps[]}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                />
-              </Grid>
+              {
+                // TODO: can we fix the typecasting here?
+              }
+              <FormSection
+                title="Position Information"
+                form={form as unknown as FormApi<unknown, unknown>}
+                fields={positionSectionFields as unknown as FieldProps[]}
+                mode={mode}
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+              />
 
-              <Grid container spacing={2} marginY={2}>
-                {
-                  // TODO: can we fix the typecasting here?
-                }
-                <FormSection
-                  form={form as unknown as FormApi<unknown, unknown>}
-                  fields={footerSectionFields as unknown as FieldProps[]}
-                  xs={12}
-                />
-              </Grid>
+              {
+                // TODO: can we fix the typecasting here?
+              }
+              <FormSection
+                title="Comments"
+                form={form as unknown as FormApi<unknown, unknown>}
+                fields={commentSectionFields as unknown as FieldProps[]}
+                mode={mode}
+                xs={12}
+              />
 
-              <Grid container marginY={2} display="none">
-                <FormSection
-                  form={form as unknown as FormApi<unknown, unknown>}
-                  fields={hiddenSectionFields as unknown as FieldProps[]}
-                  xs={12}
-                />
-              </Grid>
+              <FormSection
+                display="none"
+                form={form as unknown as FormApi<unknown, unknown>}
+                fields={hiddenSectionFields as unknown as FieldProps[]}
+                mode={mode}
+              />
             </Stack>
           </DialogContent>
           <DialogActions>
@@ -155,10 +151,6 @@ export const InquiryForm = (props: InquiryFormProps) => {
       </form.Provider>
     </>
   );
-};
-
-InquiryForm.defaultProps = {
-  mode: 'create',
 };
 
 export default InquiryForm;

@@ -1,28 +1,24 @@
-import { Grid } from '@mui/material';
+import { Divider, Grid, GridProps, Stack, Typography } from '@mui/material';
 // import { useField } from '@tanstack/react-form';
 import { FormApi } from '@tanstack/react-form';
 import { Field, FieldProps, FieldTypes } from '../fields';
 
-interface FormSectionProps {
+interface FormSectionProps extends GridProps {
   fields: FieldProps[];
   form: FormApi<unknown, unknown>;
-  xs?: number | undefined;
-  sm?: number | undefined;
-  md?: number | undefined;
-  lg?: number | undefined;
-  // mode: 'create' | 'update' | 'view';
+  mode: 'create' | 'edit' | 'view';
 }
 
 export const FormSection = (props: FormSectionProps) => {
-  const { fields, form, ...otherProps } = props;
-  // console.log('FormSection mode', mode);
+  const { fields, form, mode, display, title, ...otherProps } = props;
 
   return (
-    <>
-      {fields
-        // .sort((a, b) => a.sortOrder - b.sortOrder)
-        .map((field) => {
-          console.log('FormSection field', field);
+    <Stack display={display} marginY={2}>
+      <Divider>
+        <Typography variant="h6">{title}</Typography>
+      </Divider>
+      <Grid container spacing={2} marginTop={1}>
+        {fields.map((field) => {
           return (
             <Grid item key={field.name} {...otherProps}>
               <form.Field
@@ -38,7 +34,7 @@ export const FormSection = (props: FormSectionProps) => {
                         label={field.label}
                         required={field.required || false}
                         dataOptions={field.dataOptions}
-                        // mode={mode}
+                        mode={mode}
                       />
                     )
                   );
@@ -47,15 +43,9 @@ export const FormSection = (props: FormSectionProps) => {
             </Grid>
           );
         })}
-    </>
+      </Grid>{' '}
+    </Stack>
   );
-};
-
-FormSection.defaultProps = {
-  xs: undefined,
-  sm: undefined,
-  md: undefined,
-  lg: undefined,
 };
 
 export default FormSection;

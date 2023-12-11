@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
 import { useInquiry } from '../../hooks';
-import { NewInquiryDialog } from '../dialogs/NewInquiry.Dialog';
 import { ErrorDialog } from '../dialogs/ErrorDialog';
+import { NewInquiryDialog } from '../dialogs/NewInquiry.Dialog';
 import { Loading } from '../loading/Loading';
 import { TableContainer } from './TableContainer';
 
@@ -12,11 +11,9 @@ export const InquiryTableContainer = () => {
   if (isError) return <ErrorDialog error={error} />;
 
   return (
-    <Box p={2}>
-      <TableContainer rows={data} columns={columns} tableName="Inquiries">
-        <NewInquiryDialog />
-      </TableContainer>
-    </Box>
+    <TableContainer rows={data} columns={columns} tableName="Inquiries">
+      <NewInquiryDialog />
+    </TableContainer>
   );
 };
 

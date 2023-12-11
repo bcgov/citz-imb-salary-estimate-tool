@@ -3,13 +3,12 @@
  * @author Dallascrichmond
  */
 export const salaryRanges = [
-    { id: 0, minimum_salary: 0, maximum_salary: 0 },
-    { id: 1, minimum_salary: 63400, maximum_salary: 90399.95 },
-    { id: 2, minimum_salary: 74300, maximum_salary: 105000.04 },
-    { id: 3, minimum_salary: 86200, maximum_salary: 122100.01 },
-    { id: 4, minimum_salary: 102900, maximum_salary: 136700.11 },
-    { id: 5, minimum_salary: 119600, maximum_salary: 152599.97 },
-    { id: 6, minimum_salary: 137700, maximum_salary: 168500.09 },
+    { id: 1, definition: 'Band 1', minimum_salary: 63400, maximum_salary: 90399.95 },
+    { id: 2, definition: 'Band 2', minimum_salary: 74300, maximum_salary: 105000.04 },
+    { id: 3, definition: 'Band 3', minimum_salary: 86200, maximum_salary: 122100.01 },
+    { id: 4, definition: 'Band 4', minimum_salary: 102900, maximum_salary: 136700.11 },
+    { id: 5, definition: 'Band 5', minimum_salary: 119600, maximum_salary: 152599.97 },
+    { id: 6, definition: 'Band 6', minimum_salary: 137700, maximum_salary: 168500.09 },
 ];
 
 export const statuses = [

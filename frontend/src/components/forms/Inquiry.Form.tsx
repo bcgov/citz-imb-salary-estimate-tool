@@ -10,13 +10,14 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import { useForm } from '@tanstack/react-form';
+import { useForm, FormApi } from '@tanstack/react-form';
 import { useMemo } from 'react';
 import { useInquiry } from '../../hooks/useInquiry/useInquiry';
 import { InquiryData } from '../../types';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
-import { Field, FieldTypes } from '../fields';
+import { Field, FieldTypes, FieldProps } from '../fields';
 import { StatusStepper } from '../stepper/StatusStepper';
+import { FormSection } from './FormSection';
 
 interface InquiryFormProps {
   mode?: 'create' | 'update' | 'view';
@@ -29,6 +30,14 @@ export const InquiryForm = (props: InquiryFormProps) => {
   console.log('InquiryForm mode', mode);
 
   const inquiryData = useInquiry();
+
+  const form = useForm({
+    defaultValues: inquiryData.formOptions.defaultValues,
+    onSubmit: (values) => {
+      inquiryData.append(values as InquiryData);
+      if (onClose) onClose();
+    },
+  });
 
   const hiddenSectionFields = useMemo(
     () =>
@@ -62,14 +71,6 @@ export const InquiryForm = (props: InquiryFormProps) => {
     [inquiryData.formOptions.fields]
   );
 
-  const form = useForm({
-    defaultValues: inquiryData.formOptions.defaultValues,
-    onSubmit: (values) => {
-      inquiryData.append(values as InquiryData);
-      if (onClose) onClose();
-    },
-  });
-
   if (inquiryData.isError) return <div>Error</div>;
 
   if (inquiryData.isLoading) return <div>Loading...</div>;
@@ -100,115 +101,50 @@ export const InquiryForm = (props: InquiryFormProps) => {
               </Grid>
 
               <Grid container spacing={2} marginY={2}>
-                {headerSectionFields
-                  .sort((a, b) => a.sortOrder - b.sortOrder)
-                  .map((field) => {
-                    return (
-                      <Grid item key={field.name} xs={12} sm={6} md={4} lg={3}>
-                        <form.Field
-                          name={field.name}
-                          children={(formField) => {
-                            return (
-                              formField.state.value !== undefined && (
-                                <Field
-                                  id={field.name}
-                                  type={field.type as FieldTypes}
-                                  value={formField.state.value}
-                                  onChange={formField.handleChange}
-                                  label={field.label}
-                                  required={field.required || false}
-                                  dataOptions={field.dataOptions}
-                                />
-                              )
-                            );
-                          }}
-                        />
-                      </Grid>
-                    );
-                  })}
+                {
+                  // TODO: can we fix the typecasting here?
+                }
+                <FormSection
+                  form={form as unknown as FormApi<unknown, unknown>}
+                  fields={headerSectionFields as unknown as FieldProps[]}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                />
               </Grid>
+
               <Grid container spacing={2} marginY={2}>
-                {mainSectionFields
-                  .sort((a, b) => a.sortOrder - b.sortOrder)
-                  .map((field) => {
-                    return (
-                      <Grid item key={field.name} xs={12} sm={6} md={4} lg={3}>
-                        <form.Field
-                          name={field.name}
-                          children={(formField) => {
-                            return (
-                              formField.state.value !== undefined && (
-                                <Field
-                                  id={field.name}
-                                  type={field.type as FieldTypes}
-                                  value={formField.state.value}
-                                  onChange={formField.handleChange}
-                                  label={field.label}
-                                  required={field.required || false}
-                                  dataOptions={field.dataOptions}
-                                />
-                              )
-                            );
-                          }}
-                        />
-                      </Grid>
-                    );
-                  })}
+                {
+                  // TODO: can we fix the typecasting here?
+                }
+                <FormSection
+                  form={form as unknown as FormApi<unknown, unknown>}
+                  fields={mainSectionFields as unknown as FieldProps[]}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                />
               </Grid>
-              <Grid container marginY={2}>
-                {footerSectionFields
-                  .sort((a, b) => a.sortOrder - b.sortOrder)
-                  .map((field) => {
-                    return (
-                      <Grid item key={field.name} xs={12}>
-                        <form.Field
-                          name={field.name}
-                          children={(formField) => {
-                            return (
-                              formField.state.value !== undefined && (
-                                <Field
-                                  id={field.name}
-                                  type={field.type as FieldTypes}
-                                  value={formField.state.value}
-                                  onChange={formField.handleChange}
-                                  label={field.label}
-                                  required={field.required || false}
-                                  dataOptions={field.dataOptions}
-                                />
-                              )
-                            );
-                          }}
-                        />
-                      </Grid>
-                    );
-                  })}
+
+              <Grid container spacing={2} marginY={2}>
+                {
+                  // TODO: can we fix the typecasting here?
+                }
+                <FormSection
+                  form={form as unknown as FormApi<unknown, unknown>}
+                  fields={footerSectionFields as unknown as FieldProps[]}
+                  xs={12}
+                />
               </Grid>
-              <Grid container marginY={2}>
-                <Box>Hidden Fields</Box>
-                {hiddenSectionFields.map((field) => {
-                  return (
-                    <Grid item key={field.name} xs={12}>
-                      <form.Field
-                        name={field.name}
-                        children={(formField) => {
-                          return (
-                            formField.state.value !== undefined && (
-                              <Field
-                                id={field.name}
-                                type={field.type as FieldTypes}
-                                value={formField.state.value}
-                                onChange={formField.handleChange}
-                                label={field.label}
-                                required={field.required || false}
-                                dataOptions={field.dataOptions}
-                              />
-                            )
-                          );
-                        }}
-                      />
-                    </Grid>
-                  );
-                })}
+
+              <Grid container marginY={2} display="none">
+                <FormSection
+                  form={form as unknown as FormApi<unknown, unknown>}
+                  fields={hiddenSectionFields as unknown as FieldProps[]}
+                  xs={12}
+                />
               </Grid>
             </Stack>
           </DialogContent>

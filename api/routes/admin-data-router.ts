@@ -9,6 +9,7 @@ import {
     getExperiences,
     getAppointments,
     getProcesses,
+    getSalaryRanges,
 } from '../controllers/admin-data-controller';
 
 const router = express.Router();
@@ -28,5 +29,9 @@ router.route('/appointment')
 // GET processes
 router.route('/process')
     .get(getProcesses);
+
+// GET salaryRanges
+router.route('/ranges')
+    .get(getSalaryRanges);
 
 export default router;

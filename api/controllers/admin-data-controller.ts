@@ -79,3 +79,21 @@ export const getAppointments = async (req: Request, res: Response) => {
         return res.status(400).json(error);
     }
 };
+
+// Salary Ranges (BANDS 1-6, none is 0)
+
+/**
+ * @summary Returns all Salary Ranges/Bands
+ * @author dallascrichmond
+ */
+export const getSalaryRanges = async (req: Request, res: Response) => {
+    try {
+        const salaryRanges = await prisma.salaryRange.findMany();
+        if(salaryRanges.length !== 0){
+            return res.status(200).json(salaryRanges);
+        }
+        return res.status(404).send(httpResponses[404]);
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+};

@@ -22,7 +22,7 @@ export const SelectField = (props: SelectFieldProps) => {
   const selectData = useDataFactory<Record<string, string>>({
     endPoint: dataOptions.endPoint,
   });
-
+  console.log(`selectData: ${dataOptions.endPoint}`, selectData);
   const choices = useMemo(() => {
     if (!selectData.data || selectData.isLoading) return [];
     if (selectData.isError)

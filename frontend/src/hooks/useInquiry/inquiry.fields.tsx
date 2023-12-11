@@ -121,7 +121,7 @@ export const fieldsInquiry: IField[] = [
     section: 'position',
     sortOrder: 3,
     dataOptions: {
-      endPoint: 'classification',
+      endPoint: 'ranges',
       labelFieldName: 'definition',
       valueFieldName: 'id',
     },

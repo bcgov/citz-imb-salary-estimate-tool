@@ -24,6 +24,7 @@ model Ministry {
 
 model SalaryRange {
   id Int @id @default(autoincrement())
+  definition String
   minimum_salary Int
   maximum_salary Int
   created_at DateTime @default(now())

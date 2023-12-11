@@ -1,11 +1,10 @@
-import { Box } from '@mui/material';
-import { Navigate } from 'react-router-dom';
-import { ErrorDialog, Loading, TableContainer } from '../components';
-import { useAuthentication, useInquiry } from '../hooks';
-import { InquiryData } from '../types';
+import { useInquiry } from '../../hooks';
+import { TableContainer } from './TableContainer';
+import { InquiryData } from '../../types';
+import { Loading } from '../loading/Loading';
+import { ErrorDialog } from '../dialogs/ErrorDialog';
 
-export const Inquiry = () => {
-  const { isAuthenticated } = useAuthentication();
+export const InquiryTableContainer = () => {
   const { data, columns, isLoading, isError, error, append } = useInquiry();
 
   const addItem = async () => {
@@ -34,22 +33,17 @@ export const Inquiry = () => {
     append(newItem);
   };
 
-  if (!isAuthenticated) return <Navigate replace to="/" />;
-
   if (isLoading) return <Loading />;
-
   if (isError) return <ErrorDialog error={error} />;
 
   return (
-    <Box p={2}>
-      <TableContainer
-        rows={data}
-        columns={columns}
-        tableName="Hiring Manager Salary Inquiries"
-        addAction={addItem}
-      />
-    </Box>
+    <TableContainer
+      rows={data}
+      columns={columns}
+      tableName="Inquiries"
+      addAction={addItem}
+    />
   );
 };
 
-export default Inquiry;
+export default InquiryTableContainer;

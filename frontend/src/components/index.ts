@@ -11,3 +11,4 @@ export * from './table/TableContainer';
 export * from './tablecells/DateCell';
 export * from './tablecells/StatusCell';
 export * from './tablecells/RolesCell';
+export * from './tabs/CustomTabPanel';

@@ -1,39 +1,14 @@
 import React, { useState } from 'react';
-import { Box, Typography, Tabs, Tab } from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 import { Navigate } from 'react-router-dom';
-import { ErrorDialog, Loading, TableContainer } from '../components';
+import {
+  ErrorDialog,
+  Loading,
+  TableContainer,
+  CustomTabPanel,
+} from '../components';
 import { useAuthentication, useInquiry, useUser } from '../hooks';
 import { InquiryData } from '../types';
-
-interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-const CustomTabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
-
-CustomTabPanel.defaultProps = {
-  children: '',
-};
 
 const a11yProps = (index: number) => {
   return {

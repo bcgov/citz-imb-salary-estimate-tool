@@ -27,7 +27,6 @@ model SalaryRange {
   minimum_salary Int
   maximum_salary Int
   created_at DateTime @default(now())
-  old_salary_inquiries Inquiry[] @relation(name: "old")
   new_salary_inquiries Inquiry[] @relation(name: "new")
 }
 
@@ -72,16 +71,15 @@ model Inquiry {
   inquiry_completion_date DateTime?
   candidate_first_name String
   candidate_last_name String
-  current_position_number Int?
+  current_position_number String?
   current_position_title String?
   current_ministry_id String?
   ministry Ministry? @relation(fields: [current_ministry_id], references: [id])
   current_annual_salary Int?
-  current_mccf_classification_id Int?
-  old_salary_range SalaryRange? @relation(fields: [current_mccf_classification_id], references: [id], name: "old")
+  current_mccf_classification_id String?
   experience_level_id Int
   experience Experience @relation(fields: [experience_level_id], references: [id])
-  new_position_number Int
+  new_position_number String
   new_position_title String
   new_mccf_classification_id Int
   new_salary_range SalaryRange @relation(fields: [new_mccf_classification_id], references: [id], name: "new")

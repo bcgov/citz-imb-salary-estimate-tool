@@ -2,6 +2,7 @@ import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useMemo } from 'react';
 import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
 import { FieldProps } from './FieldProps.d';
+import { LoadingSkeletonField } from '../loading/LoadingSkeleton.field';
 
 interface SelectFieldProps extends FieldProps {
   dataOptions: {
@@ -23,15 +24,17 @@ export const SelectField = (props: SelectFieldProps) => {
   });
 
   const choices = useMemo(() => {
-    if (!selectData.data || selectData.isLoading || selectData.isError)
-      return [];
+    if (!selectData.data || selectData.isLoading) return [];
+    if (selectData.isError)
+      return [{ label: 'Error loading values', value: '' }];
+
     return selectData.data.map((item) => ({
       label: item[dataOptions.labelFieldName],
       value: item[dataOptions.valueFieldName],
     }));
   }, [dataOptions, selectData.data, selectData.isError, selectData.isLoading]);
 
-  if (selectData.isLoading || selectData.isError) return null;
+  if (selectData.isLoading) return <LoadingSkeletonField />;
 
   return (
     <TextFieldMUI fullWidth select onChange={handleChange} {...otherProps}>

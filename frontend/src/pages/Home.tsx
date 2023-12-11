@@ -37,7 +37,7 @@ const Home = () => {
         <InquiryTableContainer />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {hasRole('admin') ? <UserTableContainer /> : <div />}
+        {hasRole('admin') ? <UserTableContainer /> : <Box />}
       </CustomTabPanel>
     </Box>
   );

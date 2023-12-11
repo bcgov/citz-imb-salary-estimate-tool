@@ -1,71 +1,84 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable global-require */
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Home } from './Home';
+import { Inquiry } from './Home';
+import { useInquiry, useAuthentication } from '../hooks';
 
+jest.mock('../hooks', () => ({
+  useInquiry: jest.fn(),
+  useAuthentication: jest.fn().mockReturnValue({ isAuthenticated: false }),
+}));
 jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate</div>,
 }));
 jest.mock('../components', () => ({
-  AuthenticationDialog: () => <div>Authentication Required</div>,
-  Dialog: () => (
-    <div>
-      You have not been assigned one of the necessary roles to access this
-      application.
-    </div>
-  ),
-}));
-jest.mock('../hooks', () => ({
-  useAuthentication: jest
-    .fn()
-    .mockReturnValue({ isAuthenticated: false, hasRole: jest.fn() }),
+  ErrorDialog: () => <div>ErrorDialog</div>,
+  Loading: () => <div>Loading</div>,
+  TableContainer: () => <div>TableContainer</div>,
 }));
 
-describe('Home Component', () => {
+describe('Inquiry', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('renders AuthenticationDialog when not authenticated', () => {
-    render(<Home />, { wrapper: MemoryRouter });
-    expect(screen.getByText('Authentication Required')).toBeInTheDocument();
-  });
-
-  it('renders Dialog when authenticated but has no role', () => {
-    (require('../hooks').useAuthentication as jest.Mock).mockReturnValueOnce({
-      isAuthenticated: true,
-      hasRole: jest.fn(),
+  it('redirects if not authenticated', () => {
+    (useInquiry as jest.Mock).mockReturnValueOnce({
+      data: [],
+      columns: [],
+      isLoading: false,
+      isError: false,
+      error: '',
+    });
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: false,
     });
 
-    render(<Home />, { wrapper: MemoryRouter });
-
-    expect(
-      screen.getByText(
-        'You have not been assigned one of the necessary roles to access this application.'
-      )
-    ).toBeInTheDocument();
-  });
-
-  it('renders Navigate to "/Admin" when authenticated with "admin" role', () => {
-    (require('../hooks').useAuthentication as jest.Mock).mockReturnValueOnce({
-      isAuthenticated: true,
-      hasRole: jest.fn((role) => role === 'admin'),
-    });
-
-    render(<Home />, { wrapper: MemoryRouter });
-
+    render(<Inquiry />);
     expect(screen.getByText('Navigate')).toBeInTheDocument();
   });
 
-  it('renders Navigate to "/Inquiry" when authenticated with "hm", "shr", or "adm" role', () => {
-    (require('../hooks').useAuthentication as jest.Mock).mockReturnValueOnce({
+  it('renders correctly if authenticated', () => {
+    (useInquiry as jest.Mock).mockReturnValueOnce({
+      data: [],
+      columns: [],
+      isLoading: false,
+      isError: false,
+      error: '',
+    });
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
       isAuthenticated: true,
-      hasRole: jest.fn((role) => ['hm', 'shr', 'adm'].includes(role)),
     });
 
-    render(<Home />, { wrapper: MemoryRouter });
+    render(<Inquiry />);
+    expect(screen.getByText('TableContainer')).toBeInTheDocument();
+  });
+  it('renders a loading screen if loading', () => {
+    (useInquiry as jest.Mock).mockReturnValueOnce({
+      data: [],
+      columns: [],
+      isLoading: true,
+      isError: false,
+      error: '',
+    });
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+    });
 
-    expect(screen.getByText('Navigate')).toBeInTheDocument();
+    render(<Inquiry />);
+    expect(screen.getByText('Loading')).toBeInTheDocument();
+  });
+  it('renders an Error Dialog if an error', () => {
+    (useInquiry as jest.Mock).mockReturnValueOnce({
+      data: [],
+      columns: [],
+      isLoading: false,
+      isError: true,
+      error: 'ErrorDialog',
+    });
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+    });
+
+    render(<Inquiry />);
+    expect(screen.getByText('ErrorDialog')).toBeInTheDocument();
   });
 });

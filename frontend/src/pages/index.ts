@@ -1,4 +1,4 @@
-export * from './Admin';
-export * from './Home';
-export * from './Inquiry';
-export * from './Inquiry.New';
+import Home from './Home';
+import Login from './Login';
+
+export { Home, Login };

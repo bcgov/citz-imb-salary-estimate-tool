@@ -2,10 +2,9 @@ import { Box, Paper } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from './components';
 import { useAuthentication } from './hooks';
-import { Admin, Home, Inquiry, InquiryNew } from './pages';
+import PageRouter from './routes/PageRouter';
 
 const App = () => {
   const { KeycloakProvider } = useAuthentication();
@@ -23,12 +22,7 @@ const App = () => {
         >
           <Box sx={{ flexGrow: 1 }}>
             <Navbar title="Salary Estimation Tool" />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Admin" element={<Admin />} />
-              <Route path="/Inquiry" element={<Inquiry />} />
-              <Route path="/Inquiry/New" element={<InquiryNew />} />
-            </Routes>
+            <PageRouter />
           </Box>
           <Footer />
         </Paper>

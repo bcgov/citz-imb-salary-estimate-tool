@@ -8,6 +8,7 @@ interface IField {
     endPoint: string;
     labelFieldName: string;
     valueFieldName: string;
+    sortFieldName?: string;
   };
   section: 'employee' | 'position' | 'comment' | 'hidden';
   sortOrder: number;
@@ -57,6 +58,7 @@ export const fieldsInquiry: IField[] = [
       endPoint: 'ministry',
       labelFieldName: 'ministry_name',
       valueFieldName: 'id',
+      sortFieldName: 'ministry_name',
     },
     defaultValue: '',
     section: 'employee',
@@ -124,6 +126,7 @@ export const fieldsInquiry: IField[] = [
       endPoint: 'ranges',
       labelFieldName: 'definition',
       valueFieldName: 'id',
+      sortFieldName: 'minimum_salary',
     },
   },
   {
@@ -155,6 +158,7 @@ export const fieldsInquiry: IField[] = [
       endPoint: 'appointment',
       labelFieldName: 'definition',
       valueFieldName: 'id',
+      sortFieldName: 'definition',
     },
     defaultValue: 2,
     section: 'position',
@@ -168,6 +172,7 @@ export const fieldsInquiry: IField[] = [
       endPoint: 'process',
       labelFieldName: 'definition',
       valueFieldName: 'id',
+      sortFieldName: 'definition',
     },
     defaultValue: 1,
     section: 'position',

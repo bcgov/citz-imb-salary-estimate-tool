@@ -9,6 +9,7 @@ interface SelectFieldProps extends FieldProps {
     endPoint: string;
     labelFieldName: string;
     valueFieldName: string;
+    sortFieldName?: string;
   };
 }
 
@@ -22,13 +23,22 @@ export const SelectField = (props: SelectFieldProps) => {
   const selectData = useDataFactory<Record<string, string>>({
     endPoint: dataOptions.endPoint,
   });
-  console.log(`selectData: ${dataOptions.endPoint}`, selectData);
+
   const choices = useMemo(() => {
     if (!selectData.data || selectData.isLoading) return [];
     if (selectData.isError)
       return [{ label: 'Error loading values', value: '' }];
 
-    return selectData.data.map((item) => ({
+    const sortedData = selectData.data.sort((a, b) => {
+      if (dataOptions.sortFieldName) {
+        return a[dataOptions.sortFieldName] > b[dataOptions.sortFieldName]
+          ? 1
+          : -1;
+      }
+      return 0;
+    });
+
+    return sortedData.map((item) => ({
       label: item[dataOptions.labelFieldName],
       value: item[dataOptions.valueFieldName],
     }));

@@ -30,7 +30,7 @@ const Home = () => {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="Table Tabs">
           <Tab label="Inquiries" {...a11yProps(0)} />
-          <Tab label="Users" {...a11yProps(1)} />
+          {hasRole('admin') && <Tab label="Users" {...a11yProps(1)} />}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

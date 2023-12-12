@@ -1,7 +1,8 @@
 import { Divider, Grid, GridProps, Stack, Typography } from '@mui/material';
 // import { useField } from '@tanstack/react-form';
 import { FormApi } from '@tanstack/react-form';
-import { Field, FieldProps, FieldTypes } from '../fields';
+import { FieldProps, FieldTypes } from '../../../types';
+import { Field } from '../../fields';
 
 interface FormSectionProps extends GridProps {
   fields: FieldProps[];

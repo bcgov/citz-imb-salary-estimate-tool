@@ -1,6 +1,6 @@
 import { Dialog } from '@mui/material';
 import { useState } from 'react';
-import { InquiryForm } from '../../forms/Inquiry.Form';
+import { InquiryForm } from '../../forms/InquiryForm/InquiryForm';
 import { AddButton } from '../../buttons/AddButton/AddButton';
 
 export const NewInquiryDialog = () => {

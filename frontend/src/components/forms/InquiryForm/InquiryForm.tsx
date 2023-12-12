@@ -10,12 +10,11 @@ import {
 } from '@mui/material';
 import { FormApi, useForm } from '@tanstack/react-form';
 import { useMemo } from 'react';
-import { useInquiry } from '../../hooks/useInquiry/useInquiry';
-import { InquiryData } from '../../types';
-import { SubmitCancelButton } from '../buttons/SubmitCancelButton/SubmitCancelButton';
-import { FieldProps } from '../fields';
-import { StatusStepper } from '../stepper/StatusStepper';
-import { FormSection } from './FormSection';
+import { useInquiry } from '../../../hooks/useInquiry/useInquiry';
+import { InquiryData, FieldProps } from '../../../types';
+import { SubmitCancelButton } from '../../buttons/SubmitCancelButton/SubmitCancelButton';
+import { StatusStepper } from '../../stepper/StatusStepper';
+import { FormSection } from '../FormSection/FormSection';
 
 interface InquiryFormProps {
   mode: 'create' | 'edit' | 'view';

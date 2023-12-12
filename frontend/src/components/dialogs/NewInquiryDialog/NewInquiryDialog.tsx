@@ -1,7 +1,7 @@
 import { Dialog } from '@mui/material';
 import { useState } from 'react';
-import { InquiryForm } from '../forms/Inquiry.Form';
-import { AddButton } from '../buttons/AddButton/AddButton';
+import { InquiryForm } from '../../forms/Inquiry.Form';
+import { AddButton } from '../../buttons/AddButton/AddButton';
 
 export const NewInquiryDialog = () => {
   const [isOpen, setOpen] = useState(false);

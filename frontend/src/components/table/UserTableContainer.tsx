@@ -1,7 +1,7 @@
 import { useUser } from '../../hooks';
 import { TableContainer } from './TableContainer';
 import { Loading } from '../loading/Loading';
-import { ErrorDialog } from '../dialogs/ErrorDialog';
+import { ErrorDialog } from '../dialogs/ErrorDialog/ErrorDialog';
 
 export const UserTableContainer = () => {
   const { data, columns, isLoading, isError, error } = useUser();

@@ -1,6 +1,6 @@
 import { useInquiry } from '../../hooks';
-import { ErrorDialog } from '../dialogs/ErrorDialog';
-import { NewInquiryDialog } from '../dialogs/NewInquiry.Dialog';
+import { ErrorDialog } from '../dialogs/ErrorDialog/ErrorDialog';
+import { NewInquiryDialog } from '../dialogs/NewInquiryDialog/NewInquiryDialog';
 import { Loading } from '../loading/Loading';
 import { TableContainer } from './TableContainer';
 

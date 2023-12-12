@@ -5,7 +5,7 @@ import {
   DialogProps,
   DialogTitle,
 } from '@mui/material';
-import { Button } from '../buttons/Button/Button';
+import { Button } from '../../buttons/Button/Button';
 
 interface ActionConfigProps {
   onClick: () => void;

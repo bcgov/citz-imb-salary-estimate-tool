@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box, Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import {
   CustomTabPanel,
@@ -30,14 +30,14 @@ const Home = () => {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="Table Tabs">
           <Tab label="Inquiries" {...a11yProps(0)} />
-          <Tab label="Users" {...a11yProps(1)} />
+          {hasRole('admin') && <Tab label="Users" {...a11yProps(1)} />}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <InquiryTableContainer />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {hasRole('admin') ? <UserTableContainer /> : <Box />}
+        {hasRole('admin') && <UserTableContainer />}
       </CustomTabPanel>
     </Box>
   );

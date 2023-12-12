@@ -4,7 +4,7 @@ export const Button = (props: ButtonProps) => {
   const { children, onClick, ...otherProps } = props;
 
   return (
-    <ButtonMui onClick={onClick} {...otherProps}>
+    <ButtonMui onClick={onClick} {...otherProps} disableRipple>
       {children}
     </ButtonMui>
   );

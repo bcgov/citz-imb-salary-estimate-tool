@@ -12,20 +12,18 @@
  * any styling of the columns should be done in the columns file
  * any styling of the cells should be done in the cell components
  */
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Stack, Toolbar, Typography } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { AddButton } from '../buttons/AddButton';
 
 interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   rows: T[];
   columns: GridColDef[];
   tableName: string;
-  addAction?: () => void;
   getRowId?: (row: T) => string;
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { rows, columns, tableName, addAction, getRowId } = props;
+  const { children, rows, columns, tableName, getRowId } = props;
 
   return (
     <Box padding={1} sx={{ flexGrow: 1 }}>
@@ -34,7 +32,9 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {tableName}
           </Typography>
-          {addAction && <AddButton onClick={addAction} />}
+          <Stack direction="row" spacing={1}>
+            {children}
+          </Stack>
         </Toolbar>
       </AppBar>
 
@@ -51,7 +51,6 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
 };
 
 TableContainer.defaultProps = {
-  addAction: null,
   getRowId: null,
 };
 

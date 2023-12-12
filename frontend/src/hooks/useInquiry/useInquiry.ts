@@ -4,15 +4,23 @@
  */
 import { useDataFactory } from '../useDataFactory/useData.Factory';
 import { columnsInquiry } from './inquiry.columns';
+import { fieldsInquiry } from './inquiry.fields';
 import { InquiryData } from '../../types';
 
 export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
 
+  const defaultValues = {};
+
+  fieldsInquiry.forEach((field) => {
+    defaultValues[field.name] = field.defaultValue;
+  });
+
   return {
     ...inquiryData,
     columns: columnsInquiry,
+    formOptions: { defaultValues, fields: fieldsInquiry },
   };
 };
 

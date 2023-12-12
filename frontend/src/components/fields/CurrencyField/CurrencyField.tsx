@@ -1,5 +1,5 @@
 import { InputAdornment, TextField as TextFieldMUI } from '@mui/material';
-import { FieldProps } from './FieldProps.d';
+import { FieldProps } from '../../../types';
 
 interface CurrencyFieldProps extends FieldProps {
   value: number;

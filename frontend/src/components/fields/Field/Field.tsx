@@ -1,12 +1,12 @@
 import { DateTime } from 'luxon';
-import { CurrencyField } from './Currency.Field';
-import { DateField } from './Date.Field';
-import { DataOptions, FieldProps } from './FieldProps.d';
-import { MultilineField } from './Multiline.Field';
-import { NumberField } from './Number.Field';
-import { SelectField } from './Select.Field';
-import { StatusField } from './Status.Field';
-import { TextField } from './Text.Field';
+import { CurrencyField } from '../CurrencyField/CurrencyField';
+import { DateField } from '../DateField/DateField';
+import { DataOptions, FieldProps } from '../../../types';
+import { MultilineField } from '../MultilineField/MultilineField';
+import { NumberField } from '../NumberField/NumberField';
+import { SelectField } from '../SelectField/SelectField';
+import { StatusField } from '../StatusField/StatusField';
+import { TextField } from '../TextField/TextField';
 
 export const Field = (props: FieldProps) => {
   const { type, value, dataOptions, ...otherProps } = props;

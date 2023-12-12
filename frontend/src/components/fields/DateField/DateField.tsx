@@ -1,6 +1,6 @@
 import { DatePicker } from '@mui/x-date-pickers';
 import { DateTime } from 'luxon';
-import { FieldProps } from './FieldProps.d';
+import { FieldProps } from '../../../types';
 
 interface DateFieldProps extends FieldProps {
   value: DateTime | null;

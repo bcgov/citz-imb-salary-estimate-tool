@@ -1,7 +1,5 @@
 import { Chip, Typography } from '@mui/material';
-import { State } from '../../types';
-
-import { FieldProps } from './FieldProps.d';
+import { State, FieldProps } from '../../../types';
 
 export const StatusField = (props: FieldProps) => {
   const { label, value, ...otherProps } = props;

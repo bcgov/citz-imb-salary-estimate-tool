@@ -1,5 +1,5 @@
 import { TextField as TextFieldMUI } from '@mui/material';
-import { FieldProps } from './FieldProps.d';
+import { FieldProps } from '../../../types';
 
 interface NumberFieldProps extends FieldProps {
   value: number;

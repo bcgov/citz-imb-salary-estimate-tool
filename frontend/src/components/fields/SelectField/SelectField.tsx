@@ -2,7 +2,7 @@ import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useMemo } from 'react';
 import { useDataFactory } from '../../../hooks/useDataFactory/useData.Factory';
 import { FieldProps } from '../../../types';
-import { LoadingSkeletonField } from '../../loading/LoadingSkeleton.field';
+import { LoadingSkeletonField } from '../../loading/LoadingSkeleton/LoadingSkeleton.field';
 
 interface SelectFieldProps extends FieldProps {
   dataOptions: {

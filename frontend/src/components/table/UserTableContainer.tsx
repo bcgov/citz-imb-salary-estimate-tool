@@ -1,6 +1,6 @@
 import { useUser } from '../../hooks';
 import { TableContainer } from './TableContainer';
-import { Loading } from '../loading/Loading';
+import { Loading } from '../loading/Loading/Loading';
 import { ErrorDialog } from '../dialogs/ErrorDialog/ErrorDialog';
 
 export const UserTableContainer = () => {

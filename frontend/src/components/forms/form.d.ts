@@ -12,13 +12,13 @@ export type IFormField = {
   name: string;
   label: string;
   type:
-    | 'currency'
-    | 'date'
-    | 'multiline'
-    | 'number'
-    | 'select'
-    | 'status'
-    | 'text';
+  | 'currency'
+  | 'date'
+  | 'multiline'
+  | 'number'
+  | 'select'
+  | 'status'
+  | 'text';
   required?: boolean;
   defaultValue: string | number | null;
   selectionOptions?: ISelectionOptions;
@@ -37,8 +37,7 @@ export type IDefaultValue = {
   [key: string]: string | number | null;
 };
 
-export interface IFormFactoryProps {
-  onSubmit: (data: unknown) => void;
+interface IFormBaseProps {
   // isLoading?: boolean;
   // isError?: boolean;
   title: string;
@@ -46,7 +45,13 @@ export interface IFormFactoryProps {
   sections: IFormSection[];
 }
 
-export interface IFormDialogProps extends IFormFactoryProps {
+export interface IFormFactoryProps extends IFormBaseProps {
+  onAppend: (data: unknown) => void;
+  onUpdate: (data: unknown) => void;
+}
+
+export interface IFormDialogProps extends IFormBaseProps {
+  onSubmit: (data: unknown) => void;
   defaultValues: IDefaultValue;
 }
 

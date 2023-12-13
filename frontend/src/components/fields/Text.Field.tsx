@@ -5,10 +5,11 @@ interface TextFieldProps {
   name: string;
   label: string;
   hidden?: boolean;
+  mode: 'Create' | 'Edit' | 'View';
 }
 
 export const TextField = (props: TextFieldProps) => {
-  const { label, name, hidden } = props;
+  const { label, name, hidden, mode } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -27,6 +28,7 @@ export const TextField = (props: TextFieldProps) => {
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
             label={label}
+            inputProps={{ readOnly: mode === 'View' }}
           />
         )
       }

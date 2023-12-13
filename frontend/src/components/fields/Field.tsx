@@ -13,6 +13,7 @@ interface IFieldProps {
   label: string;
   hidden?: boolean;
   selectionOptions?: ISelectionOptions;
+  mode: 'Create' | 'Edit' | 'View';
 }
 
 export const Field = (props: IFieldProps) => {

@@ -13,17 +13,18 @@ export const useInquiry = (dataId: string = '') => {
   const endPoint = 'inquiry';
   const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
 
-  const { AddFormDialog } = useFormFactory({
+  const inquiryForms = useFormFactory({
     title: 'Inquiry',
-    onSubmit: (data) => inquiryData.append(data as InquiryData),
+    onAppend: (data) => inquiryData.append(data as InquiryData),
+    onUpdate: (data) => inquiryData.update(data as InquiryData),
     sections: inquirySections,
     fields: inquiryFormFields,
   });
 
   return {
     ...inquiryData,
+    ...inquiryForms,
     columns: columnsInquiry,
-    AddFormDialog,
   };
 };
 

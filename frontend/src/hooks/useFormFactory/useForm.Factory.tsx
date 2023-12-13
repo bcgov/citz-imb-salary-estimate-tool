@@ -1,6 +1,11 @@
-import { NewFormDialog, IFormFactoryProps } from '../../components';
+import {
+  NewFormDialog,
+  ViewFormDialog,
+  IFormFactoryProps,
+} from '../../components';
 
 export const useFormFactory = (props: IFormFactoryProps) => {
+  const { onAppend, onUpdate, ...otherProps } = props;
   const defaultValues = {};
 
   props.fields.forEach((field) => {
@@ -9,8 +14,20 @@ export const useFormFactory = (props: IFormFactoryProps) => {
 
   return {
     EditForm: <div>Hello There</div>,
-    AddFormDialog: <NewFormDialog defaultValues={defaultValues} {...props} />,
-    ViewForm: <div>Hello There</div>,
+    AddFormDialog: (
+      <NewFormDialog
+        defaultValues={defaultValues}
+        onSubmit={onAppend}
+        {...otherProps}
+      />
+    ),
+    ViewFormDialog: (data) => (
+      <ViewFormDialog
+        defaultValues={data}
+        onSubmit={() => {}}
+        {...otherProps}
+      />
+    ),
   };
 };
 

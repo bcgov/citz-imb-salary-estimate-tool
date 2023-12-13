@@ -96,7 +96,9 @@ export const useDataFactory = <TDataType>({
     onSettled,
   });
 
-  return { ...query, data, append };
+  const update = (updateData: unknown) => console.log('update', updateData);
+
+  return { ...query, data, append, update };
 };
 
 export default useDataFactory;

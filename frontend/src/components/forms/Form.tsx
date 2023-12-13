@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useForm } from '@tanstack/react-form';
+import { CloseButton } from '../buttons/CloseButton';
 import { SubmitCancelButton } from '../buttons/SubmitCancelButton';
 import { FormSection } from './FormSection';
 import { IFormProps } from './form.d';
@@ -70,7 +71,7 @@ export const Form = (props: IFormProps) => {
                     title={section.label as string}
                     form={formHook}
                     fields={sectonFields}
-                    mode="view"
+                    mode={mode}
                     gridItemProps={section.gridItemProps}
                   />
                 );
@@ -78,7 +79,11 @@ export const Form = (props: IFormProps) => {
             </Stack>
           </DialogContent>
           <DialogActions>
-            <SubmitCancelButton onClose={onClose} />
+            {mode === 'View' ? (
+              <CloseButton onClose={onClose} />
+            ) : (
+              <SubmitCancelButton onClose={onClose} />
+            )}
           </DialogActions>
         </form>
       </formHook.Provider>

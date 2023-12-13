@@ -20,10 +20,31 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   columns: GridColDef[];
   tableName: string;
   getRowId?: (row: T) => string;
+  view?: (data: T) => JSX.Element;
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { children, rows, columns, tableName, getRowId } = props;
+  const { children, rows, columns, tableName, getRowId, view } = props;
+
+  const extendedColumns = [
+    {
+      field: 'view',
+      headerName: 'View',
+      width: 80,
+      renderCell: (params) => {
+        if (view) return view(params.row);
+        return null;
+      },
+    },
+    ...columns,
+  ];
+
+  const extendedRows = rows.map((row) => {
+    return { ...row, view: '' };
+  });
+
+  console.log('extendedColumns', extendedColumns);
+  console.log('extendedRows', extendedRows);
 
   return (
     <Box padding={1} sx={{ flexGrow: 1 }}>
@@ -39,8 +60,8 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
       </AppBar>
 
       <DataGrid
-        rows={rows}
-        columns={columns}
+        rows={extendedRows}
+        columns={extendedColumns}
         initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
         pageSizeOptions={[10, 20, 50, 100]}
         disableRowSelectionOnClick
@@ -52,6 +73,7 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
 
 TableContainer.defaultProps = {
   getRowId: null,
+  view: null,
 };
 
 export default TableContainer;

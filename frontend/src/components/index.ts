@@ -18,3 +18,4 @@ export * from './table/UserTableContainer';
 export * from './forms/Form';
 export * from './forms/form.d';
 export * from './dialogs/NewForm.Dialog';
+export * from './dialogs/ViewForm.Dialog';

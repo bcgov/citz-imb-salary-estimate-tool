@@ -5,14 +5,14 @@ import { IFormField } from './form.d';
 interface FormSectionProps {
   fields: IFormField[];
   form: unknown;
-  mode: 'create' | 'edit' | 'view';
+  mode: 'Create' | 'Edit' | 'View';
   title: string;
   display?: 'flex' | 'block' | 'none';
   gridItemProps?: GridProps;
 }
 
 export const FormSection = (props: FormSectionProps) => {
-  const { fields, display, title, gridItemProps } = props;
+  const { fields, display, title, gridItemProps, mode } = props;
 
   return (
     <Stack display={display} marginY={2}>
@@ -31,6 +31,7 @@ export const FormSection = (props: FormSectionProps) => {
                   name={field.name}
                   hidden={field.hidden}
                   selectionOptions={field.selectionOptions}
+                  mode={mode}
                 />
               </Grid>
             );

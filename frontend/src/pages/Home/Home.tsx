@@ -5,8 +5,8 @@ import {
   CustomTabPanel,
   InquiryTableContainer,
   UserTableContainer,
-} from '../components';
-import { useAuthentication } from '../hooks';
+} from '../../components';
+import { useAuthentication } from '../../hooks';
 
 const a11yProps = (index: number) => {
   return {

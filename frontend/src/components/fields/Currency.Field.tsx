@@ -17,20 +17,24 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
   return (
     <form.Field
       name={name}
-      children={(field) => (
-        <TextFieldMUI
-          sx={sx}
-          name={field.name}
-          type="number"
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          }}
-          value={field.state.value}
-          onBlur={field.handleBlur}
-          onChange={(e) => field.handleChange(e.target.value)}
-          label={label}
-        />
-      )}
+      children={(field) =>
+        field.state.value !== undefined && (
+          <TextFieldMUI
+            sx={sx}
+            name={field.name}
+            type="number"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(Number(e.target.value))}
+            label={label}
+          />
+        )
+      }
     />
   );
 };

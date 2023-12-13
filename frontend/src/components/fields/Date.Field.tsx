@@ -17,15 +17,17 @@ export const DateField = (props: DateFieldProps) => {
   return (
     <form.Field
       name={name}
-      children={(field) => (
-        <DatePicker
-          sx={sx}
-          value={field.state.value}
-          // onBlur={field.handleBlur}
-          onChange={(e) => field.handleChange(e.target.value)}
-          label={label}
-        />
-      )}
+      children={(field) =>
+        field.state.value !== undefined && (
+          <DatePicker
+            sx={sx}
+            value={field.state.value}
+            // onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+            label={label}
+          />
+        )
+      }
     />
   );
 };

@@ -13,7 +13,7 @@ interface FormSectionProps {
 
 export const FormSection = (props: FormSectionProps) => {
   const { fields, display, title, gridItemProps } = props;
-  console.log('FormSection: gridItemProps', gridItemProps);
+
   return (
     <Stack display={display} marginY={2}>
       <Divider>
@@ -41,7 +41,7 @@ export const FormSection = (props: FormSectionProps) => {
 };
 
 FormSection.defaultProps = {
-  gridItemProps: { xs: 12, sm: 6, md: 4, lg: 3, Xl: 2 },
+  gridItemProps: { xs: 12, sm: 6, md: 4, lg: 3, xl: 3 },
   display: undefined,
 };
 

@@ -38,7 +38,7 @@ export const inquiryFormFields: IFormField[] = [
     label: 'First Name',
     type: 'text',
     required: true,
-    defaultValue: 'hello',
+    defaultValue: '',
     section: 'employee',
     sortOrder: 1,
   },

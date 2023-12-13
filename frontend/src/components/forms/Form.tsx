@@ -30,7 +30,6 @@ export const Form = (props: IFormProps) => {
   const formHook = useForm({
     defaultValues,
     onSubmit: (data) => {
-      console.log('Form: onSubmit', data);
       onSubmit(data.value);
       onClose();
     },

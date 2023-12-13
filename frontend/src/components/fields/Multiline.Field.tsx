@@ -17,19 +17,21 @@ export const MultilineField = (props: MultilineFieldProps) => {
   return (
     <form.Field
       name={name}
-      children={(field) => (
-        <TextFieldMUI
-          rows={4}
-          multiline
-          sx={sx}
-          name={field.name}
-          type="text"
-          value={field.state.value}
-          onBlur={field.handleBlur}
-          onChange={(e) => field.handleChange(e.target.value)}
-          label={label}
-        />
-      )}
+      children={(field) =>
+        field.state.value !== undefined && (
+          <TextFieldMUI
+            rows={4}
+            multiline
+            sx={sx}
+            name={field.name}
+            type="text"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+            label={label}
+          />
+        )
+      }
     />
   );
 };

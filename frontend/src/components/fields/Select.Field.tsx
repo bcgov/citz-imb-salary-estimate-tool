@@ -1,9 +1,9 @@
-import { useField } from '@tanstack/react-form';
 import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
-// import { LoadingSkeletonField } from '../loading/LoadingSkeleton.field';
+import { useField } from '@tanstack/react-form';
 import { useMemo } from 'react';
-import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
 import { ISelectionOptions } from '..';
+import { useDataFactory } from '../../hooks/useDataFactory/useData.Factory';
+import { LoadingSkeletonField } from '../loading/LoadingSkeleton.field';
 
 interface SelectFieldProps {
   name: string;
@@ -53,29 +53,31 @@ export const SelectField = (props: SelectFieldProps) => {
     selectData.isError,
   ]);
 
-  // if (selectData.isLoading) return <LoadingSkeletonField />;
+  if (selectData.isLoading) return <LoadingSkeletonField />;
 
   return (
     <form.Field
       name={name}
-      children={(field) => (
-        <TextFieldMUI
-          sx={sx}
-          name={field.name}
-          select
-          value={field.state.value}
-          onBlur={field.handleBlur}
-          onChange={(e) => field.handleChange(e.target.value)}
-          label={label}
-        >
-          {choices &&
-            choices.map((choice) => (
-              <MenuItem key={choice.value} value={choice.value}>
-                {choice.label}
-              </MenuItem>
-            ))}
-        </TextFieldMUI>
-      )}
+      children={(field) =>
+        field.state.value !== undefined && (
+          <TextFieldMUI
+            sx={sx}
+            name={field.name}
+            select
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+            label={label}
+          >
+            {choices &&
+              choices.map((choice) => (
+                <MenuItem key={choice.value} value={choice.value}>
+                  {choice.label}
+                </MenuItem>
+              ))}
+          </TextFieldMUI>
+        )
+      }
     />
   );
 };

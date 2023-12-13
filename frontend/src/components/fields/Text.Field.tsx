@@ -17,17 +17,19 @@ export const TextField = (props: TextFieldProps) => {
   return (
     <form.Field
       name={name}
-      children={(field) => (
-        <TextFieldMUI
-          sx={sx}
-          name={field.name}
-          type="text"
-          value={field.state.value}
-          onBlur={field.handleBlur}
-          onChange={(e) => field.handleChange(e.target.value)}
-          label={label}
-        />
-      )}
+      children={(field) =>
+        field.state.value !== undefined && (
+          <TextFieldMUI
+            sx={sx}
+            name={field.name}
+            type="text"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+            label={label}
+          />
+        )
+      }
     />
   );
 };

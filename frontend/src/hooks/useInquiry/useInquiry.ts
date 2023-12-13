@@ -15,7 +15,7 @@ export const useInquiry = (dataId: string = '') => {
 
   const { AddFormDialog } = useFormFactory({
     title: 'Inquiry',
-    onSubmit: (data) => console.log('useForm: onSubmit', data),
+    onSubmit: (data) => inquiryData.append(data as InquiryData),
     sections: inquirySections,
     fields: inquiryFormFields,
   });

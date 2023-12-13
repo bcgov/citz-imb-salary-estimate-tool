@@ -1,3 +1,5 @@
+import { GridProps } from '@mui/material';
+
 export type ISelectionOptions = {
   data?: { label: string; value: string | number }[];
   endPoint?: string;
@@ -10,13 +12,13 @@ export type IFormField = {
   name: string;
   label: string;
   type:
-  | 'currency'
-  | 'date'
-  | 'multiline'
-  | 'number'
-  | 'select'
-  | 'status'
-  | 'text';
+    | 'currency'
+    | 'date'
+    | 'multiline'
+    | 'number'
+    | 'select'
+    | 'status'
+    | 'text';
   required?: boolean;
   defaultValue: string | number | null;
   selectionOptions?: ISelectionOptions;
@@ -28,6 +30,7 @@ export type IFormField = {
 export type IFormSection = {
   name: string;
   label: string;
+  gridItemProps?: GridProps;
 };
 
 export type IDefaultValue = {

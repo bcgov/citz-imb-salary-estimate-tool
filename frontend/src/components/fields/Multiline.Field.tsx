@@ -10,7 +10,7 @@ interface MultilineFieldProps {
 export const MultilineField = (props: MultilineFieldProps) => {
   const { label, name, hidden } = props;
 
-  const sx = hidden ? { display: 'none' } : {};
+  const sx = hidden ? { display: 'none' } : { width: '100%' };
 
   const { form } = useField({ name });
 

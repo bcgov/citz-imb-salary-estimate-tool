@@ -1,7 +1,5 @@
-// import { DateTime } from "luxon"
 import { CurrencyField } from './Currency.Field';
-// import { DateField } from "./Date.Field"
-// import { DataOptions } from "./FieldProps.d"
+import { DateField } from './Date.Field';
 import { MultilineField } from './Multiline.Field';
 import { NumberField } from './Number.Field';
 import { SelectField } from './Select.Field';
@@ -23,14 +21,8 @@ export const Field = (props: IFieldProps) => {
   switch (type) {
     case 'currency':
       return <CurrencyField {...fieldProps} />;
-    // case "date":
-    //   return (
-    //     <DateField
-    //       value={null}
-    //       {...defaultProps}
-    //       {...otherProps}
-    //     />
-    //   )
+    case 'date':
+      return <DateField {...fieldProps} />;
     case 'multiline':
       return <MultilineField {...fieldProps} />;
     case 'number':

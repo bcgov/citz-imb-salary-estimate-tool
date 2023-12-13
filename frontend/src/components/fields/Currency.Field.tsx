@@ -10,7 +10,7 @@ interface CurrencyFieldProps {
 export const CurrencyField = (props: CurrencyFieldProps) => {
   const { label, name, hidden } = props;
 
-  const sx = hidden ? { display: 'none' } : {};
+  const sx = hidden ? { display: 'none' } : { width: '100%' };
 
   const { form } = useField({ name });
 

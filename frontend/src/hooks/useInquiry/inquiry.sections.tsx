@@ -4,6 +4,7 @@ export const inquirySections: IFormSection[] = [
   {
     name: 'status',
     label: 'Status',
+    gridItemProps: { xs: 12 },
   },
   {
     name: 'employee',
@@ -16,6 +17,7 @@ export const inquirySections: IFormSection[] = [
   {
     name: 'comment',
     label: 'Comments',
+    gridItemProps: { xs: 12 },
   },
 ];
 

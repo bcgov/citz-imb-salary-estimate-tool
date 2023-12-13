@@ -15,7 +15,7 @@ interface SelectFieldProps {
 export const SelectField = (props: SelectFieldProps) => {
   const { label, name, hidden, selectionOptions } = props;
 
-  const sx = hidden ? { display: 'none' } : {};
+  const sx = hidden ? { display: 'none' } : { width: '100%' };
 
   const { form } = useField({ name });
 

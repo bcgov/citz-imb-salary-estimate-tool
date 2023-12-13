@@ -68,10 +68,11 @@ export const Form = (props: IFormProps) => {
                 return (
                   <FormSection
                     key={section.name}
-                    title={section.label}
+                    title={section.label as string}
                     form={formHook}
                     fields={sectonFields}
                     mode="view"
+                    gridItemProps={section.gridItemProps}
                   />
                 );
               })}

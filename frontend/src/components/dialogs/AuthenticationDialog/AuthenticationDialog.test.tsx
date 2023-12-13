@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { AuthenticationDialog } from './AuthenticationDialog';
 
-jest.mock('../buttons/AuthenticationButton', () => ({
+jest.mock('../../buttons/AuthenticationButton/AuthenticationButton', () => ({
   AuthenticationButton: () => <div>test authentication button</div>,
 }));
 

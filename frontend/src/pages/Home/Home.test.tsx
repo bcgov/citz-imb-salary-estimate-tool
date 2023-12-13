@@ -1,84 +1,107 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter, Route } from 'react-router-dom';
 import Home from './Home';
-import { useInquiry, useAuthentication } from '../../hooks';
+import { useAuthentication } from '../../hooks';
 
-jest.mock('../hooks', () => ({
-  useInquiry: jest.fn(),
-  useAuthentication: jest.fn().mockReturnValue({ isAuthenticated: false }),
-}));
-jest.mock('react-router-dom', () => ({
-  Navigate: () => <div>Navigate</div>,
-}));
-jest.mock('../components', () => ({
-  ErrorDialog: () => <div>ErrorDialog</div>,
-  Loading: () => <div>Loading</div>,
-  TableContainer: () => <div>TableContainer</div>,
+jest.mock('../../hooks', () => ({
+  useAuthentication: jest.fn(),
 }));
 
-describe('Inquiry', () => {
+describe('Home', () => {
   beforeEach(() => {
+    // Reset the mock implementation before each test
     jest.clearAllMocks();
   });
 
-  it('redirects if not authenticated', () => {
-    (useInquiry as jest.Mock).mockReturnValueOnce({
-      data: [],
-      columns: [],
-      isLoading: false,
-      isError: false,
-      error: '',
+  it('renders the Inquiries tab by default', () => {
+    // Mock isAuthenticated as true and hasRole as a function that returns false
+    (useAuthentication as jest.Mock).mockReturnValueOnce({
+      isAuthenticated: true,
+      hasRole: () => false,
     });
+    jest.mock('../../hooks', () => ({
+      useAuthentication: jest
+        .fn()
+        .mockReturnValue({ isAuthenticated: true, hasRole: () => false }),
+    }));
+
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('Inquiries')).toBeInTheDocument();
+    expect(screen.queryByText('Users')).toBeNull();
+  });
+
+  it('renders the Users tab when the user has the admin role', () => {
+    // Mock isAuthenticated as true and hasRole as a function that returns true for 'admin'
+    jest.mock('../../hooks', () => ({
+      useAuthentication: jest.fn().mockReturnValue({
+        isAuthenticated: true,
+        hasRole: (role) => role === 'admin',
+      }),
+    }));
+
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('Inquiries')).toBeInTheDocument();
+    expect(screen.getByText('Users')).toBeInTheDocument();
+  });
+
+  it('redirects to /login when not authenticated', () => {
+    // Mock isAuthenticated as false
     (useAuthentication as jest.Mock).mockReturnValueOnce({
       isAuthenticated: false,
     });
+    jest.mock('../../hooks', () => ({
+      useAuthentication: jest.fn().mockReturnValue({ isAuthenticated: false }),
+    }));
 
-    render(<Home />);
-    expect(screen.getByText('Navigate')).toBeInTheDocument();
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/login">Login Page</Route>
+      </MemoryRouter>
+    );
+
+    // Verify that the component redirects to the login page
+    expect(screen.getByText('Login Page')).toBeInTheDocument();
   });
 
-  it('renders correctly if authenticated', () => {
-    (useInquiry as jest.Mock).mockReturnValueOnce({
-      data: [],
-      columns: [],
-      isLoading: false,
-      isError: false,
-      error: '',
-    });
-    (useAuthentication as jest.Mock).mockReturnValueOnce({
-      isAuthenticated: true,
-    });
+  it('switches tabs when clicking on Users tab', () => {
+    // Mock isAuthenticated as true and hasRole as a function that returns true for 'admin'
+    jest.mock('../../hooks', () => ({
+      useAuthentication: jest.fn().mockReturnValue({
+        isAuthenticated: true,
+        hasRole: (role) => role === 'admin',
+      }),
+    }));
 
-    render(<Home />);
-    expect(screen.getByText('TableContainer')).toBeInTheDocument();
-  });
-  it('renders a loading screen if loading', () => {
-    (useInquiry as jest.Mock).mockReturnValueOnce({
-      data: [],
-      columns: [],
-      isLoading: true,
-      isError: false,
-      error: '',
-    });
-    (useAuthentication as jest.Mock).mockReturnValueOnce({
-      isAuthenticated: true,
-    });
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </MemoryRouter>
+    );
 
-    render(<Home />);
-    expect(screen.getByText('Loading')).toBeInTheDocument();
-  });
-  it('renders an Error Dialog if an error', () => {
-    (useInquiry as jest.Mock).mockReturnValueOnce({
-      data: [],
-      columns: [],
-      isLoading: false,
-      isError: true,
-      error: 'ErrorDialog',
-    });
-    (useAuthentication as jest.Mock).mockReturnValueOnce({
-      isAuthenticated: true,
-    });
+    // Click on the Users tab
+    fireEvent.click(screen.getByText('Users'));
 
-    render(<Home />);
-    expect(screen.getByText('ErrorDialog')).toBeInTheDocument();
+    // Verify that the Users tab is selected
+    expect(screen.getByText('Users')).toHaveAttribute('aria-selected', 'true');
   });
 });

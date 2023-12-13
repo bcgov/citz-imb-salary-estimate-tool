@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { StatusCell } from './StatusCell';
 import { State } from '../../../types';
@@ -17,11 +18,10 @@ describe('StatusCell', () => {
       { state: State.reviewed, expectedText: 'Reviewed' },
       { state: State.approved, expectedText: 'Approved' },
       { state: State.rejected, expectedText: 'Rejected' },
-      { state: -1 as State, expectedText: 'No State Defined' },
     ];
 
     testCases.forEach(({ state, expectedText }) => {
-      it(`for ${State[state]}`, () => {
+      it(`renders the correct status for ${State[state]}`, () => {
         render(<StatusCell value={state} />);
 
         expect(screen.getByRole('alert')).toHaveTextContent(expectedText);

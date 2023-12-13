@@ -7,7 +7,7 @@ import Login from './Login';
 jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate</div>,
 }));
-jest.mock('../components', () => ({
+jest.mock('../../components', () => ({
   AuthenticationDialog: () => <div>Authentication Required</div>,
   Dialog: () => (
     <div>
@@ -16,13 +16,13 @@ jest.mock('../components', () => ({
     </div>
   ),
 }));
-jest.mock('../hooks', () => ({
+jest.mock('../../hooks', () => ({
   useAuthentication: jest
     .fn()
     .mockReturnValue({ isAuthenticated: false, hasRole: jest.fn() }),
 }));
 
-describe('Home Component', () => {
+describe('Login Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

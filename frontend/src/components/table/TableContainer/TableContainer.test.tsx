@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { TableContainer } from './TableContainer';
 
@@ -43,20 +44,16 @@ describe('TableContainer', () => {
     expect(screen.getAllByRole('columnheader')).toHaveLength(columns.length);
   });
 
-  it('renders the add button if an addAction is provided', () => {
+  it('disables row selection', () => {
     const rows = [{ id: 1, name: 'Test' }];
     const columns = [{ field: 'name', headerName: 'Name' }];
-    const addAction = jest.fn();
 
     render(
-      <TableContainer
-        rows={rows}
-        columns={columns}
-        tableName="Test Table"
-        addAction={addAction}
-      />
+      <TableContainer rows={rows} columns={columns} tableName="Test Table" />
     );
 
-    expect(screen.getByTestId('AddCircleOutlineIcon')).toBeInTheDocument();
+    // Check if row selection is disabled
+    const dataGrid = screen.getByRole('grid');
+    expect(dataGrid).toHaveAttribute('aria-multiselectable', 'false');
   });
 });

@@ -7,8 +7,8 @@
  *
  */
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { DateCell } from '../../components/tablecells/DateCell';
-import { StatusCell } from '../../components/tablecells/StatusCell';
+import { DateCell } from '../../components/tablecells/DataCell/DateCell';
+import { StatusCell } from '../../components/tablecells/StatusCell/StatusCell';
 
 export const columnsInquiry: GridColDef[] = [
   { field: 'new_position_number', headerName: 'Position Number', width: 130 },

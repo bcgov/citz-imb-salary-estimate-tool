@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Navbar } from './Navbar';
 
 jest.mock('../../assets/logo.png', () => 'test-file-stub');
-jest.mock('../buttons/AuthenticationButton', () => ({
+jest.mock('../buttons/AuthenticationButton/AuthenticationButton', () => ({
   AuthenticationButton: () => <div>AuthenticationButton Test</div>,
 }));
 jest.mock('../../hooks/useAuthentication/useAuthentication', () => ({
@@ -39,7 +39,7 @@ describe('Navbar', () => {
   });
 
   it('renders an authentication button', () => {
-    jest.mock('../buttons/AuthenticationButton', () => ({
+    jest.mock('../buttons/AuthenticationButton/AuthenticationButton', () => ({
       AuthenticationButton: () => <div>AuthenticationButton Test</div>,
     }));
     render(<Navbar />);

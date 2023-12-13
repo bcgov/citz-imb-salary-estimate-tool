@@ -6,8 +6,6 @@ export * from './buttons/Button/Button';
 export * from './dialogs/AuthenticationDialog/AuthenticationDialog';
 export * from './dialogs/Dialog/Dialog';
 export * from './dialogs/ErrorDialog/ErrorDialog';
-export * from './dialogs/NewInquiryDialog/NewInquiryDialog';
-export * from './forms/InquiryForm/InquiryForm';
 export * from './loading/Loading/Loading';
 export * from './stepper/StatusStepper';
 export * from './table/TableContainer/TableContainer';

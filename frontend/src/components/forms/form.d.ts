@@ -12,13 +12,13 @@ export type IFormField = {
   name: string;
   label: string;
   type:
-  | 'currency'
-  | 'date'
-  | 'multiline'
-  | 'number'
-  | 'select'
-  | 'status'
-  | 'text';
+    | 'currency'
+    | 'date'
+    | 'multiline'
+    | 'number'
+    | 'select'
+    | 'status'
+    | 'text';
   required?: boolean;
   defaultValue: string | number | null;
   selectionOptions?: ISelectionOptions;

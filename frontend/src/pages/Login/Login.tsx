@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { AuthenticationDialog, Dialog } from '../components';
-import { useAuthentication } from '../hooks';
+import { AuthenticationDialog, Dialog } from '../../components';
+import { useAuthentication } from '../../hooks';
 
 const Login = () => {
   const { isAuthenticated, hasRole } = useAuthentication();

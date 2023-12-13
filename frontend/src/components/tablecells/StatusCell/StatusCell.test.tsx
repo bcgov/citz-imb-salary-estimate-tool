@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { StatusCell } from './StatusCell';
-import { State } from '../../types';
+import { State } from '../../../types';
 
 describe('StatusCell', () => {
   it('renders the correct status', () => {

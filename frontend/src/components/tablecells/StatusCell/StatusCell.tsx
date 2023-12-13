@@ -10,7 +10,7 @@
  *
  */
 import { Alert } from '@mui/material';
-import { State } from '../../types';
+import { State } from '../../../types';
 
 interface StatusCellProps extends React.HTMLAttributes<HTMLDivElement> {
   value: State;

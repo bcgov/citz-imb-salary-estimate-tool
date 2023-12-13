@@ -12,6 +12,7 @@ export const InquiryTableContainer = () => {
     error,
     AddFormDialog,
     ViewFormDialog,
+    EditFormDialog,
   } = useInquiry();
 
   if (isLoading) return <Loading />;
@@ -19,6 +20,7 @@ export const InquiryTableContainer = () => {
 
   return (
     <TableContainer
+      edit={EditFormDialog}
       view={ViewFormDialog}
       rows={data}
       columns={columns}

@@ -21,30 +21,31 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   tableName: string;
   getRowId?: (row: T) => string;
   view?: (data: T) => JSX.Element;
+  edit?: (data: T) => JSX.Element;
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { children, rows, columns, tableName, getRowId, view } = props;
+  const { children, rows, columns, tableName, getRowId, view, edit } = props;
 
-  const extendedColumns = [
-    {
-      field: 'view',
-      headerName: 'View',
-      width: 80,
-      renderCell: (params) => {
-        if (view) return view(params.row);
-        return null;
-      },
-    },
-    ...columns,
-  ];
+  const actionColumns: typeof columns = [];
 
-  const extendedRows = rows.map((row) => {
-    return { ...row, view: '' };
-  });
+  if (view)
+    actionColumns.push({
+      field: 'viewAction',
+      headerName: '',
+      width: 60,
+      renderCell: (params) => view(params.row),
+    });
 
-  console.log('extendedColumns', extendedColumns);
-  console.log('extendedRows', extendedRows);
+  if (edit)
+    actionColumns.push({
+      field: 'editAction',
+      headerName: '',
+      width: 60,
+      renderCell: (params) => edit(params.row),
+    });
+
+  const extendedColumns = actionColumns.concat(columns);
 
   return (
     <Box padding={1} sx={{ flexGrow: 1 }}>
@@ -60,7 +61,7 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
       </AppBar>
 
       <DataGrid
-        rows={extendedRows}
+        rows={rows}
         columns={extendedColumns}
         initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
         pageSizeOptions={[10, 20, 50, 100]}
@@ -74,6 +75,7 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
 TableContainer.defaultProps = {
   getRowId: null,
   view: null,
+  edit: null,
 };
 
 export default TableContainer;

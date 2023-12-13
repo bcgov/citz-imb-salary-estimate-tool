@@ -55,7 +55,21 @@ export const useAPI = () => {
     [callAPIOptions]
   );
 
-  return { appendItem, fetchData };
+  const updateItem = useCallback(
+    async <TDataType>(endPoint: string, item: TDataType) => {
+      const { id, ...rest } = item as { id: number };
+
+      const response = await callAPI<TDataType>(
+        `${endPoint}/${id}`,
+        callAPIOptions({ method: 'PATCH', body: rest as unknown as BodyInit })
+      );
+
+      return response as TDataType;
+    },
+    [callAPIOptions]
+  );
+
+  return { appendItem, fetchData, updateItem };
 };
 
 export default useAPI;

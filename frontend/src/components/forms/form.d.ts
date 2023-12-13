@@ -38,8 +38,6 @@ export type IDefaultValue = {
 };
 
 interface IFormBaseProps {
-  // isLoading?: boolean;
-  // isError?: boolean;
   title: string;
   fields: IFormField[];
   sections: IFormSection[];

@@ -1,6 +1,7 @@
 import {
   NewFormDialog,
   ViewFormDialog,
+  UpdateFormDialog,
   IFormFactoryProps,
 } from '../../components';
 
@@ -13,7 +14,13 @@ export const useFormFactory = (props: IFormFactoryProps) => {
   });
 
   return {
-    EditForm: <div>Hello There</div>,
+    EditFormDialog: (data) => (
+      <UpdateFormDialog
+        defaultValues={data}
+        onSubmit={onUpdate}
+        {...otherProps}
+      />
+    ),
     AddFormDialog: (
       <NewFormDialog
         defaultValues={defaultValues}

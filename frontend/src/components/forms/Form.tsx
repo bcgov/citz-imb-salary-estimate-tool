@@ -24,8 +24,6 @@ export const Form = (props: IFormProps) => {
     fields,
     sections,
     title,
-    // isError,
-    // isLoading,
   } = props;
 
   const formHook = useForm({
@@ -35,10 +33,6 @@ export const Form = (props: IFormProps) => {
       onClose();
     },
   });
-
-  // if (isError) return <div>Error</div>
-
-  // if (isLoading) return <div>Loading...</div>
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xl" fullWidth>
@@ -90,20 +84,5 @@ export const Form = (props: IFormProps) => {
     </Dialog>
   );
 };
-
-// Form.defaultProps = {
-//   defaultValues: {},
-//   mode: "view",
-//   sections: [],
-//   title: "",
-//   isError: false,
-//   isLoading: false,
-//   onClose: () => {
-//     console.log("onClose")
-//   },
-//   onSubmit: (data: any) => {
-//     console.log("onSubmit", data)
-//   },
-// }
 
 export default Form;

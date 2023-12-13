@@ -22,7 +22,6 @@ export const DateField = (props: DateFieldProps) => {
           <DatePicker
             sx={sx}
             value={field.state.value}
-            // onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
             label={label}
           />

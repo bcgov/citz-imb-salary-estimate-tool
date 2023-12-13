@@ -1,18 +1,3 @@
-// interface IField {
-//   name: string;
-//   label: string;
-//   type: string;
-//   required?: boolean;
-//   defaultValue?: string | number | null;
-//   dataOptions?: {
-//     endPoint: string;
-//     labelFieldName: string;
-//     valueFieldName: string;
-//     sortFieldName?: string;
-//   };
-//   section: 'employee' | 'position' | 'comment' | 'hidden';
-//   sortOrder: number;
-// }
 import { IFormField } from '../../components';
 
 export const inquiryFormFields: IFormField[] = [

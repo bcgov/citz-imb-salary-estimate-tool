@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Inquiry } from './Home';
-import { useInquiry, useAuthentication } from '../hooks';
+import Home from './Home';
+import { useInquiry, useAuthentication } from '../../hooks';
 
 jest.mock('../hooks', () => ({
   useInquiry: jest.fn(),
@@ -32,7 +32,7 @@ describe('Inquiry', () => {
       isAuthenticated: false,
     });
 
-    render(<Inquiry />);
+    render(<Home />);
     expect(screen.getByText('Navigate')).toBeInTheDocument();
   });
 
@@ -48,7 +48,7 @@ describe('Inquiry', () => {
       isAuthenticated: true,
     });
 
-    render(<Inquiry />);
+    render(<Home />);
     expect(screen.getByText('TableContainer')).toBeInTheDocument();
   });
   it('renders a loading screen if loading', () => {
@@ -63,7 +63,7 @@ describe('Inquiry', () => {
       isAuthenticated: true,
     });
 
-    render(<Inquiry />);
+    render(<Home />);
     expect(screen.getByText('Loading')).toBeInTheDocument();
   });
   it('renders an Error Dialog if an error', () => {
@@ -78,7 +78,7 @@ describe('Inquiry', () => {
       isAuthenticated: true,
     });
 
-    render(<Inquiry />);
+    render(<Home />);
     expect(screen.getByText('ErrorDialog')).toBeInTheDocument();
   });
 });

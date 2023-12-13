@@ -7,7 +7,7 @@ export type InquiryData = {
   candidate_first_name: string;
   candidate_last_name: string;
   candidate_name?: string;
-  current_position_number?: number;
+  current_position_number?: string;
   current_position_title?: string;
   current_ministry_id?: string;
   // ministry Ministry ? @relation(fields: [current_ministry_id], references: [id])
@@ -16,7 +16,7 @@ export type InquiryData = {
   // old_salary_range SalaryRange ? @relation(fields: [current_mccf_classification_id], references: [id], name: "old")
   experience_level_id: number;
   // experience Experience @relation(fields: [experience_level_id], references: [id])
-  new_position_number: number;
+  new_position_number: string;
   new_position_title: string;
   new_mccf_classification_id: number;
   // new_salary_range SalaryRange @relation(fields: [new_mccf_classification_id], references: [id], name: "new")

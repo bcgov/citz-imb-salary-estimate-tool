@@ -24,6 +24,7 @@ export const callAPI = async <TDataType>(
   }
 
   const errorPayload = await response.json();
+  // eslint-disable-next-line no-console
   console.error('Server Error Message:', errorPayload);
 
   throw new Error(response.statusText);

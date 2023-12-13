@@ -1,5 +1,5 @@
 import { AppBar, Box, Toolbar, Typography, Stack } from '@mui/material';
-import { AuthenticationButton } from '../buttons/AuthenticationButton';
+import { AuthenticationButton } from '../buttons/AuthenticationButton/AuthenticationButton';
 import Logo from '../../assets/logo.png';
 import { useAuthentication } from '../../hooks/useAuthentication/useAuthentication';
 

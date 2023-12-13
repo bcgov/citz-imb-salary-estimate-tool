@@ -23,7 +23,6 @@ export const useInquiry = (dataId: string = '') => {
   return {
     ...inquiryData,
     columns: columnsInquiry,
-    // formOptions: { fields: inquiryFormFields },
     AddFormDialog,
   };
 };

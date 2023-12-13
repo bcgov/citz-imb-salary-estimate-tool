@@ -6,7 +6,6 @@ import { IFormDialogProps } from '../forms/form.d';
 export const NewFormDialog = (props: IFormDialogProps) => {
   const { ...formProps } = props;
 
-  console.log('NewFormDialog props', formProps);
   const [isOpen, setOpen] = useState(false);
 
   const handleClick = () => {

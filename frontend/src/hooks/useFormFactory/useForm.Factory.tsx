@@ -1,8 +1,6 @@
 import { NewFormDialog, IFormFactoryProps } from '../../components';
 
 export const useFormFactory = (props: IFormFactoryProps) => {
-  console.log('useFormFactory props', props);
-
   const defaultValues = {};
 
   props.fields.forEach((field) => {

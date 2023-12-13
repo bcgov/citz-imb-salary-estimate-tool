@@ -65,7 +65,6 @@ export const Form = (props: IFormProps) => {
                 const sectonFields = fields.filter(
                   (field) => field.section === section.name
                 );
-                console.log('Form: sectonFields', sectonFields);
                 return (
                   <FormSection
                     key={section.name}

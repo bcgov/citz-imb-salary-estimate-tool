@@ -13,7 +13,6 @@ interface SelectFieldProps {
 }
 
 export const SelectField = (props: SelectFieldProps) => {
-  console.log('SelectField props', props);
   const { label, name, hidden, selectionOptions } = props;
 
   const sx = hidden ? { display: 'none' } : {};

@@ -1,18 +1,39 @@
+import { useField } from '@tanstack/react-form';
 import { TextField as TextFieldMUI } from '@mui/material';
-import { FieldProps } from './FieldProps.d';
 
-interface TextFieldProps extends FieldProps {
-  value: string;
+interface TextFieldProps {
+  name: string;
+  label: string;
+  hidden?: boolean;
 }
 
 export const TextField = (props: TextFieldProps) => {
-  const { onChange, ...otherProps } = props;
+  const { label, name, hidden } = props;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+  const sx = hidden ? { display: 'none' } : {};
 
-  return <TextFieldMUI type="text" onChange={handleChange} {...otherProps} />;
+  const { form } = useField({ name });
+
+  return (
+    <form.Field
+      name={name}
+      children={(field) => (
+        <TextFieldMUI
+          sx={sx}
+          name={field.name}
+          type="text"
+          value={field.state.value}
+          onBlur={field.handleBlur}
+          onChange={(e) => field.handleChange(e.target.value)}
+          label={label}
+        />
+      )}
+    />
+  );
+};
+
+TextField.defaultProps = {
+  hidden: false,
 };
 
 export default TextField;

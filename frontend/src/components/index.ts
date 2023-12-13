@@ -17,3 +17,6 @@ export * from './tablecells/StatusCell';
 export * from './tabs/CustomTabPanel';
 export * from './table/InquiryTableContainer';
 export * from './table/UserTableContainer';
+export * from './forms/Form';
+export * from './forms/form.d';
+export * from './dialogs/NewForm.Dialog';

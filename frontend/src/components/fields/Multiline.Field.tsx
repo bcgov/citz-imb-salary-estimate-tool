@@ -1,24 +1,35 @@
 import { TextField as TextFieldMUI } from '@mui/material';
-import { FieldProps } from './FieldProps.d';
+import { useField } from '@tanstack/react-form';
 
-interface MultilineFieldProps extends FieldProps {
-  value: string;
+interface MultilineFieldProps {
+  name: string;
+  label: string;
+  hidden?: boolean;
 }
 
 export const MultilineField = (props: MultilineFieldProps) => {
-  const { name, onChange, ...otherProps } = props;
+  const { label, name, hidden } = props;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+  const sx = hidden ? { display: 'none' } : {};
+
+  const { form } = useField({ name });
 
   return (
-    <TextFieldMUI
-      type="text"
-      rows={4}
-      multiline
-      onChange={handleChange}
-      {...otherProps}
+    <form.Field
+      name={name}
+      children={(field) => (
+        <TextFieldMUI
+          rows={4}
+          multiline
+          sx={sx}
+          name={field.name}
+          type="text"
+          value={field.state.value}
+          onBlur={field.handleBlur}
+          onChange={(e) => field.handleChange(e.target.value)}
+          label={label}
+        />
+      )}
     />
   );
 };

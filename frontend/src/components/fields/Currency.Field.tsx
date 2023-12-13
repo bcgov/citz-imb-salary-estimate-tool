@@ -1,27 +1,42 @@
 import { InputAdornment, TextField as TextFieldMUI } from '@mui/material';
-import { FieldProps } from './FieldProps.d';
+import { useField } from '@tanstack/react-form';
 
-interface CurrencyFieldProps extends FieldProps {
-  value: number;
+interface CurrencyFieldProps {
+  name: string;
+  label: string;
+  hidden?: boolean;
 }
 
 export const CurrencyField = (props: CurrencyFieldProps) => {
-  const { onChange, ...otherProps } = props;
+  const { label, name, hidden } = props;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(event.target.value));
-  };
+  const sx = hidden ? { display: 'none' } : {};
+
+  const { form } = useField({ name });
 
   return (
-    <TextFieldMUI
-      type="number"
-      InputProps={{
-        startAdornment: <InputAdornment position="start">$</InputAdornment>,
-      }}
-      onChange={handleChange}
-      {...otherProps}
+    <form.Field
+      name={name}
+      children={(field) => (
+        <TextFieldMUI
+          sx={sx}
+          name={field.name}
+          type="number"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+          value={field.state.value}
+          onBlur={field.handleBlur}
+          onChange={(e) => field.handleChange(e.target.value)}
+          label={label}
+        />
+      )}
     />
   );
+};
+
+CurrencyField.defaultProps = {
+  hidden: false,
 };
 
 export default CurrencyField;

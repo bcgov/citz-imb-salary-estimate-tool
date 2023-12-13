@@ -1,84 +1,54 @@
-import { DateTime } from 'luxon';
+// import { DateTime } from "luxon"
 import { CurrencyField } from './Currency.Field';
-import { DateField } from './Date.Field';
-import { DataOptions, FieldProps } from './FieldProps.d';
+// import { DateField } from "./Date.Field"
+// import { DataOptions } from "./FieldProps.d"
 import { MultilineField } from './Multiline.Field';
 import { NumberField } from './Number.Field';
 import { SelectField } from './Select.Field';
 import { StatusField } from './Status.Field';
 import { TextField } from './Text.Field';
+import { ISelectionOptions } from '..';
 
-export const Field = (props: FieldProps) => {
-  const { type, value, dataOptions, ...otherProps } = props;
+interface IFieldProps {
+  type: string;
+  name: string;
+  label: string;
+  hidden?: boolean;
+  selectionOptions?: ISelectionOptions;
+}
 
-  const defaultProps = { sx: { width: '100%' } };
+export const Field = (props: IFieldProps) => {
+  const { type, ...fieldProps } = props;
 
   switch (type) {
     case 'currency':
-      return (
-        <CurrencyField
-          value={value as number}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
-    case 'date':
-      return (
-        <DateField
-          value={value as DateTime | null}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
+      return <CurrencyField {...fieldProps} />;
+    // case "date":
+    //   return (
+    //     <DateField
+    //       value={null}
+    //       {...defaultProps}
+    //       {...otherProps}
+    //     />
+    //   )
     case 'multiline':
-      return (
-        <MultilineField
-          value={value as string}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
+      return <MultilineField {...fieldProps} />;
     case 'number':
-      return (
-        <NumberField
-          value={value as number}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
+      return <NumberField {...fieldProps} />;
     case 'select':
-      return (
-        <SelectField
-          value={value as number}
-          dataOptions={dataOptions as DataOptions}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
-    case 'status':
-      return (
-        <StatusField
-          value={value as number}
-          {...defaultProps}
-          {...otherProps}
-        />
-      );
+      return <SelectField {...fieldProps} />;
     case 'text':
-      return (
-        <TextField value={value as string} {...defaultProps} {...otherProps} />
-      );
+      return <TextField {...fieldProps} />;
+    case 'status':
+      return <StatusField {...fieldProps} />;
     default:
       return <div>TODO: {type}</div>;
   }
 };
 
 Field.defaultProps = {
-  required: false,
-  dataOptions: {
-    endPoint: '',
-    labelFieldName: '',
-    valueFieldName: '',
-  },
+  hidden: false,
+  selectionOptions: {},
 };
 
 export default Field;

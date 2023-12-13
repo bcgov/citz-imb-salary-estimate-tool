@@ -1,34 +1,36 @@
-interface IField {
-  name: string;
-  label: string;
-  type: string;
-  required?: boolean;
-  defaultValue?: string | number | null;
-  dataOptions?: {
-    endPoint: string;
-    labelFieldName: string;
-    valueFieldName: string;
-    sortFieldName?: string;
-  };
-  section: 'employee' | 'position' | 'comment' | 'hidden';
-  sortOrder: number;
-}
+// interface IField {
+//   name: string;
+//   label: string;
+//   type: string;
+//   required?: boolean;
+//   defaultValue?: string | number | null;
+//   dataOptions?: {
+//     endPoint: string;
+//     labelFieldName: string;
+//     valueFieldName: string;
+//     sortFieldName?: string;
+//   };
+//   section: 'employee' | 'position' | 'comment' | 'hidden';
+//   sortOrder: number;
+// }
+import { IFormField } from '../../components';
 
-export const fieldsInquiry: IField[] = [
+export const inquiryFormFields: IFormField[] = [
   {
     name: 'id',
     label: 'id',
     type: 'number',
     defaultValue: '',
-    section: 'hidden',
+    section: 'status',
+    hidden: true,
     sortOrder: 1,
   },
   {
     name: 'status_id',
     label: 'Current State',
-    type: 'text',
+    type: 'status',
     defaultValue: 1,
-    section: 'hidden',
+    section: 'status',
     sortOrder: 2,
   },
   {
@@ -36,7 +38,7 @@ export const fieldsInquiry: IField[] = [
     label: 'First Name',
     type: 'text',
     required: true,
-    defaultValue: '',
+    defaultValue: 'hello',
     section: 'employee',
     sortOrder: 1,
   },
@@ -54,11 +56,10 @@ export const fieldsInquiry: IField[] = [
     name: 'current_ministry_id',
     label: 'Current Ministry',
     type: 'select',
-    dataOptions: {
+    selectionOptions: {
       endPoint: 'ministry',
       labelFieldName: 'ministry_name',
       valueFieldName: 'id',
-      sortFieldName: 'ministry_name',
     },
     defaultValue: '',
     section: 'employee',
@@ -122,7 +123,7 @@ export const fieldsInquiry: IField[] = [
     defaultValue: '',
     section: 'position',
     sortOrder: 3,
-    dataOptions: {
+    selectionOptions: {
       endPoint: 'ranges',
       labelFieldName: 'definition',
       valueFieldName: 'id',
@@ -141,10 +142,11 @@ export const fieldsInquiry: IField[] = [
     name: 'experience_level_id',
     label: 'Experience Level',
     type: 'select',
-    dataOptions: {
+    selectionOptions: {
       endPoint: 'experience',
       labelFieldName: 'definition',
       valueFieldName: 'id',
+      sortFieldName: 'id',
     },
     defaultValue: 1,
     section: 'position',
@@ -154,11 +156,10 @@ export const fieldsInquiry: IField[] = [
     name: 'appointment_type_id',
     label: 'Appointment Type',
     type: 'select',
-    dataOptions: {
+    selectionOptions: {
       endPoint: 'appointment',
       labelFieldName: 'definition',
       valueFieldName: 'id',
-      sortFieldName: 'definition',
     },
     defaultValue: 2,
     section: 'position',
@@ -168,11 +169,10 @@ export const fieldsInquiry: IField[] = [
     name: 'process_type_id',
     label: 'Process Type',
     type: 'select',
-    dataOptions: {
+    selectionOptions: {
       endPoint: 'process',
       labelFieldName: 'definition',
       valueFieldName: 'id',
-      sortFieldName: 'definition',
     },
     defaultValue: 1,
     section: 'position',
@@ -204,4 +204,4 @@ export const fieldsInquiry: IField[] = [
   },
 ];
 
-export default fieldsInquiry;
+export default inquiryFormFields;

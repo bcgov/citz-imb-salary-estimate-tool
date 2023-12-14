@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   NewFormDialog,
   ViewFormDialog,
@@ -8,11 +9,16 @@ import {
 
 export const useFormFactory = (props: IFormFactoryProps) => {
   const { onAppend, onUpdate, onDelete, ...otherProps } = props;
-  const defaultValues = {};
 
-  props.fields.forEach((field) => {
-    defaultValues[field.name] = field.defaultValue;
-  });
+  const defaultValues = useMemo(() => {
+    const defaults = {};
+
+    props.fields.forEach((field) => {
+      defaults[field.name] = field.defaultValue;
+    });
+
+    return defaults;
+  }, [props.fields]);
 
   return {
     EditFormDialog: (data) => (

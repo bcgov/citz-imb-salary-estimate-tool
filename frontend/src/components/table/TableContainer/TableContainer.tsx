@@ -5,7 +5,7 @@
  * and provides a default paginationModel
  * see https://mui.com/components/data-grid/ for more information
  *
- * @param {TableContainerProps} props
+ * @param {ITableContainerProps} props
  * @returns {JSX.Element}
  *
  * any styling of the table should be done in this component
@@ -15,7 +15,8 @@
 import { AppBar, Box, Stack, Toolbar, Typography } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
+export interface ITableContainerProps<T>
+  extends React.HTMLAttributes<HTMLDivElement> {
   rows: T[];
   columns: GridColDef[];
   tableName: string;
@@ -25,7 +26,7 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   deleteRow?: (data: T) => JSX.Element;
 }
 
-export const TableContainer = <T,>(props: TableContainerProps<T>) => {
+export const TableContainer = <T,>(props: ITableContainerProps<T>) => {
   const {
     children,
     rows,

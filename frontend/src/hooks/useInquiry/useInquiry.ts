@@ -16,7 +16,11 @@ export const useInquiry = (dataId: string = '') => {
   const inquiryForms = useFormFactory({
     title: 'Inquiry',
     onAppend: (data) => inquiryData.append(data as InquiryData),
-    onUpdate: (data) => inquiryData.update(data as InquiryData),
+    onUpdate: (data) =>
+      inquiryData.update({
+        ...(data as InquiryData),
+        status_id: (data as InquiryData).status_id + 1,
+      }),
     sections: inquirySections,
     fields: inquiryFormFields,
   });

@@ -5,10 +5,11 @@ interface MultilineFieldProps {
   name: string;
   label: string;
   hidden?: boolean;
+  required?: boolean;
 }
 
 export const MultilineField = (props: MultilineFieldProps) => {
-  const { label, name, hidden } = props;
+  const { label, name, hidden, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -20,6 +21,7 @@ export const MultilineField = (props: MultilineFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <TextFieldMUI
+            required={required}
             rows={4}
             multiline
             sx={sx}
@@ -38,6 +40,7 @@ export const MultilineField = (props: MultilineFieldProps) => {
 
 MultilineField.defaultProps = {
   hidden: false,
+  required: false,
 };
 
 export default MultilineField;

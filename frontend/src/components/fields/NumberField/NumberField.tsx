@@ -5,10 +5,11 @@ interface NumberFieldProps {
   name: string;
   label: string;
   hidden?: boolean;
+  required?: boolean;
 }
 
 export const NumberField = (props: NumberFieldProps) => {
-  const { label, name, hidden } = props;
+  const { label, name, hidden, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -20,6 +21,7 @@ export const NumberField = (props: NumberFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <TextFieldMUI
+            required={required}
             sx={sx}
             name={field.name}
             type="number"
@@ -36,6 +38,7 @@ export const NumberField = (props: NumberFieldProps) => {
 
 NumberField.defaultProps = {
   hidden: false,
+  required: false,
 };
 
 export default NumberField;

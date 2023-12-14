@@ -31,6 +31,7 @@ export const FormSection = (props: FormSectionProps) => {
                   name={field.name}
                   hidden={field.hidden}
                   selectionOptions={field.selectionOptions}
+                  required={field.required}
                   mode={mode}
                 />
               </Grid>

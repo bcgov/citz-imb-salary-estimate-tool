@@ -13,6 +13,7 @@ interface IFieldProps {
   label: string;
   hidden?: boolean;
   selectionOptions?: ISelectionOptions;
+  required?: boolean;
   mode: 'Create' | 'Edit' | 'View';
 }
 
@@ -42,6 +43,7 @@ export const Field = (props: IFieldProps) => {
 Field.defaultProps = {
   hidden: false,
   selectionOptions: {},
+  required: false,
 };
 
 export default Field;

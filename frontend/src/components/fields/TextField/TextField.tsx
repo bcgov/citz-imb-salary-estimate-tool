@@ -6,10 +6,11 @@ interface TextFieldProps {
   label: string;
   hidden?: boolean;
   mode: 'Create' | 'Edit' | 'View';
+  required?: boolean;
 }
 
 export const TextField = (props: TextFieldProps) => {
-  const { label, name, hidden, mode } = props;
+  const { label, name, hidden, mode, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -21,6 +22,7 @@ export const TextField = (props: TextFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <TextFieldMUI
+            required={required}
             sx={sx}
             name={field.name}
             type="text"
@@ -38,6 +40,7 @@ export const TextField = (props: TextFieldProps) => {
 
 TextField.defaultProps = {
   hidden: false,
+  required: false,
 };
 
 export default TextField;

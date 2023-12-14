@@ -5,10 +5,11 @@ interface CurrencyFieldProps {
   name: string;
   label: string;
   hidden?: boolean;
+  required?: boolean;
 }
 
 export const CurrencyField = (props: CurrencyFieldProps) => {
-  const { label, name, hidden } = props;
+  const { label, name, hidden, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -20,6 +21,7 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <TextFieldMUI
+            required={required}
             sx={sx}
             name={field.name}
             type="number"
@@ -41,6 +43,7 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
 
 CurrencyField.defaultProps = {
   hidden: false,
+  required: false,
 };
 
 export default CurrencyField;

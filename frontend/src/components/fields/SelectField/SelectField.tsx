@@ -10,10 +10,11 @@ interface SelectFieldProps {
   label: string;
   hidden?: boolean;
   selectionOptions?: ISelectionOptions;
+  required?: boolean;
 }
 
 export const SelectField = (props: SelectFieldProps) => {
-  const { label, name, hidden, selectionOptions } = props;
+  const { label, name, hidden, selectionOptions, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -61,6 +62,7 @@ export const SelectField = (props: SelectFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <TextFieldMUI
+            required={required}
             sx={sx}
             name={field.name}
             select
@@ -85,6 +87,7 @@ export const SelectField = (props: SelectFieldProps) => {
 SelectField.defaultProps = {
   hidden: false,
   selectionOptions: {},
+  required: false,
 };
 
 export default SelectField;

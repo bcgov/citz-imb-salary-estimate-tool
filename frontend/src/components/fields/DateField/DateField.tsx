@@ -5,10 +5,11 @@ interface DateFieldProps {
   name: string;
   label: string;
   hidden?: boolean;
+  required?: boolean;
 }
 
 export const DateField = (props: DateFieldProps) => {
-  const { label, name, hidden } = props;
+  const { label, name, hidden, required } = props;
 
   const sx = hidden ? { display: 'none' } : { width: '100%' };
 
@@ -20,6 +21,7 @@ export const DateField = (props: DateFieldProps) => {
       children={(field) =>
         field.state.value !== undefined && (
           <DatePicker
+            required={required}
             sx={sx}
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}
@@ -33,6 +35,7 @@ export const DateField = (props: DateFieldProps) => {
 
 DateField.defaultProps = {
   hidden: false,
+  required: false,
 };
 
 export default DateField;

@@ -3,6 +3,7 @@ import { TableContainer } from '../../components';
 
 export interface ITableFactoryProps<T>
   extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
   rows: T[];
   columns: GridColDef[];
   ViewFormDialog?: (data: unknown) => void;
@@ -13,6 +14,7 @@ export interface ITableFactoryProps<T>
 
 export const useTableFactory = <T,>(props: ITableFactoryProps<T>) => {
   const {
+    title,
     rows,
     columns,
     EditFormDialog,
@@ -28,7 +30,7 @@ export const useTableFactory = <T,>(props: ITableFactoryProps<T>) => {
       deleteRow={DeleteRow as (data: T) => JSX.Element}
       rows={rows}
       columns={columns}
-      tableName="Inquiries"
+      tableName={title}
     >
       {AddFormDialog}
     </TableContainer>

@@ -28,6 +28,7 @@ export const useInquiry = (dataId: string = '') => {
   });
 
   const InquiryTable = useTableFactory<InquiryData>({
+    title: 'Inquiries',
     rows: inquiryData.data,
     columns: columnsInquiry,
     AddFormDialog: inquiryForms.AddFormDialog,

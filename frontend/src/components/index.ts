@@ -5,8 +5,6 @@ export * from './dialogs';
 export * from './forms';
 export * from './loading';
 export * from './stepper/StatusStepper';
-export * from './table/InquiryTableContainer/InquiryTableContainer';
 export * from './table/TableContainer/TableContainer';
-export * from './table/UserTableContainer/UserTableContainer';
 export * from './tablecells';
 export * from './tabs/CustomeTabPanel/CustomTabPanel';

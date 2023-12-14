@@ -5,6 +5,7 @@
 import { InquiryData } from '../../types';
 import { useDataFactory } from '../useDataFactory/useData.Factory';
 import { useFormFactory } from '../useFormFactory/useForm.Factory';
+import { useTableFactory } from '../useTableFactory/useTable.Factory';
 import { columnsInquiry } from './inquiry.columns';
 import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';
@@ -26,9 +27,20 @@ export const useInquiry = (dataId: string = '') => {
     fields: inquiryFormFields,
   });
 
+  const InquiryTable = useTableFactory<InquiryData>({
+    title: 'Inquiries',
+    rows: inquiryData.data,
+    columns: columnsInquiry,
+    AddFormDialog: inquiryForms.AddFormDialog,
+    ViewFormDialog: inquiryForms.ViewFormDialog,
+    EditFormDialog: inquiryForms.EditFormDialog,
+    DeleteRow: inquiryForms.DeleteRow,
+  });
+
   return {
     ...inquiryData,
     ...inquiryForms,
+    InquiryTable,
     columns: columnsInquiry,
   };
 };

@@ -69,7 +69,19 @@ export const useAPI = () => {
     [callAPIOptions]
   );
 
-  return { appendItem, fetchData, updateItem };
+  const deleteItem = useCallback(
+    async (endPoint: string, id: string) => {
+      const response = await callAPI(
+        `${endPoint}/${id}`,
+        callAPIOptions({ method: 'DELETE' })
+      );
+
+      return response;
+    },
+    [callAPIOptions]
+  );
+
+  return { appendItem, fetchData, updateItem, deleteItem };
 };
 
 export default useAPI;

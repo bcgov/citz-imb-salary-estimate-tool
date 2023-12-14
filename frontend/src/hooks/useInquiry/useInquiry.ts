@@ -21,6 +21,7 @@ export const useInquiry = (dataId: string = '') => {
         ...(data as InquiryData),
         status_id: (data as InquiryData).status_id + 1,
       }),
+    onDelete: (id) => inquiryData.deleteItem(id as number),
     sections: inquirySections,
     fields: inquiryFormFields,
   });

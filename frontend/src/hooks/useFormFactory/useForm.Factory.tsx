@@ -3,10 +3,11 @@ import {
   ViewFormDialog,
   UpdateFormDialog,
   IFormFactoryProps,
+  DeleteConfirmationDialog,
 } from '../../components';
 
 export const useFormFactory = (props: IFormFactoryProps) => {
-  const { onAppend, onUpdate, ...otherProps } = props;
+  const { onAppend, onUpdate, onDelete, ...otherProps } = props;
   const defaultValues = {};
 
   props.fields.forEach((field) => {
@@ -33,6 +34,14 @@ export const useFormFactory = (props: IFormFactoryProps) => {
         defaultValues={data}
         onSubmit={() => {}}
         {...otherProps}
+      />
+    ),
+    DeleteRow: (row) => (
+      <DeleteConfirmationDialog
+        onSubmit={() => onDelete((row as { id: number }).id)}
+        position={`${
+          (row as { new_position_title: string }).new_position_title
+        } (${(row as { new_position_number: string }).new_position_number})`}
       />
     ),
   };

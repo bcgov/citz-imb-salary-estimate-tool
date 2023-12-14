@@ -22,10 +22,20 @@ interface TableContainerProps<T> extends React.HTMLAttributes<HTMLDivElement> {
   getRowId?: (row: T) => string;
   view?: (data: T) => JSX.Element;
   edit?: (data: T) => JSX.Element;
+  deleteRow?: (data: T) => JSX.Element;
 }
 
 export const TableContainer = <T,>(props: TableContainerProps<T>) => {
-  const { children, rows, columns, tableName, getRowId, view, edit } = props;
+  const {
+    children,
+    rows,
+    columns,
+    tableName,
+    getRowId,
+    view,
+    edit,
+    deleteRow,
+  } = props;
 
   const actionColumns: typeof columns = [];
 
@@ -43,6 +53,14 @@ export const TableContainer = <T,>(props: TableContainerProps<T>) => {
       headerName: '',
       width: 60,
       renderCell: (params) => edit(params.row),
+    });
+
+  if (deleteRow)
+    actionColumns.push({
+      field: 'deleteAction',
+      headerName: '',
+      width: 60,
+      renderCell: (params) => deleteRow(params.row),
     });
 
   const extendedColumns = actionColumns.concat(columns);
@@ -76,6 +94,7 @@ TableContainer.defaultProps = {
   getRowId: null,
   view: null,
   edit: null,
+  deleteRow: null,
 };
 
 export default TableContainer;

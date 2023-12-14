@@ -17,7 +17,7 @@ export const DeleteConfirmationDialog = (
   props: IDeleteConfirmationDialogProps
 ) => {
   const { onSubmit, position } = props;
-  console.log('DeleteConfirmationDialog', props);
+
   const [isOpen, setOpen] = useState(false);
 
   const handleClick = () => {

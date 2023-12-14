@@ -99,6 +99,17 @@ export const useDataFactory = <TDataType>({
     return previousValues;
   };
 
+  const deleteMutationFn = (id: number) =>
+    api.deleteItem(endPoint, id.toString());
+
+  const deleteOnMutate = async (id: number) => {
+    const previousValues = queryClient.getQueryData(queryKey);
+    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
+      ...oldValues.filter((oldValue) => (oldValue as { id: number }).id !== id),
+    ]);
+    return previousValues;
+  };
+
   const onError = (error, newItem, context) =>
     queryClient.setQueryData(queryKey, context);
 
@@ -120,7 +131,14 @@ export const useDataFactory = <TDataType>({
     onSettled,
   });
 
-  return { ...query, data, append, update };
+  const { mutate: deleteItem } = useMutation({
+    mutationFn: deleteMutationFn,
+    onMutate: deleteOnMutate,
+    onError,
+    onSettled,
+  });
+
+  return { ...query, data, append, update, deleteItem };
 };
 
 export default useDataFactory;

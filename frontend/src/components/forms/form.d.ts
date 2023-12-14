@@ -46,6 +46,7 @@ interface IFormBaseProps {
 export interface IFormFactoryProps extends IFormBaseProps {
   onAppend: (data: unknown) => void;
   onUpdate: (data: unknown) => void;
+  onDelete: (data: unknown) => void;
 }
 
 export interface IFormDialogProps extends IFormBaseProps {

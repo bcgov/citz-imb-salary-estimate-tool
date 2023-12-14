@@ -13,6 +13,7 @@ export const InquiryTableContainer = () => {
     AddFormDialog,
     ViewFormDialog,
     EditFormDialog,
+    DeleteRow,
   } = useInquiry();
 
   if (isLoading) return <Loading />;
@@ -22,6 +23,7 @@ export const InquiryTableContainer = () => {
     <TableContainer
       edit={EditFormDialog}
       view={ViewFormDialog}
+      deleteRow={DeleteRow}
       rows={data}
       columns={columns}
       tableName="Inquiries"

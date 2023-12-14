@@ -1,4 +1,5 @@
 export * from './AuthenticationDialog/AuthenticationDialog';
+export * from './DeleteConfirmationDialog/DeleteConfirmationDialog';
 export * from './Dialog/Dialog';
 export * from './ErrorDialog/ErrorDialog';
 export * from './NewFormDialog/NewForm.Dialog';

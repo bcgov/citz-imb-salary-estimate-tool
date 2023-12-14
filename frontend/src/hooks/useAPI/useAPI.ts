@@ -4,35 +4,41 @@
  *
  */
 import { useCallback } from 'react';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { callAPI } from './callAPI';
 
 export const useAPI = () => {
-  const callAPIOptions = useCallback((options: RequestInit = {}) => {
-    const {
-      method = 'GET',
-      headers: optionHeaders,
-      body,
-      ...remainingOptions
-    } = options;
+  const { getAuthorizationHeaderValue } = useKeycloak();
+  const callAPIOptions = useCallback(
+    (options: RequestInit = {}) => {
+      const {
+        method = 'GET',
+        headers: optionHeaders,
+        body,
+        ...remainingOptions
+      } = options;
 
-    const defaultHeaders = {
-      Accept: 'application/json',
-      'Access-Control-Request-Method': method,
-      'Content-Type': 'application/json',
-    };
+      const defaultHeaders = {
+        Accept: 'application/json',
+        'Access-Control-Request-Method': method,
+        'Content-Type': 'application/json',
+        Authorization: getAuthorizationHeaderValue(),
+      };
 
-    const headers = {
-      ...defaultHeaders,
-      ...optionHeaders,
-    };
+      const headers = {
+        ...defaultHeaders,
+        ...optionHeaders,
+      };
 
-    return {
-      method,
-      headers,
-      body: JSON.stringify(body),
-      ...remainingOptions,
-    };
-  }, []);
+      return {
+        method,
+        headers,
+        body: JSON.stringify(body),
+        ...remainingOptions,
+      };
+    },
+    [getAuthorizationHeaderValue]
+  );
 
   const fetchData = useCallback(
     async <TDataType>(endPoint: string) => {

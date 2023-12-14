@@ -2,7 +2,7 @@
  * @summary Middleware and configuration setup for SET Express API
  * @author  dallascrichmond
  */
-import { keycloak } from '@bcgov/citz-imb-kc-express';
+import { keycloak, protectedRoute } from '@bcgov/citz-imb-kc-express';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -39,12 +39,11 @@ app.use(
   ),
 );
 
-// TODO: import and add protectedRoute to inquiry endpoint when roles are defined 
 app.use('/', routers.healthRouter);
-app.use('/', routers.inquiryRouter);
-app.use('/', routers.userRouter);
-app.use('/', routers.salaryDataRouter);
-app.use('/', routers.adminDataRouter);
+app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.inquiryRouter);
+app.use('/', protectedRoute(['admin'], { requireAllRoles: false }), routers.userRouter);
+app.use('/', protectedRoute(['admin', 'shr'], { requireAllRoles: false }), routers.salaryDataRouter);
+app.use('/', protectedRoute(['admin'], { requireAllRoles: false }), routers.adminDataRouter);
 
 // Integrate global error handler after routes to cover all ends.
 app.use(middleware.globalErrorHandler);

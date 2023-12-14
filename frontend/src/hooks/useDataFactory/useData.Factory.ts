@@ -63,19 +63,36 @@ export const useDataFactory = <TDataType>({
     return query.data;
   }, [query.data, query.isError, query.isLoading]);
 
-  const mutationFn = (item: TDataType) => {
+  const appendMutationFn = (item: TDataType) => {
     const newItem = { ...(item as object) };
     if ('id' in newItem) delete newItem.id;
 
     return api.appendItem<TDataType>(endPoint, newItem as TDataType);
   };
 
-  const onMutate = async (newItem: TDataType) => {
+  const appendOnMutate = async (newItem: TDataType) => {
     const previousValues = queryClient.getQueryData(queryKey);
     queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
       ...oldValues,
       {
         id: 'new',
+        ...newItem,
+      },
+    ]);
+    return previousValues;
+  };
+
+  const updateMutationFn = (item: TDataType) =>
+    api.updateItem<TDataType>(endPoint, item);
+
+  const updateOnMutate = async (newItem: TDataType) => {
+    const previousValues = queryClient.getQueryData(queryKey);
+    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
+      ...oldValues.filter(
+        (oldValue) =>
+          (oldValue as { id: number }).id !== (newItem as { id: number }).id
+      ),
+      {
         ...newItem,
       },
     ]);
@@ -90,13 +107,20 @@ export const useDataFactory = <TDataType>({
   };
 
   const { mutate: append } = useMutation({
-    mutationFn,
-    onMutate,
+    mutationFn: appendMutationFn,
+    onMutate: appendOnMutate,
     onError,
     onSettled,
   });
 
-  return { ...query, data, append };
+  const { mutate: update } = useMutation({
+    mutationFn: updateMutationFn,
+    onMutate: updateOnMutate,
+    onError,
+    onSettled,
+  });
+
+  return { ...query, data, append, update };
 };
 
 export default useDataFactory;

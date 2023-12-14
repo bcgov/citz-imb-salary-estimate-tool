@@ -1,67 +1,28 @@
-import { Chip, Typography } from '@mui/material';
-import { State, FieldProps } from '../../../types';
+import { useField } from '@tanstack/react-form';
+import { StatusStepper } from '../../stepper/StatusStepper';
 
-export const StatusField = (props: FieldProps) => {
-  const { label, value, ...otherProps } = props;
+interface StatusFieldProps {
+  name: string;
+  hidden?: boolean;
+}
 
-  // TODO: fix css alignment & presentation
+export const StatusField = (props: StatusFieldProps) => {
+  const { name, hidden } = props;
 
-  const actionProps: {
-    severity: 'info' | 'warning' | 'error' | 'success';
-    text: string;
-    variant: 'outlined' | 'filled' | 'standard';
-  } = { severity: 'info', text: '', variant: 'outlined' };
-
-  switch (value) {
-    case State.draft:
-      actionProps.severity = 'info';
-      actionProps.variant = 'outlined';
-      actionProps.text = 'Draft';
-
-      break;
-    case State.submitted:
-      actionProps.severity = 'warning';
-      actionProps.variant = 'filled';
-      actionProps.text = 'Submitted';
-
-      break;
-    case State.reviewed:
-      actionProps.severity = 'warning';
-      actionProps.variant = 'filled';
-      actionProps.text = 'Reviewed';
-
-      break;
-    case State.approved:
-      actionProps.severity = 'success';
-      actionProps.variant = 'filled';
-      actionProps.text = 'Approved';
-
-      break;
-    case State.rejected:
-      actionProps.severity = 'error';
-      actionProps.variant = 'filled';
-      actionProps.text = 'Rejected';
-
-      break;
-    default:
-      actionProps.severity = 'info';
-      actionProps.variant = 'outlined';
-      actionProps.text = 'New';
-  }
+  const { form } = useField({ name });
 
   return (
-    <>
-      <Typography variant="caption" component="div">
-        {label}
-      </Typography>
-      <Chip
-        label={actionProps.text}
-        color={actionProps.severity}
-        variant={actionProps.variant}
-        {...otherProps}
-      />
-    </>
+    <form.Field
+      name={name}
+      children={(field) => (
+        <StatusStepper hidden={hidden} status={field.state.value} />
+      )}
+    />
   );
+};
+
+StatusField.defaultProps = {
+  hidden: false,
 };
 
 export default StatusField;

@@ -1,17 +1,18 @@
 import { Divider, Grid, GridProps, Stack, Typography } from '@mui/material';
-// import { useField } from '@tanstack/react-form';
-import { FormApi } from '@tanstack/react-form';
-import { FieldProps, FieldTypes } from '../../../types';
 import { Field } from '../../fields';
+import { IFormField } from '../form.d';
 
-interface FormSectionProps extends GridProps {
-  fields: FieldProps[];
-  form: FormApi<unknown, unknown>;
-  mode: 'create' | 'edit' | 'view';
+interface FormSectionProps {
+  fields: IFormField[];
+  form: unknown;
+  mode: 'Create' | 'Edit' | 'View';
+  title: string;
+  display?: 'flex' | 'block' | 'none';
+  gridItemProps?: GridProps;
 }
 
 export const FormSection = (props: FormSectionProps) => {
-  const { fields, form, mode, display, title, ...otherProps } = props;
+  const { fields, display, title, gridItemProps, mode } = props;
 
   return (
     <Stack display={display} marginY={2}>
@@ -19,34 +20,31 @@ export const FormSection = (props: FormSectionProps) => {
         <Typography variant="h6">{title}</Typography>
       </Divider>
       <Grid container spacing={2} marginTop={1}>
-        {fields.map((field) => {
-          return (
-            <Grid item key={field.name} {...otherProps}>
-              <form.Field
-                name={field.name as string}
-                children={(formField) => {
-                  return (
-                    formField.state.value !== undefined && (
-                      <Field
-                        id={field.name as string}
-                        type={field.type as FieldTypes}
-                        value={formField.state.value}
-                        onChange={formField.handleChange as () => void}
-                        label={field.label}
-                        required={field.required || false}
-                        dataOptions={field.dataOptions}
-                        mode={mode}
-                      />
-                    )
-                  );
-                }}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>{' '}
+        {fields
+          .sort((a, b) => a.sortOrder - b.sortOrder)
+          .map((field) => {
+            return (
+              <Grid item key={field.name} {...gridItemProps}>
+                <Field
+                  type={field.type}
+                  label={field.label}
+                  name={field.name}
+                  hidden={field.hidden}
+                  selectionOptions={field.selectionOptions}
+                  required={field.required}
+                  mode={mode}
+                />
+              </Grid>
+            );
+          })}
+      </Grid>
     </Stack>
   );
+};
+
+FormSection.defaultProps = {
+  gridItemProps: { xs: 12, sm: 6, md: 4, lg: 3, xl: 3 },
+  display: undefined,
 };
 
 export default FormSection;

@@ -1,10 +1,10 @@
 import { GridColDef } from '@mui/x-data-grid';
 import { TableContainer } from '../../components';
 
-export interface ITableFactoryProps<T>
+export interface ITableFactoryProps<TDataType>
   extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  rows: T[];
+  rows: TDataType[];
   columns: GridColDef[];
   ViewFormDialog?: (data: unknown) => void;
   EditFormDialog?: (data: unknown) => void;
@@ -12,7 +12,9 @@ export interface ITableFactoryProps<T>
   AddFormDialog?: JSX.Element;
 }
 
-export const useTableFactory = <T,>(props: ITableFactoryProps<T>) => {
+export const useTableFactory = <TDataType,>(
+  props: ITableFactoryProps<TDataType>
+) => {
   const {
     title,
     rows,
@@ -25,9 +27,9 @@ export const useTableFactory = <T,>(props: ITableFactoryProps<T>) => {
 
   return (
     <TableContainer
-      edit={EditFormDialog as (data: T) => JSX.Element}
-      view={ViewFormDialog as (data: T) => JSX.Element}
-      deleteRow={DeleteRow as (data: T) => JSX.Element}
+      edit={EditFormDialog as (data: TDataType) => JSX.Element}
+      view={ViewFormDialog as (data: TDataType) => JSX.Element}
+      deleteRow={DeleteRow as (data: TDataType) => JSX.Element}
       rows={rows}
       columns={columns}
       tableName={title}

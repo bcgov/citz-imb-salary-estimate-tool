@@ -18,6 +18,7 @@
  * - add a way to update a record
  * - add a way to delete a record
  */
+import { GridColDef } from '@mui/x-data-grid';
 import {
   QueryKey,
   useMutation,
@@ -26,19 +27,49 @@ import {
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
+import { useFormFactory } from '../useFormFactory/useForm.Factory';
+import { useTableFactory } from '../useTableFactory/useTable.Factory';
 import { onAppendMutation } from './onAppendMutation';
 import { onDeleteMutation } from './onDeleteMutation';
 import { onError } from './onError';
 import { onSettled } from './onSettled';
 import { onUpdateMutation } from './onUpdateMutation';
+import { IFormField, IFormSection } from '../../components';
 
-export const useDataFactory = <TDataType>({
-  endPoint,
-  title,
-}: {
+export interface TuseDataFactoryProps<TDataType> {
   endPoint: string;
-  title: string;
-}) => {
+  title?: string;
+  tableColumns?: GridColDef[];
+  formSections?: IFormSection[];
+  formFields?: IFormField[];
+  showAddForm?: boolean;
+  showViewForm?: boolean;
+  showEditForm?: boolean;
+  showDeleteRow?: boolean;
+  dataTransformer?: (items: TDataType[]) => TDataType[];
+}
+
+type TuseDataFactoryResults<TDataType> = {
+  items: TDataType[];
+  DataTable?: ReturnType<typeof useTableFactory>;
+};
+
+export const useDataFactory = <TDataType>(
+  props: TuseDataFactoryProps<TDataType>
+) => {
+  const {
+    endPoint,
+    title = props.endPoint,
+    tableColumns = [],
+    formSections = [],
+    formFields = [],
+    showAddForm = true,
+    showViewForm = true,
+    showEditForm = true,
+    showDeleteRow = true,
+    dataTransformer = (items: TDataType[]) => items,
+  } = props;
+
   const queryKey: QueryKey = useMemo(() => [endPoint], [endPoint]);
 
   const api = useAPI();
@@ -56,8 +87,8 @@ export const useDataFactory = <TDataType>({
   const items = useMemo(() => {
     if (query.isLoading || query.isError || !query.data) return [];
 
-    return query.data;
-  }, [query.data, query.isError, query.isLoading]);
+    return dataTransformer(query.data) as TDataType[];
+  }, [dataTransformer, query.data, query.isError, query.isLoading]);
 
   const onMutationProps = {
     endPoint,
@@ -86,7 +117,51 @@ export const useDataFactory = <TDataType>({
     ...commonUseMutationProps,
   });
 
-  return { ...query, items, appendItem, updateItem, deleteItem };
+  const dataForms = useFormFactory({
+    title,
+    onAppend: (data) => appendItem(data as TDataType),
+    onUpdate: (data) => updateItem(data as TDataType),
+    onDelete: (id) => deleteItem(id as number),
+    sections: formSections,
+    fields: formFields,
+  });
+
+  const DataTable = useTableFactory<TDataType>({
+    title,
+    rows: items,
+    columns: tableColumns as GridColDef[],
+    AddFormDialog:
+      showAddForm && formSections.length && formFields.length
+        ? dataForms.AddFormDialog
+        : undefined,
+    ViewFormDialog:
+      showViewForm && formSections.length && formFields.length
+        ? dataForms.ViewFormDialog
+        : undefined,
+    EditFormDialog:
+      showEditForm && formSections.length && formFields.length
+        ? dataForms.EditFormDialog
+        : undefined,
+    DeleteRow: showDeleteRow ? dataForms.DeleteRow : undefined,
+  });
+
+  const results: TuseDataFactoryResults<TDataType> = { items };
+
+  if (tableColumns?.length) results.DataTable = DataTable;
+
+  return results;
+};
+
+useDataFactory.defaultProps = {
+  title: '',
+  tableColumns: [],
+  formSections: [],
+  formFields: [],
+  showAddForm: true,
+  showViewForm: true,
+  showEditForm: true,
+  showDeleteRow: true,
+  dataTransformer: (items) => items,
 };
 
 export default useDataFactory;

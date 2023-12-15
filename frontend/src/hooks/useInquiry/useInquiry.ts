@@ -10,15 +10,16 @@ import { columnsInquiry } from './inquiry.columns';
 import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';
 
-export const useInquiry = (dataId: string = '') => {
+export const useInquiry = () => {
   const endPoint = 'inquiry';
-  const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
+  const title = 'Inquiry';
+  const inquiryData = useDataFactory<InquiryData>({ endPoint, title });
 
   const inquiryForms = useFormFactory({
     title: 'Inquiry',
-    onAppend: (data) => inquiryData.append(data as InquiryData),
+    onAppend: (data) => inquiryData.appendItem(data as InquiryData),
     onUpdate: (data) =>
-      inquiryData.update({
+      inquiryData.updateItem({
         ...(data as InquiryData),
         status_id: (data as InquiryData).status_id + 1,
       }),
@@ -29,7 +30,7 @@ export const useInquiry = (dataId: string = '') => {
 
   const InquiryTable = useTableFactory<InquiryData>({
     title: 'Inquiries',
-    rows: inquiryData.data,
+    rows: inquiryData.items,
     columns: columnsInquiry,
     AddFormDialog: inquiryForms.AddFormDialog,
     ViewFormDialog: inquiryForms.ViewFormDialog,
@@ -38,10 +39,7 @@ export const useInquiry = (dataId: string = '') => {
   });
 
   return {
-    ...inquiryData,
-    ...inquiryForms,
     InquiryTable,
-    columns: columnsInquiry,
   };
 };
 

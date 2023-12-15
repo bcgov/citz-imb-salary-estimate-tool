@@ -20,30 +20,26 @@
  */
 import {
   QueryKey,
+  useMutation,
   useQuery,
   useQueryClient,
-  useMutation,
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useAPI } from '../useAPI/useAPI';
+import { onAppendMutation } from './onAppendMutation';
+import { onDeleteMutation } from './onDeleteMutation';
+import { onError } from './onError';
+import { onSettled } from './onSettled';
+import { onUpdateMutation } from './onUpdateMutation';
 
 export const useDataFactory = <TDataType>({
-  endPoint: tableName,
-  dataId,
+  endPoint,
+  title,
 }: {
   endPoint: string;
-  dataId?: string;
+  title: string;
 }) => {
-  const queryKey: QueryKey = useMemo(
-    () => [tableName, dataId],
-    [dataId, tableName]
-  );
-
-  const endPoint = useMemo(() => {
-    if (dataId) return `${tableName}/${dataId}`;
-
-    return tableName;
-  }, [dataId, tableName]);
+  const queryKey: QueryKey = useMemo(() => [endPoint], [endPoint]);
 
   const api = useAPI();
   const queryClient = useQueryClient();
@@ -57,88 +53,40 @@ export const useDataFactory = <TDataType>({
     },
   });
 
-  const data = useMemo(() => {
+  const items = useMemo(() => {
     if (query.isLoading || query.isError || !query.data) return [];
 
     return query.data;
   }, [query.data, query.isError, query.isLoading]);
 
-  const appendMutationFn = (item: TDataType) => {
-    const newItem = { ...(item as object) };
-    if ('id' in newItem) delete newItem.id;
-
-    return api.appendItem<TDataType>(endPoint, newItem as TDataType);
+  const onMutationProps = {
+    endPoint,
+    api,
+    queryClient,
+    queryKey,
   };
 
-  const appendOnMutate = async (newItem: TDataType) => {
-    const previousValues = queryClient.getQueryData(queryKey);
-    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues,
-      {
-        id: 'new',
-        ...newItem,
-      },
-    ]);
-    return previousValues;
+  const commonUseMutationProps = {
+    onError: onError({ queryClient, queryKey }),
+    onSettled: onSettled({ queryClient, queryKey }),
   };
 
-  const updateMutationFn = (item: TDataType) =>
-    api.updateItem<TDataType>(endPoint, item);
-
-  const updateOnMutate = async (newItem: TDataType) => {
-    const previousValues = queryClient.getQueryData(queryKey);
-    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues.filter(
-        (oldValue) =>
-          (oldValue as { id: number }).id !== (newItem as { id: number }).id
-      ),
-      {
-        ...newItem,
-      },
-    ]);
-    return previousValues;
-  };
-
-  const deleteMutationFn = (id: number) =>
-    api.deleteItem(endPoint, id.toString());
-
-  const deleteOnMutate = async (id: number) => {
-    const previousValues = queryClient.getQueryData(queryKey);
-    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues.filter((oldValue) => (oldValue as { id: number }).id !== id),
-    ]);
-    return previousValues;
-  };
-
-  const onError = (error, newItem, context) =>
-    queryClient.setQueryData(queryKey, context);
-
-  const onSettled = async () => {
-    await queryClient.refetchQueries({ queryKey });
-  };
-
-  const { mutate: append } = useMutation({
-    mutationFn: appendMutationFn,
-    onMutate: appendOnMutate,
-    onError,
-    onSettled,
+  const { mutate: appendItem } = useMutation({
+    ...onAppendMutation<TDataType>(onMutationProps),
+    ...commonUseMutationProps,
   });
 
-  const { mutate: update } = useMutation({
-    mutationFn: updateMutationFn,
-    onMutate: updateOnMutate,
-    onError,
-    onSettled,
+  const { mutate: updateItem } = useMutation({
+    ...onUpdateMutation<TDataType>(onMutationProps),
+    ...commonUseMutationProps,
   });
 
   const { mutate: deleteItem } = useMutation({
-    mutationFn: deleteMutationFn,
-    onMutate: deleteOnMutate,
-    onError,
-    onSettled,
+    ...onDeleteMutation<TDataType>(onMutationProps),
+    ...commonUseMutationProps,
   });
 
-  return { ...query, data, append, update, deleteItem };
+  return { ...query, items, appendItem, updateItem, deleteItem };
 };
 
 export default useDataFactory;

@@ -7,13 +7,14 @@ import { useTableFactory } from '../useTableFactory/useTable.Factory';
 import { columnsUser } from './user.columns';
 import { UserData } from '../../types';
 
-export const useUser = (dataId: string = '') => {
+export const useUser = () => {
   const endPoint = 'user';
-  const userData = useDataFactory<UserData>({ endPoint, dataId });
+  const title = 'Users';
+  const userData = useDataFactory<UserData>({ endPoint, title });
 
   const UserTable = useTableFactory<UserData>({
     title: 'Users',
-    rows: userData.data.map((user) => {
+    rows: userData.items.map((user) => {
       return {
         ...user,
         id: user.guid,

@@ -32,7 +32,9 @@ export const CurrencyField = (props: CurrencyFieldProps) => {
             }}
             value={field.state.value}
             onBlur={field.handleBlur}
-            onChange={(e) => field.handleChange(Number(e.target.value))}
+            onChange={(e) =>
+              field.handleChange(Number(e.target.value) as never)
+            }
             label={label}
           />
         )

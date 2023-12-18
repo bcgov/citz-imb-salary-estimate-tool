@@ -43,12 +43,6 @@ interface IFormBaseProps {
   sections: IFormSection[];
 }
 
-export interface IFormFactoryProps extends IFormBaseProps {
-  onAppend: (data: unknown) => void;
-  onUpdate: (data: unknown) => void;
-  onDelete: (data: unknown) => void;
-}
-
 export interface IFormDialogProps extends IFormBaseProps {
   onSubmit: (data: unknown) => void;
   defaultValues: IDefaultValue;

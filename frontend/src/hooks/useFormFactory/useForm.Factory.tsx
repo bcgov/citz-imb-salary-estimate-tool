@@ -3,9 +3,15 @@ import {
   NewFormDialog,
   ViewFormDialog,
   UpdateFormDialog,
-  IFormFactoryProps,
+  IFormBaseProps,
   DeleteConfirmationDialog,
 } from '../../components';
+
+export interface IFormFactoryProps extends IFormBaseProps {
+  onAppend: (data: unknown) => void;
+  onUpdate: (data: unknown) => void;
+  onDelete: (data: unknown) => void;
+}
 
 export const useFormFactory = (props: IFormFactoryProps) => {
   const { onAppend, onUpdate, onDelete, ...otherProps } = props;

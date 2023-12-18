@@ -3,28 +3,28 @@
  * It is also the place to transform the data sent to or returned from the backend.
  */
 import { useDataFactory } from '../useDataFactory/useData.Factory';
-import { useTableFactory } from '../useTableFactory/useTable.Factory';
 import { columnsUser } from './user.columns';
 import { UserData } from '../../types';
 
-export const useUser = (dataId: string = '') => {
+export const useUser = () => {
   const endPoint = 'user';
-  const userData = useDataFactory<UserData>({ endPoint, dataId });
+  const title = 'Users';
 
-  const UserTable = useTableFactory<UserData>({
-    title: 'Users',
-    rows: userData.data.map((user) => {
-      return {
-        ...user,
-        id: user.guid,
-      };
-    }),
-    columns: columnsUser,
+  const dataTransformer = (items: UserData[]) =>
+    items.map((item) => {
+      return { ...item, id: item.guid };
+    });
+
+  const userData = useDataFactory<UserData>({
+    endPoint,
+    title,
+    tableColumns: columnsUser,
+    dataTransformer,
+    showDeleteRow: false,
   });
 
   return {
-    ...userData,
-    UserTable,
+    UserTable: userData.DataTable,
   };
 };
 

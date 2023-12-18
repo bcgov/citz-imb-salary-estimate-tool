@@ -4,44 +4,23 @@
  */
 import { InquiryData } from '../../types';
 import { useDataFactory } from '../useDataFactory/useData.Factory';
-import { useFormFactory } from '../useFormFactory/useForm.Factory';
-import { useTableFactory } from '../useTableFactory/useTable.Factory';
 import { columnsInquiry } from './inquiry.columns';
 import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';
 
-export const useInquiry = (dataId: string = '') => {
+export const useInquiry = () => {
   const endPoint = 'inquiry';
-  const inquiryData = useDataFactory<InquiryData>({ endPoint, dataId });
-
-  const inquiryForms = useFormFactory({
-    title: 'Inquiry',
-    onAppend: (data) => inquiryData.append(data as InquiryData),
-    onUpdate: (data) =>
-      inquiryData.update({
-        ...(data as InquiryData),
-        status_id: (data as InquiryData).status_id + 1,
-      }),
-    onDelete: (id) => inquiryData.deleteItem(id as number),
-    sections: inquirySections,
-    fields: inquiryFormFields,
-  });
-
-  const InquiryTable = useTableFactory<InquiryData>({
-    title: 'Inquiries',
-    rows: inquiryData.data,
-    columns: columnsInquiry,
-    AddFormDialog: inquiryForms.AddFormDialog,
-    ViewFormDialog: inquiryForms.ViewFormDialog,
-    EditFormDialog: inquiryForms.EditFormDialog,
-    DeleteRow: inquiryForms.DeleteRow,
+  const title = 'Inquiry';
+  const inquiryData = useDataFactory<InquiryData>({
+    endPoint,
+    title,
+    tableColumns: columnsInquiry,
+    formSections: inquirySections,
+    formFields: inquiryFormFields,
   });
 
   return {
-    ...inquiryData,
-    ...inquiryForms,
-    InquiryTable,
-    columns: columnsInquiry,
+    InquiryTable: inquiryData.DataTable,
   };
 };
 

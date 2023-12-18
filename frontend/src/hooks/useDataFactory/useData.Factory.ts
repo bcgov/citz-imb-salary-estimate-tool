@@ -51,6 +51,9 @@ export interface TuseDataFactoryProps<TDataType> {
 
 type TuseDataFactoryResults<TDataType> = {
   items: TDataType[];
+  isLoading: boolean;
+  isError: boolean;
+  error?: Error;
   DataTable?: ReturnType<typeof useTableFactory>;
 };
 
@@ -145,7 +148,12 @@ export const useDataFactory = <TDataType>(
     DeleteRow: showDeleteRow ? dataForms.DeleteRow : undefined,
   });
 
-  const results: TuseDataFactoryResults<TDataType> = { items };
+  const results: TuseDataFactoryResults<TDataType> = {
+    items,
+    isLoading: query.isLoading,
+    isError: query.isError,
+    error: query.error as Error,
+  };
 
   if (tableColumns?.length) results.DataTable = DataTable;
 

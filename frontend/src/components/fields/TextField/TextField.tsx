@@ -28,7 +28,7 @@ export const TextField = (props: TextFieldProps) => {
             type="text"
             value={field.state.value}
             onBlur={field.handleBlur}
-            onChange={(e) => field.handleChange(e.target.value)}
+            onChange={(e) => field.handleChange(e.target.value as never)}
             label={label}
             inputProps={{ readOnly: mode === 'View' }}
           />

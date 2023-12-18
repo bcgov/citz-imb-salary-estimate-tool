@@ -61,6 +61,18 @@ export const useAPI = () => {
     [callAPIOptions]
   );
 
+  const appendBulkItems = useCallback(
+    async <TDataType>(endPoint: string, items: TDataType[]) => {
+      const response = await callAPI<TDataType>(
+        endPoint,
+        callAPIOptions({ method: 'POST', body: items as unknown as BodyInit })
+      );
+
+      return response as TDataType[];
+    },
+    [callAPIOptions]
+  );
+
   const updateItem = useCallback(
     async <TDataType>(endPoint: string, item: TDataType) => {
       const { id, ...rest } = item as { id: number };
@@ -87,7 +99,7 @@ export const useAPI = () => {
     [callAPIOptions]
   );
 
-  return { appendItem, fetchData, updateItem, deleteItem };
+  return { appendItem, appendBulkItems, fetchData, updateItem, deleteItem };
 };
 
 export default useAPI;

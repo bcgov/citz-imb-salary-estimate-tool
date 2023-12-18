@@ -26,11 +26,11 @@ export const SelectField = (props: SelectFieldProps) => {
 
   const choices = useMemo(() => {
     if (!selectionOptions) return [];
-    if (!selectData.data || selectData.isLoading) return [];
+    if (!selectData.items || selectData.isLoading) return [];
     if (selectData.isError)
       return [{ label: 'Error loading values', value: '' }];
 
-    const sortedData = selectData.data.sort((a, b) => {
+    const sortedData = selectData.items.sort((a, b) => {
       if (selectionOptions?.sortFieldName) {
         return a[selectionOptions?.sortFieldName] >
           b[selectionOptions?.sortFieldName]
@@ -49,7 +49,7 @@ export const SelectField = (props: SelectFieldProps) => {
     }));
   }, [
     selectionOptions,
-    selectData.data,
+    selectData.items,
     selectData.isLoading,
     selectData.isError,
   ]);

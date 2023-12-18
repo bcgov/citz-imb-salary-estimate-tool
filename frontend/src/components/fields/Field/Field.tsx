@@ -1,5 +1,4 @@
 import { CurrencyField } from '../CurrencyField/CurrencyField';
-import { DateField } from '../DateField/DateField';
 import { MultilineField } from '../MultilineField/MultilineField';
 import { NumberField } from '../NumberField/NumberField';
 import { SelectField } from '../SelectField/SelectField';
@@ -23,8 +22,6 @@ export const Field = (props: IFieldProps) => {
   switch (type) {
     case 'currency':
       return <CurrencyField {...fieldProps} />;
-    case 'date':
-      return <DateField {...fieldProps} />;
     case 'multiline':
       return <MultilineField {...fieldProps} />;
     case 'number':

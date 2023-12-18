@@ -28,15 +28,17 @@ export const onAppendBulkMutation = <TDataType>({
     return api.appendBulkItems(endPoint, newItems as TDataType[]);
   };
 
-  const onMutate = async (newItem: TDataType) => {
+  // TODO: Update to refresh cache
+  const onMutate = async (newItems: TDataType[]) => {
     const previousValues = queryClient.getQueryData(queryKey);
-    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues,
-      {
-        id: 'new',
-        ...newItem,
-      },
-    ]);
+    // queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
+    //   ...oldValues,
+    //   {
+    //     id: 'new',
+    //     ...newItem,
+    //   },
+    // ]);
+
     return previousValues;
   };
 

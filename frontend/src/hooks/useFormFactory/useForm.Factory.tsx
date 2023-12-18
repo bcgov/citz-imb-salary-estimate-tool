@@ -9,12 +9,13 @@ import {
 
 export interface IFormFactoryProps extends IFormBaseProps {
   onAppend: (data: unknown) => void;
+  onBulkAppend: (data: unknown[]) => void;
   onUpdate: (data: unknown) => void;
   onDelete: (data: unknown) => void;
 }
 
 export const useFormFactory = (props: IFormFactoryProps) => {
-  const { onAppend, onUpdate, onDelete, ...otherProps } = props;
+  const { onAppend, onBulkAppend, onUpdate, onDelete, ...otherProps } = props;
 
   const defaultValues = useMemo(() => {
     const defaults = {};

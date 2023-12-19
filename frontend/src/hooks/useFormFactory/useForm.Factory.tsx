@@ -59,11 +59,7 @@ export const useFormFactory = (props: IFormFactoryProps) => {
       />
     ),
     AddBulkFormDialog: (
-      <UploadConfirmationDialog
-        defaultValues={defaultValues}
-        onSubmit={onBulkAppend}
-        {...otherProps}
-      />
+      <UploadConfirmationDialog onSubmit={onBulkAppend} {...otherProps} />
     ),
   };
 };

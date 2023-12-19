@@ -143,6 +143,9 @@ export const useDataFactory = <TDataType>(
       showAddForm && formSections.length && formFields.length
         ? dataForms.AddFormDialog
         : undefined,
+    AddBulkFormDialog: showAddBulkForm
+      ? dataForms.AddBulkFormDialog
+      : undefined,
     ViewFormDialog:
       showViewForm && formSections.length && formFields.length
         ? dataForms.ViewFormDialog

@@ -13,6 +13,7 @@ export const useSalaryData = () => {
     endPoint,
     title,
     tableColumns: columnsSalaryData,
+    showAddBulkForm: true,
   });
 
   return {

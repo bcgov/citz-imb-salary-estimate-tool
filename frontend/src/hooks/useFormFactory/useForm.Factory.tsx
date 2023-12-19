@@ -5,6 +5,7 @@ import {
   UpdateFormDialog,
   IFormBaseProps,
   DeleteConfirmationDialog,
+  UploadConfirmationDialog,
 } from '../../components';
 
 export interface IFormFactoryProps extends IFormBaseProps {
@@ -55,6 +56,13 @@ export const useFormFactory = (props: IFormFactoryProps) => {
         position={`${
           (row as { new_position_title: string }).new_position_title
         } (${(row as { new_position_number: string }).new_position_number})`}
+      />
+    ),
+    AddBulkFormDialog: (
+      <UploadConfirmationDialog
+        defaultValues={defaultValues}
+        onSubmit={onAppend}
+        {...otherProps}
       />
     ),
   };

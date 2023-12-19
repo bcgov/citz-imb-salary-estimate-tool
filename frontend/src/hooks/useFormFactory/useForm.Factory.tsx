@@ -10,7 +10,7 @@ import {
 
 export interface IFormFactoryProps extends IFormBaseProps {
   onAppend: (data: unknown) => void;
-  onBulkAppend: (data: unknown[]) => void;
+  onBulkAppend: (data: unknown) => void;
   onUpdate: (data: unknown) => void;
   onDelete: (data: unknown) => void;
 }
@@ -61,7 +61,7 @@ export const useFormFactory = (props: IFormFactoryProps) => {
     AddBulkFormDialog: (
       <UploadConfirmationDialog
         defaultValues={defaultValues}
-        onSubmit={onAppend}
+        onSubmit={onBulkAppend}
         {...otherProps}
       />
     ),

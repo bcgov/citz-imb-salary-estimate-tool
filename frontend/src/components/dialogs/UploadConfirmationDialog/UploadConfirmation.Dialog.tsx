@@ -6,7 +6,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Typography,
 } from '@mui/material';
 import { ConfirmCancelButton, AddButton } from '../../buttons';
 import { useUpload } from '../../../hooks';
@@ -37,7 +36,6 @@ export const UploadConfirmationDialog: React.FC<
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Upload</DialogTitle>
         <DialogContent>
-          <Typography>Upload</Typography>
           <input type="file" accept=".csv" onChange={handleFileChange} />
         </DialogContent>
         <DialogActions>

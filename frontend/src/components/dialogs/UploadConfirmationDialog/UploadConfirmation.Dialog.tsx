@@ -36,7 +36,7 @@ export const UploadConfirmationDialog: React.FC<
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Upload</DialogTitle>
         <DialogContent>
-          <input type="file" accept=".csv" onChange={handleFileChange} />
+          <input type="file" accept=".csv,.CSV" onChange={handleFileChange} />
         </DialogContent>
         <DialogActions>
           <ConfirmCancelButton onClose={handleClose} onClick={handleSubmit} />

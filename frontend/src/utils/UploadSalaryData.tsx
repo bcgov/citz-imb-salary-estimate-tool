@@ -1,23 +1,23 @@
 /* eslint-disable prefer-promise-reject-errors */
 import Papa from 'papaparse';
-
+// TODO: Change names to how they appear in SETDATA.csv
 export interface ISalaryDataModel {
   Organization?: string;
-  program?: string;
-  program_division?: string;
-  position_number?: number;
-  title?: string;
-  job_code?: number;
-  classification?: string;
-  appointment?: string;
-  schedule?: string;
-  supervisor_position_number?: number;
-  employee_id?: number;
-  employee_job_code?: number;
-  employee_classification?: string;
-  step?: number;
-  position_job_code_max_annual_rate?: number;
-  employee_job_code_max_annual_rate?: number;
+  Program?: string;
+  Program_division?: string;
+  Position_number?: number;
+  Title?: string;
+  Job_code?: number;
+  Classification?: string;
+  Appointment?: string;
+  Schedule?: string;
+  Supervisor_position_number?: number;
+  Employee_id?: number;
+  Employee_job_code?: number;
+  Employee_classification?: string;
+  Step?: number;
+  Position_job_code_max_annual_rate?: number;
+  Employee_job_code_max_annual_rate?: number;
   abbr?: number;
   ama?: number;
   created_at?: Date;
@@ -41,7 +41,7 @@ export const parseCSVString = async (
       quoteChar: '"',
       skipEmptyLines: true,
     });
-
+    console.log('Parsed: ', parsedCSV);
     if (parsedCSV.errors.length > 0) {
       reject({
         message: 'Error parsing CSV file',
@@ -56,7 +56,7 @@ export const parseCSVString = async (
     const transformedData: ISalaryDataModel[] = parsedCSV.data.map(
       (salaryData: ISalaryDataModel) => ({
         organization: salaryData.Organization,
-        program: salaryData.program,
+        program: salaryData.Program,
         program_division: salaryData.program_division,
         position_number: salaryData.position_number,
         title: salaryData.title,

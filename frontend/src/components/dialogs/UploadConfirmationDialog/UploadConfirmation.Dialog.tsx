@@ -9,6 +9,10 @@ import {
 } from '@mui/material';
 import { ConfirmCancelButton, AddButton } from '../../buttons';
 import { useUpload } from '../../../hooks';
+import {
+  csvFileToSalaryData,
+  ISalaryDataModel,
+} from '../../../utils/UploadSalaryData';
 
 interface IUploadConfirmationDialogProps {
   onSubmit: (data: unknown[]) => void;
@@ -23,9 +27,13 @@ export const UploadConfirmationDialog: React.FC<
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // eslint-disable-next-line no-console
-    console.log('CSV file uploaded:', csvFile);
+    if (csvFile) {
+      // eslint-disable-next-line prettier/prettier
+      const convertedFile = await csvFileToSalaryData(csvFile);
+      console.log('CSV file uploaded:', convertedFile);
+    }
     onSubmit([]);
     handleClose();
   };

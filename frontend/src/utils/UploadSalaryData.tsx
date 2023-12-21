@@ -1,6 +1,6 @@
 import papa from 'papaparse';
 
-export interface ISalaryData {
+export interface ISalaryDataModel {
   id?: number;
   organization?: string;
   program?: string;
@@ -56,4 +56,17 @@ export const csvFileToString = (file: File): Promise<string> => {
 
     reader.readAsText(file);
   });
+};
+
+/**
+ * @description Combines each step in CSV utils to convert from CSV to Property Model.
+ * @param {File} file The incoming CSV file.
+ * @returns {IPropertyModel[]} An array of Property Model objects.
+ * @author dbarkowsky
+ */
+export const csvFileToSalaryData = async (file: File) => {
+  const string = await csvFileToString(file);
+  //   const objects: ISalaryDataModel[] = await parseCSVString(string);
+  //   return objects;
+  return string;
 };

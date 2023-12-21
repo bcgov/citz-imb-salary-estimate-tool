@@ -33,7 +33,8 @@ export const UploadConfirmationDialog: React.FC<
       // eslint-disable-next-line prettier/prettier
       const convertedFile: ISalaryDataModel[] = await csvFileToSalaryData(csvFile);
       console.log('CSV file uploaded:', convertedFile);
-      onSubmit(convertedFile);
+      // onSubmit(convertedFile);
+      onSubmit([]);
     }
     handleClose();
   };

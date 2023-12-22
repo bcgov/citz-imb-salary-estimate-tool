@@ -2,6 +2,28 @@
 import Papa from 'papaparse';
 // TODO: Change names to how they appear in SETDATA.csv
 export interface ISalaryDataModel {
+  organization?: string;
+  program?: string;
+  program_division?: string;
+  position_number?: number;
+  title?: string;
+  job_code?: number;
+  classification?: string;
+  appointment?: string;
+  schedule?: string;
+  supervisor_position_number?: number;
+  employee_id?: number;
+  employee_job_code?: number;
+  employee_classification?: string;
+  step?: number;
+  position_job_code_max_annual_rate?: number;
+  employee_job_code_max_annual_rate?: number;
+  abbr?: number;
+  ama?: number;
+  created_at?: Date;
+}
+
+export interface IExportedSalaryDataModel {
   Organization?: string;
   Program?: string;
   Program_division?: string;
@@ -9,7 +31,7 @@ export interface ISalaryDataModel {
   Title?: string;
   Job_code?: number;
   Classification?: string;
-  Appointment?: string;
+  ApptStatus?: string;
   Schedule?: string;
   Supervisor_position_number?: number;
   Employee_id?: number;
@@ -18,8 +40,8 @@ export interface ISalaryDataModel {
   Step?: number;
   Position_job_code_max_annual_rate?: number;
   Employee_job_code_max_annual_rate?: number;
-  abbr?: number;
-  ama?: number;
+  ABBR?: number;
+  AMA?: number;
   created_at?: Date;
 }
 
@@ -40,8 +62,10 @@ export const parseCSVString = async (
       newline: '\n',
       quoteChar: '"',
       skipEmptyLines: true,
+      transformHeader(h) {
+        return h.trim();
+      },
     });
-    console.log('Parsed: ', parsedCSV);
     if (parsedCSV.errors.length > 0) {
       reject({
         message: 'Error parsing CSV file',
@@ -54,27 +78,27 @@ export const parseCSVString = async (
 
     // Transform raw objects into model that API expects
     const transformedData: ISalaryDataModel[] = parsedCSV.data.map(
-      (salaryData: ISalaryDataModel) => ({
+      (salaryData: IExportedSalaryDataModel) => ({
         organization: salaryData.Organization,
         program: salaryData.Program,
-        program_division: salaryData.program_division,
-        position_number: salaryData.position_number,
-        title: salaryData.title,
-        job_code: salaryData.job_code,
-        classification: salaryData.classification,
-        appointment: salaryData.appointment,
-        schedule: salaryData.schedule,
-        supervisor_position_number: salaryData.supervisor_position_number,
-        employee_id: salaryData.employee_id,
-        employee_job_code: salaryData.employee_job_code,
-        employee_classification: salaryData.employee_classification,
-        step: salaryData.step,
+        program_division: salaryData.Program_division,
+        position_number: salaryData.Position_number,
+        title: salaryData.Title,
+        job_code: salaryData.Job_code,
+        classification: salaryData.Classification,
+        appointment: salaryData.ApptStatus,
+        schedule: salaryData.Schedule,
+        supervisor_position_number: salaryData.Supervisor_position_number,
+        employee_id: salaryData.Employee_id,
+        employee_job_code: salaryData.Employee_job_code,
+        employee_classification: salaryData.Employee_classification,
+        step: salaryData.Step,
         position_job_code_max_annual_rate:
-          salaryData.position_job_code_max_annual_rate,
+          salaryData.Position_job_code_max_annual_rate,
         employee_job_code_max_annual_rate:
-          salaryData.employee_job_code_max_annual_rate,
-        abbr: salaryData.abbr,
-        ama: salaryData.ama,
+          salaryData.Employee_job_code_max_annual_rate,
+        abbr: salaryData.ABBR,
+        ama: salaryData.AMA,
         created_at: Date,
       })
     );

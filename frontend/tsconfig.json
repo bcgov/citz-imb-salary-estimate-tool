@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "target": "ESNext",
+    "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": [
       "ES2020",
@@ -31,7 +25,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    ".eslintrc.cjs",
     "src",
     "__mocks__",
     "vite.config.ts"

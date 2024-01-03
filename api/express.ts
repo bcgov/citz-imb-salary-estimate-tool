@@ -9,24 +9,33 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import rateLimit from 'express-rate-limit';
+import bodyParser from 'body-parser';
 import * as config from './config';
 import * as routers from './routes';
 import * as middleware from './middleware';
 import KEYCLOAK_OPTIONS from './config/keycloakConfig';
 
 const app: Application = express();
+app.use(bodyParser.json({limit: '35mb'}));
 
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    limit: '35mb',
+    parameterLimit: 50000,
+  }),
+);
 app.set("trust proxy", 1);
 
 // Initializes Keycloak in the backend
 keycloak(app, KEYCLOAK_OPTIONS);
-
 // Express middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
+// Set the payload size limit to 10MB
 
 app.disable('x-powered-by');
 

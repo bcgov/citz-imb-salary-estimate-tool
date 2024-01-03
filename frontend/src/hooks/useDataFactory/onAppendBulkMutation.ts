@@ -17,15 +17,16 @@ export const onAppendBulkMutation = <TDataType>({
   queryKey: QueryKey;
 }) => {
   const mutationFn = (items: TDataType[]) => {
-    const newItems = items.map((item) => {
-      const newItem = { ...(item as object) };
-      if ('id' in newItem) delete newItem.id;
-      return {
-        ...newItem,
-      };
-    });
+    console.log('Item: ', items);
+    // const newItems = items.map((item) => {
+    //   const newItem = { ...(item as object) };
+    //   if ('id' in newItem) delete newItem.id;
+    //   return {
+    //     ...newItem,
+    //   };
+    // });
 
-    return api.appendBulkItems(endPoint, newItems as TDataType[]);
+    return api.appendBulkItems(endPoint, items as TDataType[]);
   };
 
   // TODO: Update to refresh cache

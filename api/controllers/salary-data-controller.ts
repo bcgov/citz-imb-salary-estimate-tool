@@ -14,9 +14,14 @@ const prisma = new PrismaClient;
  */
 export const createSalaryData = async (req: Request, res: Response) => {
     try {
-        const response = await prisma.salaryData.create({
-            data: req.body
-        });
+        const response = req.body.forEach(async (item: unknown) => {
+            await prisma.salaryData.create({
+                data: item
+            });
+        })
+        // const response = await prisma.salaryData.create({
+        //     data: req.body
+        // });
         return res.status(201).json(response);
     } catch (error) {
         return res.status(400).json(httpResponses[400]);

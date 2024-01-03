@@ -15,7 +15,7 @@ import {
 } from '../../../utils/UploadSalaryData';
 
 interface IUploadConfirmationDialogProps {
-  onSubmit: (data: unknown[]) => void;
+  onSubmit: (data: unknown) => void;
 }
 
 export const UploadConfirmationDialog: React.FC<
@@ -32,9 +32,11 @@ export const UploadConfirmationDialog: React.FC<
     if (csvFile) {
       // eslint-disable-next-line prettier/prettier
       const convertedFile: ISalaryDataModel[] = await csvFileToSalaryData(csvFile);
-      console.log('CSV file uploaded:', convertedFile);
+      onSubmit(convertedFile);
+      // convertedFile.forEach((item) => {
+      //   onSubmit(item);
+      // });
       // onSubmit(convertedFile);
-      onSubmit([]);
     }
     handleClose();
   };

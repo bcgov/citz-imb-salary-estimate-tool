@@ -33,7 +33,8 @@
   "include": [
     ".eslintrc.cjs",
     "src",
-    "__mocks__"
+    "__mocks__",
+    "vite.config.ts"
   ],
   "references": [
     {

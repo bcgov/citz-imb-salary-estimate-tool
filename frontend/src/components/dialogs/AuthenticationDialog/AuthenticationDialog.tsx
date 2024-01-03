@@ -6,7 +6,7 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-import { AuthenticationButton } from '../../buttons/AuthenticationButton/AuthenticationButton';
+import { AuthenticationButton } from '@/components';
 
 export const AuthenticationDialog = (props: DialogProps) => {
   const { onClose, open, title } = props;

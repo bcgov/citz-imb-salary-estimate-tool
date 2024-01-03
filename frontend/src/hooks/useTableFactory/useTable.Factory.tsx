@@ -1,5 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid';
-import { TableContainer } from '../../components';
+import { TableContainer } from '@/components';
 
 export interface ITableFactoryProps<TDataType>
   extends React.HTMLAttributes<HTMLDivElement> {

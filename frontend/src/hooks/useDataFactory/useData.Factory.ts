@@ -26,15 +26,15 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { useAPI } from '../useAPI/useAPI';
-import { useFormFactory } from '../useFormFactory/useForm.Factory';
-import { useTableFactory } from '../useTableFactory/useTable.Factory';
+import { useAPI } from '@/hooks/useAPI/useAPI';
+import { useFormFactory } from '@/hooks/useFormFactory/useForm.Factory';
+import { useTableFactory } from '@/hooks/useTableFactory/useTable.Factory';
 import { onAppendMutation } from './onAppendMutation';
 import { onDeleteMutation } from './onDeleteMutation';
 import { onError } from './onError';
 import { onSettled } from './onSettled';
 import { onUpdateMutation } from './onUpdateMutation';
-import { IFormField, IFormSection } from '../../components';
+import { IFormField, IFormSection } from '@/components';
 
 export interface TuseDataFactoryProps<TDataType> {
   endPoint: string;

@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { ConfirmCancelButton, DeleteRowButton } from '../../buttons';
+import { ConfirmCancelButton, DeleteRowButton } from '@/components';
 
 interface IDeleteConfirmationDialogProps {
   onSubmit: () => void;

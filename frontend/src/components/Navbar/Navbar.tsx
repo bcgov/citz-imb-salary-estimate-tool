@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar, Typography, Stack } from '@mui/material';
-import { AuthenticationButton } from '../buttons/AuthenticationButton/AuthenticationButton';
+import { AuthenticationButton } from '@/components';
 import Logo from '../../assets/logo.png';
-import { useAuthentication } from '../../hooks/useAuthentication/useAuthentication';
+import { useAuthentication } from '@/hooks';
 
 type NavbarProps = {
   title?: string;

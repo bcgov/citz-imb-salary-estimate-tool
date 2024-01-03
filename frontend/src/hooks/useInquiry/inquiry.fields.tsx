@@ -1,4 +1,4 @@
-import { IFormField } from '../../components';
+import { IFormField } from '@/components';
 
 export const inquiryFormFields: IFormField[] = [
   {

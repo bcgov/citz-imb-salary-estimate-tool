@@ -36,6 +36,17 @@ module.exports = {
         "devDependencies": ['./vite.config.ts', '**/*.test.tsx', '**/*.test.ts'],
         "packageDir": "./"
       }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "": "never",
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
     ]
   },
 };

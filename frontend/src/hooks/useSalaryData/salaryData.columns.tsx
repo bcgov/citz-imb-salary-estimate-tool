@@ -11,8 +11,28 @@ import { GridColDef } from '@mui/x-data-grid';
 
 export const columnsSalaryData: GridColDef[] = [
   {
+    field: 'organization',
+    headerName: 'Organization',
+    width: 130,
+  },
+  {
     field: 'program',
     headerName: 'Program',
+    width: 130,
+  },
+  {
+    field: 'program_division',
+    headerName: 'Program Division',
+    width: 130,
+  },
+  {
+    field: 'position_number',
+    headerName: 'Position Number',
+    width: 130,
+  },
+  {
+    field: 'title',
+    headerName: 'Job Title',
     width: 130,
   },
 ];

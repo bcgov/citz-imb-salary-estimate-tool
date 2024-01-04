@@ -18,6 +18,7 @@ import KEYCLOAK_OPTIONS from './config/keycloakConfig';
 const app: Application = express();
 app.use(bodyParser.json({limit: '35mb'}));
 
+// Increases the size of the files that can be passed
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -25,17 +26,18 @@ app.use(
     parameterLimit: 50000,
   }),
 );
+
 app.set("trust proxy", 1);
 
 // Initializes Keycloak in the backend
 keycloak(app, KEYCLOAK_OPTIONS);
+
 // Express middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cors(config.cors));
 app.use(rateLimit(config.rateLimitConfig));
-// Set the payload size limit to 10MB
 
 app.disable('x-powered-by');
 

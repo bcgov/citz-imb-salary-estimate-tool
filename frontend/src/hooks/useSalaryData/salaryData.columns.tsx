@@ -7,7 +7,6 @@
  *
  */
 import { GridColDef } from '@mui/x-data-grid';
-// import { SalaryDataCell } from '../../components';
 
 export const columnsSalaryData: GridColDef[] = [
   {

@@ -1,6 +1,6 @@
 const rateLimitConfig = {
     windowMs: 60 * 1000 * 5,
-    max: 10000,
+    max: 350,
     legacyHeaders: false,
 };
   

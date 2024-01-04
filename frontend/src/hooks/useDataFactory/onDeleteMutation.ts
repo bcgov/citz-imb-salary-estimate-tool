@@ -8,12 +8,14 @@ export const onDeleteMutation = <TDataType>({
 }: {
   endPoint: string;
   api: {
-    deleteItem: (endPoint: string, id: string) => Promise<unknown>;
+    delete: (endPoint: string, id: string) => Promise<void>;
   };
   queryClient: QueryClient;
   queryKey: QueryKey;
 }) => {
-  const mutationFn = (id: number) => api.deleteItem(endPoint, id.toString());
+  const mutationFn = async (id: number) => {
+    await api.delete(endPoint, id.toString());
+  };
 
   const onMutate = async (id: number) => {
     const previousValues = queryClient.getQueryData(queryKey);

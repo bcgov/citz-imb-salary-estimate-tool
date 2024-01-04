@@ -18,6 +18,8 @@
  * - add a way to update a record
  * - add a way to delete a record
  */
+import { useMemo } from 'react';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { GridColDef } from '@mui/x-data-grid';
 import {
   QueryKey,
@@ -25,16 +27,15 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { useMemo } from 'react';
-import { useAPI } from '@/hooks/useAPI/useAPI';
-import { useFormFactory } from '@/hooks/useFormFactory/useForm.Factory';
-import { useTableFactory } from '@/hooks/useTableFactory/useTable.Factory';
 import { onAppendMutation } from './onAppendMutation';
 import { onDeleteMutation } from './onDeleteMutation';
 import { onError } from './onError';
 import { onSettled } from './onSettled';
 import { onUpdateMutation } from './onUpdateMutation';
+import { useFormFactory } from '@/hooks/useFormFactory/useForm.Factory';
+import { useTableFactory } from '@/hooks/useTableFactory/useTable.Factory';
 import { IFormField, IFormSection } from '@/components';
+import { createApi } from '@/api';
 
 export interface TuseDataFactoryProps<TDataType> {
   endPoint: string;
@@ -75,13 +76,17 @@ export const useDataFactory = <TDataType>(
 
   const queryKey: QueryKey = useMemo(() => [endPoint], [endPoint]);
 
-  const api = useAPI();
+  const { getAuthorizationHeaderValue } = useKeycloak();
+
+  const api = createApi({
+    headers: { Authorization: getAuthorizationHeaderValue() },
+  });
   const queryClient = useQueryClient();
 
   const query = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await api.fetchData<TDataType[]>(endPoint);
+      const response = await api.get<TDataType>(endPoint);
 
       return response;
     },

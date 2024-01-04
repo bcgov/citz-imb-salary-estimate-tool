@@ -8,12 +8,14 @@ export const onUpdateMutation = <TDataType>({
 }: {
   endPoint: string;
   api: {
-    updateItem: (endPoint: string, newItem: TDataType) => Promise<TDataType>;
+    patch: (endPoint: string, newItem: TDataType) => Promise<void>;
   };
   queryClient: QueryClient;
   queryKey: QueryKey;
 }) => {
-  const mutationFn = (item: TDataType) => api.updateItem(endPoint, item);
+  const mutationFn = async (item: TDataType) => {
+    await api.patch(endPoint, item);
+  };
 
   const OnMutate = async (newItem: TDataType) => {
     const previousValues = queryClient.getQueryData(queryKey);

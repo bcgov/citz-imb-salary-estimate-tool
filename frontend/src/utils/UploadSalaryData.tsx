@@ -37,11 +37,11 @@ export interface IExportedSalaryDataModel {
   Employee_id?: number;
   Employee_job_code?: number;
   Employee_classification?: string;
-  Step?: number;
+  Step?: string;
   Position_job_code_max_annual_rate?: number;
   Employee_job_code_max_annual_rate?: number;
-  ABBR?: number;
-  AMA?: number;
+  ABBR?: string;
+  AMA?: string;
   created_at?: Date;
 }
 
@@ -63,7 +63,7 @@ export const parseCSVString = async (
       quoteChar: '"',
       skipEmptyLines: true,
       transformHeader(h) {
-        return h.trim();
+        return h.trim(' ');
       },
     });
     if (parsedCSV.errors.length > 0) {
@@ -92,13 +92,13 @@ export const parseCSVString = async (
         employee_id: salaryData.Employee_id,
         employee_job_code: salaryData.Employee_job_code,
         employee_classification: salaryData.Employee_classification,
-        step: salaryData.Step,
+        step: Number(salaryData.Step),
         position_job_code_max_annual_rate:
           salaryData.Position_job_code_max_annual_rate,
         employee_job_code_max_annual_rate:
           salaryData.Employee_job_code_max_annual_rate,
-        abbr: salaryData.ABBR,
-        ama: salaryData.AMA,
+        abbr: Number(salaryData.ABBR?.replace('$', '')),
+        ama: Number(salaryData.AMA?.replace('$', '')),
         created_at: Date,
       })
     );

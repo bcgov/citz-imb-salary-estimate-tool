@@ -18,13 +18,14 @@ export const onAppendBulkMutation = <TDataType>({
 }) => {
   const mutationFn = (items: TDataType[]) => {
     console.log('Item: ', items);
-    // const newItems = items.map((item) => {
-    //   const newItem = { ...(item as object) };
-    //   if ('id' in newItem) delete newItem.id;
-    //   return {
-    //     ...newItem,
-    //   };
-    // });
+    const newItems = items.map((item) => {
+      const newItem = { ...(item as object) };
+      if ('id' in newItem) delete newItem.id;
+      return {
+        ...newItem,
+      };
+    });
+    console.log('New Items: ', newItems);
 
     return api.appendBulkItems(endPoint, items as TDataType[]);
   };

@@ -1,6 +1,6 @@
 /* eslint-disable prefer-promise-reject-errors */
 import Papa from 'papaparse';
-// TODO: Change names to how they appear in SETDATA.csv
+
 export interface ISalaryDataModel {
   organization?: string;
   program?: string;
@@ -26,20 +26,20 @@ export interface ISalaryDataModel {
 export interface IExportedSalaryDataModel {
   Organization?: string;
   Program?: string;
-  Program_division?: string;
-  Position_number?: number;
+  'Program Division'?: string;
+  Position?: string;
   Title?: string;
-  Job_code?: number;
+  'Job Code'?: string;
   Classification?: string;
-  ApptStatus?: string;
-  Schedule?: string;
-  Supervisor_position_number?: number;
-  Employee_id?: number;
-  Employee_job_code?: number;
-  Employee_classification?: string;
+  'Appt Status'?: string;
+  'Full or Part-Tme'?: string;
+  'Supervisor Position'?: string;
+  'Empl ID'?: string;
+  'Employee Jobcode'?: string;
+  'Employee  Classification'?: string;
   Step?: string;
-  Position_job_code_max_annual_rate?: number;
-  Employee_job_code_max_annual_rate?: number;
+  'Position Jobcode Max Annual Rate'?: string;
+  'Employee Jobcode Max Annual Rate'?: string;
   ABBR?: string;
   AMA?: string;
   created_at?: Date;
@@ -62,9 +62,6 @@ export const parseCSVString = async (
       newline: '\n',
       quoteChar: '"',
       skipEmptyLines: true,
-      transformHeader(h) {
-        return h.trim(' ');
-      },
     });
     if (parsedCSV.errors.length > 0) {
       reject({
@@ -81,22 +78,24 @@ export const parseCSVString = async (
       (salaryData: IExportedSalaryDataModel) => ({
         organization: salaryData.Organization,
         program: salaryData.Program,
-        program_division: salaryData.Program_division,
-        position_number: salaryData.Position_number,
+        program_division: salaryData['Program Division'],
+        position_number: Number(salaryData.Position),
         title: salaryData.Title,
-        job_code: salaryData.Job_code,
+        job_code: Number(salaryData['Job Code']),
         classification: salaryData.Classification,
-        appointment: salaryData.ApptStatus,
-        schedule: salaryData.Schedule,
-        supervisor_position_number: salaryData.Supervisor_position_number,
-        employee_id: salaryData.Employee_id,
-        employee_job_code: salaryData.Employee_job_code,
-        employee_classification: salaryData.Employee_classification,
+        appointment: salaryData['Appt Status'],
+        schedule: salaryData['Full or Part-Tme'],
+        supervisor_position_number: Number(salaryData['Supervisor Position']),
+        employee_id: Number(salaryData['Empl ID']),
+        employee_job_code: Number(salaryData['Employee Jobcode']),
+        employee_classification: salaryData['Employee  Classification'],
         step: Number(salaryData.Step),
-        position_job_code_max_annual_rate:
-          salaryData.Position_job_code_max_annual_rate,
-        employee_job_code_max_annual_rate:
-          salaryData.Employee_job_code_max_annual_rate,
+        position_job_code_max_annual_rate: Number(
+          salaryData['Position Jobcode Max Annual Rate']?.replace('$', '')
+        ),
+        employee_job_code_max_annual_rate: Number(
+          salaryData['Employee Jobcode Max Annual Rate']?.replace('$', '')
+        ),
         abbr: Number(salaryData.ABBR?.replace('$', '')),
         ama: Number(salaryData.AMA?.replace('$', '')),
         created_at: Date,

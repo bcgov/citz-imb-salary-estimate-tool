@@ -1,45 +1,19 @@
 import { QueryClient, QueryKey } from '@tanstack/react-query';
 
-export const onAppendBulkMutation = <TDataType>({
+export const onAppendBulkMutation = ({
   endPoint,
   api,
-  queryClient,
-  queryKey,
 }: {
   endPoint: string;
   api: {
-    appendBulkItems: (
-      endPoint: string,
-      newItems: TDataType[]
-    ) => Promise<TDataType[]>;
+    post: (endPoint: string, file: unknown) => Promise<void>;
   };
   queryClient: QueryClient;
   queryKey: QueryKey;
 }) => {
-  const mutationFn = (items: TDataType[]) => {
-    const newItems = items.map((item) => {
-      const newItem = { ...(item as object) };
-      if ('id' in newItem) delete newItem.id;
-      return {
-        ...newItem,
-      };
-    });
+  const mutationFn = (file: unknown) => api.post(endPoint, file);
 
-    return api.appendBulkItems(endPoint, newItems as TDataType[]);
-  };
-
-  const onMutate = async (newItems: TDataType[]) => {
-    const previousValues = queryClient.getQueryData(queryKey);
-    queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues,
-      {
-        id: 'new',
-        ...newItems,
-      },
-    ]);
-
-    return previousValues;
-  };
+  const onMutate = async () => {};
 
   return { mutationFn, onMutate };
 };

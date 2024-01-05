@@ -8,16 +8,16 @@ export const onAppendMutation = <TDataType>({
 }: {
   endPoint: string;
   api: {
-    appendItem: (endPoint: string, newItem: TDataType) => Promise<TDataType>;
+    post: (endPoint: string, newItem: TDataType) => Promise<void>;
   };
   queryClient: QueryClient;
   queryKey: QueryKey;
 }) => {
-  const mutationFn = (item: TDataType) => {
+  const mutationFn = async (item: TDataType) => {
     const newItem = { ...(item as object) };
     if ('id' in newItem) delete newItem.id;
 
-    return api.appendItem(endPoint, newItem as TDataType);
+    await api.post(endPoint, newItem as TDataType);
   };
 
   const onMutate = async (newItem: TDataType) => {
@@ -29,7 +29,7 @@ export const onAppendMutation = <TDataType>({
         ...newItem,
       },
     ]);
-    return previousValues;
+    return previousValues as TDataType[];
   };
 
   return { mutationFn, onMutate };

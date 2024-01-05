@@ -47,6 +47,7 @@ module.exports = {
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "no-console": ["error", { allow: ["warn", "error"] }],
   },
 };

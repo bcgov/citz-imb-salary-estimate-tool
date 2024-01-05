@@ -119,7 +119,7 @@ export const useDataFactory = <TDataType>(
   });
 
   const { mutate: appendBulkItems } = useMutation({
-    ...onAppendBulkMutation<TDataType>(onMutationProps),
+    ...onAppendBulkMutation(onMutationProps),
     ...commonUseMutationProps,
   });
 
@@ -136,7 +136,7 @@ export const useDataFactory = <TDataType>(
   const dataForms = useFormFactory({
     title,
     onAppend: (data) => appendItem(data as TDataType),
-    onBulkAppend: (data) => appendBulkItems(data as TDataType[]),
+    onBulkAppend: (data) => appendBulkItems(data),
     onUpdate: (data) => updateItem(data as TDataType),
     onDelete: (id) => deleteItem(id as number),
     sections: formSections,

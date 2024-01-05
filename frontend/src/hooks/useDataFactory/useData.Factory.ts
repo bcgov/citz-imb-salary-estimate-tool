@@ -30,6 +30,7 @@ import { useAPI } from '@/hooks/useAPI/useAPI';
 import { useFormFactory } from '@/hooks/useFormFactory/useForm.Factory';
 import { useTableFactory } from '@/hooks/useTableFactory/useTable.Factory';
 import { onAppendMutation } from './onAppendMutation';
+import { onAppendBulkMutation } from './onAppendBulkMutation';
 import { onDeleteMutation } from './onDeleteMutation';
 import { onError } from './onError';
 import { onSettled } from './onSettled';
@@ -43,6 +44,7 @@ export interface TuseDataFactoryProps<TDataType> {
   formSections?: IFormSection[];
   formFields?: IFormField[];
   showAddForm?: boolean;
+  showAddBulkForm?: boolean;
   showViewForm?: boolean;
   showEditForm?: boolean;
   showDeleteRow?: boolean;
@@ -67,6 +69,7 @@ export const useDataFactory = <TDataType>(
     formSections = [],
     formFields = [],
     showAddForm = true,
+    showAddBulkForm = false,
     showViewForm = true,
     showEditForm = true,
     showDeleteRow = true,
@@ -110,6 +113,11 @@ export const useDataFactory = <TDataType>(
     ...commonUseMutationProps,
   });
 
+  const { mutate: appendBulkItems } = useMutation({
+    ...onAppendBulkMutation<TDataType>(onMutationProps),
+    ...commonUseMutationProps,
+  });
+
   const { mutate: updateItem } = useMutation({
     ...onUpdateMutation<TDataType>(onMutationProps),
     ...commonUseMutationProps,
@@ -123,6 +131,7 @@ export const useDataFactory = <TDataType>(
   const dataForms = useFormFactory({
     title,
     onAppend: (data) => appendItem(data as TDataType),
+    onBulkAppend: (data) => appendBulkItems(data as TDataType[]),
     onUpdate: (data) => updateItem(data as TDataType),
     onDelete: (id) => deleteItem(id as number),
     sections: formSections,
@@ -137,6 +146,9 @@ export const useDataFactory = <TDataType>(
       showAddForm && formSections.length && formFields.length
         ? dataForms.AddFormDialog
         : undefined,
+    AddBulkFormDialog: showAddBulkForm
+      ? dataForms.AddBulkFormDialog
+      : undefined,
     ViewFormDialog:
       showViewForm && formSections.length && formFields.length
         ? dataForms.ViewFormDialog

@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -28,10 +26,9 @@ export const UploadConfirmationDialog: React.FC<
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async () => {
-    // eslint-disable-next-line no-console
     if (csvFile) {
-      // eslint-disable-next-line prettier/prettier
-      const convertedFile: ISalaryDataModel[] = await csvFileToSalaryData(csvFile);
+      const convertedFile: ISalaryDataModel[] =
+        await csvFileToSalaryData(csvFile);
       onSubmit(convertedFile);
     }
     handleClose();

@@ -7,12 +7,12 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
-import { ConfirmCancelButton, AddButton } from '../../buttons';
-import { useUpload } from '../../../hooks';
+import { ConfirmCancelButton, AddButton } from '@/components';
+import { useUpload } from '@/hooks';
 import {
   csvFileToSalaryData,
   ISalaryDataModel,
-} from '../../../utils/UploadSalaryData';
+} from '@/utils/UploadSalaryData';
 
 interface IUploadConfirmationDialogProps {
   onSubmit: (data: unknown) => void;

@@ -4,7 +4,7 @@
  */
 import { useDataFactory } from '../useDataFactory/useData.Factory';
 import { columnsSalaryData } from './salaryData.columns';
-import { SalaryData } from '../../types';
+import { SalaryData } from '@/types';
 
 export const useSalaryData = () => {
   const endPoint = 'salary';

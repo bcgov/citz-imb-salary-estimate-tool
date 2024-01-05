@@ -1,9 +1,9 @@
 import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useField } from '@tanstack/react-form';
 import { useMemo } from 'react';
-import { useDataFactory } from '../../../hooks/useDataFactory/useData.Factory';
-import { ISelectionOptions } from '../../forms/form.d';
-import { LoadingSkeletonField } from '../../loading/LoadingSkeleton/LoadingSkeleton.field';
+import { useDataFactory } from '@/hooks/useDataFactory/useData.Factory';
+import { ISelectionOptions } from '@/components/forms';
+import { LoadingSkeletonField } from '@/components';
 
 interface SelectFieldProps {
   name: string;

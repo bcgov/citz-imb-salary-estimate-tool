@@ -2,8 +2,8 @@ import { Box, Paper } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Footer, Navbar } from './components';
-import { useAuthentication } from './hooks';
+import { Footer, Navbar } from '@/components';
+import { useAuthentication } from '@/hooks';
 import PageRouter from './routes/PageRouter';
 
 const App = () => {

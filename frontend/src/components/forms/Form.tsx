@@ -9,9 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 import { useForm } from '@tanstack/react-form';
-import { CloseButton, SubmitCancelButton } from '../buttons';
+import { CloseButton, IFormProps, SubmitCancelButton } from '@/components';
 import { FormSection } from './FormSection/FormSection';
-import { IFormProps } from './form.d';
 
 export const Form = (props: IFormProps) => {
   const {

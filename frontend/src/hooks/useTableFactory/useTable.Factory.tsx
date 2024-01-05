@@ -10,6 +10,7 @@ export interface ITableFactoryProps<TDataType>
   EditFormDialog?: (data: unknown) => void;
   DeleteRow?: (data: unknown) => void;
   AddFormDialog?: JSX.Element;
+  AddBulkFormDialog?: JSX.Element;
 }
 
 export const useTableFactory = <TDataType,>(
@@ -23,6 +24,7 @@ export const useTableFactory = <TDataType,>(
     ViewFormDialog,
     DeleteRow,
     AddFormDialog,
+    AddBulkFormDialog,
   } = props;
 
   return (
@@ -35,6 +37,7 @@ export const useTableFactory = <TDataType,>(
       tableName={title}
     >
       {AddFormDialog}
+      {AddBulkFormDialog}
     </TableContainer>
   );
 };
@@ -44,6 +47,7 @@ useTableFactory.defaultProps = {
   EditFormDialog: null,
   DeleteRow: null,
   AddFormDialog: null,
+  AddBulkFormDialog: null,
 };
 
 export default useTableFactory;

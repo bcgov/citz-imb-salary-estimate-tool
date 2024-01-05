@@ -1,10 +1,12 @@
-import { CurrencyField } from '../CurrencyField/CurrencyField';
-import { MultilineField } from '../MultilineField/MultilineField';
-import { NumberField } from '../NumberField/NumberField';
-import { SelectField } from '../SelectField/SelectField';
-import { StatusField } from '../StatusField/StatusField';
-import { TextField } from '../TextField/TextField';
-import { ISelectionOptions } from '../../forms/form.d';
+import {
+  CurrencyField,
+  MultilineField,
+  NumberField,
+  SelectField,
+  StatusField,
+  TextField,
+} from '@/components/fields';
+import { ISelectionOptions } from '@/components/forms';
 
 interface IFieldProps {
   type: string;

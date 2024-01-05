@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import { Button } from '../Button/Button';
+import { Button } from '@/components/buttons/Button/Button';
 
 interface SubmitCancelButtonProps {
   onClose: () => void;

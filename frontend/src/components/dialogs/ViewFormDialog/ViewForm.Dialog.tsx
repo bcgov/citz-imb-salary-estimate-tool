@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Form, IFormDialogProps } from '../../forms';
-import { ViewButton } from '../../buttons';
+import { Form, IFormDialogProps, ViewButton } from '@/components';
 
 export const ViewFormDialog = (props: IFormDialogProps) => {
   const { ...formProps } = props;

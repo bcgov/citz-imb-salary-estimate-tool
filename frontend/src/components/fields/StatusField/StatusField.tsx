@@ -1,5 +1,5 @@
 import { useField } from '@tanstack/react-form';
-import { StatusStepper } from '../../stepper/StatusStepper';
+import { StatusStepper } from '@/components';
 
 interface StatusFieldProps {
   name: string;

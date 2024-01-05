@@ -6,7 +6,7 @@ import {
   IFormBaseProps,
   DeleteConfirmationDialog,
   UploadConfirmationDialog,
-} from '../../components';
+} from '@/components';
 
 export interface IFormFactoryProps extends IFormBaseProps {
   onAppend: (data: unknown) => void;

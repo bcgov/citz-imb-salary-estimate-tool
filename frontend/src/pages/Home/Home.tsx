@@ -1,13 +1,8 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { CustomTabPanel } from '../../components';
-import {
-  useAuthentication,
-  useInquiry,
-  useUser,
-  useSalaryData,
-} from '../../hooks';
+import { CustomTabPanel } from '@/components';
+import { useAuthentication, useInquiry, useUser, useSalaryData } from '@/hooks';
 
 const a11yProps = (index: number) => {
   return {

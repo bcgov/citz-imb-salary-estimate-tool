@@ -8,8 +8,9 @@ import { columnsInquiry } from './inquiry.columns';
 import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';
 
-export const useInquiry = () => {
-  const endPoint = 'inquiry';
+export const useInquiry = (guid?: string) => {
+  let endPoint = 'inquiry';
+  if (guid) endPoint = `${endPoint}/guid?guid=${guid}`;
   const title = 'Inquiry';
   const inquiryData = useDataFactory<InquiryData>({
     endPoint,

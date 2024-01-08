@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { CustomTabPanel } from '@/components';
 import { useAuthentication, useInquiry, useUser, useSalaryData } from '@/hooks';
 
@@ -14,9 +15,14 @@ const a11yProps = (index: number) => {
 const Home = () => {
   const [value, setValue] = useState(0);
   const { isAuthenticated, hasRole } = useAuthentication();
-  const { InquiryTable } = useInquiry();
   const { UserTable } = useUser();
   const { SalaryDataTable } = useSalaryData();
+  const { state: authState } = useKeycloak();
+  let InquiryParams;
+  const user = authState.userInfo;
+  // TODO: Add ! to hasRole
+  if (!hasRole('admin')) InquiryParams = user?.idir_user_guid;
+  const { InquiryTable } = useInquiry(InquiryParams);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

@@ -10,7 +10,7 @@ import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';
 
 export const useInquiry = (guid?: string) => {
-  let endPoint = 'inquiry';
+  let endPoint = 'route3/inquiry';
   if (guid) endPoint = `${endPoint}/guid?guid=${guid}`;
   const title = 'Inquiry';
 

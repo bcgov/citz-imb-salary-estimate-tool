@@ -6,7 +6,7 @@ const Login = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
 
   if (isAuthenticated) {
-    if (hasRole('admin') || hasRole('hm') || hasRole('shr') || hasRole('adm'))
+    if (hasRole(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }))
       return <Navigate replace to="/" />;
     return (
       <Dialog

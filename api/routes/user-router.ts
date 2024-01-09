@@ -8,9 +8,9 @@ import { getUserByGuid, getUsers } from '../controllers/user-controller';
 const router = express.Router();
 
 // User from single guid
-router.route('/user/guid').get(getUserByGuid);
+router.route('/guid').get(getUserByGuid);
 
 // Get all users
-router.route('/user').get(getUsers);
+router.route('/').get(getUsers);
 
 export default router;

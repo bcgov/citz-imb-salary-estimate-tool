@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react-refresh', 'prettier', '@tanstack/query'],
   rules: {
+    'prefer-destructuring': 0,
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
     'react/jsx-props-no-spreading': 0,

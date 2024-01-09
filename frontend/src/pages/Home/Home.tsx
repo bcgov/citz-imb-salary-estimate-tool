@@ -20,7 +20,6 @@ const Home = () => {
   const { state: authState } = useKeycloak();
   let InquiryParams;
   const user = authState.userInfo;
-  // TODO: Add ! to hasRole
   if (!hasRole('admin')) InquiryParams = user?.idir_user_guid;
   const { InquiryTable } = useInquiry(InquiryParams);
 

@@ -51,10 +51,10 @@ app.use(
 );
 
 app.use('/', routers.healthRouter);
+app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.userRouter);
+app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.salaryDataRouter);
 app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.inquiryRouter);
-app.use('/', protectedRoute(['admin'], { requireAllRoles: false }), routers.userRouter);
-app.use('/', protectedRoute(['admin', 'shr'], { requireAllRoles: false }), routers.salaryDataRouter);
-app.use('/', protectedRoute(['admin'], { requireAllRoles: false }), routers.adminDataRouter);
+app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.adminDataRouter);
 
 // Integrate global error handler after routes to cover all ends.
 app.use(middleware.globalErrorHandler);

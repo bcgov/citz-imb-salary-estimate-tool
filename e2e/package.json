@@ -1,0 +1,33 @@
+{
+  "name": "set-e2e",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "lint": "eslint 'tests/**/*.ts{,x}'",
+    "playwright-local": "playwright test",
+    "playwright-local-ui": "playwright test --ui",
+    "playwright-local-debug": "playwright test --debug",
+    "playwright-dev": "BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca playwright test",
+    "playwright-dev:win": "set BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca& playwright test",
+    "playwright-dev-ui": "BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca playwright test --ui",
+    "playwright-dev-ui:win": "set BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca& playwright test --ui",
+    "playwright-dev-debug": "BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca playwright test --debug",
+    "playwright-dev-debug:win": "set BASE_URL=https://set-app-route-ec1236-dev.apps.silver.devops.gov.bc.ca& playwright test --debug"
+  },
+  "dependencies": {
+    "dotenv": "16.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.40.1",
+    "@types/node": "20.10.6",
+    "@typescript-eslint/eslint-plugin": "6.17.0",
+    "@typescript-eslint/parser": "6.17.0",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-playwright": "0.21.0",
+    "eslint-plugin-prettier": "5.1.2",
+    "prettier": "3.1.1",
+    "typescript": "5.3.3"
+  }
+}

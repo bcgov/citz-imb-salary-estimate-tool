@@ -69,7 +69,7 @@ export const inquiryFormFields: IFormField[] = [
     label: 'Current Ministry',
     type: 'select',
     selectionOptions: {
-      endPoint: 'route4/ministry',
+      endPoint: 'ministry',
       labelFieldName: 'ministry_name',
       valueFieldName: 'id',
     },
@@ -136,7 +136,7 @@ export const inquiryFormFields: IFormField[] = [
     section: 'position',
     sortOrder: 3,
     selectionOptions: {
-      endPoint: 'route4/ranges',
+      endPoint: 'ranges',
       labelFieldName: 'definition',
       valueFieldName: 'id',
       sortFieldName: 'minimum_salary',
@@ -155,7 +155,7 @@ export const inquiryFormFields: IFormField[] = [
     label: 'Experience Level',
     type: 'select',
     selectionOptions: {
-      endPoint: 'route4/experience',
+      endPoint: 'experience',
       labelFieldName: 'definition',
       valueFieldName: 'id',
       sortFieldName: 'id',
@@ -169,7 +169,7 @@ export const inquiryFormFields: IFormField[] = [
     label: 'Appointment Type',
     type: 'select',
     selectionOptions: {
-      endPoint: 'route4/appointment',
+      endPoint: 'appointment',
       labelFieldName: 'definition',
       valueFieldName: 'id',
     },
@@ -182,7 +182,7 @@ export const inquiryFormFields: IFormField[] = [
     label: 'Process Type',
     type: 'select',
     selectionOptions: {
-      endPoint: 'route4/process',
+      endPoint: 'process',
       labelFieldName: 'definition',
       valueFieldName: 'id',
     },

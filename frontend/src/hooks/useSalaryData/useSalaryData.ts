@@ -7,7 +7,7 @@ import { columnsSalaryData } from './salaryData.columns';
 import { SalaryData } from '@/types';
 
 export const useSalaryData = () => {
-  const endPoint = 'route2/salary';
+  const endPoint = 'salary';
   const title = 'Past Salary Data';
   const salaryData = useDataFactory<SalaryData>({
     endPoint,

@@ -1,5 +1,5 @@
-import { useAuthentication } from '../../../hooks/useAuthentication/useAuthentication';
-import { Button } from '../Button/Button';
+import { useAuthentication } from '@/hooks/useAuthentication/useAuthentication';
+import { Button } from '@/components/buttons/Button/Button';
 
 export const AuthenticationButton = () => {
   const { isAuthenticated, login, logout } = useAuthentication();

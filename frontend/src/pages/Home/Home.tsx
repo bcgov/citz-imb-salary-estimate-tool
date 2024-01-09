@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CustomTabPanel } from '../../components';
-import { useAuthentication, useInquiry, useUser, useMinistry } from '../../hooks';
+import { useAuthentication, useInquiry, useUser,  useSalaryData, useMinistry } from '../../hooks';
 
 const a11yProps = (index: number) => {
   return {
@@ -17,6 +17,7 @@ const Home = () => {
   const { InquiryTable } = useInquiry();
   const { UserTable } = useUser();
   const { MinistryTable } = useMinistry();
+  const { SalaryDataTable } = useSalaryData();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -31,6 +32,7 @@ const Home = () => {
           <Tab label="Inquiries" {...a11yProps(0)} />
           {hasRole('admin') && <Tab label="Users" {...a11yProps(1)} />}
           {hasRole('admin') && <Tab label="Ministry" {...a11yProps(2)} />}
+          {hasRole('admin') && <Tab label="Salary Data" {...a11yProps(2)} />}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -41,6 +43,7 @@ const Home = () => {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         {hasRole('admin') && MinistryTable}
+        {hasRole('admin') && SalaryDataTable}
       </CustomTabPanel>
     </Box>
   );

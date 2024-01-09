@@ -1,5 +1,5 @@
 import { Box, Step, StepLabel, Stepper } from '@mui/material';
-import { State } from '../../types';
+import { State } from '@/types';
 
 interface IStatusStepperProps {
   status: State;

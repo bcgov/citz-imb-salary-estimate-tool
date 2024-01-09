@@ -5,16 +5,18 @@ import {
   UpdateFormDialog,
   IFormBaseProps,
   DeleteConfirmationDialog,
-} from '../../components';
+  UploadConfirmationDialog,
+} from '@/components';
 
 export interface IFormFactoryProps extends IFormBaseProps {
   onAppend: (data: unknown) => void;
+  onBulkAppend: (data: unknown) => void;
   onUpdate: (data: unknown) => void;
   onDelete: (data: unknown) => void;
 }
 
 export const useFormFactory = (props: IFormFactoryProps) => {
-  const { onAppend, onUpdate, onDelete, ...otherProps } = props;
+  const { onAppend, onBulkAppend, onUpdate, onDelete, ...otherProps } = props;
 
   const defaultValues = useMemo(() => {
     const defaults = {};
@@ -55,6 +57,9 @@ export const useFormFactory = (props: IFormFactoryProps) => {
           (row as { new_position_title: string }).new_position_title
         } (${(row as { new_position_number: string }).new_position_number})`}
       />
+    ),
+    AddBulkFormDialog: (
+      <UploadConfirmationDialog onSubmit={onBulkAppend} {...otherProps} />
     ),
   };
 };

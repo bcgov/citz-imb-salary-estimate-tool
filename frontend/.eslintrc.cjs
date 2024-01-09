@@ -1,25 +1,27 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true,
+    es2020: true,
   },
   extends: [
+    'eslint:recommended',
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
-  overrides: [],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './frontend/tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier', '@tanstack/query'],
+  plugins: ['@typescript-eslint', 'react-refresh', 'prettier', '@tanstack/query'],
   rules: {
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
@@ -29,5 +31,23 @@ module.exports = {
     'import/prefer-default-export': 'warn',
     '@tanstack/query/exhaustive-deps': 0,
     'import/no-cycle': 0,
+    "import/no-extraneous-dependencies": [
+      "error", {
+        "devDependencies": ['./vite.config.ts', '**/*.test.tsx', '**/*.test.ts'],
+        "packageDir": "./"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "": "never",
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-console": ["error", { allow: ["warn", "error"] }],
   },
 };

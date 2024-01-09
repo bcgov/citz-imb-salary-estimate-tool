@@ -1,5 +1,5 @@
 import { Alert } from '@mui/material';
-import { Dialog } from '../Dialog/Dialog';
+import { Dialog } from '@/components';
 
 interface ErrorDialogProps extends React.HTMLAttributes<HTMLDivElement> {
   error: Error;

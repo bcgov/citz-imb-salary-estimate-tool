@@ -1,4 +1,4 @@
-import { IFormSection } from '../../components';
+import { IFormSection } from '@/components';
 
 export const inquirySections: IFormSection[] = [
   {

@@ -3,3 +3,5 @@ export * from './useAuthentication/useAuthentication';
 export * from './useUser/useUser';
 export * from './useSalaryData/useSalaryData';
 export * from './useUpload/useUpload';
+export * from './useMinistry/useMinistry';
+

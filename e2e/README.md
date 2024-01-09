@@ -103,26 +103,6 @@ npm run playwright-dev-ui
 npm run playwright-dev-debug
 ```
 
-### Test Environment
-
-- Headless test:
-
-```bash
-npm run playwright-test
-```
-
-- Test with UI:
-
-```bash
-npm run playwright-test-ui
-```
-
-- Test in debug mode:
-
-```bash
-npm run playwright-test-debug
-```
-
 ### Linting
 
 - For linting test files, run:

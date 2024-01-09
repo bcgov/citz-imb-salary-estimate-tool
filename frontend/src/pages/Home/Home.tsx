@@ -38,7 +38,7 @@ const Home = () => {
           <Tab label="Inquiries" {...a11yProps(0)} />
           {hasRole(['admin']) && <Tab label="Users" {...a11yProps(1)} />}
           {hasRole(['admin']) && <Tab label="Salary Data" {...a11yProps(2)} />}
-          {hasRole(['admin']) && <Tab label="Salary Data" {...a11yProps(2)} />}
+          {hasRole(['admin']) && <Tab label="Ministry" {...a11yProps(3)} />}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -49,6 +49,8 @@ const Home = () => {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         {hasRole(['admin']) && SalaryDataTable}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
         {hasRole(['admin']) && MinistryTable}
       </CustomTabPanel>
     </Box>

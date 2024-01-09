@@ -16,7 +16,6 @@ export const useMinistry = () => {
     tableColumns: columnsMinistry,
     showDeleteRow: false,
   });
-console.log(ministryData);
   return {
     MinistryTable: ministryData.DataTable,
   };

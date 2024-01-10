@@ -14,6 +14,8 @@ const prisma = new PrismaClient;
  */
 export const createInquiry = async (req: Request, res: Response) => {
     try {
+        const { NODE_ENV } = process.env;
+        console.log('TESTING VALUE: ', NODE_ENV);
         const response = await prisma.inquiry.create({
             data: req.body
         });

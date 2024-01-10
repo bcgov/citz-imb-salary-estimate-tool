@@ -2,11 +2,13 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
+  
   "main": "server.ts",
   "scripts": {
     "build": "tsc -p .",
     "start": "node ./dist/server.js",
     "test": "jest",
+    "test:integration": "jest --testPathPattern=/tests/integration",
     "dev": "nodemon server.ts",
     "prod": "node server.js"
   },

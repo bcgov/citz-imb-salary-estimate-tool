@@ -11,7 +11,7 @@
     "prune:prod": "docker compose -f docker-compose.prod.yaml down --rmi all --volumes",
     "if": "cd frontend && rm -rf node_modules package-lock.json && npm i",
     "ib": "cd api && rm -rf node_modules package-lock.json && npm i",
-    "test:api": "cd api && npm run test",
+    "test:api:integration": "cd api && jest --testPathPattern=/tests/integration",
     "test:frontend": "cd frontend && npm run test",
     "prisma:generate": "cd api && npx prisma generate"
   }

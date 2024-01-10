@@ -54,6 +54,7 @@ app.use('/health', routers.healthRouter);
 app.use('/user', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.userRouter);
 app.use('/salary', protectedRoute(['admin', 'shr'], { requireAllRoles: false }), routers.salaryDataRouter);
 app.use('/inquiry', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.inquiryRouter);
+app.use('/ministry', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.ministryRouter);
 app.use('/', protectedRoute(['admin', 'hm', 'shr', 'adm'], { requireAllRoles: false }), routers.adminDataRouter);
 
 // Integrate global error handler after routes to cover all ends.

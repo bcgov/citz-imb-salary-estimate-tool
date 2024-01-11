@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { KeycloakIdirUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { CustomTabPanel } from '@/components';
-import { useAuthentication, useInquiry, useUser, useSalaryData } from '@/hooks';
+import { useAuthentication, useInquiry, useUser, useSalaryData, useMinistry } from '@/hooks';
 
 const a11yProps = (index: number) => {
   return {
@@ -17,6 +17,7 @@ const Home = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
   const { UserTable } = useUser();
   const { SalaryDataTable } = useSalaryData();
+  const { MinistryTable } = useMinistry();
   const { state: authState } = useKeycloak();
   let InquiryParams;
   const user = authState.userInfo;
@@ -37,6 +38,7 @@ const Home = () => {
           <Tab label="Inquiries" {...a11yProps(0)} />
           {hasRole(['admin']) && <Tab label="Users" {...a11yProps(1)} />}
           {hasRole(['admin']) && <Tab label="Salary Data" {...a11yProps(2)} />}
+          {hasRole(['admin']) && <Tab label="Ministry" {...a11yProps(3)} />}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -47,6 +49,9 @@ const Home = () => {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         {hasRole(['admin']) && SalaryDataTable}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+        {hasRole(['admin']) && MinistryTable}
       </CustomTabPanel>
     </Box>
   );

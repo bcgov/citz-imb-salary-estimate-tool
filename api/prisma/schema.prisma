@@ -17,7 +17,8 @@ model Status {
 }
 
 model Ministry {
-  id String @id
+  id Int @id @default(autoincrement())
+  ministry_id String
   ministry_name String
   inquiries Inquiry[]
 }
@@ -74,7 +75,7 @@ model Inquiry {
   candidate_last_name String
   current_position_number String?
   current_position_title String?
-  current_ministry_id String?
+  current_ministry_id Int?
   ministry Ministry? @relation(fields: [current_ministry_id], references: [id])
   current_annual_salary Int?
   current_mccf_classification_id String?

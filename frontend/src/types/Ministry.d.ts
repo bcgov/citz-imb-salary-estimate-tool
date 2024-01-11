@@ -5,4 +5,3 @@ export type MinistryData = {
     ministry_name: string;
     inquiries: InquiryData[];
   };
-  

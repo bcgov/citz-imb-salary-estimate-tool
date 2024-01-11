@@ -10,4 +10,3 @@ components:
         ministry_name:
           type: string
           example: Citizen Services
-

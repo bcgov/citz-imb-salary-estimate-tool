@@ -18,10 +18,6 @@ export const useMinistry = () => {
     tableColumns: columnsMinistry,
     formSections: ministrySections,
     formFields: ministryFormFields,
-    showAddForm: true,
-    showViewForm: true,
-    showEditForm: true,
-    showDeleteRow: true,
   });
   return {
     MinistryTable: ministryData.DataTable,

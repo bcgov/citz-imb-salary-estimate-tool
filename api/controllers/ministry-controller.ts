@@ -13,7 +13,6 @@ const prisma = new PrismaClient;
  * @author sarahson
  */
 export const createMinistry = async (req: Request, res: Response) => {
-    console.log("createMinistry");
     try {
         const response = await prisma.ministry.create({
             data: req.body
@@ -29,9 +28,8 @@ export const createMinistry = async (req: Request, res: Response) => {
  * @author sarahson
  */
 export const updateMinistry = async (req: Request, res: Response) => {
-    console.log("updateMinistry");
     const { id } = req.params;
-    const ministryID: string = id;
+    const ministryID: number = +id;
     try {
         const response = await prisma.ministry.update({
             where: {
@@ -50,9 +48,8 @@ export const updateMinistry = async (req: Request, res: Response) => {
  * @author sarahson
  */
 export const deleteMinistry = async (req: Request, res: Response) => {
-    console.log("deleteMinistry");
     const { id } = req.params;
-    const ministryID: string = id;
+    const ministryID: number = +id;
     try {
         const response = await prisma.ministry.delete({
             where: {
@@ -70,9 +67,8 @@ export const deleteMinistry = async (req: Request, res: Response) => {
  * @author sarahson
  */
 export const getMinistryById = async (req: Request, res: Response) => {
-    console.log("getMinistryById");
     const { id } = req.params;
-    const ministryID: string = id;
+    const ministryID: number = +id;
     try {
         const inquiry = await prisma.ministry.findFirst({
             where: {
@@ -94,7 +90,6 @@ export const getMinistryById = async (req: Request, res: Response) => {
  */
 export const getMinistry = async (req: Request, res: Response) => {
     try {
-        console.log("getMinistry");
         const ministries = await prisma.ministry.findMany();
         if(ministries.length !== 0){
             return res.status(200).json(ministries);

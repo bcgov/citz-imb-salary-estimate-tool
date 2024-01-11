@@ -8,6 +8,7 @@ import {
     createMinistry,
     getMinistryById,
     getMinistry,
+    updateMinistry,
     deleteMinistry,
 } from '../controllers/ministry-controller';
 
@@ -25,6 +26,7 @@ router.route('/')
 // GET, UPDATE and DELETE salary data by id
 router.route('/:id')
     .get(getMinistryById)
+    .patch(updateMinistry)
     .delete(deleteMinistry);
 
 export default router;

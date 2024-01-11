@@ -22,9 +22,9 @@ export const statuses = [
 
 // TODO: Add all minitries
 export const ministries = [
-    { id: '', ministry_name: ''},
-    { id: 'CITZ', ministry_name: 'Citizen Services' },
-    { id: 'PSA', ministry_name: 'Public Service Agency' },
+    { id:1, ministry_id: '', ministry_name: ''},
+    { id:2, ministry_id: 'CITZ', ministry_name: 'Citizen Services' },
+    { id:3, ministry_id: 'PSA', ministry_name: 'Public Service Agency' },
 ];
 
 export const experienceLevels = [
@@ -85,7 +85,7 @@ export const inquiries = [
         candidate_last_name: 'Richmond',
         current_position_number: '',
         current_position_title: '',
-        current_ministry_id: '',
+        current_ministry_id: null,
         current_annual_salary: 0,
         current_mccf_classification_id: '',
         experience_level_id: 1,
@@ -109,7 +109,7 @@ export const inquiries = [
         candidate_last_name: 'Smith',
         current_position_number: '293847',
         current_position_title: 'Manager',
-        current_ministry_id: 'PSA',
+        current_ministry_id: null,
         current_annual_salary: 80000,
         current_mccf_classification_id: 'IS30',
         experience_level_id: 3,
@@ -133,7 +133,7 @@ export const inquiries = [
         candidate_last_name: 'Charles',
         current_position_number: '293847',
         current_position_title: 'Full Stack Developer',
-        current_ministry_id: 'CITZ',
+        current_ministry_id: null,
         current_annual_salary: 80000,
         current_mccf_classification_id: '',
         experience_level_id: 3,

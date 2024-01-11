@@ -14,10 +14,6 @@ import {
 
 const router = express.Router();
 
-// GET salary data by title, positionNumber, jobCode, or employeeId
-// router.route('/params')
-//     .get(getSalaryDataByParams);
-
 // CREATE salary data, or GET all salary data
 router.route('/')
     .post(createMinistry)

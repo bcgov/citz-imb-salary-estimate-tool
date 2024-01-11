@@ -99,35 +99,3 @@ export const getMinistry = async (req: Request, res: Response) => {
         return res.status(400).json(error);
     }
 };
-
-
-// /**
-//  * @summary Returns all inquiries associated with the passed in guid
-//  * @author dallascrichmond
-//  */
-// export const getInquiryByGuid = async (req: Request, res: Response) => {
-//     const { guid } = req.query;
-//     try {
-//         const inquiries = await prisma.inquiry.findMany({
-//             where: {
-//                 OR: [
-//                     {
-//                         hm_user_id: guid as string
-//                     },
-//                     {
-//                         shr_user_id: guid as string
-//                     },
-//                     {
-//                         adm_user_id: guid as string
-//                     },
-//                 ]
-//             }
-//         });
-//         if (inquiries.length !== 0) {
-//             return res.status(200).json(inquiries);
-//         }
-//         return res.status(404).send(httpResponses[404]);
-//     } catch (error) {
-//         return res.status(400).json(error);
-//     }
-// };

@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Ministry:
+      type: object
+      description: A ministry for the Salary Estimate Tool
+      properties:
+        ministry_id:
+          type: string
+          example: CITZ
+        ministry_name:
+          type: string
+          example: Citizen Services
+

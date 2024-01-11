@@ -1,5 +1,5 @@
 /**
- * This hook is to specify the endpoint and the columns for the Admin page.
+ * This hook is to specify the endpoint and the columns for the Ministry page.
  * It is also the place to transform the data sent to or returned from the backend.
  */
 import { useDataFactory } from '../useDataFactory/useData.Factory';

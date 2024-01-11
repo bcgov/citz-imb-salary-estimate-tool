@@ -4,6 +4,17 @@
 
 To initilize the project, create a .env file in the root directory based on the .env.template file, then create a .env file in the api directory based on the .env.template file.  To get the required values for the .env files, contact the project team.
 
+Search VSCode setting for "eslint.workingDirectories" and manually edit the setting to add the following:
+
+```JSON
+{
+    "eslint.workingDirectories": [
+        "frontend",
+        "api"
+    ]
+}
+```
+
 Then run the following commands in both the api and frontend directories:
 
 ```

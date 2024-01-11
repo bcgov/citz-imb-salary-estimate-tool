@@ -20,12 +20,6 @@ export const statuses = [
     { id: 6 },
 ];
 
-// TODO: Add all ministries
-export const ministries = [
-    { ministry_id: 'CITZ', ministry_name: 'Citizen Services' },
-    { ministry_id: 'PSA', ministry_name: 'Public Service Agency' },
-];
-
 export const experienceLevels = [
     { id: 1, definition: 'No experience' },
     { id: 2, definition: 'Little experience' },

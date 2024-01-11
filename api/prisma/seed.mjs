@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import {
     salaryRanges,
     statuses,
-    ministries,
     experienceLevels,
     appointments,
     processes,
@@ -39,14 +38,6 @@ async function seedBase() {
             where: { id: status.id },
             create: status,
             update: status,
-        }))
-    );
-
-    seedingPromises.push(
-        ...ministries.map(ministry => prisma.ministry.upsert({
-            where: { id: ministry.id },
-            create: ministry,
-            update: ministry,
         }))
     );
 

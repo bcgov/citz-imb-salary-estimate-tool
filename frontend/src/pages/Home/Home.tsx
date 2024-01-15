@@ -9,7 +9,7 @@ import {
   useUser,
   useSalaryData,
   useExperience,
-  useMinistry
+  useMinistry,
 } from '@/hooks';
 
 const a11yProps = (index: number) => {

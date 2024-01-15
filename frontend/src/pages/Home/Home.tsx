@@ -9,6 +9,7 @@ import {
   useUser,
   useSalaryData,
   useExperience,
+  useMinistry
 } from '@/hooks';
 
 const a11yProps = (index: number) => {
@@ -23,6 +24,7 @@ const Home = () => {
   const { isAuthenticated, hasRole } = useAuthentication();
   const { UserTable } = useUser();
   const { SalaryDataTable } = useSalaryData();
+  const { MinistryTable } = useMinistry();
   const { state: authState } = useKeycloak();
   let InquiryParams;
   const user = authState.userInfo;
@@ -57,7 +59,9 @@ const Home = () => {
       <CustomTabPanel value={value} index={2}>
         {hasRole(['admin']) && SalaryDataTable}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={3} />
+      <CustomTabPanel value={value} index={3}>
+        {hasRole(['admin']) && MinistryTable}
+      </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
         {hasRole(['admin']) && ExperienceTable}
       </CustomTabPanel>

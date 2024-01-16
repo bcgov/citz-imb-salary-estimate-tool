@@ -5,6 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: .docker/Dockerfile.dev
+      args:
+        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-20.5-bullseye-slim}
     ports:
       - '8080:8080'
     volumes:
@@ -18,6 +20,8 @@ services:
     build:
       context: ./api
       dockerfile: .docker/Dockerfile.dev
+      args:
+        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-20.5-bullseye-slim}
     env_file: .env
     environment:
       - PORT=${API_PORT:-3000}

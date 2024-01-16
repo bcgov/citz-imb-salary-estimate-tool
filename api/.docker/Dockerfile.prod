@@ -1,5 +1,6 @@
 # Use a Node.js LTS version for production
-FROM node:18.15.0-alpine AS build
+ARG BASE_IMAGE_TAG
+FROM node:${BASE_IMAGE_TAG} AS build
 
 WORKDIR /app
 

@@ -6,7 +6,7 @@ services:
       context: ./frontend
       dockerfile: .docker/Dockerfile.dev
       args:
-        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-20.5-bullseye-slim}
+        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-21.5-bullseye-slim}
     ports:
       - '8080:8080'
     volumes:
@@ -21,7 +21,7 @@ services:
       context: ./api
       dockerfile: .docker/Dockerfile.dev
       args:
-        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-20.5-bullseye-slim}
+        - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-21.5-alpine}
     env_file: .env
     environment:
       - PORT=${API_PORT:-3000}

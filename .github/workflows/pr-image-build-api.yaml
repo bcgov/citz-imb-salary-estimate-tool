@@ -11,7 +11,7 @@ jobs:
   SET-API-build:
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE_TAG: ${{ vars.BASE_IMAGE_TAG }}
+      BASE_IMAGE_TAG: ${{ vars.BACKEND_BASE_IMAGE_TAG }}
     steps:
       # Checkout the repository
       - name: Checkout Repository

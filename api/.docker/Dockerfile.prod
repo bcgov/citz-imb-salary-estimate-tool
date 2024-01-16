@@ -1,5 +1,6 @@
 # Use a Node.js LTS version for production
-FROM node:18.15.0-alpine AS build
+ARG BASE_IMAGE_TAG
+FROM node:${BASE_IMAGE_TAG} AS build
 
 WORKDIR /app
 
@@ -27,8 +28,10 @@ RUN npx prisma generate
 # Build your application (if necessary)
 RUN npm run build
 
+# Re-declare BASE_IMAGE_TAG arg because it is not available in the next stage
+ARG BASE_IMAGE_TAG
 # Second stage, use a smaller image for production
-FROM node:18.15.0-alpine AS prod
+FROM node:${BASE_IMAGE_TAG} AS prod
 
 WORKDIR /app
 

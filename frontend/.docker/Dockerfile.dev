@@ -1,4 +1,5 @@
-FROM node:20-bullseye-slim
+ARG BASE_IMAGE_TAG
+FROM node:${BASE_IMAGE_TAG}
 
 WORKDIR /app
 

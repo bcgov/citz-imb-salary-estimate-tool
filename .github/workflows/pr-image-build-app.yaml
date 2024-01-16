@@ -33,7 +33,7 @@ jobs:
       # Build Frontend Image
       - name: Build Frontend Image
         run: |
-          docker-compose -f docker-compose.dev.yaml build --build-arg BASE_IMAGE_TAG frontend
+          docker-compose -f docker-compose.dev.yaml build --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} frontend
 
       - name: Docker Scout
         uses: docker/scout-action@v1

@@ -3,7 +3,7 @@ import { httpStatusCode, colors as c } from './src/utils';
 
 const { BACKEND_URL } = process.env;
 
-const healthUrl = `${BACKEND_URL}/health`;
+const healthUrl = `${BACKEND_URL}/health/ready`;
 
 /**
  * Make a request to the health endpoint.

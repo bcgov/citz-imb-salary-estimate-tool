@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon -L --exec ts-node src/index.ts",
     "build": "tsc",
+    "start": "node ./dist/src/index.js",
     "test": "node --import tsx --test src/**/*.test.*",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js ",
     "migration:generate": "npm run typeorm -- migration:generate -d src/dataSource.ts",
@@ -25,7 +26,6 @@
     "pg": "8.11.3",
     "reflect-metadata": "0.2.1",
     "typeorm": "0.3.19",
-    "typescript": "5.3.3",
     "zod": "3.22.4"
   },
   "devDependencies": {
@@ -34,6 +34,7 @@
     "@types/jest": "29.5.11",
     "@types/node": "20.11.4",
     "@types/pg": "8.10.9",
+    "typescript": "5.3.3",
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@typescript-eslint/parser": "6.19.0",
     "eslint": "8.56.0",

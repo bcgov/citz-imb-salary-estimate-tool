@@ -13,7 +13,9 @@ services:
       - ./frontend/src:/app/src
       - /app/node_modules
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+
     networks:
       - app-network
     tty: true
@@ -40,7 +42,9 @@ services:
     volumes:
       - ./backend:/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     networks:
       - app-network
 

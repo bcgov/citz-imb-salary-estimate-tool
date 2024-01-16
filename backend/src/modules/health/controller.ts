@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { errorWrapper } from '../../utils';
 import dataSource from '../../dataSource';
+import { httpStatusCode } from '../../utils';
 
 const { DEBUG } = process.env;
 
@@ -24,8 +25,8 @@ export const isReady = errorWrapper(async (req: Request, res: Response) => {
   // Indicates if DataSource was initialized and initial connection was established or not.
   const isInitialized = dataSource.isInitialized;
   if (!isInitialized) {
-    res.status(503).send('Database connection is unavailable.');
+    res.status(httpStatusCode.SERVICE_UNAVAIBLABLE).send('Database connection is unavailable.');
     return;
   }
-  res.send('Application is ready!');
+  res.send('Application and Database are ready!');
 });

@@ -4,6 +4,8 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { KEYCLOAK_OPTIONS, CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
 
+import { healthRouter } from './modules';
+
 const app: Application = express();
 
 /**
@@ -34,6 +36,6 @@ app.use(rateLimit(RATE_LIMIT_CONFIG));
 app.disable('x-powered-by');
 
 // Routing information
-//app.use("/health", healthRouter);
+app.use('/health', healthRouter);
 
 export default app;

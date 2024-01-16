@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "target": "ESNext",
+        "module": "CommonJS",
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "**/*"
+    ],
+    "exclude": [
+        "tsconfig.json",
+        "scripts/",
+        "node_modules/"
+    ]
+}

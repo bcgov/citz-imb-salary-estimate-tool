@@ -16,9 +16,9 @@ services:
       - app-network
     tty: true
 
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
       dockerfile: .docker/Dockerfile.dev
       args:
         - BASE_IMAGE_TAG=${BASE_IMAGE_TAG:-21.5-alpine}
@@ -28,8 +28,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./api:/app
-      - ./prisma:/usr/src/app/prisma
+      - ./backend:/app
     depends_on:
       - db
     networks:

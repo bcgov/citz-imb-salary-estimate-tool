@@ -1,1 +1,1 @@
-test-naming-convention: '*.spec.*'
+test-naming-convention: '*.test.*'

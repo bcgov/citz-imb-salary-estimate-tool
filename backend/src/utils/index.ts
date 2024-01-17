@@ -4,3 +4,4 @@ export { errorWrapper } from './errorWrapper';
 export { getCurrentDateTime } from './getCurrentDateTime';
 export { activateUser } from './activateUser';
 export * from './httpStatusCode';
+export * from './HttpError';

@@ -7,7 +7,7 @@ import { columnsUser } from './user.columns';
 import { UserData } from '@/types';
 
 export const useUser = () => {
-  const endPoint = 'user';
+  const endPoint = 'user/all';
   const title = 'Users';
 
   const dataTransformer = (items: UserData[]) =>

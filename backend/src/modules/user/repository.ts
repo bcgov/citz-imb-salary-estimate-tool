@@ -17,6 +17,11 @@ export const UserRepository = () => {
     return await repository.findOne({ where: { guid } });
   };
 
+  // Retrieve all users.
+  const getAll = async (): Promise<User[]> => {
+    return await repository.find();
+  };
+
   // Creates a new user.
   const create = async (userData: Partial<User>): Promise<User> => {
     const user = repository.create(userData);
@@ -37,5 +42,6 @@ export const UserRepository = () => {
     update,
     getById,
     getByGuid,
+    getAll,
   };
 };

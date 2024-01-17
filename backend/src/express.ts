@@ -1,10 +1,10 @@
-import { keycloak } from '@bcgov/citz-imb-kc-express';
+import { keycloak, protectedRoute } from '@bcgov/citz-imb-kc-express';
 import express, { Application } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { KEYCLOAK_OPTIONS, CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
 
-import { healthRouter } from './modules';
+import { healthRouter, userRouter } from './modules';
 
 const app: Application = express();
 
@@ -37,5 +37,6 @@ app.disable('x-powered-by');
 
 // Routing information
 app.use('/health', healthRouter);
+app.use('/user', protectedRoute(), userRouter);
 
 export default app;

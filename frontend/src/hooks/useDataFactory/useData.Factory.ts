@@ -21,12 +21,7 @@
 import { useMemo } from 'react';
 import { useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { GridColDef } from '@mui/x-data-grid';
-import {
-  QueryKey,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { onAppendMutation } from './onAppendMutation';
 import { onAppendBulkMutation } from './onAppendBulkMutation';
 import { onDeleteMutation } from './onDeleteMutation';
@@ -60,9 +55,7 @@ type TuseDataFactoryResults<TDataType> = {
   DataTable?: ReturnType<typeof useTableFactory>;
 };
 
-export const useDataFactory = <TDataType>(
-  props: TuseDataFactoryProps<TDataType>
-) => {
+export const useDataFactory = <TDataType>(props: TuseDataFactoryProps<TDataType>) => {
   const {
     endPoint,
     title = props.endPoint,
@@ -148,12 +141,8 @@ export const useDataFactory = <TDataType>(
     rows: items,
     columns: tableColumns as GridColDef[],
     AddFormDialog:
-      showAddForm && formSections.length && formFields.length
-        ? dataForms.AddFormDialog
-        : undefined,
-    AddBulkFormDialog: showAddBulkForm
-      ? dataForms.AddBulkFormDialog
-      : undefined,
+      showAddForm && formSections.length && formFields.length ? dataForms.AddFormDialog : undefined,
+    AddBulkFormDialog: showAddBulkForm ? dataForms.AddBulkFormDialog : undefined,
     ViewFormDialog:
       showViewForm && formSections.length && formFields.length
         ? dataForms.ViewFormDialog

@@ -19,6 +19,16 @@ export const UserService = () => {
     return await userRepository.getByGuid(guid);
   };
 
+  // Retrieve all users.
+  const getAllUsers = async (): Promise<User[]> => {
+    return await userRepository.getAll();
+  };
+
+  // Updates an existing user.
+  const updateUser = async (guid: string, userData: Partial<User>): Promise<User | undefined> => {
+    return await userRepository.update(guid, userData);
+  };
+
   // Create user if they don't exist, or update an existing user.
   const activateKeycloakIdirUser = async (
     userData: KeycloakUser & KeycloakIdirUser,
@@ -65,5 +75,7 @@ export const UserService = () => {
     getUserById,
     getUserByGuid,
     activateKeycloakIdirUser,
+    getAllUsers,
+    updateUser,
   };
 };

@@ -24,10 +24,7 @@ export class Api {
     this.payload = apiPayload({ headers });
 
     this.get = async <TDataType>(endPoint: string) => {
-      const response = await apiCall(
-        `${this.baseUrl}/${endPoint}`,
-        this.payload
-      );
+      const response = await apiCall(`${this.baseUrl}/${endPoint}`, this.payload);
 
       return response as TDataType[];
     };

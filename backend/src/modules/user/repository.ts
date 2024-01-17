@@ -7,14 +7,9 @@ import dataSource from '../../dataSource';
 export const UserRepository = () => {
   const repository = dataSource.getRepository(User);
 
-  // Retrieve a user by their id.
-  const getById = async (id: number): Promise<User | null> => {
-    return await repository.findOne({ where: { id } });
-  };
-
-  // Retrieve a user by their guid.
-  const getByGuid = async (guid: string): Promise<User | null> => {
-    return await repository.findOne({ where: { guid } });
+  // Retrieve user by where clause.
+  const findUserWhere = async (where: object): Promise<User | null> => {
+    return await repository.findOne({ where });
   };
 
   // Retrieve all users.
@@ -30,7 +25,7 @@ export const UserRepository = () => {
 
   // Updates an existing user.
   const update = async (guid: string, userData: Partial<User>): Promise<User | undefined> => {
-    const user = await getByGuid(guid);
+    const user = await findUserWhere({ guid });
     if (!user) return undefined;
     Object.assign(user, userData);
     return await repository.save(user);
@@ -40,8 +35,7 @@ export const UserRepository = () => {
   return {
     create,
     update,
-    getById,
-    getByGuid,
+    findUserWhere,
     getAll,
   };
 };

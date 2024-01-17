@@ -11,12 +11,12 @@ export const UserService = () => {
 
   // Retrieve a user by their id.
   const getUserById = async (id: number): Promise<User | null> => {
-    return await userRepository.getById(id);
+    return await userRepository.findUserWhere({ id });
   };
 
   // Retrieve a user by their guid.
   const getUserByGuid = async (guid: string): Promise<User | null> => {
-    return await userRepository.getByGuid(guid);
+    return await userRepository.findUserWhere({ guid });
   };
 
   // Retrieve all users.
@@ -35,7 +35,7 @@ export const UserService = () => {
   ): Promise<User | undefined> => {
     // Find user if exists.
     if (!userData?.idir_user_guid) return;
-    const idirUser = await userRepository.getByGuid(userData?.idir_user_guid);
+    const idirUser = await userRepository.findUserWhere({ guid: userData?.idir_user_guid });
 
     if (!idirUser) {
       // User does not exist, create user.

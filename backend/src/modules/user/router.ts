@@ -5,7 +5,7 @@ import { getUserByGuid, getAllUsers, updateUser } from './controller';
 
 /**
  * @method GET
- * @route /user/
+ * @route /user/all
  */
 router.get('/all', getAllUsers);
 

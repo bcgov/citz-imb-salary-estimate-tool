@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from './HttpError';
+import { httpStatusCode } from './httpStatusCode';
+import { debugRequest } from './debugStatements';
 
 // eslint-disable-next-line no-unused-vars
 type ExpressHandler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
@@ -12,11 +14,13 @@ type ExpressHandler = (req: Request, res: Response, next: NextFunction) => Promi
 export const errorWrapper = (handler: ExpressHandler) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
+      debugRequest(req);
+
       // Execute the request logic.
       await handler(req, res, next);
     } catch (error: unknown) {
       const { method, originalUrl } = req;
-      let statusCode = 500,
+      let statusCode = httpStatusCode.INTERNAL_SERVER_ERROR,
         message = 'An unexpected error occurred.';
 
       if (error instanceof HttpError) {

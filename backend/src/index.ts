@@ -3,10 +3,10 @@ import app from './express';
 import dataSource from './dataSource';
 import { logMessages } from './utils';
 
-export * from './modules'
+export * from './modules';
 
 const { API_PORT, DEBUG } = process.env;
-
+console.log('port:', API_PORT);
 const {
   SERVER_START,
   UTC_DATE_TIME,
@@ -23,8 +23,8 @@ dataSource
     console.info(DATABASE_CONNECTION);
 
     // Start the Express application (server).
-    app.listen(API_PORT, () => {
-      try {
+    try {
+      app.listen(Number(API_PORT), () => {
         // Log server start information.
         console.info(SERVER_START);
         console.info(CURRENT_NODE_VERSION);
@@ -32,11 +32,11 @@ dataSource
         console.info(PACIFIC_DATE_TIME);
         if (DEBUG)
           console.info("DEBUG is enabled. Set environment variable to 'false' to disable.");
-      } catch (error) {
-        // Log any error that occurs during the server start.
-        console.error(error);
-      }
-    });
+      });
+    } catch (error) {
+      // Log any error that occurs during the server start.
+      console.error(error);
+    }
   })
   .catch((error) => {
     // Log an error if the database connection and initialization fails.

@@ -3,8 +3,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { KEYCLOAK_OPTIONS, CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
-import * as trpcExpress from '@trpc/server/adapters/express';
-import { healthRouter, userRouter, appRouter } from './modules';
+import { healthRouter, userRouter, ministryRouter } from './modules';
 
 const app: Application = express();
 
@@ -38,6 +37,6 @@ app.disable('x-powered-by');
 // Routing information
 app.use('/health', healthRouter);
 app.use('/user', protectedRoute(), userRouter);
-app.use('/trpc', trpcExpress.createExpressMiddleware({ router: appRouter }));
+app.use('/ministry', protectedRoute(), ministryRouter);
 
 export default app;

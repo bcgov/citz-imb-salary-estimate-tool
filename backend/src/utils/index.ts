@@ -6,4 +6,3 @@ export * from './activateUser';
 export * from './httpStatusCode';
 export * from './HttpError';
 export * from './debugStatements';
-export * from './trpc';

@@ -25,10 +25,7 @@ export const getAllUsers = errorWrapper(async (req: Request, res: Response) => {
   const userService = UserService();
   const users = await userService.getAllUsers();
 
-  if (users.length === 0) {
-    res.status(httpStatusCode.NO_CONTENT).json(users);
-    return;
-  }
+  if (users.length === 0) return res.status(httpStatusCode.NO_CONTENT).json(users);
 
   res.status(httpStatusCode.OK).json(users);
 });

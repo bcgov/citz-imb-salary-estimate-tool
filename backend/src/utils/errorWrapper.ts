@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from './HttpError';
 import { httpStatusCode } from './httpStatusCode';
 import { debugRequest } from './debugStatements';
 
-// eslint-disable-next-line no-unused-vars
-type ExpressHandler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
+type ExpressHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => Promise<void | Response<unknown> | undefined>;
 
 /**
  * Wraps a route handler (controller) function with error handling logic.

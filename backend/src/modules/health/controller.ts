@@ -19,9 +19,10 @@ export const isHealthy = errorWrapper(async (req: Request, res: Response) => {
 export const isReady = errorWrapper(async (req: Request, res: Response) => {
   // Indicates if DataSource was initialized and initial connection was established or not.
   const isInitialized = dataSource.isInitialized;
-  if (!isInitialized) {
-    res.status(httpStatusCode.SERVICE_UNAVAIBLABLE).send('Database connection is unavailable.');
-    return;
-  }
+  if (!isInitialized)
+    return res
+      .status(httpStatusCode.SERVICE_UNAVAIBLABLE)
+      .send('Database connection is unavailable.');
+
   res.send('Application and Database are ready!');
 });

@@ -1,10 +1,12 @@
 import 'reflect-metadata';
 import app from './express';
 import dataSource from './dataSource';
+import { logMessages } from './utils';
+
+export * from './modules'
 
 const { API_PORT, DEBUG } = process.env;
 
-import { logMessages } from './utils';
 const {
   SERVER_START,
   UTC_DATE_TIME,

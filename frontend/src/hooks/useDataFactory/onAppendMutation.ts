@@ -18,8 +18,8 @@ export const onAppendMutation = <TDataType>({
     let postEndpoint = endPoint;
     if ('id' in newItem) delete newItem.id;
     if (endPoint.includes('/')) {
-      const splitEnpoint = endPoint.split('/');
-      postEndpoint = splitEnpoint[0];
+      const splitEndpoint = endPoint.split('/');
+      postEndpoint = splitEndpoint[0];
     }
     await api.post(postEndpoint, newItem as TDataType);
   };

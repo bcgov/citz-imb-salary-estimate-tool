@@ -7,9 +7,13 @@ export class Repository<TEntity> {
 
   getAllItems: () => Promise<EntitySchema<TEntity>[]>;
 
+  createItem: (item: EntitySchema<TEntity>) => Promise<EntitySchema<TEntity>>;
+
   constructor(entity: EntitySchema) {
     this.repository = dataSource.getRepository(entity);
 
     this.getAllItems = async () => await this.repository.find();
+
+    this.createItem = async (item) => await this.repository.save(item);
   }
 }

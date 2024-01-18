@@ -9,7 +9,7 @@ import { ministryFormFields } from './ministry.fields';
 import { ministrySections } from './ministry.sections';
 
 export const useMinistry = () => {
-  const endPoint = 'ministry/all';
+  const endPoint = 'ministry';
   const title = 'Ministry';
 
   const ministryData = useDataFactory<MinistryData>({

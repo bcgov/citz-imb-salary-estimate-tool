@@ -1,12 +1,18 @@
 import express from 'express';
 const router = express.Router();
 
-import { getAllMinistries } from './controller';
+import { getAllMinistries, createMinistry } from './controller';
 
 /**
  * @method GET
- * @route /ministry/all
+ * @route /ministry
  */
-router.get('/all', getAllMinistries);
+router.get('/', getAllMinistries);
+
+/**
+ * @method POST
+ * @route /ministry
+ */
+router.post('/', createMinistry);
 
 export default router;

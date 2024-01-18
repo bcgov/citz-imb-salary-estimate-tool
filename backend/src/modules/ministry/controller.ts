@@ -17,3 +17,15 @@ export const getAllMinistries = errorWrapper(async (req: Request, res: Response)
 
   res.status(httpStatusCode.OK).json(ministries);
 });
+
+/**
+ * @method POST
+ * @route /ministry
+ */
+export const createMinistry = errorWrapper(async (req: Request, res: Response) => {
+  const ministryService = createService<Ministry>(Ministry as unknown as EntitySchema);
+
+  const ministry = await ministryService.createItem(req.body);
+
+  res.status(httpStatusCode.CREATED).json(ministry);
+});

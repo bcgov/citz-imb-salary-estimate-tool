@@ -5,7 +5,7 @@ Migrations run every time before the app starts. You can also run them manually 
 Start by entering into the API container:
 
 ```bash
-# get inside the api workspace. Run from root directory.
+# get inside the backend workspace. Run from root directory.
 $ npm run shell:backend
 ```
 
@@ -26,7 +26,7 @@ $ npm run migration:revert
 Start by entering into the API container:
 
 ```bash
-# get inside the api workspace. Run from root directory.
+# get inside the backend workspace. Run from root directory.
 $ npm run shell:backend
 ```
 
@@ -46,7 +46,7 @@ Now check migration in `src/migrations/` and modify if needed.
 Start by entering into the API container:
 
 ```bash
-# get inside the api workspace. Run from root directory.
+# get inside the backend workspace. Run from root directory.
 $ npm run shell:backend
 ```
 

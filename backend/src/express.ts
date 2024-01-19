@@ -3,7 +3,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { KEYCLOAK_OPTIONS, CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
-import { healthRouter, userRouter, ministryRouter } from './modules';
+import { healthRouter, userRouter, ministryRouter, experienceRouter } from './modules';
 
 const app: Application = express();
 
@@ -38,5 +38,6 @@ app.disable('x-powered-by');
 app.use('/health', healthRouter);
 app.use('/user', protectedRoute(), userRouter);
 app.use('/ministry', protectedRoute(), ministryRouter);
+app.use('/experience', protectedRoute(), experienceRouter);
 
 export default app;

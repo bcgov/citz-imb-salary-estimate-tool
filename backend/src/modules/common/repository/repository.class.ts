@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { EntitySchema, Repository as ORMRepository } from 'typeorm';
-import dataSource from '../../../dataSource';
+import { DataSource, EntitySchema, Repository as ORMRepository } from 'typeorm';
 
 export class Repository<TEntity> {
   private repository: ORMRepository<EntitySchema<TEntity>>;
@@ -16,7 +15,7 @@ export class Repository<TEntity> {
 
   deleteItem: (id: string) => Promise<void>;
 
-  constructor(entity: EntitySchema) {
+  constructor(entity: EntitySchema, dataSource: DataSource) {
     this.repository = dataSource.getRepository(entity);
 
     this.getAllItems = async () => await this.repository.find();

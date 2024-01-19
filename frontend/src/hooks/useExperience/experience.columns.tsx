@@ -9,7 +9,7 @@
 import { GridColDef } from '@mui/x-data-grid';
 
 export const columnsExperience: GridColDef[] = [
-  { field: 'definition', headerName: 'Experience Level', width: 250 },
+  { field: 'experience_level', headerName: 'Experience Level', width: 400 },
 ];
 
 export default columnsExperience;

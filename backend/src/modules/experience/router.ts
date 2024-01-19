@@ -4,16 +4,16 @@ import dataSource from '../../dataSource';
 import { createController } from '../common/controller/controller.factory';
 import { createRepository } from '../common/repository/repository.factory';
 import { createService } from '../common/service/service.factory';
-import { Ministry } from './entity';
+import { Experience } from './entity';
 
-const dataRepository = createRepository<Ministry>(
-  Ministry as unknown as EntitySchema<Ministry>,
+const dataRepository = createRepository<Experience>(
+  Experience as unknown as EntitySchema<Experience>,
   dataSource,
 );
 
-const dataService = createService<Ministry>(dataRepository);
+const dataService = createService<Experience>(dataRepository);
 
-const dataController = createController<Ministry>(dataService);
+const dataController = createController<Experience>(dataService);
 
 const router = express.Router();
 

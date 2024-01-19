@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { EntitySchema } from 'typeorm';
-import { Repository, createRepository } from './repository.factory';
+import { EntitySchema, ObjectLiteral } from 'typeorm';
+import type { Repository } from '../repository/repository.factory';
 
 export class Service<TEntity> {
-  private repository: Repository<TEntity>;
-
   getAllItems: () => Promise<EntitySchema<TEntity>[]>;
 
   createItem: (item: TEntity) => Promise<EntitySchema<TEntity>>;
@@ -14,9 +12,7 @@ export class Service<TEntity> {
 
   deleteItem: (id: string) => Promise<void>;
 
-  constructor(entity: EntitySchema) {
-    this.repository = createRepository<TEntity>(entity);
-
+  constructor(private repository: Repository<TEntity>) {
     this.getAllItems = async () => {
       return this.repository.getAllItems();
     };

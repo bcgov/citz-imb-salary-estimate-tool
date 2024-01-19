@@ -14,6 +14,8 @@ export class Repository<TEntity> {
     item: EntitySchema<TEntity>,
   ) => Promise<EntitySchema<TEntity> | undefined>;
 
+  deleteItem: (id: string) => Promise<void>;
+
   constructor(entity: EntitySchema) {
     this.repository = dataSource.getRepository(entity);
 
@@ -26,6 +28,10 @@ export class Repository<TEntity> {
       if (!existingItem) return undefined;
       Object.assign(existingItem, item);
       return await this.repository.save(existingItem);
+    };
+
+    this.deleteItem = async (id) => {
+      await this.repository.delete(id);
     };
   }
 }

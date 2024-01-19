@@ -12,6 +12,8 @@ export class Service<TEntity> {
 
   updateItem: (id: string, item: TEntity) => Promise<EntitySchema<TEntity> | undefined>;
 
+  deleteItem: (id: string) => Promise<void>;
+
   constructor(entity: EntitySchema) {
     this.repository = createRepository<TEntity>(entity);
 
@@ -25,6 +27,10 @@ export class Service<TEntity> {
 
     this.updateItem = async (id: string, item: TEntity) => {
       return this.repository.updateItem(id, item as unknown as EntitySchema<TEntity>);
+    };
+
+    this.deleteItem = async (id: string) => {
+      return this.repository.deleteItem(id);
     };
   }
 }

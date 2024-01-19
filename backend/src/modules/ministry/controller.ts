@@ -29,3 +29,18 @@ export const createMinistry = errorWrapper(async (req: Request, res: Response) =
 
   res.status(httpStatusCode.CREATED).json(ministry);
 });
+
+/**
+ * @method PUT
+ * @route /ministry/:id
+ */
+export const updateMinistry = errorWrapper(async (req: Request, res: Response) => {
+  const ministryService = createService<Ministry>(Ministry as unknown as EntitySchema);
+
+  const ministry = await ministryService.updateItem(req.params.id, req.body);
+
+  if (!ministry)
+    return res.status(httpStatusCode.BAD_REQUEST).json({ message: 'Ministry not found' });
+
+  res.status(httpStatusCode.OK).json(ministry);
+});

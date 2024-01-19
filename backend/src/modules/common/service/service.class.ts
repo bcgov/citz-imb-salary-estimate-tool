@@ -10,6 +10,8 @@ export class Service<TEntity> {
 
   createItem: (item: TEntity) => Promise<EntitySchema<TEntity>>;
 
+  updateItem: (id: string, item: TEntity) => Promise<EntitySchema<TEntity> | undefined>;
+
   constructor(entity: EntitySchema) {
     this.repository = createRepository<TEntity>(entity);
 
@@ -19,6 +21,10 @@ export class Service<TEntity> {
 
     this.createItem = async (item: TEntity) => {
       return this.repository.createItem(item as unknown as EntitySchema<TEntity>);
+    };
+
+    this.updateItem = async (id: string, item: TEntity) => {
+      return this.repository.updateItem(id, item as unknown as EntitySchema<TEntity>);
     };
   }
 }

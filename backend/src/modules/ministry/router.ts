@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { getAllMinistries, createMinistry } from './controller';
+import { getAllMinistries, createMinistry, updateMinistry } from './controller';
 
 /**
  * @method GET
@@ -14,5 +14,11 @@ router.get('/', getAllMinistries);
  * @route /ministry
  */
 router.post('/', createMinistry);
+
+/**
+ * @method PATCH
+ * @route /ministry/:id
+ */
+router.patch('/:id', updateMinistry);
 
 export default router;

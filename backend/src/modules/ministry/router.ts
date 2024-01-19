@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { getAllMinistries, createMinistry, updateMinistry } from './controller';
+import { getAllMinistries, createMinistry, updateMinistry, deleteMinistry } from './controller';
 
 /**
  * @method GET
@@ -20,5 +20,11 @@ router.post('/', createMinistry);
  * @route /ministry/:id
  */
 router.patch('/:id', updateMinistry);
+
+/**
+ * @method DELETE
+ * @route /ministry/:id
+ */
+router.delete('/:id', deleteMinistry);
 
 export default router;

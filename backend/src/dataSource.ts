@@ -14,7 +14,7 @@ const ormconfig: DataSourceOptions = {
   synchronize: false,
   migrationsRun: true,
   logging: DEBUG === 'true' ?? false,
-  entities: [`src/**/*entity.class.${fileExtensions}`],
+  entities: [`src/**/*entity.${fileExtensions}`],
   migrations: [`src/migrations/*.${fileExtensions}`],
 };
 

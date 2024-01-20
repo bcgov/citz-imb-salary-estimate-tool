@@ -2,7 +2,7 @@ import express from 'express';
 import type { EntitySchema } from 'typeorm';
 import dataSource from '../../dataSource';
 import { createController, createRepository, createService } from '../common';
-import { Ministry } from './entity.class';
+import { Ministry } from './entity';
 
 const dataRepository = createRepository<Ministry>(
   Ministry as unknown as EntitySchema<Ministry>,

@@ -1,7 +1,7 @@
 import express from 'express';
 import dataSource from '../../dataSource';
 import { createController, createRepository, createService } from '../common';
-import { User } from './entity.class';
+import { User } from './entity';
 
 import type { EntitySchema } from 'typeorm';
 

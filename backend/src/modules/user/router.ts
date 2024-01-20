@@ -1,19 +1,22 @@
 import express from 'express';
+import dataSource from '../../dataSource';
+import { createController, createRepository, createService } from '../common';
+import { User } from './entity';
+
+import type { EntitySchema } from 'typeorm';
+
+const dataRepository = createRepository<User>(User as unknown as EntitySchema<User>, dataSource);
+
+const dataService = createService<User>(dataRepository);
+
+const dataController = createController<User>(dataService);
+
 const router = express.Router();
 
-import { getUserByGuid, getAllUsers, updateUser } from './controller';
+router.get('/all', dataController.getAllItems);
 
-/**
- * @method GET
- * @route /user/all
- */
-router.get('/all', getAllUsers);
+router.get('/guid/:guid', dataController.getItemByWhere);
 
-/**
- * @method GET
- * @method PATCH
- * @route /user/guid/:guid
- */
-router.route('/guid/:guid').get(getUserByGuid).patch(updateUser);
+router.patch('/guid/:guid', dataController.updateItem);
 
 export default router;

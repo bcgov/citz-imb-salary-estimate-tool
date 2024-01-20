@@ -10,7 +10,7 @@ export class Api {
 
   private payload: RequestInit;
 
-  get: <TDataType>(endPoint: string) => Promise<TDataType[]>;
+  get: <TDataType>(endPoint: string) => Promise<{ data: TDataType[] }>;
 
   post: (url: string, body: unknown) => Promise<void>;
 
@@ -26,7 +26,7 @@ export class Api {
     this.get = async <TDataType>(endPoint: string) => {
       const response = await apiCall(`${this.baseUrl}/${endPoint}`, this.payload);
 
-      return response as TDataType[];
+      return response as { data: TDataType[] };
     };
 
     this.post = async (endPoint, body) => {

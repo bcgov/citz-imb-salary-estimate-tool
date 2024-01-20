@@ -1,32 +1,61 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { EntitySchema, ObjectLiteral } from 'typeorm';
+import { EntitySchema } from 'typeorm';
 import type { Repository } from '../repository/repository.factory';
 
+interface IFormattedResponse<TEntity> {
+  data: TEntity | TEntity[] | undefined;
+}
 export class Service<TEntity> {
-  getAllItems: () => Promise<EntitySchema<TEntity>[]>;
+  private formatResponse = <TEntity>(
+    body: TEntity | TEntity[] | undefined,
+  ): IFormattedResponse<TEntity> => {
+    return {
+      data: body,
+    };
+  };
 
-  createItem: (item: TEntity) => Promise<EntitySchema<TEntity>>;
+  getAllItems: () => Promise<IFormattedResponse<TEntity>>;
 
-  updateItem: (id: string, item: TEntity) => Promise<EntitySchema<TEntity> | undefined>;
+  getItemById: (id: string) => Promise<IFormattedResponse<TEntity>>;
 
-  deleteItem: (id: string) => Promise<void>;
+  getItemByWhere: (where: object) => Promise<IFormattedResponse<TEntity>>;
+
+  createItem: (item: TEntity) => Promise<IFormattedResponse<TEntity>>;
+
+  updateItem: (id: string, item: TEntity) => Promise<IFormattedResponse<TEntity>>;
+
+  deleteItem: (id: string) => Promise<IFormattedResponse<TEntity>>;
 
   constructor(private repository: Repository<TEntity>) {
     this.getAllItems = async () => {
-      return this.repository.getAllItems();
+      const response = await this.repository.getAllItems();
+      return this.formatResponse<TEntity>(response as TEntity[]);
+    };
+
+    this.getItemById = async (id: string) => {
+      const response = await this.repository.getItemById(id);
+      return this.formatResponse<TEntity>(response as TEntity);
+    };
+
+    this.getItemByWhere = async (where: object) => {
+      const response = await this.repository.getItemByWhere(where);
+      return this.formatResponse<TEntity>(response as TEntity);
     };
 
     this.createItem = async (item: TEntity) => {
-      return this.repository.createItem(item as unknown as EntitySchema<TEntity>);
+      const response = this.repository.createItem(item as unknown as EntitySchema<TEntity>);
+      return this.formatResponse<TEntity>(response as TEntity);
     };
 
     this.updateItem = async (id: string, item: TEntity) => {
-      return this.repository.updateItem(id, item as unknown as EntitySchema<TEntity>);
+      const response = this.repository.updateItem(id, item as unknown as EntitySchema<TEntity>);
+      return this.formatResponse<TEntity>(response as TEntity);
     };
 
     this.deleteItem = async (id: string) => {
-      return this.repository.deleteItem(id);
+      const response = this.repository.deleteItem(id);
+      return this.formatResponse<TEntity>(response as TEntity);
     };
   }
 }

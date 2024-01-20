@@ -6,6 +6,10 @@ export class Repository<TEntity> {
 
   getAllItems: () => Promise<EntitySchema<TEntity>[]>;
 
+  getItemById: (id: string) => Promise<EntitySchema<TEntity> | null>;
+
+  getItemByWhere: (where: object) => Promise<EntitySchema<TEntity> | null>;
+
   createItem: (item: EntitySchema<TEntity>) => Promise<EntitySchema<TEntity>>;
 
   updateItem: (
@@ -19,6 +23,10 @@ export class Repository<TEntity> {
     this.repository = dataSource.getRepository(entity);
 
     this.getAllItems = async () => await this.repository.find();
+
+    this.getItemById = async (id) => await this.repository.findOne({ where: { id } } as object);
+
+    this.getItemByWhere = async (where) => await this.repository.findOne({ where });
 
     this.createItem = async (item) => await this.repository.save(item);
 

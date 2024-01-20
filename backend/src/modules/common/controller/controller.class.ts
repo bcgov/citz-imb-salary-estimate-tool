@@ -6,6 +6,10 @@ import { Service } from '../service/service.class';
 export class Controller<TEntity> {
   getAllItems: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
+  getItemById: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+
+  getItemByWhere: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+
   createItem: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
   updateItem: (req: Request, res: Response, next: NextFunction) => Promise<void>;
@@ -16,9 +20,26 @@ export class Controller<TEntity> {
     this.getAllItems = errorWrapper(async (req: Request, res: Response) => {
       const allItems = await service.getAllItems();
 
-      if (allItems.length === 0) return res.status(httpStatusCode.NO_CONTENT).json(allItems);
+      if (Array.isArray(allItems.data) && allItems.data.length === 0)
+        return res.status(httpStatusCode.NO_CONTENT).json(allItems);
 
       res.status(httpStatusCode.OK).json(allItems);
+    });
+
+    this.getItemById = errorWrapper(async (req: Request, res: Response) => {
+      const item = await service.getItemById(req.params.id);
+
+      if (!item) return res.status(httpStatusCode.BAD_REQUEST).json({ message: 'Item not found' });
+
+      res.status(httpStatusCode.OK).json(item);
+    });
+
+    this.getItemByWhere = errorWrapper(async (req: Request, res: Response) => {
+      const item = await service.getItemByWhere(req.body);
+
+      if (!item) return res.status(httpStatusCode.BAD_REQUEST).json({ message: 'Item not found' });
+
+      res.status(httpStatusCode.OK).json(item);
     });
 
     this.createItem = errorWrapper(async (req: Request, res: Response) => {

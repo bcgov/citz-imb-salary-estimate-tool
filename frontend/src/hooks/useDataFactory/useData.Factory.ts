@@ -84,7 +84,7 @@ export const useDataFactory = <TDataType>(props: TuseDataFactoryProps<TDataType>
     queryFn: async () => {
       const response = await api.get<TDataType>(endPoint);
 
-      return response;
+      return response.data;
     },
   });
 

@@ -1,5 +1,5 @@
 import { KeycloakUser } from '@bcgov/citz-imb-kc-express';
-import { UserService } from '../modules/user/service';
+import { activateKeycloakIdirUser } from './activateKeycloakIdirUser';
 
 // Called after login to create or update a user.
 export const activateUser = async (userInfo: KeycloakUser) => {
@@ -8,6 +8,5 @@ export const activateUser = async (userInfo: KeycloakUser) => {
   if (provider !== 'idir') return;
 
   // Create or update the user.
-  const userService = UserService();
-  await userService.activateKeycloakIdirUser(userInfo);
+  await activateKeycloakIdirUser(userInfo);
 };

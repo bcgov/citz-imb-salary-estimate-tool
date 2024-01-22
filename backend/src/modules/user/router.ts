@@ -5,7 +5,10 @@ import { User } from './entity';
 
 import type { EntitySchema } from 'typeorm';
 
-const dataRepository = createRepository<User>(User as unknown as EntitySchema<User>, dataSource);
+export const dataRepository = createRepository<User>(
+  User as unknown as EntitySchema<User>,
+  dataSource,
+);
 
 const dataService = createService<User>(dataRepository);
 

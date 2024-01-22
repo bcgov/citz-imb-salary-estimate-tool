@@ -2,7 +2,8 @@ import { keycloak, protectedRoute } from '@bcgov/citz-imb-kc-express';
 import express, { Application } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import { KEYCLOAK_OPTIONS, CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
+import { CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
+import { KEYCLOAK_OPTIONS } from '../keycloak/keycloakConfig';
 import { healthRouter, userRouter, ministryRouter, experienceRouter } from './modules';
 
 const app: Application = express();

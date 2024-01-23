@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.get('/', dataController.getAllItems);
 
-router.post('/', dataController.createItem);
+router.post('/', dataController.createItems);
 
 router.patch('/:id', dataController.updateItem);
 

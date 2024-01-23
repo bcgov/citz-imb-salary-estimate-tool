@@ -3,57 +3,57 @@ import { BaseEntity } from '../common';
 
 @Entity()
 export class SalaryData extends BaseEntity {
-  @Column()
+  @Column({ nullable: true })
   organization!: string;
 
-  @Column()
+  @Column({ nullable: true })
   program!: string;
 
-  @Column()
+  @Column({ nullable: true })
   program_division!: string;
 
-  @Column()
+  @Column({ nullable: true })
   position_number!: string;
 
-  @Column()
+  @Column({ nullable: true })
   title!: string;
 
-  @Column()
+  @Column({ nullable: true })
   job_code!: string;
 
-  @Column()
+  @Column({ nullable: true })
   classification!: string;
 
-  @Column()
+  @Column({ nullable: true })
   appointment!: string;
 
-  @Column()
+  @Column({ nullable: true })
   schedule!: string;
 
-  @Column()
+  @Column({ nullable: true })
   supervisor_position_number!: string;
 
-  @Column()
+  @Column({ nullable: true })
   employee_id!: string;
 
-  @Column()
+  @Column({ nullable: true })
   employee_job_code!: string;
 
-  @Column()
+  @Column({ nullable: true })
   employee_classification!: string;
 
-  @Column()
+  @Column({ nullable: true })
   step!: number;
 
-  @Column()
+  @Column({ nullable: true })
   position_job_code_max_annual_rate!: number;
 
-  @Column()
+  @Column({ nullable: true })
   employee_job_code_max_annual_rate!: number;
 
-  @Column()
+  @Column({ nullable: true })
   abbr!: string;
 
-  @Column()
+  @Column({ nullable: true })
   ama!: string;
 }

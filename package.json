@@ -13,7 +13,7 @@
     "rebuild:dev": "npm run prune:dev && npm run up:dev",
     "rebuild:prod": "npm run prune:prod && npm run up:prod",
     "if": "cd frontend && rm -rf node_modules package-lock.json && npm i",
-    "ib": "cd api && rm -rf node_modules package-lock.json && npm i",
+    "ib": "cd backend && rm -rf node_modules package-lock.json && npm i",
     "test:api": "cd api && npm run test",
     "test:frontend": "cd frontend && npm run test",
     "shell:frontend": "docker exec -it citz-imb-salary-estimate-tool-frontend-1 sh",

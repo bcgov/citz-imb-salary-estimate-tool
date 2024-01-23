@@ -12,6 +12,8 @@ export class Controller<TEntity> {
 
   createItem: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
+  createItems: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+
   updateItem: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
   deleteItem: (req: Request, res: Response, next: NextFunction) => Promise<void>;
@@ -46,6 +48,12 @@ export class Controller<TEntity> {
       const createdItem = await service.createItem(req.body);
 
       res.status(httpStatusCode.CREATED).json(createdItem);
+    });
+
+    this.createItems = errorWrapper(async (req: Request, res: Response) => {
+      const createdItems = await service.createItems(req.body);
+
+      res.status(httpStatusCode.CREATED).json(createdItems);
     });
 
     this.updateItem = errorWrapper(async (req: Request, res: Response) => {

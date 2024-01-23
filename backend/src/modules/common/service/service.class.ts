@@ -23,6 +23,8 @@ export class Service<TEntity> {
 
   createItem: (item: TEntity) => Promise<IFormattedResponse<TEntity>>;
 
+  createItems: (items: TEntity[]) => Promise<IFormattedResponse<TEntity[]>>;
+
   updateItem: (id: string, item: TEntity) => Promise<IFormattedResponse<TEntity>>;
 
   deleteItem: (id: string) => Promise<IFormattedResponse<TEntity>>;
@@ -46,6 +48,13 @@ export class Service<TEntity> {
     this.createItem = async (item: TEntity) => {
       const response = this.repository.createItem(item as unknown as EntitySchema<TEntity>);
       return this.formatResponse<TEntity>(response as TEntity);
+    };
+
+    this.createItems = async (items: TEntity[]) => {
+      const responses = items.map((item) =>
+        this.repository.createItem(item as unknown as EntitySchema<TEntity>),
+      );
+      return this.formatResponse<TEntity[]>(responses as TEntity[]);
     };
 
     this.updateItem = async (id: string, item: TEntity) => {

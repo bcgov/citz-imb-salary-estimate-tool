@@ -2,10 +2,10 @@
 
 Migrations run every time before the app starts. You can also run them manually as shown here:
 
-Start by entering into the API container:
+Start by connecting to the backend container terminal:
 
 ```bash
-# get inside the backend workspace. Run from root directory.
+# connect to the backend container terminal. Run from root directory.
 $ npm run shell:backend
 ```
 
@@ -23,10 +23,10 @@ $ npm run migration:revert
 
 ### Generate a migration after you have changed an Entity
 
-Start by entering into the API container:
+Start by connecting to the backend container terminal:
 
 ```bash
-# get inside the backend workspace. Run from root directory.
+# connect to the backend container terminal. Run from root directory.
 $ npm run shell:backend
 ```
 
@@ -43,10 +43,10 @@ Now check migration in `src/migrations/` and modify if needed.
 
 ### Create an empty migration
 
-Start by entering into the API container:
+Start by connecting to the backend container terminal:
 
 ```bash
-# get inside the backend workspace. Run from root directory.
+# connect to the backend container terminal. Run from root directory.
 $ npm run shell:backend
 ```
 

@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseEntity } from '../common';
+import { Inquiry } from '../inquiry/entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -26,4 +27,13 @@ export class User extends BaseEntity {
 
   @Column({ type: 'timestamp', nullable: true })
   lastLogin!: Date | null;
+
+  @OneToMany(() => Inquiry, (inquiry) => inquiry.hm_user)
+  hm_inquiries!: Inquiry[];
+
+  @OneToMany(() => Inquiry, (inquiry) => inquiry.shr_user)
+  shr_inquiries!: Inquiry[];
+
+  @OneToMany(() => Inquiry, (inquiry) => inquiry.adm_user)
+  adm_inquiries!: Inquiry[];
 }

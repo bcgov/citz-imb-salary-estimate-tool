@@ -1,13 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class MinistryTable1705620647151 implements MigrationInterface {
-  name = 'MinistryTable1705620647151';
-
+export class IntializeData1705968347853 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `CREATE TABLE "ministry" ("id" SERIAL NOT NULL, "createdOn" TIMESTAMP NOT NULL DEFAULT NOW(), "lastUpdated" TIMESTAMP NOT NULL DEFAULT NOW(), "ministry_id" text NOT NULL, "ministry_name" text NOT NULL, CONSTRAINT "PK_9279166bcd571de7497c6c667a4" PRIMARY KEY ("id"))`,
-    );
-
     await queryRunner.query(
       `INSERT INTO ministry (ministry_id, ministry_name)
       VALUES
@@ -37,9 +31,42 @@ export class MinistryTable1705620647151 implements MigrationInterface {
       ('TACS', 'Tourism, Arts, Culture and Sport'),
       ('TRAN', 'Transportation and Infrastructure')`,
     );
+
+    await queryRunner.query(
+      `INSERT INTO experience (experience_level)
+      VALUES
+      ('1 - No experience'),
+      ('2 - Little experience'),
+      ('3 - Some experience'),
+      ('4 - Lots of experience')`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO salary_range (band, minimum_salary, maximum_salary)
+      VALUES
+      ('Band 1', 63400, 90399.95),
+      ('Band 2', 74300, 105000.04),
+      ('Band 3', 86200, 122100.01),
+      ('Band 4', 102900, 136700.11),
+      ('Band 5', 119600, 152599.97),
+      ('Band 6', 137700, 168500.09)`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO appointment (type)
+      VALUES
+      ('TA'),
+      ('REG')`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO process (type)
+      VALUES
+      ('Competitive Process'),
+      ('Internal Process')`,
+    );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TABLE "ministry"`);
-  }
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  public async down(queryRunner: QueryRunner): Promise<void> {}
 }

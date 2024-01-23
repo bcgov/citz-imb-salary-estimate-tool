@@ -4,7 +4,16 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
 import { KEYCLOAK_OPTIONS } from '../keycloak/keycloakConfig';
-import { healthRouter, userRouter, ministryRouter, experienceRouter } from './modules';
+import {
+  healthRouter,
+  userRouter,
+  ministryRouter,
+  experienceRouter,
+  salaryRangeRouter,
+  processRouter,
+  appointmentRouter,
+  salaryDataRouter,
+} from './modules';
 
 const app: Application = express();
 
@@ -37,8 +46,15 @@ app.disable('x-powered-by');
 
 // Routing information
 app.use('/health', healthRouter);
-app.use('/user', protectedRoute(), userRouter);
-app.use('/ministry', protectedRoute(), ministryRouter);
+
+// Protected routes
+app.use('/appointment', protectedRoute(), appointmentRouter);
 app.use('/experience', protectedRoute(), experienceRouter);
+app.use('/inquiry', protectedRoute(), salaryRangeRouter);
+app.use('/ministry', protectedRoute(), ministryRouter);
+app.use('/process', protectedRoute(), processRouter);
+app.use('/salaryData', protectedRoute(), salaryDataRouter);
+app.use('/salaryRange', protectedRoute(), salaryRangeRouter);
+app.use('/user', protectedRoute(), userRouter);
 
 export default app;

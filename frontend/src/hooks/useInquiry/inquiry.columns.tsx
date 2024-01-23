@@ -21,9 +21,7 @@ export const columnsInquiry: GridColDef[] = [
     headerName: 'Candidate Name',
     width: 200,
     valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.candidate_first_name || ''} ${
-        params.row.candidate_last_name || ''
-      }`,
+      `${params.row.candidate_first_name || ''} ${params.row.candidate_last_name || ''}`,
   },
   {
     field: 'inquiry_submission_date',

@@ -1,4 +1,9 @@
-export { default as healthRouter } from './health/router';
-export { default as userRouter } from './user/router';
-export { default as ministryRouter } from './ministry/router';
+export { default as appointmentRouter } from './appointment/router';
 export { default as experienceRouter } from './experience/router';
+export { default as healthRouter } from './health/router';
+export { default as inquiryRouter } from './inquiry/router';
+export { default as ministryRouter } from './ministry/router';
+export { default as processRouter } from './process/router';
+export { default as salaryDataRouter } from './salaryData/router';
+export { default as salaryRangeRouter } from './salaryRange/router';
+export { default as userRouter } from './user/router';

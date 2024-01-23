@@ -5,7 +5,7 @@ const outdatedDeps = require(path.resolve(
 ));
 
 const LOCAL_TEST = false;
-const TEST_PACKAGEJSON_PATHS = ["src/frontend", "src/backend"];
+const TEST_PACKAGEJSON_PATHS = ["src/frontend", "src/backend", "src/e2e"];
 
 /**
  * THIS FILE DOES NOT REQUIRE ANY EDITING.

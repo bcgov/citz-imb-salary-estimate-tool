@@ -13,6 +13,7 @@ import {
   processRouter,
   appointmentRouter,
   salaryDataRouter,
+  inquiryRouter,
 } from './modules';
 
 const app: Application = express();
@@ -50,7 +51,7 @@ app.use('/health', healthRouter);
 // Protected routes
 app.use('/appointment', protectedRoute(), appointmentRouter);
 app.use('/experience', protectedRoute(), experienceRouter);
-app.use('/inquiry', protectedRoute(), salaryRangeRouter);
+app.use('/inquiry', protectedRoute(), inquiryRouter);
 app.use('/ministry', protectedRoute(), ministryRouter);
 app.use('/process', protectedRoute(), processRouter);
 app.use('/salaryData', protectedRoute(), salaryDataRouter);

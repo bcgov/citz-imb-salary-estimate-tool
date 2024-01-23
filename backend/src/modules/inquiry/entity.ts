@@ -51,12 +51,9 @@ export class Inquiry extends BaseEntity {
   @Column()
   new_position_title!: string;
 
-  @Column()
-  new_mccf_classification!: string;
-
   @ManyToOne(() => SalaryRange, (salaryRange) => salaryRange.inquiries)
   @JoinColumn()
-  new_salary_range!: SalaryRange;
+  new_mccf_classification!: SalaryRange;
 
   @ManyToOne(() => Appointment, (appointment) => appointment.inquiries)
   @JoinColumn()

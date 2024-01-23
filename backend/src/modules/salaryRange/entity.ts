@@ -13,6 +13,6 @@ export class SalaryRange extends BaseEntity {
   @Column()
   maximum_salary!: number;
 
-  @OneToMany(() => Inquiry, (inquiry) => inquiry.new_salary_range)
+  @OneToMany(() => Inquiry, (inquiry) => inquiry.new_mccf_classification)
   inquiries!: Inquiry[];
 }

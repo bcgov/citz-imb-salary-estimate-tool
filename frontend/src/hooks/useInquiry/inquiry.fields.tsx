@@ -116,14 +116,6 @@ export const inquiryFormFields: IFormField[] = [
   {
     name: 'new_mccf_classification',
     label: 'New Classification',
-    type: 'text',
-    defaultValue: '',
-    section: 'position',
-    sortOrder: 4,
-  },
-  {
-    name: 'new_salary_range',
-    label: 'Band',
     type: 'select',
     required: true,
     defaultValue: '',

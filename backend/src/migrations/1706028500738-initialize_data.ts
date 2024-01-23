@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class IntializeData1705968347853 implements MigrationInterface {
+export class InitializeData1706028500738 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `INSERT INTO ministry (ministry_id, ministry_name)

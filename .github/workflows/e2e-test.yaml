@@ -1,31 +1,11 @@
 name: "E2E Test Run with Playwright"
 
 on:
-  workflow_call:
-    inputs:
-      environment:
-        description: "Select Dev or Test environment"
-        required: true
-        type: string
-        default: "APP-Dev"
-    secrets:
-      SHR_IDIR_PASSWORD:
-        required: true
-      HM_IDIR_PASSWORD:
-        required: true
-      ADM_IDIR_PASSWORD:
-        required: true
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Select Dev or Test environment"
-        required: true
-        type: string
-        default: "APP-Dev"
+  workflow_call: {}
+  workflow_dispatch: {}
 
 jobs:
   e2e-test:
-    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     env:
       SHR_IDIR_USERNAME: ${{ secrets.SHR_IDIR_USERNAME }}
@@ -40,13 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set Test Command
-        run: |
-          if [[ "${{ inputs.environment }}" == "APP-Dev" ]]; then
-            echo "TEST_CMD=npm run playwright-dev" >> $GITHUB_ENV
-          else
-            echo "Error: Unknown environment '${{ inputs.environment }}'" >&2
-            exit 1
-          fi
+        run: echo "TEST_CMD=npm run playwright-dev" >> $GITHUB_ENV
 
       - name: Echo Test Command
         run: echo $TEST_CMD

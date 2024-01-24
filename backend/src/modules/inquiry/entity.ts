@@ -10,13 +10,10 @@ import { User } from '../user/entity';
 
 @Entity()
 export class Inquiry extends BaseEntity {
-  @Column()
-  employee_id!: string;
-
   @Column({ type: 'enum', enum: InquiryStates, default: InquiryStates.DRAFT })
   state!: InquiryStates;
 
-  @Column()
+  @Column({ nullable: true })
   inquiry_completion_date!: Date;
 
   @Column()
@@ -75,15 +72,15 @@ export class Inquiry extends BaseEntity {
   @Column()
   adm_comment!: string;
 
-  @ManyToOne(() => User, (user) => user.hm_inquiries)
+  @ManyToOne(() => User, (user) => user.hm_inquiries, { nullable: true })
   @JoinColumn()
   hm_user!: User;
 
-  @ManyToOne(() => User, (user) => user.shr_inquiries)
+  @ManyToOne(() => User, (user) => user.shr_inquiries, { nullable: true })
   @JoinColumn()
   shr_user!: User;
 
-  @ManyToOne(() => User, (user) => user.adm_inquiries)
+  @ManyToOne(() => User, (user) => user.adm_inquiries, { nullable: true })
   @JoinColumn()
   adm_user!: User;
 }

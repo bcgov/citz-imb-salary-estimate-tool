@@ -13,16 +13,7 @@ import { CloseButton, IFormProps, SubmitCancelButton } from '@/components';
 import { FormSection } from './FormSection/FormSection';
 
 export const Form = (props: IFormProps) => {
-  const {
-    defaultValues,
-    open,
-    onClose,
-    onSubmit,
-    mode,
-    fields,
-    sections,
-    title,
-  } = props;
+  const { defaultValues, open, onClose, onSubmit, mode, fields, sections, title } = props;
 
   const formHook = useForm({
     defaultValues,
@@ -54,9 +45,7 @@ export const Form = (props: IFormProps) => {
           <DialogContent>
             <Stack>
               {sections.map((section) => {
-                const sectonFields = fields.filter(
-                  (field) => field.section === section.name
-                );
+                const sectonFields = fields.filter((field) => field.section === section.name);
                 return (
                   <FormSection
                     key={section.name}

@@ -14,6 +14,8 @@ export const onAppendMutation = <TDataType>({
   queryKey: QueryKey;
 }) => {
   const mutationFn = async (item: TDataType) => {
+    // eslint-disable-next-line no-console
+    console.log('mutationFn', item);
     const newItem = { ...(item as object) };
     let postEndpoint = endPoint;
     if ('id' in newItem) delete newItem.id;

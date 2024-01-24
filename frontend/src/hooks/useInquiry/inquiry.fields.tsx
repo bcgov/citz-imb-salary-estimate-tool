@@ -14,7 +14,7 @@ export const inquiryFormFields: IFormField[] = [
     name: 'state',
     label: 'Current State',
     type: 'status',
-    defaultValue: 1,
+    defaultValue: 'draft',
     section: 'status',
     sortOrder: 2,
   },
@@ -135,7 +135,7 @@ export const inquiryFormFields: IFormField[] = [
     selectionOptions: {
       endPoint: 'appointment',
       labelFieldName: 'type',
-      valueFieldName: 'type',
+      valueFieldName: 'id',
     },
     defaultValue: 2,
     section: 'position',
@@ -148,7 +148,7 @@ export const inquiryFormFields: IFormField[] = [
     selectionOptions: {
       endPoint: 'process',
       labelFieldName: 'type',
-      valueFieldName: 'type',
+      valueFieldName: 'id',
     },
     defaultValue: 1,
     section: 'position',

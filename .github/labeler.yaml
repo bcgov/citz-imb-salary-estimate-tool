@@ -18,3 +18,6 @@
 
 'Environment Variables':
   - '**/.env*'
+
+'E2E':
+  - e2e/**

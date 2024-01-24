@@ -51,7 +51,12 @@ export const UploadConfirmationDialog: React.FC<
             width="100%"
             justifyContent="center"
           >
-            <Button variant="contained" type="button" onClick={handleSubmit}>
+            <Button
+              variant="contained"
+              type="button"
+              onClick={handleSubmit}
+              disabled={!csvFile}
+            >
               Upload
             </Button>
             <Button variant="outlined" type="reset" onClick={handleClose}>

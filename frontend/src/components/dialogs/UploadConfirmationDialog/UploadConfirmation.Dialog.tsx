@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Stack,
 } from '@mui/material';
-import { ConfirmCancelButton, ImportButton } from '@/components';
+import { ImportButton } from '@/components';
 import { useUpload } from '@/hooks';
 import {
   csvFileToSalaryData,
@@ -43,7 +45,19 @@ export const UploadConfirmationDialog: React.FC<
           <input type="file" accept=".csv,.CSV" onChange={handleFileChange} />
         </DialogContent>
         <DialogActions>
-          <ConfirmCancelButton onClose={handleClose} onClick={handleSubmit} />
+          <Stack
+            direction="row"
+            spacing={2}
+            width="100%"
+            justifyContent="center"
+          >
+            <Button variant="contained" type="button" onClick={handleSubmit}>
+              Upload
+            </Button>
+            <Button variant="outlined" type="reset" onClick={handleClose}>
+              Cancel
+            </Button>
+          </Stack>{' '}
         </DialogActions>
       </Dialog>
     </>

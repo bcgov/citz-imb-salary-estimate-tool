@@ -11,7 +11,7 @@ export const experienceFormFields: IFormField[] = [
     sortOrder: 1,
   },
   {
-    name: 'Experience Level',
+    name: 'experience_level',
     label: 'Experience Level',
     type: 'text',
     required: true,

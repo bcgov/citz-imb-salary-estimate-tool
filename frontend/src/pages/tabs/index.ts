@@ -1,4 +1,5 @@
 export * from './InquiryTab';
 export * from './UserTab';
 export * from './SalaryDataTab';
-export * from './Ministry';
+export * from './MinistryTab';
+export * from './ExperienceTab';

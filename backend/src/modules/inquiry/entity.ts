@@ -29,18 +29,24 @@ export class Inquiry extends BaseEntity {
   current_position_title!: string;
 
   @ManyToOne(() => Ministry, (ministry) => ministry.inqiries)
-  @JoinColumn()
+  @JoinColumn({ name: 'current_ministry_id' })
   current_ministry!: Ministry;
+
+  @Column({ name: 'current_ministry_id' })
+  current_ministry_id!: string;
 
   @Column()
   current_annual_salary!: number;
 
   @Column()
-  current_mccf_classification_id!: string;
+  current_mccf_classification!: string;
 
   @ManyToOne(() => Experience, (experience) => experience.inquiries)
-  @JoinColumn()
+  @JoinColumn({ name: 'experience_level_id' })
   experience_level!: Experience;
+
+  @Column({ name: 'experience_level_id' })
+  experience_level_id!: string;
 
   @Column()
   new_position_number!: string;
@@ -49,16 +55,25 @@ export class Inquiry extends BaseEntity {
   new_position_title!: string;
 
   @ManyToOne(() => SalaryRange, (salaryRange) => salaryRange.inquiries)
-  @JoinColumn()
+  @JoinColumn({ name: 'new_mccf_classification_id' })
   new_mccf_classification!: SalaryRange;
 
+  @Column({ name: 'new_mccf_classification_id' })
+  new_mccf_classification_id!: string;
+
   @ManyToOne(() => Appointment, (appointment) => appointment.inquiries)
-  @JoinColumn()
+  @JoinColumn({ name: 'appointment_id' })
   appointment!: Appointment;
 
+  @Column({ name: 'appointment_id' })
+  appointment_id!: string;
+
   @ManyToOne(() => Process, (process) => process.inquiries)
-  @JoinColumn()
+  @JoinColumn({ name: 'process_id' })
   process!: Process;
+
+  @Column({ name: 'process_id' })
+  process_id!: string;
 
   @Column()
   salary_estimate!: number;
@@ -73,14 +88,23 @@ export class Inquiry extends BaseEntity {
   adm_comment!: string;
 
   @ManyToOne(() => User, (user) => user.hm_inquiries, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({ name: 'hm_user_id' })
   hm_user!: User;
 
+  @Column({ name: 'hm_user_id', nullable: true })
+  hm_user_id!: string;
+
   @ManyToOne(() => User, (user) => user.shr_inquiries, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({ name: 'shr_user_id' })
   shr_user!: User;
 
+  @Column({ name: 'shr_user_id', nullable: true })
+  shr_user_id!: string;
+
   @ManyToOne(() => User, (user) => user.adm_inquiries, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({ name: 'adm_user_id' })
   adm_user!: User;
+
+  @Column({ name: 'adm_user_id', nullable: true })
+  adm_user_id!: string;
 }

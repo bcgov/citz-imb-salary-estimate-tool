@@ -53,7 +53,7 @@ export const inquiryFormFields: IFormField[] = [
     sortOrder: 5,
   },
   {
-    name: 'current_ministry',
+    name: 'current_ministry_id',
     label: 'Current Ministry',
     type: 'select',
     selectionOptions: {
@@ -74,7 +74,7 @@ export const inquiryFormFields: IFormField[] = [
     sortOrder: 7,
   },
   {
-    name: 'current_mccf_classification_id',
+    name: 'current_mccf_classification',
     label: 'Current Classification',
     type: 'text',
     defaultValue: '',
@@ -82,7 +82,7 @@ export const inquiryFormFields: IFormField[] = [
     sortOrder: 4,
   },
   {
-    name: 'experience_level',
+    name: 'experience_level_id',
     label: 'Experience Level',
     type: 'select',
     selectionOptions: {
@@ -114,7 +114,7 @@ export const inquiryFormFields: IFormField[] = [
     sortOrder: 1,
   },
   {
-    name: 'new_mccf_classification',
+    name: 'new_mccf_classification_id',
     label: 'New Classification',
     type: 'select',
     required: true,
@@ -129,7 +129,7 @@ export const inquiryFormFields: IFormField[] = [
     },
   },
   {
-    name: 'appointment',
+    name: 'appointment_id',
     label: 'Appointment Type',
     type: 'select',
     selectionOptions: {
@@ -142,7 +142,7 @@ export const inquiryFormFields: IFormField[] = [
     sortOrder: 6,
   },
   {
-    name: 'process',
+    name: 'process_id',
     label: 'Process Type',
     type: 'select',
     selectionOptions: {

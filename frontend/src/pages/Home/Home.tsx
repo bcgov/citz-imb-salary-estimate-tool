@@ -2,14 +2,9 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CustomTabPanel } from '@/components';
-import {
-  useAuthentication,
-  useSalaryData,
-  useExperience,
-  useMinistry,
-} from '@/hooks';
+import { useAuthentication, useExperience, useMinistry } from '@/hooks';
 
-import { InquiryTab, UserTab } from '../tabs';
+import { InquiryTab, UserTab, SalaryDataTab } from '../tabs';
 
 const a11yProps = (index: number) => {
   return {
@@ -21,7 +16,6 @@ const a11yProps = (index: number) => {
 const Home = () => {
   const [value, setValue] = useState(0);
   const { isAuthenticated, hasRole } = useAuthentication();
-  const { SalaryDataTable } = useSalaryData();
   const { MinistryTable } = useMinistry();
   const { ExperienceTable } = useExperience();
 
@@ -44,9 +38,7 @@ const Home = () => {
       </Box>
       <InquiryTab value={value} />
       <UserTab value={value} />
-      <CustomTabPanel value={value} index={2}>
-        {hasRole(['admin']) && SalaryDataTable}
-      </CustomTabPanel>
+      <SalaryDataTab value={value} />
       <CustomTabPanel value={value} index={3}>
         {hasRole(['admin']) && MinistryTable}
       </CustomTabPanel>

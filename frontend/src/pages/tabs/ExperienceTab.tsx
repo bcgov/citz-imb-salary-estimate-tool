@@ -5,7 +5,6 @@ interface ExperienceTabProps {
   value: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const ExperienceTab = (props: ExperienceTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();

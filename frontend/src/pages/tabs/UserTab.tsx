@@ -5,7 +5,6 @@ interface UserTabProps {
   value: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const UserTab = (props: UserTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();

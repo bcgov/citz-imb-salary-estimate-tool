@@ -5,7 +5,6 @@ interface MinistryTabProps {
   value: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const MinistryTab = (props: MinistryTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();

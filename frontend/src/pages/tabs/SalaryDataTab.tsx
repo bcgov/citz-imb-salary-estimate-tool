@@ -5,7 +5,6 @@ interface SalaryDataTabProps {
   value: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const SalaryDataTab = (props: SalaryDataTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();

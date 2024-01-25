@@ -9,6 +9,7 @@ import {
     users,
     inquiries,
     salaryData,
+    ministries,
 } from './data.mjs';
 
 const prisma = new PrismaClient();
@@ -30,6 +31,14 @@ async function seedBase() {
             where: { id: range.id },
             create: range,
             update: range,
+        }))
+    );
+
+    seedingPromises.push(
+        ...ministries.map(ministry => prisma.ministry.upsert({
+            where: { id: ministry.id },
+            create: ministry,
+            update: ministry,
         }))
     );
 

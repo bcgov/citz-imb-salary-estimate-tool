@@ -1,16 +1,15 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { KeycloakIdirUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { CustomTabPanel } from '@/components';
+import { useAuthentication } from '@/hooks';
+
 import {
-  useAuthentication,
-  useInquiry,
-  useUser,
-  useSalaryData,
-  useExperience,
-  useMinistry,
-} from '@/hooks';
+  InquiryTab,
+  UserTab,
+  SalaryDataTab,
+  MinistryTab,
+  ExperienceTab,
+} from '../tabs';
 
 const a11yProps = (index: number) => {
   return {
@@ -22,16 +21,6 @@ const a11yProps = (index: number) => {
 const Home = () => {
   const [value, setValue] = useState(0);
   const { isAuthenticated, hasRole } = useAuthentication();
-  const { UserTable } = useUser();
-  const { SalaryDataTable } = useSalaryData();
-  const { MinistryTable } = useMinistry();
-  const { state: authState } = useKeycloak();
-  let InquiryParams;
-  const user = authState.userInfo;
-  if (!hasRole(['admin']))
-    InquiryParams = (user as KeycloakIdirUser)?.idir_user_guid;
-  const { InquiryTable } = useInquiry(InquiryParams);
-  const { ExperienceTable } = useExperience();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -50,21 +39,11 @@ const Home = () => {
           {hasRole(['admin']) && <Tab label="Experience" {...a11yProps(4)} />}
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        {InquiryTable}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        {hasRole(['admin']) && UserTable}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        {hasRole(['admin']) && SalaryDataTable}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
-        {hasRole(['admin']) && MinistryTable}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={4}>
-        {hasRole(['admin']) && ExperienceTable}
-      </CustomTabPanel>
+      <InquiryTab value={value} />
+      <UserTab value={value} />
+      <SalaryDataTab value={value} />
+      <MinistryTab value={value} />
+      <ExperienceTab value={value} />
     </Box>
   );
 };

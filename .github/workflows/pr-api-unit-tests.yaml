@@ -10,7 +10,7 @@ jobs:
   check-for-tests:
     runs-on: ubuntu-latest
     outputs:
-      has-tests: ${{ steps.check-for-tests.outputs.has-tests }}
+      has-tests: ${{ steps.check-tests.outputs.has-tests }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,11 +22,11 @@ jobs:
           sudo apt-get install -y yq
 
       - name: Get test file naming convention
-        id: get-naming-convention
+        id: get-pattern
         run: |
           echo "test-naming-convention=$(yq -e '.test-naming-convention' .github/helpers/test-config.yaml)" >> $GITHUB_OUTPUT
 
-      - name: Check for tests
+      - name: Check tests
         id: check-tests
         run: |
           echo "has-tests=$(if find api/tests -name '${{ steps.get-pattern.outputs.test-naming-convention }}'; then echo 'true'; else echo 'false'; fi)" >> $GITHUB_OUTPUT

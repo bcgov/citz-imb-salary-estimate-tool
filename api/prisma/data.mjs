@@ -20,6 +20,11 @@ export const statuses = [
     { id: 6 },
 ];
 
+export const ministries = [
+    { id: 1, ministry_id: 'PSA', ministry_name: 'Public Service Agency' },
+    { id: 2, ministry_id: 'CITZ', ministry_name: 'Citizen Services' },
+];
+
 export const experienceLevels = [
     { id: 1, definition: 'No experience' },
     { id: 2, definition: 'Little experience' },

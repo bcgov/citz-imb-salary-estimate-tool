@@ -22,6 +22,7 @@
   "exclude": [
     "tsconfig.json",
     "scripts/",
-    "node_modules/"
+    "node_modules/",
+    "**/*.test.ts"
   ]
 }

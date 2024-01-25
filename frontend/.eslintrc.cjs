@@ -29,7 +29,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/no-children-prop': 0,
     'no-case-declarations': 'warn',
-    'import/prefer-default-export': 'warn',
     '@tanstack/query/exhaustive-deps': 0,
     'import/no-cycle': 0,
     "import/no-extraneous-dependencies": [
@@ -50,5 +49,6 @@ module.exports = {
       }
     ],
     "no-console": ["error", { allow: ["warn", "error"] }],
+    'import/prefer-default-export': 0,
   },
 };

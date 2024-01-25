@@ -3,7 +3,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { CORS_CONFIG, RATE_LIMIT_CONFIG } from '../config';
-import { KEYCLOAK_OPTIONS } from '../keycloak/keycloakConfig';
+import { KEYCLOAK_OPTIONS } from './keycloak/keycloakConfig';
 import {
   healthRouter,
   userRouter,

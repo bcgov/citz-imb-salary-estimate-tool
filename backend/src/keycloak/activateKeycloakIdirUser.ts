@@ -1,6 +1,6 @@
 import { KeycloakIdirUser, KeycloakUser } from '@bcgov/citz-imb-kc-express';
-import { dataRepository } from '../src/modules/user/router';
-import { User } from '../src/modules/user/entity';
+import { dataRepository } from '../modules/user/router';
+import { User } from '../modules/user/entity';
 import { EntitySchema } from 'typeorm';
 
 export const activateKeycloakIdirUser = async (

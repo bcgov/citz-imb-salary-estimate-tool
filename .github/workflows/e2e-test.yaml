@@ -28,7 +28,7 @@ jobs:
       - name: Navigate to e2e folder and Install Dependencies
         run: |
           cd e2e
-          npm ci
+          npm i
           npx playwright install --with-deps
 
       - name: Run Playwright Test

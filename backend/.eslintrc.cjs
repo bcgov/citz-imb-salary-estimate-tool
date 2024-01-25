@@ -40,4 +40,12 @@ module.exports = {
     ],
   },
   ignorePatterns: ['node_modules/', 'package-lock.json', 'dist/', 'tests/'],
+  overrides: [
+    {
+      files: ['tests/**/*', '**/*.test.ts'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };

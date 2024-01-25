@@ -1,0 +1,45 @@
+name: "E2E Test Run with Playwright"
+
+on:
+  workflow_call: {}
+  workflow_dispatch: {}
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+    env:
+      SHR_IDIR_USERNAME: ${{ secrets.SHR_IDIR_USERNAME }}
+      SHR_IDIR_PASSWORD: ${{ secrets.SHR_IDIR_PASSWORD }}
+      HM_IDIR_USERNAME: ${{ secrets.HM_IDIR_USERNAME }}
+      HM_IDIR_PASSWORD: ${{ secrets.HM_IDIR_PASSWORD }}
+      ADM_IDIR_USERNAME: ${{ secrets.ADM_IDIR_USERNAME }}
+      ADM_IDIR_PASSWORD: ${{ secrets.ADM_IDIR_PASSWORD }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Test Command
+        run: echo "TEST_CMD=npm run playwright-dev" >> $GITHUB_ENV
+
+      - name: Echo Test Command
+        run: echo $TEST_CMD
+
+      - name: Navigate to e2e folder and Install Dependencies
+        run: |
+          cd e2e
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Run Playwright Test
+        run: |
+          cd e2e
+          $TEST_CMD
+
+      - name: Create Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: ./e2e/playwright-report/
+          retention-days: 30

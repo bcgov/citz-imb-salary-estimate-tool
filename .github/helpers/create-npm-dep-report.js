@@ -5,7 +5,7 @@ const outdatedDeps = require(path.resolve(
 ));
 
 const LOCAL_TEST = false;
-const TEST_PACKAGEJSON_PATHS = ["src/frontend", "src/backend"];
+const TEST_PACKAGEJSON_PATHS = ["frontend", "backend", "e2e"];
 
 /**
  * THIS FILE DOES NOT REQUIRE ANY EDITING.
@@ -237,7 +237,7 @@ const escapeForGitHubActions = (str) =>
       )}`;
 
     // Output reminder.
-    if (deps.outdated > 0 || devDeps.outdated > 0) {
+    if (packagePath !== "." && (deps.outdated > 0 || devDeps.outdated > 0)) {
       results[packagePath] += `${line(
         `\n**Make sure to change directory to where the package.json is located using...**`
       )}`;

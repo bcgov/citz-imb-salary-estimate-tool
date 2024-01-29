@@ -73,7 +73,7 @@ export const inquiryFormFields: IFormField[] = [
       labelFieldName: 'ministry_name',
       valueFieldName: 'id',
     },
-    defaultValue: '',
+    defaultValue: null,
     section: 'employee',
     sortOrder: 3,
   },

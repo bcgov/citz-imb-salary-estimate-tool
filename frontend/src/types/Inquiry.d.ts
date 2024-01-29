@@ -9,7 +9,7 @@ export type InquiryData = {
   candidate_name?: string;
   current_position_number?: string;
   current_position_title?: string;
-  current_ministry_id?: string;
+  current_ministry_id?: number;
   // ministry Ministry ? @relation(fields: [current_ministry_id], references: [id])
   current_annual_salary?: number;
   current_mccf_classification_id?: number;

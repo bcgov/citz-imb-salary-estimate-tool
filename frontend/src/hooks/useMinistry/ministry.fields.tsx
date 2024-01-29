@@ -5,7 +5,7 @@ export const ministryFormFields: IFormField[] = [
     name: 'id',
     label: 'id',
     type: 'number',
-    defaultValue: '',
+    defaultValue: 0,
     section: 'status',
     hidden: true,
     sortOrder: 1,

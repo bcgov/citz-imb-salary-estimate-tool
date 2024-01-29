@@ -5,7 +5,6 @@
  */
 import express from 'express';
 import { 
-    getMinistries,
     getExperiences,
     getAppointments,
     getProcesses,
@@ -13,10 +12,6 @@ import {
 } from '../controllers/admin-data-controller';
 
 const router = express.Router();
-
-// GET ministries
-router.route('/ministry')
-    .get(getMinistries);
 
 // GET experiences
 router.route('/experience')

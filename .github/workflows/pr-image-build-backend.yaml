@@ -1,4 +1,4 @@
-name: Pull Request — API Image Build
+name: Pull Request — Backend Image Build
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - 'backend/**'
 
 jobs:
-  SET-API-build:
+  SET-Backend-build:
     runs-on: ubuntu-latest
     env:
       BASE_IMAGE_TAG: ${{ vars.BACKEND_BASE_IMAGE_TAG }}

@@ -14,7 +14,7 @@
   - frontend/**
 
 'Backend':
-  - api/**
+  - backend/**
 
 'Environment Variables':
   - '**/.env*'

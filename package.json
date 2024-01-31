@@ -9,10 +9,15 @@
     "down:prod": "docker compose -f docker-compose.prod.yaml down",
     "prune:dev": "docker compose -f docker-compose.dev.yaml down --rmi all --volumes",
     "prune:prod": "docker compose -f docker-compose.prod.yaml down --rmi all --volumes",
+    "up:db": "npm run up:dev -- db",
+    "rebuild:dev": "npm run prune:dev && npm run up:dev",
+    "rebuild:prod": "npm run prune:prod && npm run up:prod",
     "if": "cd frontend && rm -rf node_modules package-lock.json && npm i",
-    "ib": "cd api && rm -rf node_modules package-lock.json && npm i",
+    "ib": "cd backend && rm -rf node_modules package-lock.json && npm i",
     "test:api": "cd api && npm run test",
     "test:frontend": "cd frontend && npm run test",
-    "prisma:generate": "cd api && npx prisma generate"
+    "shell:frontend": "docker exec -it citz-imb-salary-estimate-tool-frontend-1 sh",
+    "shell:backend": "docker exec -it citz-imb-salary-estimate-tool-backend-1 sh",
+    "shell:database": "docker exec -it db sh"
   }
 }

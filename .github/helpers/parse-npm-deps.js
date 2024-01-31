@@ -2,10 +2,10 @@ const https = require("https");
 const path = require("path");
 
 const LOCAL_TEST = false;
-const TEST_PACKAGEJSON_PATHS = ["frontend", "api", "e2e"];
+const TEST_PACKAGEJSON_PATHS = ["frontend", "backend", "e2e"];
 const TEST_IGNORE_PACKAGES = {
   "frontend": [],
-  "api": [],
+  "backend": [],
   "e2e": [],
 };
 

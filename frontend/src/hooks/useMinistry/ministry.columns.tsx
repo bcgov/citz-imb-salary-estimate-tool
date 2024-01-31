@@ -8,7 +8,7 @@ import { GridColDef } from '@mui/x-data-grid';
 
 export const columnsMinistry: GridColDef[] = [
   { field: 'ministry_id', headerName: 'ID', width: 130 },
-  { field: 'ministry_name', headerName: 'Ministry', width: 250 },
+  { field: 'ministry_name', headerName: 'Ministry', width: 600 },
 ];
 
 export default columnsMinistry;

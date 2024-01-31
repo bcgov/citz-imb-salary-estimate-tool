@@ -9,8 +9,7 @@
  * rejected = 6,
  */
 export enum State {
-  new = 1,
-  draft,
+  draft = 1,
   submitted,
   reviewed,
   approved,

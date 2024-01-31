@@ -26,7 +26,7 @@ export const columnsUser: GridColDef[] = [
   {
     field: 'roles',
     headerName: 'User Roles',
-    width: 130,
+    width: 500,
     renderCell: (params) => <RolesCell value={params.value} />,
   },
 ];

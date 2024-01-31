@@ -1,5 +1,6 @@
 import { useField } from '@tanstack/react-form';
 import { StatusStepper } from '@/components';
+import { State } from '@/types';
 
 interface StatusFieldProps {
   name: string;
@@ -15,7 +16,7 @@ export const StatusField = (props: StatusFieldProps) => {
     <form.Field
       name={name}
       children={(field) => (
-        <StatusStepper hidden={hidden} status={field.state.value} />
+        <StatusStepper hidden={hidden} status={Number(State[field.state.value])} />
       )}
     />
   );

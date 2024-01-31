@@ -1,0 +1,20 @@
+// ANSI Color Codes
+export const Reset = '\x1b[0m';
+export const Bright = '\x1b[1m';
+export const Underscore = '\x1b[4m';
+export const Black = '\x1b[30m';
+export const Red = '\x1b[31m';
+export const Green = '\x1b[32m';
+export const Gold = '\x1b[33m';
+export const Blue = '\x1b[34m';
+export const Purple = '\x1b[35m';
+export const Cyan = '\x1b[36m';
+export const White = '\x1b[37m';
+export const Grey = '\x1b[1m\x1b[30m';
+export const Pink = '\x1b[1m\x1b[31m';
+export const Lime = '\x1b[1m\x1b[32m';
+export const Yellow = '\x1b[1m\x1b[33m';
+export const LBlue = '\x1b[1m\x1b[34m';
+export const Magenta = '\x1b[1m\x1b[35m';
+export const Aqua = '\x1b[1m\x1b[36m';
+export const BWhite = '\x1b[1m\x1b[37m';

@@ -1,10 +1,5 @@
 export const apiPayload = (options: RequestInit = {}) => {
-  const {
-    method = 'GET',
-    headers: optionHeaders,
-    body,
-    ...remainingOptions
-  } = options;
+  const { method = 'GET', headers: optionHeaders, body, ...remainingOptions } = options;
 
   const defaultHeaders = {
     Accept: 'application/json',

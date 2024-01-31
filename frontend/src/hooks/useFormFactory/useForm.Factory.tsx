@@ -30,37 +30,23 @@ export const useFormFactory = (props: IFormFactoryProps) => {
 
   return {
     EditFormDialog: (data) => (
-      <UpdateFormDialog
-        defaultValues={data}
-        onSubmit={onUpdate}
-        {...otherProps}
-      />
+      <UpdateFormDialog defaultValues={data} onSubmit={onUpdate} {...otherProps} />
     ),
     AddFormDialog: (
-      <NewFormDialog
-        defaultValues={defaultValues}
-        onSubmit={onAppend}
-        {...otherProps}
-      />
+      <NewFormDialog defaultValues={defaultValues} onSubmit={onAppend} {...otherProps} />
     ),
     ViewFormDialog: (data) => (
-      <ViewFormDialog
-        defaultValues={data}
-        onSubmit={() => {}}
-        {...otherProps}
-      />
+      <ViewFormDialog defaultValues={data} onSubmit={() => {}} {...otherProps} />
     ),
     DeleteRow: (row) => (
       <DeleteConfirmationDialog
         onSubmit={() => onDelete((row as { id: number }).id)}
-        position={`${
-          (row as { new_position_title: string }).new_position_title
-        } (${(row as { new_position_number: string }).new_position_number})`}
+        position={`${(row as { new_position_title: string }).new_position_title} (${
+          (row as { new_position_number: string }).new_position_number
+        })`}
       />
     ),
-    AddBulkFormDialog: (
-      <UploadConfirmationDialog onSubmit={onBulkAppend} {...otherProps} />
-    ),
+    AddBulkFormDialog: <UploadConfirmationDialog onSubmit={onBulkAppend} {...otherProps} />,
   };
 };
 

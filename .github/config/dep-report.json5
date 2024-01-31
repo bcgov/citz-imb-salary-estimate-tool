@@ -1,13 +1,13 @@
 // CONFIG FILE for specifying options in the NPM Dependency Report workflow.
 {
   // Check package.json files for dependency updates.
-  packageJsonPaths: ["frontend", "api", "e2e"],
+  packageJsonPaths: ["frontend", "backend", "e2e"],
 
   // Do not report on the following packages.
   ignorePackages: {
     // Path to package.json file.
     "frontend": [], // Add names of packages such as ["typescript"].
-    "api": [],
+    "backend": [],
     "e2e": [],
   },
 }

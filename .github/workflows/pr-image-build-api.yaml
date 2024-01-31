@@ -5,7 +5,7 @@ on:
     types: [ opened, synchronize, reopened, ready_for_review ]
     branches: [ main ]
     paths:
-      - 'api/**'
+      - 'backend/**'
 
 jobs:
   SET-API-build:
@@ -35,7 +35,7 @@ jobs:
           echo "FRONTEND_URL=${{ secrets.FRONTEND_URL }}" >> .env
 
       # Build API Image
-      - name: Build API Image
+      - name: Build Backend Image
         run: |
           docker-compose -f docker-compose.prod.yaml build --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} backend
 

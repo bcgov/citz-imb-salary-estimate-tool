@@ -1,10 +1,11 @@
 import { DataSourceOptions, DataSource } from 'typeorm';
 
-const { PGHOST, PGUSER, PGPASSWORD, POSTGRES_PORT, PGDATABASE, DEBUG, NODE_ENV } = process.env;
+const { PGHOST, PGUSER, PGPASSWORD, POSTGRES_PORT, PGDATABASE, VERBOSE_DEBUG, NODE_ENV } =
+  process.env;
 
 const fileExtensions = NODE_ENV === 'production' ? 'js' : 'ts';
 
-const ormconfig: DataSourceOptions = {
+export const dataSourceConfig: DataSourceOptions = {
   type: 'postgres',
   host: PGHOST ?? 'db',
   port: POSTGRES_PORT ? Number(POSTGRES_PORT) : 5432,
@@ -13,12 +14,12 @@ const ormconfig: DataSourceOptions = {
   database: PGDATABASE ?? 'salary-app-db',
   synchronize: false,
   migrationsRun: true,
-  logging: DEBUG === 'true' ?? false,
+  logging: VERBOSE_DEBUG === 'true' ?? false,
   entities: [`src/**/*entity.${fileExtensions}`],
-  migrations: [`src/migrations/*.${fileExtensions}`],
+  migrations: [`src/database/migrations/*.${fileExtensions}`],
 };
 
 // Create a new DataSource instance with the ormconfig.
-const dataSource = new DataSource(ormconfig);
+export const dataSource = new DataSource(dataSourceConfig);
 
 export default dataSource;

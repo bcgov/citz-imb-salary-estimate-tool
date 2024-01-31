@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { errorWrapper, httpStatusCode } from '../../utils';
-import dataSource from '../../dataSource';
+import { dataSource } from '../../database/dataSource';
 
 /**
  * Check if application is healthy.

@@ -34,10 +34,10 @@ Then generate the migration:
 
 ```bash
 # generate a migration once entity changes are done
-$ npm run migration:generate src/migrations/<your-migration-name>
+$ npm run migration:generate src/database/migrations/<your-migration-name>
 ```
 
-Now check migration in `src/migrations/` and modify if needed.
+Now check migration in `src/database/migrations/` and modify if needed.
 
 ---
 
@@ -54,9 +54,9 @@ Then create the migration:
 
 ```bash
 # create an empty migration
-$ npm run migration:create src/migrations/<your-migration-name>
+$ npm run migration:create src/database/migrations/<your-migration-name>
 ```
 
-Now edit the empty migration in `src/migrations/`.
+Now edit the empty migration in `src/database/migrations/`.
 
 ---

@@ -32,8 +32,7 @@ export class Api {
     this.post = async (endPoint, body) => {
       this.payload.method = 'POST';
       this.payload.body = JSON.stringify(body);
-      console.log('body', body);
-      
+
       await apiCall(`${this.baseUrl}/${endPoint}`, this.payload);
     };
 

@@ -10,7 +10,6 @@ export class Service<TEntity> {
   private formatResponse = <TEntity>(
     body: TEntity | TEntity[] | undefined,
   ): IFormattedResponse<TEntity> => {
-    console.log('formatResponse body', body);
     return {
       data: body,
     };

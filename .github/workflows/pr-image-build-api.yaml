@@ -37,7 +37,7 @@ jobs:
       # Build API Image
       - name: Build API Image
         run: |
-          docker-compose -f docker-compose.prod.yaml build --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} api
+          docker-compose -f docker-compose.prod.yaml build --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} backend
 
       - name: Docker Scout
         uses: docker/scout-action@v1

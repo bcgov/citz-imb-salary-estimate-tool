@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from './HttpError';
 import { httpStatusCode } from './httpStatusCode';
-import { debugRequest } from './debugStatements';
+import { debugRequest } from '../logging/debugStatements';
 
 type ExpressHandler = (
   req: Request,

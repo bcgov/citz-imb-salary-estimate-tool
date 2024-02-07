@@ -4,7 +4,7 @@
  */
 import { KeycloakIdirUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
 import { InquiryData } from '@/types';
-import { useDataFactory } from '@/hooks/useDataFactory/useData.Factory';
+import { useDataFactory } from '@/hooks/factories/useDataFactory/useData.Factory';
 import { columnsInquiry } from './inquiry.columns';
 import { inquiryFormFields } from './inquiry.fields';
 import { inquirySections } from './inquiry.sections';

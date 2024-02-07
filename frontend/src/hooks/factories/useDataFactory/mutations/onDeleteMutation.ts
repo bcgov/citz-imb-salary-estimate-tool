@@ -13,14 +13,14 @@ export const onDeleteMutation = <TDataType>({
   queryClient: QueryClient;
   queryKey: QueryKey;
 }) => {
-  const mutationFn = async (id: number) => {
+  const mutationFn = async (id: string) => {
     await api.delete(endPoint, id.toString());
   };
 
-  const onMutate = async (id: number) => {
+  const onMutate = async (id: string) => {
     const previousValues = queryClient.getQueryData(queryKey);
     queryClient.setQueryData(queryKey, (oldValues: TDataType[] = []) => [
-      ...oldValues.filter((oldValue) => (oldValue as { id: number }).id !== id),
+      ...oldValues.filter((oldValue) => (oldValue as { id: string }).id !== id),
     ]);
     return previousValues;
   };

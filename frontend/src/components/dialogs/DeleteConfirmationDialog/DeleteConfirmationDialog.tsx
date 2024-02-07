@@ -1,49 +1,50 @@
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 import { useState } from 'react';
 import { ConfirmCancelButton, DeleteRowButton } from '@/components';
 
-interface IDeleteConfirmationDialogProps {
-  onSubmit: () => void;
-  position: string;
+export interface DeleteConfirmationDialogProps {
+  onSubmit: (id: string) => void;
+  confirmationValue?: string;
+  title: string;
+  id: string;
 }
 
-export const DeleteConfirmationDialog = (
-  props: IDeleteConfirmationDialogProps
-) => {
-  const { onSubmit, position } = props;
+export const DeleteConfirmationDialog = (props: DeleteConfirmationDialogProps) => {
+  const { onSubmit, confirmationValue, title, id } = props;
 
   const [isOpen, setOpen] = useState(false);
 
-  const handleClick = () => {
+  const onClickHandler = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const onCloseHandler = () => {
+    setOpen(false);
+  };
+
+  const onSubmitHandler = () => {
+    onSubmit(id);
     setOpen(false);
   };
 
   return (
     <>
-      <DeleteRowButton onClick={handleClick} />
-      <Dialog open={isOpen} onClose={handleClose}>
-        <DialogTitle>Delete Confirmation</DialogTitle>
+      <DeleteRowButton onClick={onClickHandler} />
+      <Dialog open={isOpen} onClose={onCloseHandler}>
+        <DialogTitle>{title} Delete Confirmation</DialogTitle>
         <DialogContent>
-          <Typography>
-            Are you sure you want to delete position {position}?
-          </Typography>
+          <Typography>Are you sure you want to delete: {confirmationValue}?</Typography>
         </DialogContent>
         <DialogActions>
-          <ConfirmCancelButton onClose={handleClose} onClick={onSubmit} />
+          <ConfirmCancelButton onClose={onCloseHandler} onClick={onSubmitHandler} />
         </DialogActions>
       </Dialog>
     </>
   );
+};
+
+DeleteConfirmationDialog.defaultProps = {
+  confirmationValue: '',
 };
 
 export default DeleteConfirmationDialog;

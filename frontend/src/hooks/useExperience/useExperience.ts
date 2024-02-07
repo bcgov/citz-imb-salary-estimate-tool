@@ -4,7 +4,7 @@
  */
 
 import { ExperienceData } from '@/types';
-import { useDataFactory } from '@/hooks/useDataFactory/useData.Factory';
+import { useDataFactory } from '@/hooks/factories/useDataFactory/useData.Factory';
 import { columnsExperience } from './experience.columns';
 import { experienceFormFields } from './experience.fields';
 import { experienceSections } from './experience.sections';

@@ -42,7 +42,7 @@ export class InitializeData1706134200063 implements MigrationInterface {
     );
 
     await queryRunner.query(
-      `INSERT INTO salary_range (band, minimum_salary, maximum_salary)
+      `INSERT INTO mccf_classification (band, minimum_salary, maximum_salary)
       VALUES
       ('Band 1', 63400, 90399.95),
       ('Band 2', 74300, 105000.04),

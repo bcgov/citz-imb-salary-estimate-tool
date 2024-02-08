@@ -6,6 +6,7 @@ export interface TableContainerProps<TDataType> extends React.HTMLAttributes<HTM
   forms: UseFormFactoryReturn;
   columns: GridColDef[];
   title: string;
+  isLoading?: boolean;
   getRowId?: (row: TDataType) => string;
   view?: (data: TDataType) => JSX.Element;
   edit?: (data: TDataType) => JSX.Element;

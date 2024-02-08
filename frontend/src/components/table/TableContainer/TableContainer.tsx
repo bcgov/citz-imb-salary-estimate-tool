@@ -17,7 +17,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import type { TableContainerProps } from './TableContainer.d';
 
 export const TableContainer = <TDataType,>(props: TableContainerProps<TDataType>) => {
-  const { rows, columns, title, getRowId, forms } = props;
+  const { rows, columns, title, getRowId, forms, isLoading } = props;
   const actionColumns: typeof columns = [];
   const actionBar: JSX.Element[] = [];
 
@@ -63,15 +63,19 @@ export const TableContainer = <TDataType,>(props: TableContainerProps<TDataType>
           </Stack>
         </Toolbar>
       </AppBar>
-
-      <DataGrid
-        rows={rows}
-        columns={extendedColumns}
-        initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
-        pageSizeOptions={[10, 20, 50, 100]}
-        disableRowSelectionOnClick
-        getRowId={getRowId}
-      />
+      <Stack sx={{ height: 400, width: '100%' }}>
+        <Stack flex={1}>
+          <DataGrid
+            rows={rows}
+            columns={extendedColumns}
+            initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
+            pageSizeOptions={[10, 20, 50, 100]}
+            disableRowSelectionOnClick
+            getRowId={getRowId}
+            loading={isLoading}
+          />
+        </Stack>
+      </Stack>
     </Box>
   );
 };
@@ -81,6 +85,7 @@ TableContainer.defaultProps = {
   view: null,
   edit: null,
   deleteRow: null,
+  isLoading: false,
 };
 
 export default TableContainer;

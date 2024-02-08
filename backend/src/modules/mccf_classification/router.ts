@@ -2,16 +2,16 @@ import express from 'express';
 import type { EntitySchema } from 'typeorm';
 import { dataSource } from '../../database/dataSource';
 import { createController, createRepository, createService } from '../common';
-import { SalaryRange } from './entity';
+import { MCCF_Classification } from './entity';
 
-const dataRepository = createRepository<SalaryRange>(
-  SalaryRange as unknown as EntitySchema<SalaryRange>,
+const dataRepository = createRepository<MCCF_Classification>(
+  MCCF_Classification as unknown as EntitySchema<MCCF_Classification>,
   dataSource,
 );
 
-const dataService = createService<SalaryRange>(dataRepository);
+const dataService = createService<MCCF_Classification>(dataRepository);
 
-const dataController = createController<SalaryRange>(dataService);
+const dataController = createController<MCCF_Classification>(dataService);
 
 const router = express.Router();
 

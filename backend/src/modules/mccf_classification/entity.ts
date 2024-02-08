@@ -3,9 +3,9 @@ import { BaseEntity } from '../common';
 import { Inquiry } from '../inquiry/entity';
 
 @Entity()
-export class SalaryRange extends BaseEntity {
+export class MCCF_Classification extends BaseEntity {
   @Column()
-  band!: string;
+  classification!: string;
 
   @Column()
   minimum_salary!: number;

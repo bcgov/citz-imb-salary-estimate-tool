@@ -11,5 +11,5 @@ export class Ministry extends BaseEntity {
   ministry_name!: string;
 
   @OneToMany(() => Inquiry, (inquiry) => inquiry.current_ministry)
-  inqiries!: Inquiry[];
+  inquiries!: Inquiry[];
 }

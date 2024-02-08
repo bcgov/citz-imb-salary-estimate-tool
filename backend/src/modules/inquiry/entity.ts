@@ -3,7 +3,7 @@ import { BaseEntity } from '../common';
 import { InquiryStates } from '../state/States.enum';
 import { Ministry } from '../ministry/entity';
 import { Experience } from '../experience/entity';
-import { SalaryRange } from '../salaryRange/entity';
+import { MCCF_Classification } from '../mccf_classification/entity';
 import { Appointment } from '../appointment/entity';
 import { Process } from '../process/entity';
 import { User } from '../user/entity';
@@ -28,7 +28,7 @@ export class Inquiry extends BaseEntity {
   @Column()
   current_position_title!: string;
 
-  @ManyToOne(() => Ministry, (ministry) => ministry.inqiries)
+  @ManyToOne(() => Ministry, (ministry) => ministry.inquiries)
   @JoinColumn({ name: 'current_ministry_id' })
   current_ministry!: Ministry;
 
@@ -54,9 +54,9 @@ export class Inquiry extends BaseEntity {
   @Column()
   new_position_title!: string;
 
-  @ManyToOne(() => SalaryRange, (salaryRange) => salaryRange.inquiries)
+  @ManyToOne(() => MCCF_Classification, (classification) => classification.inquiries)
   @JoinColumn({ name: 'new_mccf_classification_id' })
-  new_mccf_classification!: SalaryRange;
+  new_mccf_classification!: MCCF_Classification;
 
   @Column({ name: 'new_mccf_classification_id' })
   new_mccf_classification_id!: string;

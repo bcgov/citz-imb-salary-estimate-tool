@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InitializeData1706134200063 implements MigrationInterface {
+export class InitializeData1707759554401 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `INSERT INTO ministry (ministry_id, ministry_name)
@@ -42,7 +42,7 @@ export class InitializeData1706134200063 implements MigrationInterface {
     );
 
     await queryRunner.query(
-      `INSERT INTO mccf_classification (band, minimum_salary, maximum_salary)
+      `INSERT INTO mccf_classification (classification, minimum_salary, maximum_salary)
       VALUES
       ('Band 1', 63400, 90399.95),
       ('Band 2', 74300, 105000.04),

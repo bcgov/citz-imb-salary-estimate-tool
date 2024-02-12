@@ -21,5 +21,3 @@ export const dataSourceConfig: DataSourceOptions = {
 
 // Create a new DataSource instance with the ormconfig.
 export const dataSource = new DataSource(dataSourceConfig);
-
-export default dataSource;

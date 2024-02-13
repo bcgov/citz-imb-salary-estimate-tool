@@ -8,11 +8,11 @@ interface ExperienceTabProps {
 export const ExperienceTab = (props: ExperienceTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();
-  const { ExperienceTable } = useExperience();
+  const { Table } = useExperience();
 
   return (
     <CustomTabPanel value={value} index={4}>
-      {hasRole(['admin']) && ExperienceTable}
+      {hasRole(['admin']) && Table}
     </CustomTabPanel>
   );
 };

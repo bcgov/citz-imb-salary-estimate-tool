@@ -3,27 +3,34 @@
  * It is also the place to transform the data sent to or returned from the backend.
  */
 
-import { ExperienceData } from '@/types';
-import { useDataFactory } from '@/hooks/factories/useDataFactory/useData.Factory';
-import { columnsExperience } from './experience.columns';
-import { experienceFormFields } from './experience.fields';
-import { experienceSections } from './experience.sections';
+import { useDataFactory, useFormFactory, useTableFactory } from '@/hooks/factories';
+import { ExperienceData } from './Experience.d';
+import { experienceDataConfig } from './experience.data.config';
+import { experienceFormConfig } from './experience.form.config';
+import { experienceTableConfig } from './experience.table.config';
 
 export const useExperience = () => {
-  const endPoint = 'experience';
-  const title = 'Experience';
+  const data = useDataFactory<ExperienceData>(experienceDataConfig);
 
-  const experienceData = useDataFactory<ExperienceData>({
-    endPoint,
-    title,
-    tableColumns: columnsExperience,
-    formSections: experienceSections,
-    formFields: experienceFormFields,
-  });
-
-  return {
-    ExperienceTable: experienceData.DataTable,
+  const formConfig = {
+    ...experienceFormConfig,
   };
+
+  formConfig.edit.onSubmit = data.updateItem;
+  formConfig.create.onSubmit = data.appendItem;
+  formConfig.remove.onSubmit = data.deleteItem;
+
+  const forms = useFormFactory<ExperienceData>(formConfig);
+
+  const tableConfig = {
+    rows: data.items,
+    forms,
+    ...experienceTableConfig,
+  };
+
+  const Table = useTableFactory<ExperienceData>(tableConfig);
+
+  return { Table };
 };
 
 export default useExperience;

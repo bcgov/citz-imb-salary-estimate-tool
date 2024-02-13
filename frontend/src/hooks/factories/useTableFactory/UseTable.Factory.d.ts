@@ -6,6 +6,7 @@ export interface UseTableFactoryProps<TDataType> extends React.HTMLAttributes<HT
   rows?: TDataType[];
   forms?: UseFormFactoryReturn;
   columns?: GridColDef[];
+  isLoading?: boolean;
   tableProps?: TableContainerProps<TDataType>;
   AddBulkFormDialog?: JSX.Element;
   AddFormDialog?: JSX.Element;

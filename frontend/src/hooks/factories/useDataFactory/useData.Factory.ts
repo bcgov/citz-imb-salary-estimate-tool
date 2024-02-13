@@ -42,7 +42,7 @@ export const useDataFactory = <TDataType>(
     queryFn: async () => {
       const response = await api.get<TDataType>(endPoint);
 
-      return response.data;
+      return response.data || [];
     },
   });
 

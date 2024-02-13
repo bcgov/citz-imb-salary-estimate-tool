@@ -27,11 +27,9 @@ export const useMinistry = () => {
     ...ministryTableConfig,
   };
 
-  const ministryTable = useTableFactory<MinistryData>(tableConfig);
+  const Table = useTableFactory<MinistryData>(tableConfig);
 
-  return {
-    MinistryTable: ministryTable,
-  };
+  return { Table };
 };
 
 export default useMinistry;

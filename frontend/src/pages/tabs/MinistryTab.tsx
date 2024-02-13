@@ -8,11 +8,11 @@ interface MinistryTabProps {
 export const MinistryTab = (props: MinistryTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();
-  const { MinistryTable } = useMinistry();
+  const { Table } = useMinistry();
 
   return (
     <CustomTabPanel value={value} index={3}>
-      {hasRole(['admin']) && MinistryTable}
+      {hasRole(['admin']) && Table}
     </CustomTabPanel>
   );
 };

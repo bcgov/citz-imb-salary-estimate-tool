@@ -1,4 +1,4 @@
-import { InquiryData } from '.';
+import { InquiryData } from '../useInquiry/Inquiry.d';
 
 export type MinistryData = {
   ministry_id: string;

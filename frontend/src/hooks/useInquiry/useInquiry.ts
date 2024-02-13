@@ -2,44 +2,49 @@
  * This hook is to specify the endpoint and the columns for the Inquiry page.
  * It is also the place to transform the data sent to or returned from the backend.
  */
-import { KeycloakIdirUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { InquiryData } from '@/types';
-import { useDataFactory } from '@/hooks/factories/useDataFactory/useData.Factory';
-import { columnsInquiry } from './inquiry.columns';
-import { inquiryFormFields } from './inquiry.fields';
-import { inquirySections } from './inquiry.sections';
+import { useDataFactory, useFormFactory, useTableFactory } from '@/hooks/factories';
+import { InquiryData } from './Inquiry.d';
+import { inquiryDataConfig } from './inquiry.data.config';
+import { inquiryFormConfig } from './inquiry.form.config';
+import { inquiryTableConfig } from './inquiry.table.config';
 
-export const useInquiry = (guid?: string) => {
-  let endPoint = 'inquiry';
-  if (guid) endPoint = `${endPoint}/guid?guid=${guid}`;
-  const title = 'Inquiry';
+export type InquiryProps = {
+  userGuid: string;
+  roles: string[];
+};
 
-  const { user, hasRole } = useKeycloak();
-  const userGuid = (user as KeycloakIdirUser)?.idir_user_guid;
+export const useInquiry = (props: InquiryProps) => {
+  const { userGuid, roles } = props;
 
-  if (hasRole(['hm']) && inquiryFormFields[1].defaultValue === null) {
-    inquiryFormFields[1].defaultValue = userGuid;
-  }
+  const data = useDataFactory<InquiryData>(inquiryDataConfig);
 
-  if (hasRole(['shr']) && inquiryFormFields[2].defaultValue === null) {
-    inquiryFormFields[2].defaultValue = userGuid;
-  }
-
-  if (hasRole(['adm']) && inquiryFormFields[3].defaultValue === null) {
-    inquiryFormFields[3].defaultValue = userGuid;
-  }
-
-  const inquiryData = useDataFactory<InquiryData>({
-    endPoint,
-    title,
-    tableColumns: columnsInquiry,
-    formSections: inquirySections,
-    formFields: inquiryFormFields,
-  });
-
-  return {
-    InquiryTable: inquiryData.DataTable,
+  const formConfig = {
+    ...inquiryFormConfig,
   };
+
+  if (roles.includes('adm') && formConfig.create.defaultValues)
+    formConfig.create.defaultValues.adm_user_id = userGuid;
+  if (roles.includes('hm') && formConfig.create.defaultValues)
+    formConfig.create.defaultValues.hm_user_id = userGuid;
+  if (roles.includes('shr') && formConfig.create.defaultValues)
+    formConfig.create.defaultValues.shr_user_id = userGuid;
+
+  formConfig.edit.onSubmit = data.updateItem;
+  formConfig.create.onSubmit = data.appendItem;
+  formConfig.remove.onSubmit = data.deleteItem;
+
+  const forms = useFormFactory<InquiryData>(formConfig);
+
+  const tableConfig = {
+    rows: data.items,
+    isLoading: data.isLoading,
+    forms,
+    ...inquiryTableConfig,
+  };
+
+  const Table = useTableFactory<InquiryData>(tableConfig);
+
+  return { Table };
 };
 
 export default useInquiry;

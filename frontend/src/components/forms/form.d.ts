@@ -13,7 +13,6 @@ export type FormField = {
   label: string;
   type: 'currency' | 'date' | 'multiline' | 'number' | 'select' | 'status' | 'text';
   required?: boolean;
-  defaultValue: string | number | null;
   selectionOptions?: ISelectionOptions;
   section: string;
   hidden?: boolean;

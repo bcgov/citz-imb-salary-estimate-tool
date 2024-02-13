@@ -1,5 +1,5 @@
-import { KeycloakIdirUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
-import { useAuthentication, useInquiry } from '@/hooks';
+import { KeycloakIdirUser, KeycloakUser, useKeycloak } from '@bcgov/citz-imb-kc-react';
+import { InquiryProps, useInquiry } from '@/hooks';
 import { CustomTabPanel } from '@/components';
 
 interface InquiryTabProps {
@@ -8,17 +8,20 @@ interface InquiryTabProps {
 
 export const InquiryTab = (props: InquiryTabProps) => {
   const { value } = props;
-  let InquiryParams;
-  const { hasRole } = useAuthentication();
-  const { state: authState } = useKeycloak();
-  const user = authState.userInfo;
-  if (!hasRole(['admin'])) InquiryParams = (user as KeycloakIdirUser)?.idir_user_guid;
 
-  const { InquiryTable } = useInquiry(InquiryParams);
+  const { state: authState } = useKeycloak();
+  const user = authState.userInfo as KeycloakUser & KeycloakIdirUser;
+
+  const currentUserRoles: InquiryProps = {
+    userGuid: user?.idir_user_guid,
+    roles: user?.client_roles || [],
+  };
+
+  const { Table } = useInquiry(currentUserRoles);
 
   return (
     <CustomTabPanel value={value} index={0}>
-      {InquiryTable}
+      {Table}
     </CustomTabPanel>
   );
 };

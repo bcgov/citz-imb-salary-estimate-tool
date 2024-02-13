@@ -14,7 +14,6 @@ export const onAppendMutation = <TDataType>({
   queryKey: QueryKey;
 }) => {
   const mutationFn = async (item: TDataType) => {
-    // eslint-disable-next-line no-console
     const newItem = { ...(item as object) };
     let postEndpoint = endPoint;
     if ('id' in newItem) delete newItem.id;
@@ -22,6 +21,7 @@ export const onAppendMutation = <TDataType>({
       const splitEndpoint = endPoint.split('/');
       postEndpoint = splitEndpoint[0];
     }
+
     await api.post(postEndpoint, newItem as TDataType);
   };
 

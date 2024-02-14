@@ -6,4 +6,5 @@ export * from './ConfirmCancelButton/ConfirmCancelButton';
 export * from './DeleteRowButton/DeleteRowButton';
 export * from './EditButton/EditButton';
 export * from './SubmitCancelButton/SubmitCancelButton';
+export * from './UploadButton/UploadButton';
 export * from './ViewButton/ViewButton';

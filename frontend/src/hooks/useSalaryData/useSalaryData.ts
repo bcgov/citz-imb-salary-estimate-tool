@@ -2,23 +2,32 @@
  * This hook is to specify the endpoint and the columns for the Admin page.
  * It is also the place to transform the data sent to or returned from the backend.
  */
-import { useDataFactory } from '../factories/useDataFactory/useData.Factory';
-import { columnsSalaryData } from './salaryData.columns';
-import { SalaryData } from '@/types';
+import { useDataFactory, useFormFactory, useTableFactory } from '@/hooks/factories';
+import { SalaryData } from './SalaryData.d';
+import { salaryDataConfig } from './salary.data.config';
+import { salaryFormConfig } from './salary.form.config';
+import { salaryTableConfig } from './salary.table.config';
 
 export const useSalaryData = () => {
-  const endPoint = 'salaryData';
-  const title = 'Past Salary Data';
-  const salaryData = useDataFactory<SalaryData>({
-    endPoint,
-    title,
-    tableColumns: columnsSalaryData,
-    showAddBulkForm: true,
-  });
+  const data = useDataFactory<SalaryData>(salaryDataConfig);
 
-  return {
-    SalaryDataTable: salaryData.DataTable,
+  const formConfig = {
+    ...salaryFormConfig,
   };
+
+  if (formConfig.addBulk) formConfig.addBulk.onSubmit = data.appendBulkItems;
+
+  const forms = useFormFactory<SalaryData>(formConfig);
+
+  const tableConfig = {
+    rows: data.items,
+    forms,
+    ...salaryTableConfig,
+  };
+
+  const Table = useTableFactory<SalaryData>(tableConfig);
+
+  return { Table };
 };
 
 export default useSalaryData;

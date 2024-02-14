@@ -1,19 +1,10 @@
-// import { useCallback } from 'react';
-// import { useMemo } from 'react';
-import {
-  // NewFormDialog,
-  // ViewFormDialog,
-  // UpdateFormDialog,
-  DeleteConfirmationDialog,
-  // UploadConfirmationDialog,
-  FormDialog,
-} from '@/components';
+import { DeleteConfirmationDialog, FormDialog, UploadConfirmationDialog } from '@/components';
 import type { UseFormFactoryProps, UseFormFactoryReturn } from './useForm.Factory.d';
 
 export const useFormFactory = <TDataType,>(
   props: UseFormFactoryProps<TDataType>,
 ): UseFormFactoryReturn<TDataType> => {
-  const { view, edit, create, remove, fields, sections, title } = props;
+  const { view, edit, create, addBulk = { show: false }, remove, fields, sections, title } = props;
 
   const viewFormDialog = (data) => (
     <FormDialog
@@ -57,12 +48,17 @@ export const useFormFactory = <TDataType,>(
     />
   );
 
-  const returnValue: UseFormFactoryReturn<TDataType> = { view, edit, create, remove };
+  const addBulkDialog = () => (
+    <UploadConfirmationDialog onSubmit={addBulk.onSubmit as (data: unknown) => void} />
+  );
+
+  const returnValue: UseFormFactoryReturn<TDataType> = { view, edit, create, remove, addBulk };
 
   if (view.show) returnValue.view.FormDialog = viewFormDialog;
   if (edit.show) returnValue.edit.FormDialog = editFormDialog;
   if (create.show) returnValue.create.FormDialog = addFormDialog;
   if (remove.show) returnValue.remove.FormDialog = deleteDialog;
+  if (addBulk.show) returnValue.addBulk.FormDialog = addBulkDialog;
 
   return returnValue as UseFormFactoryReturn<TDataType>;
 };

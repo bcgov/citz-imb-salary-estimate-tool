@@ -12,4 +12,5 @@ export type UseDataFactoryResults<TDataType> = {
   updateItem: UseMutateFunction;
   appendBulkItems: UseMutateFunction;
   appendItem: UseMutateFunction;
+  appendBulkItems: UseMutateFunction;
 };

@@ -46,6 +46,7 @@ export const TableContainer = <TDataType,>(props: TableContainerProps<TDataType>
     });
 
   if (forms.create.show) actionBar.push(forms.create.FormDialog());
+  if (forms.addBulk.show) actionBar.push(forms.addBulk.FormDialog());
 
   const extendedColumns = actionColumns.concat(columns);
 
@@ -58,7 +59,7 @@ export const TableContainer = <TDataType,>(props: TableContainerProps<TDataType>
           </Typography>
           <Stack direction="row" spacing={1}>
             {actionBar.map((action) => (
-              <div key={action.props.mode}>{action}</div>
+              <div key={action.props.mode || 'addbulk'}>{action}</div>
             ))}
           </Stack>
         </Toolbar>

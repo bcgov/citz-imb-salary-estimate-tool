@@ -9,6 +9,10 @@ export interface UseFormFactoryProps<TDataType> {
     show: boolean;
     onSubmit?: (data: TDataType) => void;
   };
+  addBulk?: {
+    show: boolean;
+    onSubmit?: (data: unknown) => void;
+  };
   remove: {
     show: boolean;
     confirmationField?: string;
@@ -37,6 +41,10 @@ export type UseFormFactoryReturn<TDataType> = {
   create: {
     show: boolean;
     FormDialog?: (data: TDataType) => JSX.Element;
+  };
+  addBulk: {
+    show: boolean;
+    FormDialog?: () => JSX.Element;
   };
   remove: {
     show: boolean;

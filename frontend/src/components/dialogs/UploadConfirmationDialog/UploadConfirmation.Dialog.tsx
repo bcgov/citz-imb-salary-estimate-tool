@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { ConfirmCancelButton, AddButton } from '@/components';
+import { ConfirmCancelButton, UploadButton } from '@/components';
 import { useUpload } from '@/hooks';
 import { csvFileToSalaryData, ISalaryDataModel } from '@/utils';
 
@@ -27,7 +27,7 @@ export const UploadConfirmationDialog: React.FC<IUploadConfirmationDialogProps> 
 
   return (
     <>
-      <AddButton onClick={handleOpen} />
+      <UploadButton onClick={handleOpen} />
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Upload</DialogTitle>
         <DialogContent>

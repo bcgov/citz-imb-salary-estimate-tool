@@ -14,4 +14,7 @@ export const userFormConfig: UseFormFactoryProps<UserData> = {
   create: {
     show: false,
   },
+  addBulk: {
+    show: false,
+  },
 };

@@ -8,26 +8,18 @@ export type ISelectionOptions = {
   sortFieldName?: string;
 };
 
-export type IFormField = {
+export type FormField = {
   name: string;
   label: string;
-  type:
-    | 'currency'
-    | 'date'
-    | 'multiline'
-    | 'number'
-    | 'select'
-    | 'status'
-    | 'text';
+  type: 'currency' | 'date' | 'multiline' | 'number' | 'select' | 'status' | 'text';
   required?: boolean;
-  defaultValue: string | number | null;
   selectionOptions?: ISelectionOptions;
   section: string;
   hidden?: boolean;
   sortOrder: number;
 };
 
-export type IFormSection = {
+export type FormSection = {
   name: string;
   label: string;
   gridItemProps?: GridProps;
@@ -37,19 +29,19 @@ export type IDefaultValue = {
   [key: string]: string | number | null;
 };
 
-interface IFormBaseProps {
+export interface FormBaseProps {
   title: string;
   fields: IFormField[];
   sections: IFormSection[];
 }
 
-export interface IFormDialogProps extends IFormBaseProps {
-  onSubmit: (data: unknown) => void;
+export interface FormProps<TDataType> {
   defaultValues: IDefaultValue;
-}
-
-export interface IFormProps extends IFormDialogProps {
   open: boolean;
   onClose: () => void;
+  onSubmit: (data: TDataType) => void;
   mode: 'Create' | 'Edit' | 'View';
+  fields: IFormField[];
+  sections: IFormSection[];
+  title: string;
 }

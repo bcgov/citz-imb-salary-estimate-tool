@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@mui/material';
-import { ConfirmCancelButton, AddButton } from '@/components';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { ConfirmCancelButton, UploadButton } from '@/components';
 import { useUpload } from '@/hooks';
-import {
-  csvFileToSalaryData,
-  ISalaryDataModel,
-} from '@/utils/UploadSalaryData';
+import { csvFileToSalaryData, ISalaryDataModel } from '@/utils';
 
 interface IUploadConfirmationDialogProps {
   onSubmit: (data: unknown) => void;
 }
 
-export const UploadConfirmationDialog: React.FC<
-  IUploadConfirmationDialogProps
-> = ({ onSubmit }) => {
+export const UploadConfirmationDialog: React.FC<IUploadConfirmationDialogProps> = ({
+  onSubmit,
+}) => {
   const [isOpen, setOpen] = useState(false);
   const { csvFile, handleFileChange } = useUpload();
 
@@ -27,8 +19,7 @@ export const UploadConfirmationDialog: React.FC<
 
   const handleSubmit = async () => {
     if (csvFile) {
-      const convertedFile: ISalaryDataModel[] =
-        await csvFileToSalaryData(csvFile);
+      const convertedFile: ISalaryDataModel[] = await csvFileToSalaryData(csvFile);
       onSubmit(convertedFile);
     }
     handleClose();
@@ -36,7 +27,7 @@ export const UploadConfirmationDialog: React.FC<
 
   return (
     <>
-      <AddButton onClick={handleOpen} />
+      <UploadButton onClick={handleOpen} />
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Upload</DialogTitle>
         <DialogContent>

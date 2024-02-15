@@ -3,13 +3,7 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuthentication } from '@/hooks';
 
-import {
-  InquiryTab,
-  UserTab,
-  SalaryDataTab,
-  MinistryTab,
-  ExperienceTab,
-} from '../tabs';
+import { InquiryTab, UserTab, SalaryDataTab, MinistryTab, ExperienceTab } from '../tabs';
 
 const a11yProps = (index: number) => {
   return {

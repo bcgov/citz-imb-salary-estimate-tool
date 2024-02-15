@@ -5,5 +5,5 @@ export { default as inquiryRouter } from './inquiry/router';
 export { default as ministryRouter } from './ministry/router';
 export { default as processRouter } from './process/router';
 export { default as salaryDataRouter } from './salaryData/router';
-export { default as salaryRangeRouter } from './salaryRange/router';
+export { default as classificationRouter } from './mccf_classification/router';
 export { default as userRouter } from './user/router';

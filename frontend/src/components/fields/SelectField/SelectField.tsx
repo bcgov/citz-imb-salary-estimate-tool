@@ -1,7 +1,7 @@
 import { MenuItem, TextField as TextFieldMUI } from '@mui/material';
 import { useField } from '@tanstack/react-form';
 import { useMemo } from 'react';
-import { useDataFactory } from '@/hooks/useDataFactory/useData.Factory';
+import { useDataFactory } from '@/hooks/factories/useDataFactory/useData.Factory';
 import { ISelectionOptions } from '@/components/forms';
 import { LoadingSkeletonField } from '@/components';
 
@@ -54,7 +54,7 @@ export const SelectField = (props: SelectFieldProps) => {
             sx={sx}
             name={field.name}
             select
-            value={field.state.value}
+            value={field.state.value ?? ''}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value as never)}
             label={label}

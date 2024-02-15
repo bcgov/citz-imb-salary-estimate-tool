@@ -8,11 +8,11 @@ interface UserTabProps {
 export const UserTab = (props: UserTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();
-  const { UserTable } = useUser();
+  const { Table } = useUser();
 
   return (
     <CustomTabPanel value={value} index={1}>
-      {hasRole(['admin']) && UserTable}
+      {hasRole(['admin']) && Table}
     </CustomTabPanel>
   );
 };

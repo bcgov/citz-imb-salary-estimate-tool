@@ -9,7 +9,7 @@ import {
   userRouter,
   ministryRouter,
   experienceRouter,
-  salaryRangeRouter,
+  classificationRouter,
   processRouter,
   appointmentRouter,
   salaryDataRouter,
@@ -55,7 +55,7 @@ app.use('/inquiry', protectedRoute(), inquiryRouter);
 app.use('/ministry', protectedRoute(), ministryRouter);
 app.use('/process', protectedRoute(), processRouter);
 app.use('/salaryData', protectedRoute(), salaryDataRouter);
-app.use('/salaryRange', protectedRoute(), salaryRangeRouter);
+app.use('/classification', protectedRoute(), classificationRouter);
 app.use('/user', protectedRoute(), userRouter);
 
 export default app;

@@ -8,11 +8,11 @@ interface SalaryDataTabProps {
 export const SalaryDataTab = (props: SalaryDataTabProps) => {
   const { value } = props;
   const { hasRole } = useAuthentication();
-  const { SalaryDataTable } = useSalaryData();
+  const { Table } = useSalaryData();
 
   return (
     <CustomTabPanel value={value} index={2}>
-      {hasRole(['admin']) && SalaryDataTable}
+      {hasRole(['admin']) && Table}
     </CustomTabPanel>
   );
 };

@@ -3,7 +3,7 @@ import { BaseEntity } from '../common';
 import { InquiryStates } from '../state/States.enum';
 import { Ministry } from '../ministry/entity';
 import { Experience } from '../experience/entity';
-import { SalaryRange } from '../salaryRange/entity';
+import { MCCF_Classification } from '../mccf_classification/entity';
 import { Appointment } from '../appointment/entity';
 import { Process } from '../process/entity';
 import { User } from '../user/entity';
@@ -28,11 +28,11 @@ export class Inquiry extends BaseEntity {
   @Column()
   current_position_title!: string;
 
-  @ManyToOne(() => Ministry, (ministry) => ministry.inqiries)
+  @ManyToOne(() => Ministry, (ministry) => ministry.inquiries, { nullable: true })
   @JoinColumn({ name: 'current_ministry_id' })
   current_ministry!: Ministry;
 
-  @Column({ name: 'current_ministry_id' })
+  @Column({ name: 'current_ministry_id', nullable: true })
   current_ministry_id!: string;
 
   @Column()
@@ -41,11 +41,11 @@ export class Inquiry extends BaseEntity {
   @Column()
   current_mccf_classification!: string;
 
-  @ManyToOne(() => Experience, (experience) => experience.inquiries)
+  @ManyToOne(() => Experience, (experience) => experience.inquiries, { nullable: true })
   @JoinColumn({ name: 'experience_level_id' })
   experience_level!: Experience;
 
-  @Column({ name: 'experience_level_id' })
+  @Column({ name: 'experience_level_id', nullable: true })
   experience_level_id!: string;
 
   @Column()
@@ -54,25 +54,27 @@ export class Inquiry extends BaseEntity {
   @Column()
   new_position_title!: string;
 
-  @ManyToOne(() => SalaryRange, (salaryRange) => salaryRange.inquiries)
+  @ManyToOne(() => MCCF_Classification, (classification) => classification.inquiries, {
+    nullable: true,
+  })
   @JoinColumn({ name: 'new_mccf_classification_id' })
-  new_mccf_classification!: SalaryRange;
+  new_mccf_classification!: MCCF_Classification;
 
-  @Column({ name: 'new_mccf_classification_id' })
+  @Column({ name: 'new_mccf_classification_id', nullable: true })
   new_mccf_classification_id!: string;
 
-  @ManyToOne(() => Appointment, (appointment) => appointment.inquiries)
+  @ManyToOne(() => Appointment, (appointment) => appointment.inquiries, { nullable: true })
   @JoinColumn({ name: 'appointment_id' })
   appointment!: Appointment;
 
-  @Column({ name: 'appointment_id' })
+  @Column({ name: 'appointment_id', nullable: true })
   appointment_id!: string;
 
-  @ManyToOne(() => Process, (process) => process.inquiries)
+  @ManyToOne(() => Process, (process) => process.inquiries, { nullable: true })
   @JoinColumn({ name: 'process_id' })
   process!: Process;
 
-  @Column({ name: 'process_id' })
+  @Column({ name: 'process_id', nullable: true })
   process_id!: string;
 
   @Column()

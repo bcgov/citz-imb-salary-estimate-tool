@@ -5,7 +5,7 @@
  * and provides a default paginationModel
  * see https://mui.com/components/data-grid/ for more information
  *
- * @param {ITableContainerProps} props
+ * @param {TableContainerProps} props
  * @returns {JSX.Element}
  *
  * any styling of the table should be done in this component
@@ -13,56 +13,40 @@
  * any styling of the cells should be done in the cell components
  */
 import { AppBar, Box, Stack, Toolbar, Typography } from '@mui/material';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
+import type { TableContainerProps } from './TableContainer.d';
 
-export interface ITableContainerProps<T>
-  extends React.HTMLAttributes<HTMLDivElement> {
-  rows: T[];
-  columns: GridColDef[];
-  tableName: string;
-  getRowId?: (row: T) => string;
-  view?: (data: T) => JSX.Element;
-  edit?: (data: T) => JSX.Element;
-  deleteRow?: (data: T) => JSX.Element;
-}
-
-export const TableContainer = <T,>(props: ITableContainerProps<T>) => {
-  const {
-    children,
-    rows,
-    columns,
-    tableName,
-    getRowId,
-    view,
-    edit,
-    deleteRow,
-  } = props;
-
+export const TableContainer = <TDataType,>(props: TableContainerProps<TDataType>) => {
+  const { rows, columns, title, getRowId, forms, isLoading } = props;
   const actionColumns: typeof columns = [];
+  const actionBar: JSX.Element[] = [];
 
-  if (view)
+  if (forms.view.show)
     actionColumns.push({
-      field: 'viewAction',
+      field: 'viewColumn',
       headerName: '',
       width: 60,
-      renderCell: (params) => view(params.row),
+      renderCell: (params) => forms.view.FormDialog(params.row),
     });
 
-  if (edit)
+  if (forms.edit.show)
     actionColumns.push({
-      field: 'editAction',
+      field: 'editColumn',
       headerName: '',
       width: 60,
-      renderCell: (params) => edit(params.row),
+      renderCell: (params) => forms.edit.FormDialog(params.row),
     });
 
-  if (deleteRow)
+  if (forms.remove.show)
     actionColumns.push({
-      field: 'deleteAction',
+      field: 'removeColumn',
       headerName: '',
       width: 60,
-      renderCell: (params) => deleteRow(params.row),
+      renderCell: (params) => forms.remove.FormDialog(params.row),
     });
+
+  if (forms.create.show) actionBar.push(forms.create.FormDialog());
+  if (forms.addBulk.show) actionBar.push(forms.addBulk.FormDialog());
 
   const extendedColumns = actionColumns.concat(columns);
 
@@ -71,22 +55,28 @@ export const TableContainer = <T,>(props: ITableContainerProps<T>) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {tableName}
+            {title}
           </Typography>
           <Stack direction="row" spacing={1}>
-            {children}
+            {actionBar.map((action) => (
+              <div key={action.props.mode || 'addbulk'}>{action}</div>
+            ))}
           </Stack>
         </Toolbar>
       </AppBar>
-
-      <DataGrid
-        rows={rows}
-        columns={extendedColumns}
-        initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
-        pageSizeOptions={[10, 20, 50, 100]}
-        disableRowSelectionOnClick
-        getRowId={getRowId}
-      />
+      <Stack sx={{ height: 400, width: '100%' }}>
+        <Stack flex={1}>
+          <DataGrid
+            rows={rows}
+            columns={extendedColumns}
+            initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
+            pageSizeOptions={[10, 20, 50, 100]}
+            disableRowSelectionOnClick
+            getRowId={getRowId}
+            loading={isLoading}
+          />
+        </Stack>
+      </Stack>
     </Box>
   );
 };
@@ -96,6 +86,7 @@ TableContainer.defaultProps = {
   view: null,
   edit: null,
   deleteRow: null,
+  isLoading: false,
 };
 
 export default TableContainer;

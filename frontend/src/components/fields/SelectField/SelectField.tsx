@@ -54,7 +54,7 @@ export const SelectField = (props: SelectFieldProps) => {
             sx={sx}
             name={field.name}
             select
-            value={field.state.value}
+            value={field.state.value ?? ''}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value as never)}
             label={label}
